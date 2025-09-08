@@ -1,0 +1,44 @@
+---
+title: "Welcome to my site!"
+css: my_css_style.css
+listing:
+  contents: _posts
+  sort: "date desc"
+  type: default
+  categories: false
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+format:
+  html:
+    css: styles.css
+---
+
+```{r load_packages, message=FALSE, warning=FALSE, include=FALSE}
+library(fontawesome)
+library(distilltools)
+```
+
+```{r, fig.height=10,echo=FALSE, fig.align='center',eval=FALSE}
+knitr::include_graphics("images/LermaCircular.jpg")
+```
+
+### `r fa("chevron-circle-down", fill = "black")` **About**
+
+Learn a little bit about me, my interests and find my contact information at the about section. <br>
+
+### `r fa("book", fill = "black")` **Publications**
+
+You can find abstracts and links to my publications. If you can't access a publication please don't hesitate to contact me. <br>
+
+### `r fa("school", fill = "black")` **Teaching**
+
+In this section, you will find a variety of topics that you might find interesting, such as AI tools, tracking functions, and selecting the right journal, among others. I've also prepared materials for teaching R, a programming language for statistical computing and graphics. If you're interested in accessing these resources, you can locate them here. <br>
+
+### `r fa("box", fill = "black")` **Packages**
+
+I develop R packages that are useful for my work. I'm often working on new packages so stay tuned. <br>
+
+### `r fa("keyboard", fill = "black")` **Blog**
+
+I blog about what I consider are useful topics and can help other people. I write mostly about R and QGIS, but some of my talks are there. I blog in English and Spanish. <br>

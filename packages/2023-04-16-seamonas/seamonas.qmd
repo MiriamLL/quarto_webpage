@@ -1,0 +1,110 @@
+---
+title: "seamonas"
+description: |
+  A package that provides easy access to information based on guidelines for monitoring seabirds at sea.
+author:
+  - name: Miriam Lerma
+date: 2025-06-23
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    css: styles.css
+---
+
+# seamonas
+
+**seamonas** provides easy access to information based on guidelines for monitoring seabirds at sea. It includes detailed table content and a sample dataset to support implementation. Information based on the HELCOM Monitoring Guidelines for Seabirds at Sea [ESAS database](https://helcom.fi/wp-content/uploads/2021/11/HELCOM-Monitoring-guidelines-for-seabirds-at-sea-monitoring.pdf).
+
+Detailed information and uses: [https://github.com/MiriamLL/seamonas](https://github.com/MiriamLL/seamonas)
+
+# Contents
+
+**seamonas** contains:
+
+-   A **list of 549 species** across morphological separated groups.
+-   Harmonized **column names** and guidance for completing each entry.
+-   Unified **descriptions** for field entries, includes abiotic structures, activity codes, associations.
+-   One **trip example** from a monitoring containing basic trip information.
+-   One **survey example** from a monitoring containing survey information.
+-   One survey example from a monitoring containing **species detected and specifications**.
+
+# Installation
+
+You can install the development version of seamonas from [GitHub](https://github.com/) with:
+
+```{r, eval=FALSE, warning=FALSE}
+devtools::install_github("MiriamLL/seamonas")
+```
+
+# Example
+
+Load the package
+
+```{r}
+library(seamonas)
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Code_Euring
+
+-   A list of **549** species names across **9** morphological separated groups.
+
+```{r}
+data(Code_Euring)
+```
+
+**Key fields**:
+
+-   `Code`: Numerical code based on [Euring](https://euring.org/data-and-codes/euring-codes). The species codes are primarily based on the EURING list, with additional 'uncertainty codes' commonly used by ESAS partners to represent species groups that are often difficult to identify under at-sea field conditions.<br>
+-   `Scientific_name`: A scientific name is the standardized, universally accepted name used to identify and classify living organisms. It follows a system called binomial nomenclature.<br>
+-   `English_name`: Official common name of the species.<br>
+-   `Artificial_tax_class`: A custom classification system based on taxonomic and morphological similarities among species.<br>
+
+Examples of use
+
+```{r KnitTableSightings, echo=FALSE}
+knitr::kable(head(Code_Euring))
+```
+
+## Column_Descriptions
+
+-   Harmonized **column names** and guidance for completing each entry.
+
+```{r}
+data(Column_Descriptions)
+```
+
+Examples of use
+
+```{r, echo=FALSE}
+knitr::kable(head(Column_Descriptions%>%
+                    select(Observations_Name,Observations_Description)%>%
+                    filter(Observations_Name=='ABIOTIC_STRUCTURES')))
+```
+
+## Code_Descriptions
+
+-   Unified **descriptions** for field entries, includes abiotic structures, activity codes, associations.
+
+```{r}
+data(Code_Descriptions)
+```
+
+Examples of use
+
+```{r, echo=FALSE}
+knitr::kable(seamonas::Code_Descriptions %>%
+  select(starts_with('ACT'))%>%
+  drop_na())
+```
+
+# Citation
+
+If you use **seamonas** for your research, please consider citing this package.
+
+Lerma M, Schwemmer J (2025). Package seamonas. Access guidelines information for monitoring seabirds at sea. <https://github.com/MiriamLL/seamonas>

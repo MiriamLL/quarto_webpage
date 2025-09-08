@@ -1,0 +1,31 @@
+project:
+  type: website
+
+website:
+  navbar:
+    left:
+      - about.qmd
+      - text: "About"
+        href: about.html
+      - text: "Publications"
+        href: publications.html
+      - text: "Teaching"
+        href: teaching.html
+      - text: "Packages"
+        href: packages.html
+      - text: "Blog"
+        href: blog.html
+    right:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/miriam-lerma/
+      - icon: github
+        href: https://github.com/MiriamLL
+
+format:
+  html:
+    fontcolor: "#0F2E3D"
+    linkcolor: "#5e60ce"
+    css: styles.css
+
+editor: visual
+

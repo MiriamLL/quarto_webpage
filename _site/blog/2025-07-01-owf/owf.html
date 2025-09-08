@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Miriam Lerma">
+<meta name="dcterms.date" content="2025-07-01">
+<meta name="description" content="This blog post demonstrates how to visualize offshore wind farm data in the German North Sea using R. It covers data download, exploration, mapping with ggplot2, and calculating areas developed before 2016.">
+
+<title>Offshore Wind Farms</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Miriam Lerma</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html">
+ <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../packages.html">
+ <span class="menu-text">Packages</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/miriam-lerma/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MiriamLL"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#visualize" id="toc-visualize" class="nav-link" data-scroll-target="#visualize">Visualize</a>
+  <ul class="collapse">
+  <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a></li>
+  <li><a href="#names" id="toc-names" class="nav-link" data-scroll-target="#names">Names</a></li>
+  <li><a href="#theme" id="toc-theme" class="nav-link" data-scroll-target="#theme">Theme</a></li>
+  <li><a href="#title" id="toc-title" class="nav-link" data-scroll-target="#title">Title</a></li>
+  </ul></li>
+  <li><a href="#some-calculations" id="toc-some-calculations" class="nav-link" data-scroll-target="#some-calculations">Some calculations</a></li>
+  <li><a href="#additional-information" id="toc-additional-information" class="nav-link" data-scroll-target="#additional-information">Additional information</a></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Offshore Wind Farms</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">ggplot2</div>
+    <div class="quarto-category">English</div>
+    <div class="quarto-category">Y2025</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>This blog post demonstrates how to visualize offshore wind farm data in the German North Sea using R. It covers data download, exploration, mapping with ggplot2, and calculating areas developed before 2016.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Miriam Lerma </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 1, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<p>An Offshore Wind Farm (OWF) is defined as a group of wind turbines placed in the ocean to generate electricity using the power of the wind.<br>
+- Wind turbines are installed on foundations anchored to the seabed (or floating, in deeper waters).<br>
+- Blades spin when the wind blows, turning a generator.<br>
+- The electricity generated is sent back to land through underwater power cables.<br>
+- Offshore wind farms have high upfront costs and engineering complexity, produce visual and noise problems, and might have an impact on marine ecosystems and birds.</p>
+
+
+<left> <img src="https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2025/OWF/Alpha_Ventus_Windmills_wikipedia.JPG?raw=true" style="width:450px"> </left>
+
+
+<p>Alpha Ventus Windmills<br>
+Source: Wikipedia</p>
+</section>
+<section id="data" class="level1">
+<h1>Data</h1>
+<p><strong>EMODnet</strong> is a European initiative that provides free, open-access data on the marine environment of Europe. It’s designed to support marine research, policy-making, and sustainable ocean development by making reliable marine data easily available.</p>
+<p>To download the original data go to <a href="https://www.emodnet-humanactivities.eu/view-data.php">EMODnet</a>. Select <a href="https://www.emodnet-humanactivities.eu/search-results.php?dataname=Wind+Farms+%28Polygons%29">human activities</a>.</p>
+</section>
+<section id="packages" class="level1">
+<h1>Packages</h1>
+<p>To visualize the data we first need to load some packages.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ lubridate 1.9.3     ✔ tibble    3.2.1
+✔ purrr     1.0.2     ✔ tidyr     1.3.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>In the package GermanNorthSea, the information provided by EMODnet and GeoSeaPortal is included for easy access. If you don’t have the package you can install it by using devtools::install_github(“MiriamLL/GermanNorthSea”).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GermanNorthSea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="visualize" class="level1">
+<h1>Visualize</h1>
+<section id="wind-farms" class="level3">
+<h3 class="anchored" data-anchor-id="wind-farms">Wind farms</h3>
+<p>Load the data from the package or from your file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>OWF_EMODnet<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>OWF_EMODnet</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Use ggplot to visualize the OWF.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(OWF_EMODnet)<span class="sc">+</span>  </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> OWF_EMODnet,  <span class="at">colour =</span> <span class="cn">NA</span>,<span class="at">fill=</span> <span class="st">"black"</span>,<span class="at">alpha=</span><span class="dv">1</span>, <span class="at">size=</span><span class="dv">1</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="owf_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Add other layers to have a reference. The additional shapes are also part of the package GermanNorthSea.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(OWF_EMODnet) <span class="sc">+</span> <span class="co"># Gives CRS</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fill colors</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_EEZ, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span> <span class="st">'#56C1D5'</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_natura, <span class="at">colour =</span> <span class="st">'transparent'</span>, <span class="at">fill=</span> <span class="st">'#84a98c'</span>, <span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_SCA, <span class="at">colour =</span> <span class="st">'transparent'</span>, <span class="at">fill=</span> <span class="st">'#84a98c'</span>, <span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_land, <span class="at">colour =</span> <span class="st">'#9a8c98'</span>, <span class="at">fill =</span> <span class="st">'#9a8c98'</span>)<span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Line colors</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_EEZ, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span> <span class="cn">NA</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_coast, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_land, <span class="at">colour =</span> <span class="st">'#9a8c98'</span>, <span class="at">fill =</span> <span class="st">'#9a8c98'</span>)<span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># OWF</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> OWF_EMODnet,  <span class="at">colour =</span> <span class="cn">NA</span>,<span class="at">fill=</span> <span class="st">"#bb3e03"</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">size=</span><span class="dv">1</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>)<span class="sc">+</span>  </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3900000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3350000</span>,<span class="dv">3680000</span>),</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="owf_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="status" class="level2">
+<h2 class="anchored" data-anchor-id="status">Status</h2>
+<p>In the context of Offshore Wind Farms (OWF), the terms “Production”, “Approved”, and “Planned” refer to the development status or stage of a wind farm project.<br>
+- Production is when the wind farm is fully built and actively generating electricity;<br>
+- Approved is when the wind farm project has received all the necessary legal and environmental permits from authorities but construction has not yet started; and<br>
+- Planned is when the wind farm is in the early stages of development, often proposed or under review, but not yet approved.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(OWF_EMODnet<span class="sc">$</span>STATUS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Production" "Approved"   "Planned"   </code></pre>
+</div>
+</div>
+<p>To only use active OWF the best is to filter using the status and selecting Production.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>OWF_Production<span class="ot">&lt;-</span>OWF_EMODnet<span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(STATUS <span class="sc">==</span> <span class="st">'Production'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can also filter the information by using year. Here, we can see that data includes OWF from 2009 to 2020.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(OWF_Production<span class="sc">$</span>YEAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2013 2019 2017 2009 2014 2015 2020 2018</code></pre>
+</div>
+</div>
+<p>Here, lets separate those OWF before 2016 from the ones after.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>OWF_Before2016<span class="ot">&lt;-</span>OWF_Production <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">&lt;=</span> <span class="dv">2016</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>OWF_After2016<span class="ot">&lt;-</span>OWF_Production <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">&gt;</span> <span class="dv">2016</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plot using different colors for OWF before 2016 and after 2016.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>OWF_1plot<span class="ot">&lt;-</span><span class="fu">ggplot</span>(OWF_EMODnet) <span class="sc">+</span> <span class="co"># Gives CRS</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fill colors</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_EEZ, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span> <span class="st">'#56C1D5'</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_natura, <span class="at">colour =</span> <span class="st">'transparent'</span>, <span class="at">fill=</span> <span class="st">'#84a98c'</span>, <span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_SCA, <span class="at">colour =</span> <span class="st">'transparent'</span>, <span class="at">fill=</span> <span class="st">'#84a98c'</span>, <span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_land, <span class="at">colour =</span> <span class="st">'#9a8c98'</span>, <span class="at">fill =</span> <span class="st">'#9a8c98'</span>)<span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Line colors</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_EEZ, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span> <span class="cn">NA</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_coast, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_land, <span class="at">colour =</span> <span class="st">'#9a8c98'</span>, <span class="at">fill =</span> <span class="st">'#9a8c98'</span>)<span class="sc">+</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="do">## OWF</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> OWF_After2016,  <span class="at">colour =</span> <span class="cn">NA</span>,<span class="at">fill=</span> <span class="st">"#bb3e03"</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">size=</span><span class="dv">1</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>)<span class="sc">+</span>  </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> OWF_Before2016,  <span class="at">colour =</span> <span class="st">"#ffb703"</span>,<span class="at">fill=</span> <span class="st">"#ffb703"</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span> </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3900000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3350000</span>,<span class="dv">3680000</span>),</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>))</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>OWF_1plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="owf_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="names" class="level2">
+<h2 class="anchored" data-anchor-id="names">Names</h2>
+<p>There is an option using <a href="https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html">ggrepel</a>, but here I manually include names of the OWF using <strong>annotation</strong>.</p>
+<p>First, create a data frame with the coordinates and the segment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Labels<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">text_x=</span><span class="fu">c</span>(<span class="dv">4010000</span>,<span class="dv">4010000</span>,<span class="dv">4141000</span>,<span class="dv">4179000</span>,<span class="dv">4211000</span>,<span class="dv">4211000</span>,<span class="dv">4211000</span>,<span class="dv">4010000</span>,<span class="dv">4010000</span>,<span class="dv">4010000</span>,<span class="dv">4010000</span>),</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">text_y=</span> <span class="fu">c</span>(<span class="dv">3479000</span>,<span class="dv">3494000</span>,<span class="dv">3605000</span>,<span class="dv">3585000</span>,<span class="dv">3494000</span>,<span class="dv">3486000</span>,<span class="dv">3478000</span>,<span class="dv">3449000</span>,<span class="dv">3439000</span>,<span class="dv">3429000</span>,<span class="dv">3405000</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">text_label=</span><span class="fu">c</span>(<span class="st">"BARD"</span>,<span class="st">"GTI"</span>,<span class="st">"DT"</span>,<span class="st">"BT"</span>,<span class="st">"AMW"</span>,<span class="st">"NSO"</span>,<span class="st">"MSO"</span>,<span class="st">"TRI"</span>,<span class="st">"AV"</span>,<span class="st">"BR"</span>,<span class="st">"RG"</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">segment_xstart=</span><span class="fu">c</span>(<span class="dv">4020000</span>,<span class="dv">4018000</span>,<span class="dv">4141000</span>,<span class="dv">4179000</span>,<span class="dv">4178000</span>,<span class="dv">4177000</span>,<span class="dv">4178000</span>,<span class="dv">4020000</span>,<span class="dv">4020000</span>,<span class="dv">4020000</span>,<span class="dv">4020000</span>),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">segment_xend=</span><span class="fu">c</span>(<span class="dv">4055000</span>,<span class="dv">4081000</span>,<span class="dv">4141000</span>,<span class="dv">4179000</span>,<span class="dv">4201000</span>,<span class="dv">4201000</span>,<span class="dv">4201000</span>,<span class="dv">4083000</span>,<span class="dv">4097000</span>,<span class="dv">4089000</span>,<span class="dv">4085000</span>),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">segment_ystart=</span><span class="fu">c</span>(<span class="dv">3479000</span>,<span class="dv">3494000</span>,<span class="dv">3578000</span>,<span class="dv">3558000</span>,<span class="dv">3492000</span>,<span class="dv">3486000</span>,<span class="dv">3479000</span>,<span class="dv">3444000</span>,<span class="dv">3439000</span>,<span class="dv">3435000</span>,<span class="dv">3405000</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">segment_yend=</span><span class="fu">c</span>(<span class="dv">3479000</span>,<span class="dv">3494000</span>,<span class="dv">3594000</span>,<span class="dv">3574000</span>,<span class="dv">3492000</span>,<span class="dv">3486000</span>,<span class="dv">3479000</span>,<span class="dv">3444000</span>,<span class="dv">3439000</span>,<span class="dv">3435000</span>,<span class="dv">3405000</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then add it one by one to the plot. You can skip this step if you dont need the names.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>OWF_2plot<span class="ot">&lt;-</span>OWF_1plot <span class="sc">+</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#BARD</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>text_x[<span class="dv">1</span>], <span class="at">y =</span> Labels<span class="sc">$</span>text_y[<span class="dv">1</span>], <span class="at">label =</span> Labels<span class="sc">$</span>text_label[<span class="dv">1</span>],<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>segment_xstart[<span class="dv">1</span>], <span class="at">xend =</span> Labels<span class="sc">$</span>segment_xend[<span class="dv">1</span>],</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Labels<span class="sc">$</span>segment_ystart[<span class="dv">1</span>], <span class="at">yend =</span> Labels<span class="sc">$</span>segment_yend[<span class="dv">1</span>],<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#GTI</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>text_x[<span class="dv">2</span>], <span class="at">y =</span> Labels<span class="sc">$</span>text_y[<span class="dv">2</span>], <span class="at">label =</span> Labels<span class="sc">$</span>text_label[<span class="dv">2</span>],<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>segment_xstart[<span class="dv">2</span>], <span class="at">xend =</span> Labels<span class="sc">$</span>segment_xend[<span class="dv">2</span>],</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Labels<span class="sc">$</span>segment_ystart[<span class="dv">2</span>], <span class="at">yend =</span> Labels<span class="sc">$</span>segment_yend[<span class="dv">2</span>],<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Dan Tysk</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>text_x[<span class="dv">3</span>], <span class="at">y =</span> Labels<span class="sc">$</span>text_y[<span class="dv">3</span>], <span class="at">label =</span> Labels<span class="sc">$</span>text_label[<span class="dv">3</span>],<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>segment_xstart[<span class="dv">3</span>], <span class="at">xend =</span> Labels<span class="sc">$</span>segment_xend[<span class="dv">3</span>],</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Labels<span class="sc">$</span>segment_ystart[<span class="dv">3</span>], <span class="at">yend =</span> Labels<span class="sc">$</span>segment_yend[<span class="dv">3</span>],<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Butendiek</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>text_x[<span class="dv">4</span>], <span class="at">y =</span> Labels<span class="sc">$</span>text_y[<span class="dv">4</span>], <span class="at">label =</span> Labels<span class="sc">$</span>text_label[<span class="dv">4</span>],<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>segment_xstart[<span class="dv">4</span>], <span class="at">xend =</span> Labels<span class="sc">$</span>segment_xend[<span class="dv">4</span>],</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Labels<span class="sc">$</span>segment_ystart[<span class="dv">4</span>], <span class="at">yend =</span> Labels<span class="sc">$</span>segment_yend[<span class="dv">4</span>],<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Amrum bank west</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>text_x[<span class="dv">5</span>], <span class="at">y =</span> Labels<span class="sc">$</span>text_y[<span class="dv">5</span>], <span class="at">label =</span> Labels<span class="sc">$</span>text_label[<span class="dv">5</span>],<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>segment_xstart[<span class="dv">5</span>], <span class="at">xend =</span> Labels<span class="sc">$</span>segment_xend[<span class="dv">5</span>],</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Labels<span class="sc">$</span>segment_ystart[<span class="dv">5</span>], <span class="at">yend =</span> Labels<span class="sc">$</span>segment_yend[<span class="dv">5</span>],<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># NSO</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>text_x[<span class="dv">6</span>], <span class="at">y =</span> Labels<span class="sc">$</span>text_y[<span class="dv">6</span>], <span class="at">label =</span> Labels<span class="sc">$</span>text_label[<span class="dv">6</span>],<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>segment_xstart[<span class="dv">6</span>], <span class="at">xend =</span> Labels<span class="sc">$</span>segment_xend[<span class="dv">6</span>],</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Labels<span class="sc">$</span>segment_ystart[<span class="dv">6</span>], <span class="at">yend =</span> Labels<span class="sc">$</span>segment_yend[<span class="dv">6</span>],<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># MSO</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>text_x[<span class="dv">7</span>], <span class="at">y =</span> Labels<span class="sc">$</span>text_y[<span class="dv">7</span>], <span class="at">label =</span> Labels<span class="sc">$</span>text_label[<span class="dv">7</span>],<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>segment_xstart[<span class="dv">7</span>], <span class="at">xend =</span> Labels<span class="sc">$</span>segment_xend[<span class="dv">7</span>],</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Labels<span class="sc">$</span>segment_ystart[<span class="dv">7</span>], <span class="at">yend =</span> Labels<span class="sc">$</span>segment_yend[<span class="dv">7</span>],<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># TRI</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>text_x[<span class="dv">8</span>], <span class="at">y =</span> Labels<span class="sc">$</span>text_y[<span class="dv">8</span>], <span class="at">label =</span> Labels<span class="sc">$</span>text_label[<span class="dv">8</span>],<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>segment_xstart[<span class="dv">8</span>], <span class="at">xend =</span> Labels<span class="sc">$</span>segment_xend[<span class="dv">8</span>],</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Labels<span class="sc">$</span>segment_ystart[<span class="dv">8</span>], <span class="at">yend =</span> Labels<span class="sc">$</span>segment_yend[<span class="dv">8</span>],<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># AV</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>text_x[<span class="dv">9</span>], <span class="at">y =</span> Labels<span class="sc">$</span>text_y[<span class="dv">9</span>], <span class="at">label =</span> Labels<span class="sc">$</span>text_label[<span class="dv">9</span>],<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>segment_xstart[<span class="dv">9</span>], <span class="at">xend =</span> Labels<span class="sc">$</span>segment_xend[<span class="dv">9</span>],</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Labels<span class="sc">$</span>segment_ystart[<span class="dv">9</span>], <span class="at">yend =</span> Labels<span class="sc">$</span>segment_yend[<span class="dv">9</span>],<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># BR</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>text_x[<span class="dv">10</span>], <span class="at">y =</span> Labels<span class="sc">$</span>text_y[<span class="dv">10</span>], <span class="at">label =</span> Labels<span class="sc">$</span>text_label[<span class="dv">10</span>],<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>segment_xstart[<span class="dv">10</span>], <span class="at">xend =</span> Labels<span class="sc">$</span>segment_xend[<span class="dv">10</span>],</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Labels<span class="sc">$</span>segment_ystart[<span class="dv">10</span>], <span class="at">yend =</span> Labels<span class="sc">$</span>segment_yend[<span class="dv">10</span>],<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># RG</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>text_x[<span class="dv">11</span>], <span class="at">y =</span> Labels<span class="sc">$</span>text_y[<span class="dv">11</span>], <span class="at">label =</span> Labels<span class="sc">$</span>text_label[<span class="dv">11</span>],<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> Labels<span class="sc">$</span>segment_xstart[<span class="dv">11</span>], <span class="at">xend =</span> Labels<span class="sc">$</span>segment_xend[<span class="dv">11</span>],</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Labels<span class="sc">$</span>segment_ystart[<span class="dv">11</span>], <span class="at">yend =</span> Labels<span class="sc">$</span>segment_yend[<span class="dv">11</span>],<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>OWF_2plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="owf_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="theme" class="level2">
+<h2 class="anchored" data-anchor-id="theme">Theme</h2>
+<p>To reduce noise from the grid, the background colors and the labels, give elements in the theme().</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>OWF_3plot<span class="ot">&lt;-</span>OWF_2plot <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>),<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(x, <span class="st">'\u00B0'</span>)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">53.5</span>,<span class="fl">54.5</span>,<span class="fl">55.5</span>),<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(x, <span class="st">'\u00B0'</span>))  <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">'#AFDEE8'</span>),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="fl">1.5</span>),</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>,<span class="at">vjust =</span> <span class="dv">12</span>,<span class="at">color=</span><span class="st">'#3d5a80'</span>),</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">color=</span><span class="st">'#3d5a80'</span>,<span class="at">size=</span><span class="dv">10</span>,<span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">0</span>,<span class="sc">-</span><span class="fl">1.30</span>,<span class="dv">0</span>,<span class="dv">1</span>, <span class="at">unit =</span> <span class="st">'cm'</span>)),</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.ticks.length=</span><span class="fu">unit</span>(<span class="sc">-</span><span class="fl">0.20</span>, <span class="st">"cm"</span>),</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.position=</span><span class="st">'none'</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.spacing.y =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">'cm'</span>),</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>),</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">colour =</span><span class="st">"transparent"</span>),</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">colour =</span><span class="st">"transparent"</span>),</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="st">"transparent"</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>OWF_3plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="owf_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="title" class="level2">
+<h2 class="anchored" data-anchor-id="title">Title</h2>
+<p>Using the package ggtext, we can add a text with different colors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggtext' was built under R version 4.4.3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>OWF_3plot <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_richtext</span>(<span class="fu">aes</span>(<span class="at">x =</span>  <span class="dv">3895000</span>, <span class="at">y =</span> <span class="dv">3669000</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Offshore Wind farms in production</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;span style='color:#ffb400'&gt;from 2009 to 2016&lt;/span&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">  and</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;span style='color:#bb3e03'&gt;from 2017 to 2020&lt;/span&gt;"</span>), </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">size=</span><span class="dv">4</span>, </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="cn">NA</span>, </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">label.color =</span> <span class="cn">NA</span>, <span class="co"># remove background and outline</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">vjust=</span> <span class="dv">0</span>,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.aes =</span> <span class="cn">TRUE</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_richtext(aes(x = 3895000, y = 3669000, label = "Offshore Wind farms in production\n  &lt;span style='color:#ffb400'&gt;from 2009 to 2016&lt;/span&gt;\n  and\n  &lt;span style='color:#bb3e03'&gt;from 2017 to 2020&lt;/span&gt;"), : All aesthetics have length 1, but the data has 46 rows.
+ℹ Please consider using `annotate()` or provide this layer with data containing
+  a single row.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="owf_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<div class="cell">
+
+</div>
+</section>
+</section>
+<section id="some-calculations" class="level1">
+<h1>Some calculations</h1>
+<p>Globally, human activities at sea are becoming more intense and diverse, and the German North Sea is no exception (Emeis et al., 2015). Offshore wind farms are an emerging concern, known to have various negative impacts on marine mammals (Dähne et al., 2013; Kastelein et al., 2016; Brandt et al., 2018) as well as on birds (Drewitt and Langston, 2006; Dierschke et al., 2016; Garthe et al., 2023).</p>
+<p>Before 2016, from 2009 to 2016 there was a total area covered of:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(OWF_Before2016<span class="sc">$</span>AREA_SQKM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 368.6957</code></pre>
+</div>
+</div>
+<p>After 2016, from 2017 to 2020, the area covered was:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(OWF_After2016<span class="sc">$</span>AREA_SQKM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 374.8699</code></pre>
+</div>
+</div>
+<p>In just four years, more area was developed for offshore wind farms than in the whole seven years before.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">sum</span>(OWF_After2016<span class="sc">$</span>AREA_SQKM)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">/</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">sum</span>(OWF_Before2016<span class="sc">$</span>AREA_SQKM,OWF_After2016<span class="sc">$</span>AREA_SQKM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50.41517</code></pre>
+</div>
+</div>
+</section>
+<section id="additional-information" class="level1">
+<h1>Additional information</h1>
+<p><strong>Alternative data sources</strong> <br></p>
+<p><strong>GeoSeaPortal</strong> is a platform that gives people access to maps and data about Germany’s seas and coasts. It brings together information from different sources into one system, making it easier to find, view, and use the data. To download the original data go to <a href="https://gdi.bsh.de/mapapps/resources/apps/meeresnutzung/index.html?lang=de">GeoSeaPortal</a>. The zip contains several shapefiles including ‘OffshoreWindEnergy’</p>
+<p><strong>OSPAR</strong> also makes shapefiles <a href="https://odims.ospar.org/en/submissions/ospar_offshore_installations_2021_02/">easily accesible</a></p>
+<p><strong>References</strong>:</p>
+<ul>
+<li><a href="https://www.bsh.de/EN/TOPICS/Offshore/Maritime_spatial_planning/maritime_spatial_planning_node.html">Maritime spatial planning</a></li>
+<li><a href="https://map.4coffshore.com/offshorewind/">4C Offshore</a></li>
+<li><a href="https://upload.wikimedia.org/wikipedia/commons/a/a1/Map_of_the_offshore_wind_power_farms_in_the_German_Bight.png">Wikimedia</a></li>
+</ul>
+<p><strong>Publications</strong>:</p>
+<p>Brandt, M. J., Dragon, A. C., Diederichs, A., Bellmann, M. A., Wahl, V., Piper, W., Nabe-Nielsen, J. and Nehls, G. 2018. Disturbance of harbour porpoises during construction of the first seven offshore wind farms in Germany. – Mar.&nbsp;Ecol. Prog. Ser. 596: 213–232. <a href="https://doi.org/10.3354/meps12560">Link</a></p>
+<p>Dähne, M., Gilles, A., Lucke, K., Peschko, V., Adler, S., Krügel, K., Sundermeyer, J. and Siebert, U. 2013. Effects of pile-driving on harbour porpoises (Phocoena phocoena) at the first offshore wind farm in Germany. – Environ. Res. Lett. <a href="https://doi.org/10.1088/1748-9326/8/2/025002">Link</a>.</p>
+<p>Dierschke, V., Furness, R. W. and Garthe, S. 2016. Seabirds and offshore wind farms in European waters: Avoidance and attraction. – Biol. Conserv. 202: 59–68. <a href="http://dx.doi.org/10.1016/j.biocon.2016.08.016">Link</a></p>
+<p>Drewitt, A. L. and Langston, R. H. W. 2006. Assessing the impacts of wind farms on birds. – Ibis 148: 29–42. <a href="10.1111/j.1474-919X.2006.00516.x">Link</a></p>
+<p>Emeis, K. C., van Beusekom, J., Callies, U., Ebinghaus, R., Kannen, A., Kraus, G., Kröncke, I., Lenhart, H., Lorkowski, I., Matthias, V., Möllmann, C., Pätsch, J., Scharfe, M., Thomas, H., Weisse, R. and Zorita, E. 2015. The North Sea - A shelf sea in the Anthropocene. – J. Mar.&nbsp;Syst. 141: 18–33. <a href="http://dx.doi.org/10.1016/j.jmarsys.2014.03.012">Link</a></p>
+<p>Garthe, S., Schwemmer, H., Peschko, V., Markones, N., Müller, S., Schwemmer, P. and Mercker, M. 2023. Large-scale effects of offshore wind farms on seabirds of high conservation concern. – Sci. Rep.&nbsp;13: 4779. <a href="https://doi.org/10.1038/s41598-023-31601-z">Link</a></p>
+<p>Kastelein, R. A., Helder-Hoek, L., Covi, J. and Gransier, R. 2016. Pile driving playback sounds and temporary threshold shift in harbor porpoises (Phocoena phocoena): Effect of exposure duration . – J. Acoust. Soc. Am. 139: 2842–2851. <a href="http://dx.doi.org/10.1121/1.4948571">Link</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
