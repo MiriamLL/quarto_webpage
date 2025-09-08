@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Miriam Lerma">
+<meta name="dcterms.date" content="2024-12-06">
+<meta name="description" content="A curated collection of my blog posts focused on animal tracking analysis.">
+
+<title>Animal tracking</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Miriam Lerma</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html">
+ <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../packages.html">
+ <span class="menu-text">Packages</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/miriam-lerma/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MiriamLL"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Animal tracking</h1>
+</div>
+
+<div>
+  <div class="description">
+    <p>A curated collection of my blog posts focused on animal tracking analysis.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Miriam Lerma </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 6, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<p>There are numerous tools available for analyzing tracking data. In this post, I share a curated collection of my blog entries that focus specifically on movement analysis, covering from data loading and cleaning to visualizations. Additionally, I’ve included a brief list of papers that can serve as guidance when embarking on tracking studies.</p>
+<p><strong>Load data</strong><br>
+- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#4">From movebank</a><br>
+- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#20">From csv</a></p>
+<p><strong>Data preparation</strong><br>
+- <a href="https://www.miriam-lerma.com/posts/2022-06-30-time-formats/">Usage of time formats</a><br>
+- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#36">Converting times</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2022-02-24-timeoverlaps/">Time overlap between individuals</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2022-07-01-nestlocation/">Locate the animals central location</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2022-08-17-count-days/">Include Julian days</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2022-12-04-day-night/">Identify Day or night</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2022-05-23-speed/">Calculate speed</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2021-11-25-embc/">Behaviour classification</a></p>
+<p><strong>Clean raw data</strong><br>
+- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#30">Select columns</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2024-08-01-removelocs/">Remove undesired locations</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2022-10-04-identify-gaps/">Identify gaps</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2024-11-05-completeorincomplete/">Complete or incomplete</a><br>
+- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#34">Export clean data frame</a></p>
+<p><strong>Calculate trip parameters</strong><br>
+- Number of trips: <a href="https://www.miriam-lerma.com/posts/2024-09-19-identifyevents/">Identify events</a><br>
+- Maximum distance: <a href="https://www.miriam-lerma.com/posts/2024-06-04-pointsdistance/">Distance from point</a><br>
+- Total length path: <a href="https://www.miriam-lerma.com/posts/2024-10-08-distancepoints/">Distance between points</a></p>
+<p><strong>Home range tools and considerations</strong><br>
+- <a href="https://www.miriam-lerma.com/posts/2022-09-13-hr-considerations/">Kernel UD considerations</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2024-07-05-interpolate/">Interpolate a path</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2021-09-24-home-range-adehabitathr/">Calculate UD and export shapefiles</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2022-01-21-sharedareas/">Calculate shared areas</a></p>
+<p><strong>Habitat use</strong><br>
+- <a href="https://www.miriam-lerma.com/posts/2022-04-07-land-or-not/">In land or not</a></p>
+<p><strong>Visualizations</strong><br>
+- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#40">Plot basics</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2023-03-04-mapping-in-r/">Create a base map in R</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2023-10-02-inside-legend/">Inside plot legend</a><br>
+- <a href="https://www.miriam-lerma.com/posts/2023-06-01-gganimate/">Animations</a></p>
+</section>
+<section id="further-reading" class="level1">
+<h1>Further reading</h1>
+<p>Below, you’ll find a list of recommended sources to explore.<br>
+I keep the list concise, though there are certainly many other resources available.</p>
+<p><strong>2006</strong><br>
+- The package “adehabitat” for the R software: A tool for the analysis of space and habitat use by animals by <a href="https://www.sciencedirect.com/science/article/pii/S0304380006001414">C Calenge</a></p>
+<p><strong>2016</strong><br>
+- Shared <a href="https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fddi.12411&amp;file=ddi12411-sup-0005-AppendixS5.r">R script</a> for calculating trip parameters by <a href="https://onlinelibrary.wiley.com/doi/10.1111/ddi.12411">BG Lascelles</a></p>
+<p><strong>2019</strong><br>
+- A compilation of R packages made by <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2656.13116">R Joo</a></p>
+<p><strong>2021</strong><br>
+- Detailed description of the movebank system by <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13767">R Kays</a><br>
+- A guide to pre-processing animal tracking data by <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2656.13610">P Gupte</a><br>
+- The package track2KBA by <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13713">M Beal</a><br>
+- My package <a href="https://github.com/MiriamLL/sula">sula</a></p>
+<p><strong>2023</strong><br>
+- My <a href="https://www.miriam-lerma.com/teaching/2023-06-06-tracking/">teaching materials</a></p>
+<p><strong>2024</strong><br>
+- ExMove: An open-source toolkit for processing and exploring animal-tracking data by <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2656.14111">L Langley</a><br>
+- move2: R package for processing movement data by <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14383">K Kranstauber</a></p>
+<p>Note that technology is advancing rapidly, and some of the scripts rely on functions that might already being deprecated.</p>
+<p>Even though there are a lot of resources out there, I prefer to write my own scripts, particularly when addressing specific questions. If you need help or a custom script, feel free to reach out to me.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

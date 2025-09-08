@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-02-19">
+<meta name="description" content="A presentation with a compilation of AI Tools and its implications in research.">
+
+<title>AI Tools in Research</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Miriam Lerma</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html">
+ <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../packages.html">
+ <span class="menu-text">Packages</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/miriam-lerma/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MiriamLL"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#contains" id="toc-contains" class="nav-link" data-scroll-target="#contains">Contains</a>
+  <ul class="collapse">
+  <li><a href="#artificial-intelligence" id="toc-artificial-intelligence" class="nav-link" data-scroll-target="#artificial-intelligence">Artificial Intelligence</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#chatgpt" id="toc-chatgpt" class="nav-link" data-scroll-target="#chatgpt">ChatGPT?</a></li>
+  <li><a href="#trying-chatgpt" id="toc-trying-chatgpt" class="nav-link" data-scroll-target="#trying-chatgpt">Trying ChatGPT</a></li>
+  <li><a href="#trying-chatgpt-1" id="toc-trying-chatgpt-1" class="nav-link" data-scroll-target="#trying-chatgpt-1">Trying ChatGPT</a></li>
+  <li><a href="#perplexity.ai" id="toc-perplexity.ai" class="nav-link" data-scroll-target="#perplexity.ai">Perplexity.ai</a></li>
+  <li><a href="#scite.ai" id="toc-scite.ai" class="nav-link" data-scroll-target="#scite.ai">Scite.ai</a></li>
+  <li><a href="#connected-papers" id="toc-connected-papers" class="nav-link" data-scroll-target="#connected-papers">Connected papers</a></li>
+  <li><a href="#ai-europe-alternatives" id="toc-ai-europe-alternatives" class="nav-link" data-scroll-target="#ai-europe-alternatives">AI Europe alternatives</a></li>
+  <li><a href="#in-research-journals" id="toc-in-research-journals" class="nav-link" data-scroll-target="#in-research-journals">In Research: Journals</a></li>
+  <li><a href="#in-research-reviewers" id="toc-in-research-reviewers" class="nav-link" data-scroll-target="#in-research-reviewers">In Research: Reviewers</a></li>
+  <li><a href="#in-research-authors" id="toc-in-research-authors" class="nav-link" data-scroll-target="#in-research-authors">In Research: Authors</a></li>
+  <li><a href="#potential" id="toc-potential" class="nav-link" data-scroll-target="#potential">Potential</a></li>
+  <li><a href="#environmental-impacts" id="toc-environmental-impacts" class="nav-link" data-scroll-target="#environmental-impacts">Environmental impacts</a></li>
+  <li><a href="#take-home-messages" id="toc-take-home-messages" class="nav-link" data-scroll-target="#take-home-messages">Take-home messages</a></li>
+  </ul></li>
+  <li><a href="#links-to-ai-tools" id="toc-links-to-ai-tools" class="nav-link" data-scroll-target="#links-to-ai-tools">Links to AI tools</a></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">AI Tools in Research</h1>
+</div>
+
+<div>
+  <div class="description">
+    <p>A presentation with a compilation of AI Tools and its implications in research.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Miriam Lerma </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 19, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<p><strong>AI Tools in Research</strong></p>
+<p>This collection of materials has been compiled by Dagmar Cimiotti and Miriam Lerma, presenting a curated selection of AI tools that are reshaping research. It includes not only an curated list of tools but also practical examples of how these tools can be used.</p>
+<p>In addition to the tools themselves, implications of AI in research are presented. The goal is to open the discussion on how these technologies can impact the efficiency and integrity of scientific research. Moreover, with the rise of AI in research there are implications from the journals, reviewers and the authors point-of-view by using this technology.</p>
+<p>This resource goal is to be a guide for those looking to start using AI while considering the broader impact these tools may have on the future of academia and the environment.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<p><strong>Click on the image to open the pdf</strong></p>
+
+
+<left> <a href="https://raw.githubusercontent.com/MiriamLL/data_supporting_webpage/main/Teaching/AITools.pdf"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_teaching/2025-02-19-ai-tools/AI_front.jpg?raw=true" style="width:450px"></a> </left>
+
+
+</section>
+<section id="contains" class="level1">
+<h1>Contains</h1>
+<section id="artificial-intelligence" class="level2">
+<h2 class="anchored" data-anchor-id="artificial-intelligence">Artificial Intelligence</h2>
+<p>The term ‘artificial intelligence’ (AI) was first coined by John McCarthy at a conference in Dartmouth in 1956. Since then, a lot has happened. Large language models (LLM) are a type of AI and have enormous value across the entire value chain of research.&nbsp;</p>
+<p>They have potential applications in the automation of research techniques<br>
+- Generating a hypothesis (<a href="https://chatgpt.com/">ChatGPT</a>) - Searching for content and get the sources (“grey” literature, laws, scientific publications; <a href="https://www.perplexity.ai/">perplexity.ai</a>)<br>
+- Searching scientifically published content (<a href="https://scite.ai/">scite</a>, <a href="https://www.connectedpapers.com/">connectedpapers</a>)<br>
+- Assist in writing scripts for QGIS (Quantum GIS) and R programming, and Excel-questions (<a href="https://chatgpt.com/">ChatGPT</a>)<br>
+- Detecting plagiarism (<a href="https://quillbot.com/">quillbot</a>)<br>
+- Improving readability (<a href="https://app.grammarly.com/">Grammarly</a>, <a href="https://chatgpt.com/">ChatGPT</a>)<br>
+- Translating (<a href="https://www.deepl.com/">deepl</a>)<br>
+- Creating pictures for presentations / posters (Image Creator from Bing)</p>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<p>AI relies heavily on the quality of input data and researchers need to be mindful of this fact. Biased or incomplete datasets can lead to inaccurate insights.</p>
+<p>Additionally, it can be extremely difficult – and sometimes impossible – to know how complex machine learning models have arrived at a particular decision. This is known as the ‘black box’ problem and means it can be challenging for humans to understand how the model arrived at a particular conclusion or prediction based on its input data.</p>
+</section>
+<section id="chatgpt" class="level2">
+<h2 class="anchored" data-anchor-id="chatgpt">ChatGPT?</h2>
+<p>OpenAI announced the groundbreaking release of ChatGPT in 2022, an online chatbot that enables users to interact with the GPT-3.5 language model.</p>
+<p>ChatGPT is a type of narrow AI (also known as weak AI) because it is designed to perform specific tasks, such as natural language processing and generation, within a defined scope. It does not possess general intelligence or self-awareness, and its capabilities are limited to the tasks it’s trained on, such as answering questions and generating text based on input.</p>
+<p>ChatGPT creators include Ilya Sutskever, chief scientist and cofounder OpenAI. His company was showered with billions of dollars by Microsoft. Among founders are Elon Musk and Amazon Web Services.</p>
+</section>
+<section id="trying-chatgpt" class="level2">
+<h2 class="anchored" data-anchor-id="trying-chatgpt">Trying ChatGPT</h2>
+<ol type="1">
+<li><p>Link: webpage <a href="https://chatgpt.com/" class="uri">https://chatgpt.com/</a><br>
+Newest update: Jan.&nbsp;2025 (Version ChatGPT 4omini)<br>
+Free<br>
+Why „Log in?“<br>
+More personalized and continuous support (timeline).<br>
+Not really necessary.</p></li>
+<li><p>ChatGPT Plus: Necessary to log in<br>
+23 EUR<br>
+Always newest ChatGPT version possible<br>
+More “thinking processes” before answering<br>
+Still fast and working when too many people use ChatGPT</p></li>
+</ol>
+<p>3.App: Just nicer to handle on smartphone. Same functions as web version.</p>
+</section>
+<section id="trying-chatgpt-1" class="level2">
+<h2 class="anchored" data-anchor-id="trying-chatgpt-1">Trying ChatGPT</h2>
+<p>For tutorials and problem solving:<br>
+- Incredibly helpful and time saving</p>
+<p>For literature search:<br>
+- Journal exists<br>
+- Authors exist<br>
+Paper: Does not exist</p>
+</section>
+<section id="perplexity.ai" class="level2">
+<h2 class="anchored" data-anchor-id="perplexity.ai">Perplexity.ai</h2>
+<p>For literature search:<br>
+Includes grey literature<br>
+Peer-review and grey literature seem to be considered equally relevant<br>
+Gives data-resources with links</p>
+</section>
+<section id="scite.ai" class="level2">
+<h2 class="anchored" data-anchor-id="scite.ai">Scite.ai</h2>
+<p>For literature search:<br>
+Helpful but limited in the number of free prompts<br>
+Information still needs to be double-checked</p>
+</section>
+<section id="connected-papers" class="level2">
+<h2 class="anchored" data-anchor-id="connected-papers">Connected papers</h2>
+<p>For literature search:<br>
+Helpful for literature search, but most (if not all) literature must have a doi.</p>
+</section>
+<section id="ai-europe-alternatives" class="level2">
+<h2 class="anchored" data-anchor-id="ai-europe-alternatives">AI Europe alternatives</h2>
+<p><a href="https://mistral.ai/">Mistral AI</a> (France)<br>
+<a href="https://aleph-alpha.com/">Aleph alpha</a> (Germany)</p>
+</section>
+<section id="in-research-journals" class="level2">
+<h2 class="anchored" data-anchor-id="in-research-journals">In Research: Journals</h2>
+<p>Declaration of generative AI in scientific writing<br>
+Authors must declare the use of generative AI in scientific writing upon submission of the paper. The following guidance refers only to the writing process, and not to the use of AI tools to analyze and draw insights from data as part of the research process: Generative AI and AI-assisted technologies should only be used in the writing process to improve the readability and language of the manuscript.<br>
+The technology must be applied with human oversight and control and authors should carefully review and edit the result, as AI can generate authoritative-sounding output that can be incorrect, incomplete or biased. Authors are ultimately responsible and accountable for the contents of the work.<br>
+Authors must not list or cite AI and AI-assisted technologies as an author or co-author on the manuscript since authorship implies responsibilities and tasks that can only be attributed to and performed by humans.<br>
+The use of generative AI and AI-assisted technologies in scientific writing must be declared by adding a statement at the end of the manuscript when the paper is first submitted. The statement will appear in the published work and should be placed in a new section before the references list.<br>
+Source: Journal of Experimental Marine Biology and Ecology</p>
+</section>
+<section id="in-research-reviewers" class="level2">
+<h2 class="anchored" data-anchor-id="in-research-reviewers">In Research: Reviewers</h2>
+<p>Reviews can be discarded if they are found to be primarily generated by an AI software.<br>
+Journals are using AI detectors to identify if the review was human generated. For example: gptzero.</p>
+</section>
+<section id="in-research-authors" class="level2">
+<h2 class="anchored" data-anchor-id="in-research-authors">In Research: Authors</h2>
+<p>Authors should be careful when using this technology and carefully review and edit the result. Authors are ultimately responsible and accountable for the contents of the work.<br>
+Images generated using AI also had been retracted. There are negative implications while using misleading images.</p>
+</section>
+<section id="potential" class="level2">
+<h2 class="anchored" data-anchor-id="potential">Potential</h2>
+<p>ChatGPT and its counterparts are here to stay. For this reason, it is crucial to understand its capabilities in the research field, as well as its limitations and potential ethical shortcomings.</p>
+</section>
+<section id="environmental-impacts" class="level2">
+<h2 class="anchored" data-anchor-id="environmental-impacts">Environmental impacts</h2>
+<p>There is a negative side to the explosion of AI and its associated infrastructure, according to a growing body of research.<br>
+- The proliferating data centers that house AI servers produce electronic waste.<br>
+- They are large consumers of water, which is becoming scarce in many places.<br>
+- They rely on critical minerals and rare elements, which are often mined unsustainably.<br>
+- And they use massive amounts of electricity, spurring the emission of planet-warming greenhouse gases.&nbsp;&nbsp;</p>
+</section>
+<section id="take-home-messages" class="level2">
+<h2 class="anchored" data-anchor-id="take-home-messages">Take-home messages</h2>
+<p>AI tools are here to stay, and many researchers are already using them.<br>
+- AI tools save us a lot of time, but we must be careful when evaluating the responses they give us; critical thinking becomes key.<br>
+- Do not blindly trust the information, always double-check.<br>
+- We must also be mindful of using these technologies, as they have a real impact on the environment.</p>
+</section>
+</section>
+<section id="links-to-ai-tools" class="level1">
+<h1>Links to AI tools</h1>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tools</th>
+<th style="text-align: left;">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">AlephAlpha</td>
+<td style="text-align: left;">https://aleph-alpha.com/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ChatGPT</td>
+<td style="text-align: left;">https://chatgpt.com/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">connectedpapers</td>
+<td style="text-align: left;">https://www.connectedpapers.com/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">deepl</td>
+<td style="text-align: left;">https://www.deepl.com/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Grammarly</td>
+<td style="text-align: left;">https://app.grammarly.com/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MistralAI</td>
+<td style="text-align: left;">https://mistral.ai/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">perplexity</td>
+<td style="text-align: left;">https://www.perplexity.ai/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">quillbot</td>
+<td style="text-align: left;">https://quillbot.com/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">scite</td>
+<td style="text-align: left;">https://scite.ai/</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

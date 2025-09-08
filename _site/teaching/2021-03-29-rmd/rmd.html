@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Miriam Lerma">
+<meta name="dcterms.date" content="2021-03-16">
+<meta name="description" content="Desde como crear documentos en Rmd hasta como compartirlos.">
+
+<title>Clase de Rmd</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Miriam Lerma</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html">
+ <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../packages.html">
+ <span class="menu-text">Packages</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/miriam-lerma/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MiriamLL"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#rmarkdown" id="toc-rmarkdown" class="nav-link active" data-scroll-target="#rmarkdown">Rmarkdown</a>
+  <ul class="collapse">
+  <li><a href="#rmarkdown." id="toc-rmarkdown." class="nav-link" data-scroll-target="#rmarkdown.">Rmarkdown.</a></li>
+  <li><a href="#rmarkdown-para-escribir-artículos" id="toc-rmarkdown-para-escribir-artículos" class="nav-link" data-scroll-target="#rmarkdown-para-escribir-artículos">Rmarkdown para escribir artículos</a></li>
+  <li><a href="#presentar-tus-resultados-usando-xaringan." id="toc-presentar-tus-resultados-usando-xaringan." class="nav-link" data-scroll-target="#presentar-tus-resultados-usando-xaringan.">Presentar tus resultados usando Xaringan.</a></li>
+  <li><a href="#estilizar-tus-dispositivas-xaringan." id="toc-estilizar-tus-dispositivas-xaringan." class="nav-link" data-scroll-target="#estilizar-tus-dispositivas-xaringan.">Estilizar tus dispositivas Xaringan.</a></li>
+  <li><a href="#github-zenodo-y-git." id="toc-github-zenodo-y-git." class="nav-link" data-scroll-target="#github-zenodo-y-git.">Github, Zenodo y Git.</a></li>
+  <li><a href="#reproducibilidad." id="toc-reproducibilidad." class="nav-link" data-scroll-target="#reproducibilidad.">Reproducibilidad.</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Clase de Rmd</h1>
+</div>
+
+<div>
+  <div class="description">
+    <p>Desde como crear documentos en Rmd hasta como compartirlos.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Miriam Lerma </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 16, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="rmarkdown" class="level1">
+<h1>Rmarkdown</h1>
+<p>Bienvenido!</p>
+<p>Este material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo <a href="https://www.ciad.mx/">CIAD</a>.</p>
+<p>No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.</p>
+<p>Iré subiendo materiales conforme se vayan actualizando.</p>
+<section id="rmarkdown." class="level2">
+<h2 class="anchored" data-anchor-id="rmarkdown.">Rmarkdown.</h2>
+<p>En esta clase aprenderás como crear documentos en Rmd. <br></p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Rmd-Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase09.png" style="width:300px"></a> </left>
+
+
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Rmd-Parte1.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a>
+</div>
+</div>
+</section>
+<section id="rmarkdown-para-escribir-artículos" class="level2">
+<h2 class="anchored" data-anchor-id="rmarkdown-para-escribir-artículos">Rmarkdown para escribir artículos</h2>
+<p>En esta clase aprenderás como agregar citas y formato de revista. <br></p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Rmd-Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase10.png" style="width:300px"></a> </left>
+
+
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Rmd-Parte2.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a>
+</div>
+</div>
+</section>
+<section id="presentar-tus-resultados-usando-xaringan." class="level2">
+<h2 class="anchored" data-anchor-id="presentar-tus-resultados-usando-xaringan.">Presentar tus resultados usando Xaringan.</h2>
+<p>En esta clase aprenderás como crear presentaciones en Xaringan. Podrás incluir tablas y figuras sin salir de RStudio. <br></p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Xaringan-Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase11.png" style="width:300px"></a> </left>
+
+
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/MiriamLL/teaching_R_Rmd/blob/main/Pdfs/Xaringan-Parte1.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a>
+</div>
+</div>
+</section>
+<section id="estilizar-tus-dispositivas-xaringan." class="level2">
+<h2 class="anchored" data-anchor-id="estilizar-tus-dispositivas-xaringan.">Estilizar tus dispositivas Xaringan.</h2>
+<p>En esta clase aprenderás como cambiar el estilo de letras o colores de tus presentaciones en Xaringan. También aprenderás como compartirlas ya sea en github o en pdf. <br></p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Xaringan-Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase11Xaringan.png" style="width:300px"></a> </left>
+
+
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/MiriamLL/teaching_R_Rmd/blob/main/Pdfs/Xaringan-Parte2.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a>
+</div>
+</div>
+</section>
+<section id="github-zenodo-y-git." class="level2">
+<h2 class="anchored" data-anchor-id="github-zenodo-y-git.">Github, Zenodo y Git.</h2>
+<p>En esta clase aprenderás como crear un repositorio en github, como utilizar Zenodo para darle un DOI a nuestros materiales y los básicos de Git. <br></p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/GitGithubZenodo"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase12.png" style="width:300px"></a> </left>
+
+
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/GitGithubZenodo.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a>
+</div>
+</div>
+</section>
+<section id="reproducibilidad." class="level2">
+<h2 class="anchored" data-anchor-id="reproducibilidad.">Reproducibilidad.</h2>
+<p>En esta clase verás básicos de reproducibilidad en la ciencia y en las publicaciones. <br></p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Repro#1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase13.png" style="width:300px"></a> </left>
+
+
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Repro.pdf" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-download"></i> Descargar</a>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

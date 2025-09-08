@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2021-01-28">
+<meta name="description" content="Desde como abrir R y RStudio hasta como exportar tus gráficos, la idea es que este curso te haga sentir cómodo trabajando tus datos y análisis en R.">
+
+<title>Clase R desde cero</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Miriam Lerma</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html">
+ <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../packages.html">
+ <span class="menu-text">Packages</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/miriam-lerma/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MiriamLL"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#clase-de-r" id="toc-clase-de-r" class="nav-link active" data-scroll-target="#clase-de-r">Clase de R</a>
+  <ul class="collapse">
+  <li><a href="#intro-a-r." id="toc-intro-a-r." class="nav-link" data-scroll-target="#intro-a-r.">Intro a R.</a></li>
+  <li><a href="#cargar-tus-datos." id="toc-cargar-tus-datos." class="nav-link" data-scroll-target="#cargar-tus-datos.">Cargar tus datos.</a></li>
+  <li><a href="#gráficos." id="toc-gráficos." class="nav-link" data-scroll-target="#gráficos.">Gráficos.</a></li>
+  <li><a href="#operaciones." id="toc-operaciones." class="nav-link" data-scroll-target="#operaciones.">Operaciones.</a></li>
+  <li><a href="#ordenar-unir-y-exportar." id="toc-ordenar-unir-y-exportar." class="nav-link" data-scroll-target="#ordenar-unir-y-exportar.">Ordenar, unir y exportar.</a></li>
+  <li><a href="#proyectos." id="toc-proyectos." class="nav-link" data-scroll-target="#proyectos.">Proyectos.</a></li>
+  <li><a href="#modelo-lineal-simple." id="toc-modelo-lineal-simple." class="nav-link" data-scroll-target="#modelo-lineal-simple.">Modelo lineal simple.</a></li>
+  <li><a href="#analisis-de-varianzas." id="toc-analisis-de-varianzas." class="nav-link" data-scroll-target="#analisis-de-varianzas.">Analisis de varianzas.</a></li>
+  <li><a href="#modelos-mixtos." id="toc-modelos-mixtos." class="nav-link" data-scroll-target="#modelos-mixtos.">Modelos mixtos.</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Clase R desde cero</h1>
+</div>
+
+<div>
+  <div class="description">
+    <p>Desde como abrir R y RStudio hasta como exportar tus gráficos, la idea es que este curso te haga sentir cómodo trabajando tus datos y análisis en R.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Miriam Lerma </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 28, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="clase-de-r" class="level1">
+<h1>Clase de R</h1>
+<p>Bienvenido!</p>
+<p>Este material fue preparado para técnicos y estudiantes de posgrado del Centro de Investigación de Alimentación y Desarrollo <a href="https://www.ciad.mx/">CIAD</a>.</p>
+<p>No obstante, espero sea de ayuda para cualquiera que tenga intenciones de aprender R.</p>
+<p>Iré subiendo materiales conforme se vayan actualizando.</p>
+<section id="intro-a-r." class="level2">
+<h2 class="anchored" data-anchor-id="intro-a-r.">Intro a R.</h2>
+<p>En esta clase aprenderás a abrir RStudio e identificar sus partes. <br></p>
+<p>Click en la imagen para abrir html o en el botón para descargar pdf.</p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Clase1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase1.png" style="width:300px"></a> </left>
+
+
+<p><br><a class="icon-link" href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase1-Intro.pdf" target="_blank"> <i class="fas fa-download"></i> Descargar pdf</a></p>
+<pre><code></code></pre>
+</section>
+<section id="cargar-tus-datos." class="level2">
+<h2 class="anchored" data-anchor-id="cargar-tus-datos.">Cargar tus datos.</h2>
+<p>En esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y cargar tus datos en R. <br></p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Clase1Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase2.png" style="width:300px"></a> </left>
+
+
+<p><br></p>
+<p><a class="icon-link" href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase1Parte2-CargarDatos.pdf" target="_blank"> <i class="fas fa-download"></i> Descargar pdf</a></p>
+<pre><code></code></pre>
+</section>
+<section id="gráficos." class="level2">
+<h2 class="anchored" data-anchor-id="gráficos.">Gráficos.</h2>
+<p>En esta clase aprenderás como funciona ggplot2 y como crear tus propios gráficos.<br></p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Clase2"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase3.png" style="width:300px"></a> </left>
+
+
+<p><br></p>
+<p><a class="icon-link" href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase2-Graficos.pdf" target="_blank"> <i class="fas fa-download"></i> Descargar pdf</a></p>
+<pre><code></code></pre>
+</section>
+<section id="operaciones." class="level2">
+<h2 class="anchored" data-anchor-id="operaciones.">Operaciones.</h2>
+<p>En esta clase aprenderás algunas funciones básicas para realizar operaciones matemáticas en R y como moverte entre tus columnas y filas. <br></p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Clase3Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase4.png" style="width:300px"></a> </left>
+
+
+<p><br></p>
+<p><a class="icon-link" href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase3Parte1-Filascolumnas.pdf" target="_blank"> <i class="fas fa-download"></i> Descargar pdf</a></p>
+<pre><code></code></pre>
+</section>
+<section id="ordenar-unir-y-exportar." class="level2">
+<h2 class="anchored" data-anchor-id="ordenar-unir-y-exportar.">Ordenar, unir y exportar.</h2>
+<p>En esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus columnas, limpiar tus datos, unir diferentes archivos y exportar tus nuevos data frames.</p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Clase3Parte2"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase5.png" style="width:300px"></a> </left>
+
+
+<p><br></p>
+<p><a class="icon-link" href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase3Parte2-tidyverse.pdf" target="_blank"> <i class="fas fa-download"></i> Descargar pdf</a></p>
+<pre><code></code></pre>
+</section>
+<section id="proyectos." class="level2">
+<h2 class="anchored" data-anchor-id="proyectos.">Proyectos.</h2>
+<p>En esta clase aprenderás porque es importante trabajar por proyectos, como crear y compartir un proyecto.</p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Clase4Parte1"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase6.png" style="width:300px"></a> </left>
+
+
+<p><br></p>
+<p><a class="icon-link" href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase4Parte1-Poyectos.pdf" target="_blank"> <i class="fas fa-download"></i> Descargar pdf</a></p>
+<pre><code></code></pre>
+</section>
+<section id="modelo-lineal-simple." class="level2">
+<h2 class="anchored" data-anchor-id="modelo-lineal-simple.">Modelo lineal simple.</h2>
+<p>En esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu gráfico.</p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Clase7"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase7.png" style="width:300px"></a> </left>
+
+
+<p><br></p>
+<p><a class="icon-link" href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase7.pdf" target="_blank"> <i class="fas fa-download"></i> Descargar pdf</a></p>
+<pre><code></code></pre>
+</section>
+<section id="analisis-de-varianzas." class="level2">
+<h2 class="anchored" data-anchor-id="analisis-de-varianzas.">Analisis de varianzas.</h2>
+<p>En esta clase aprenderás como convertir a factor, cuales son los argumentos para un análisis de varianza en R y como crear gráficos para visualizar tus resultados del análisis.</p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Clase8"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Figure8.png" style="width:300px"></a> </left>
+
+
+<p><br></p>
+<p><a class="icon-link" href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase8.pdf" target="_blank"> <i class="fas fa-download"></i> Descargar pdf</a></p>
+<pre><code></code></pre>
+</section>
+<section id="modelos-mixtos." class="level2">
+<h2 class="anchored" data-anchor-id="modelos-mixtos.">Modelos mixtos.</h2>
+<p>Esta clase es una introducción a los modelos mixtos y a la selección de modelos usando el AIC.</p>
+
+
+<left> <a href="https://miriamll.github.io/teaching_R_Rmd/Clase9-modelosmixtos"><img src="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Figuras/Clase15.png" style="width:300px"></a> </left>
+
+
+<p><br></p>
+<p><a class="icon-link" href="https://raw.githubusercontent.com/MiriamLL/teaching_R_Rmd/main/Pdfs/Clase9-modelosmixtos.pdf" target="_blank"> <i class="fas fa-download"></i> Descargar pdf</a></p>
+<pre><code></code></pre>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
