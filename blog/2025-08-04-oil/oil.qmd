@@ -11,7 +11,6 @@ format:
     toc: true
     toc-depth: 2
     toc-location: left
-    css: styles.css
 categories:
   - R
   - ggplot2
@@ -38,7 +37,6 @@ Once you have download the data, select the directory and file.
 ```{r,eval=FALSE, echo=TRUE}
 library(here)
 This_directory<-here()
-list.files(This_directory)
 ```
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
@@ -72,7 +70,7 @@ Use ggplot to visualize the information where this infrastructures occur.
 library(ggplot2)
 ```
 
-```{r}
+```{r, eval=FALSE}
 ggplot() +
   geom_sf(data = Oil_shapefile)
 ```
@@ -100,7 +98,7 @@ Oil_germany<-Oil_shapefile %>%
 
 Use **geom_sf** to visualize the points. There are 3 data points for Germany.
 
-```{r}
+```{r, eval=FALSE}
 ggplot() +
   geom_sf(data = Oil_germany)
 ```
@@ -169,7 +167,6 @@ Oil_1plot<-Base_map+
            x =  8.73111, xend = 8.73111-0.4,
            y = 54.02583, yend =  54.02583, color= 'black', linewidth=1)+
   NULL
-Oil_1plot
 ```
 
 **Mittleplate A**
@@ -245,7 +242,6 @@ Oil_2plot<-Oil_1plot +
   geom_sf(data = Pipelines_gas, alpha=0.08, colour ="#bb3e03")+
   coord_sf(ylim = c(53,56), xlim = c(3,9),
                     label_axes = list(left = "N", bottom = 'E'))
-Oil_2plot
 ```
 
 ## Text
@@ -275,7 +271,6 @@ Oil_3plot<-Oil_2plot +
   inherit.aes = TRUE
   )+
   NULL
-Oil_3plot
 ```
 
 # Considerations

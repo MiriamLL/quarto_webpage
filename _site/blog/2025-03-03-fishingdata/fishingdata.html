@@ -308,9 +308,6 @@ Attaching package: 'tidyterra'</code></pre>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(<span class="at">data =</span> Fishing_rast) <span class="sc">+</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>lyr, <span class="at">ncol =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="fishingdata_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
-</div>
 </div>
 </section>
 <section id="tif-to-data-frame" class="level3">
@@ -393,8 +390,7 @@ Attaching package: 'tidyterra'</code></pre>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">data =</span> Fishing_sub, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> FishingEffort)) <span class="sc">+</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">9</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">53</span>,<span class="dv">56</span>),</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>Fishing_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Change plot style</p>
 <div class="cell">

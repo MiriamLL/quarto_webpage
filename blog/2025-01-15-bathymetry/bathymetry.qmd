@@ -106,7 +106,7 @@ library(ggplot2)
 
 Plot your data using **geom_raster**
 
-```{r, fig.width=4, fig.height=4}
+```{r, fig.width=4, fig.height=4, eval=FALSE}
 ggplot() +
   geom_raster(data = Bath_dataframe_sub , aes(x = x, y = y, fill = Bathymetry)) +
   scale_fill_viridis_c(option = "mako")+

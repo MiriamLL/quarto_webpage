@@ -75,7 +75,7 @@ library(ggplot2)
 
 Here is an example of how the raw data looks.
 
-```{r}
+```{r, eval=FALSE}
 ggplot() +
   geom_spatraster(data = Fishing_rast) +
   facet_wrap(~lyr, ncol = 2)+
@@ -150,7 +150,6 @@ Fishing_plot<-ggplot() +
   theme_bw()+
   coord_sf(xlim = c(3,9), ylim = c(53,56),
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))
-Fishing_plot
 ```
 
 Change plot style
@@ -187,7 +186,7 @@ No guarantee is made regarding the accuracy or reliability of this data.
 
 The fishing effort information includes information on Time Range, Flag, GearType and Apparent Fishing Hours.
 
-To download test data in csv format [here](https://raw.githubusercontent.com/MiriamLL/miriamlerma_/refs/heads/main/_posts/2025-03-03-fishingdata/layer-activity-data-0/public-global-fishing-effort-v3.0.csv) or [here]<https://github.com/MiriamLL/TestData/tree/main/layer-activity-data-0>).
+To download test data in csv format [here](https://raw.githubusercontent.com/MiriamLL/miriamlerma_/refs/heads/main/_posts/2025-03-03-fishingdata/layer-activity-data-0/public-global-fishing-effort-v3.0.csv) or \[here\]<https://github.com/MiriamLL/TestData/tree/main/layer-activity-data-0>).
 
 To load, select your folder and file.
 
@@ -259,4 +258,4 @@ Other resources to download GFW data:\
 [Working with public data](https://globalfishingwatch.org/data/downloadable-public-data-in-r/#)\
 [GitHub with outdate instructions](https://github.com/GlobalFishingWatch/paper-global-footprint-of-fisheries/blob/master/data_documentation/fishing_effort_byvessel.md)
 
-Citation: Global Fishing Watch. 2022, updated daily. Vessel presence and apparent fishing effort v20201001, [Apr 01 2018 00:00 UTC May 31 2018 00:00 UTC]. Data set accessed at <https://globalfishingwatch.org/map>
+Citation: Global Fishing Watch. 2022, updated daily. Vessel presence and apparent fishing effort v20201001, \[Apr 01 2018 00:00 UTC May 31 2018 00:00 UTC\]. Data set accessed at <https://globalfishingwatch.org/map>

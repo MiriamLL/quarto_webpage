@@ -21,7 +21,7 @@ html {
 h1, h2, h3, h4, h5, h6,
 .quarto-title h1.title {
   font-size: 22px;  /* or try 14px, 13px, etc. */
-  font-weight: 700 !important;
+  font-weight: 400 !important;
   font-family: "Raleway", sans-serif !important;
 }
 
@@ -35,7 +35,7 @@ body {
 header {
   background-color: transparent;
   color: #023047;
-  padding: 0.4rem;
+  padding: 0.5rem;
   box-shadow: transparent;
   border: transparent;
 }

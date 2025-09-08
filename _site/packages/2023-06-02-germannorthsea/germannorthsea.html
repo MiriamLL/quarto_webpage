@@ -198,16 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
   <ul class="collapse">
   <li><a href="#base-maps" id="toc-base-maps" class="nav-link" data-scroll-target="#base-maps">Base Maps</a></li>
-  <li><a href="#sca-spa" id="toc-sca-spa" class="nav-link" data-scroll-target="#sca-spa">SCA + SPA</a></li>
-  <li><a href="#human-activities" id="toc-human-activities" class="nav-link" data-scroll-target="#human-activities">Human activities</a></li>
   </ul></li>
-  <li><a href="#maps" id="toc-maps" class="nav-link" data-scroll-target="#maps">Maps</a>
-  <ul class="collapse">
-  <li><a href="#base-maps-1" id="toc-base-maps-1" class="nav-link" data-scroll-target="#base-maps-1">Base Maps</a></li>
-  <li><a href="#protected-areas" id="toc-protected-areas" class="nav-link" data-scroll-target="#protected-areas">Protected areas</a></li>
-  <li><a href="#human-activities-1" id="toc-human-activities-1" class="nav-link" data-scroll-target="#human-activities-1">Human activities</a></li>
-  </ul></li>
-  <li><a href="#other-crs" id="toc-other-crs" class="nav-link" data-scroll-target="#other-crs">Other CRS</a></li>
   <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations">Citations</a></li>
   </ul>
 </nav>
@@ -256,7 +247,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>German North Sea</h1>
 <p>The goal is provide easy access to shapefiles of the North Sea.</p>
 <p>This package contains shapefiles from the <strong>German North Sea</strong>: <br></p>
-<p>Datailed information and uses: <a href="https://github.com/MiriamLL/spheniscus">https://github.com/MiriamLL/</a>GermanNorthSea</p>
+<p>Datailed information and uses: <a href="https://github.com/MiriamLL/GermanNorthSea" class="uri">https://github.com/MiriamLL/GermanNorthSea</a></p>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <div class="cell">
@@ -270,275 +261,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="examples" class="level1">
 <h1>Examples</h1>
-<section id="base-maps" class="level2">
-<h2 class="anchored" data-anchor-id="base-maps">Base Maps</h2>
-<section id="german-land" class="level3">
-<h3 class="anchored" data-anchor-id="german-land">German Land</h3>
-<p>To download the original data go to: <a href="https://www.diva-gis.org/datadown">DIVA-GIS</a><br></p>
-<p>Select the country and Administrative areas.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Germany<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>Germany</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>()<span class="sc">+</span> ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> Germany, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'#ffffbe'</span>)<span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3790000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3350000</span>,<span class="dv">3680000</span>),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="germannorthsea_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="europe" class="level3">
-<h3 class="anchored" data-anchor-id="europe">Europe</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>German_land<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>German_land</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>()<span class="sc">+</span> ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> German_land, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'#ffffbe'</span>)<span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3790000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3350000</span>,<span class="dv">3680000</span>),</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="germannorthsea_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="german-eez" class="level3">
-<h3 class="anchored" data-anchor-id="german-eez">German EEZ</h3>
-<p>To download the original data go to <a href="https://www.emodnet-humanactivities.eu/view-data.php">EMODnet</a>&gt;Select wind farms in the map.</p>
-<p>Select Other Forms of Area Management/Designation&gt;Click on the download icon on <a href="https://www.emodnet-humanactivities.eu/search-results.php?dataname=Exclusive+Economic+Zone">Exclusive Economic Zone</a>.</p>
-<p>Select Download Data, Select the country, and the Sector, and the Link should be ready to download.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>German_EEZ<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>German_EEZ</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>()<span class="sc">+</span> ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> German_EEZ,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3790000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3350000</span>,<span class="dv">3680000</span>),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="germannorthsea_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="german-coast" class="level3">
-<h3 class="anchored" data-anchor-id="german-coast">German Coast</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>German_coast<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>German_coast</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>()<span class="sc">+</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> German_coast, </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="st">'#bde0fe'</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="dv">1</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3790000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3350000</span>,<span class="dv">3680000</span>),</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="germannorthsea_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="german-natura-2000" class="level3">
-<h3 class="anchored" data-anchor-id="german-natura-2000">German Natura 2000</h3>
-<p>To download the original data go to <a href="https://www.geoseaportal.de/atomfeeds/Raumordnungsplan_AWZ_en.xml#download=1.">GeoSeaPortal</a></p>
-<p>The zip contains several shapefiles including <strong>NatureConservation</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>German_natura<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>German_natura</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>German_SCA<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>German_SCA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="sca-spa" class="level2">
-<h2 class="anchored" data-anchor-id="sca-spa">SCA + SPA</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>()<span class="sc">+</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> German_natura, <span class="at">colour =</span> <span class="st">"#3d6d22"</span>, <span class="at">fill=</span> <span class="st">'#3d6d22'</span>,<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">lwd =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> German_SCA, <span class="at">colour =</span> <span class="st">"#3d6d22"</span>, <span class="at">fill=</span> <span class="st">'#3d6d22'</span>,<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">lwd =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3790000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3350000</span>,<span class="dv">3680000</span>),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="germannorthsea_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="human-activities" class="level2">
-<h2 class="anchored" data-anchor-id="human-activities">Human activities</h2>
-<section id="wind-farms" class="level3">
-<h3 class="anchored" data-anchor-id="wind-farms">Wind Farms</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>German_OWF<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>German_OWF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>()<span class="sc">+</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> German_OWF, <span class="at">colour =</span> <span class="st">"#fe0001"</span>, <span class="at">fill=</span> <span class="st">'#bde0fe'</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3790000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3350000</span>,<span class="dv">3680000</span>),</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="germannorthsea_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="maps" class="level1">
-<h1>Maps</h1>
 <p>To visualize the maps use ggplot and ggspatial.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="base-maps-1" class="level2">
-<h2 class="anchored" data-anchor-id="base-maps-1">Base Maps</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>German_land<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>German_land</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>German_EEZ<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>German_EEZ</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>German_coast<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>German_coast</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_EEZ, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_coast, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_land, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'#ffffbe'</span>)<span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span><span class="st">"bl"</span>, <span class="at">which_north =</span> <span class="st">"true"</span>, </span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_x =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">"in"</span>), </span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_y =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">"in"</span>),</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> north_arrow_fancy_orienteering)<span class="sc">+</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.spacing.y =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">'cm'</span>),</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>),</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">colour =</span><span class="st">"transparent"</span>),</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">colour =</span><span class="st">"transparent"</span>),</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="st">"transparent"</span>),</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">'#bde0fe'</span>))<span class="sc">+</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'Longitude'</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">'Latitude'</span>)<span class="sc">+</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="fl">1.5</span>))<span class="sc">+</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3900000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3350000</span>,<span class="dv">3680000</span>),</span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
-ℹ Please use the `linewidth` argument instead.</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="germannorthsea_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="protected-areas" class="level2">
-<h2 class="anchored" data-anchor-id="protected-areas">Protected areas</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>German_natura<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>German_natura</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>German_natura<span class="sc">$</span>Abbreviations<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">'SOR'</span>,<span class="st">'BR'</span>,<span class="st">'DB'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(German_natura) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_EEZ, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_coast, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_land, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'#ffffbe'</span>)<span class="sc">+</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_natura, <span class="at">colour =</span> <span class="st">"#3d6d22"</span>, <span class="at">fill=</span> <span class="st">'#3d6d22'</span>,<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Abbreviations),<span class="at">size=</span><span class="dv">3</span>,<span class="at">family=</span><span class="st">"sans"</span>)<span class="sc">+</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span><span class="st">"bl"</span>, <span class="at">which_north =</span> <span class="st">"true"</span>, </span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_x =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">"in"</span>), </span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_y =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">"in"</span>),</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> north_arrow_fancy_orienteering)<span class="sc">+</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.spacing.y =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">'cm'</span>),</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>),</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">colour =</span><span class="st">"transparent"</span>),</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">colour =</span><span class="st">"transparent"</span>),</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="st">"transparent"</span>),</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">'#bde0fe'</span>))<span class="sc">+</span></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'Longitude'</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">'Latitude'</span>)<span class="sc">+</span></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="fl">1.5</span>))<span class="sc">+</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3900000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3350000</span>,<span class="dv">3680000</span>),</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="germannorthsea_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="human-activities-1" class="level2">
-<h2 class="anchored" data-anchor-id="human-activities-1">Human activities</h2>
-<section id="wind-farms-1" class="level3">
-<h3 class="anchored" data-anchor-id="wind-farms-1">Wind Farms</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>OWF_EMODnet<span class="ot">&lt;-</span>GermanNorthSea<span class="sc">::</span>OWF_EMODnet</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(OWF_EMODnet)<span class="sc">+</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_EEZ,<span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_coast,<span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="st">'#bde0fe'</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_land, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'#ffffbe'</span>)<span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_natura, <span class="at">colour =</span> <span class="st">"#3d6d22"</span>, <span class="at">fill=</span> <span class="st">'#3d6d22'</span>,<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> OWF_EMODnet, <span class="fu">aes</span>(<span class="at">fill=</span> STATUS), <span class="at">colour =</span> <span class="st">"grey"</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">size=</span><span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yellow"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>))<span class="sc">+</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3790000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3350000</span>,<span class="dv">3680000</span>),</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))<span class="sc">+</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'bottom'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="germannorthsea_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="other-crs" class="level1">
-<h1>Other CRS</h1>
+<section id="base-maps" class="level2">
+<h2 class="anchored" data-anchor-id="base-maps">Base Maps</h2>
 <p>For using other CRS, you can use the function <strong>st_transform</strong> from the package <strong>sf</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.3.1; sf_use_s2() is TRUE</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>German_EEZ<span class="ot">&lt;-</span><span class="fu">st_transform</span>(German_EEZ, <span class="dv">4326</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>German_coast<span class="ot">&lt;-</span><span class="fu">st_transform</span>(German_coast, <span class="dv">4326</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>German_land<span class="ot">&lt;-</span><span class="fu">st_transform</span>(German_land, <span class="dv">4326</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>German_natura<span class="ot">&lt;-</span><span class="fu">st_transform</span>(German_natura, <span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>German_EEZ<span class="ot">&lt;-</span><span class="fu">st_transform</span>(German_EEZ, <span class="dv">4326</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>German_coast<span class="ot">&lt;-</span><span class="fu">st_transform</span>(German_coast, <span class="dv">4326</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>German_land<span class="ot">&lt;-</span><span class="fu">st_transform</span>(German_land, <span class="dv">4326</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>German_natura<span class="ot">&lt;-</span><span class="fu">st_transform</span>(German_natura, <span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_EEZ, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_coast, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_land, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'#ffffbe'</span>)<span class="sc">+</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_natura, <span class="at">colour =</span> <span class="st">"#3d6d22"</span>, <span class="at">fill=</span> <span class="st">'#3d6d22'</span>,<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_north_arrow</span>(<span class="at">location =</span><span class="st">"bl"</span>, <span class="at">which_north =</span> <span class="st">"true"</span>, </span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_x =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">"in"</span>), </span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_y =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">"in"</span>),</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> north_arrow_fancy_orienteering)<span class="sc">+</span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.spacing.y =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">'cm'</span>),</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>),</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">colour =</span><span class="st">"transparent"</span>),</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">colour =</span><span class="st">"transparent"</span>),</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="st">"transparent"</span>),</span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">'#bde0fe'</span>))<span class="sc">+</span></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'Longitude'</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">'Latitude'</span>)<span class="sc">+</span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="fl">1.5</span>))<span class="sc">+</span></span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">9</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">53</span>,<span class="dv">56</span>),</span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_EEZ, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_coast, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">fill=</span> <span class="cn">NA</span>,<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_land, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'#ffffbe'</span>)<span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> German_natura, <span class="at">colour =</span> <span class="st">"#3d6d22"</span>, <span class="at">fill=</span> <span class="st">'#3d6d22'</span>,<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">lwd =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_north_arrow</span>(<span class="at">location =</span><span class="st">"bl"</span>, <span class="at">which_north =</span> <span class="st">"true"</span>, </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_x =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">"in"</span>), </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">pad_y =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">"in"</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">style =</span> north_arrow_fancy_orienteering)<span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.spacing.y =</span> <span class="fu">unit</span>(<span class="fl">0.05</span>, <span class="st">'cm'</span>),</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">colour =</span><span class="st">"transparent"</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">colour =</span><span class="st">"transparent"</span>),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="st">"transparent"</span>),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">'#bde0fe'</span>))<span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'Longitude'</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">'Latitude'</span>)<span class="sc">+</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="fl">1.5</span>))<span class="sc">+</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">9</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">53</span>,<span class="dv">56</span>),</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead.</code></pre>
+</div>
 <div class="cell-output-display">
-<p><img src="germannorthsea_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="768"></p>
+<p><img src="germannorthsea_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
+</section>
 </section>
 <section id="citations" class="level1">
 <h1>Citations</h1>

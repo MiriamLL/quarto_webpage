@@ -11,7 +11,6 @@ format:
     toc: true
     toc-depth: 2
     toc-location: left
-    css: styles.css
 categories:
   - R
   - ggplot2
@@ -139,7 +138,6 @@ Base_map<-ggplot() +
   theme(panel.border = element_rect(colour = "black", fill=NA, linewidth = 1.5))+
   coord_sf(ylim = c(53,56), xlim = c(3,9),
                     label_axes = list(left = "N", bottom = 'E'))
-Base_map
 ```
 
 ### Text
@@ -158,8 +156,8 @@ Add text and colors for the label.
 library(ggtext)
 ```
 
-```{r, fig.height=3, fig.width=4, warning=FALSE, message=FALSE}
-Base_map +
+```{r, fig.height=3, fig.width=4, warning=FALSE, message=FALSE, eval=FALSE}
+Telecom_cables<-Base_map +
   geom_sf(data = Netherlands_telecommunications,color='#8ac926',linewidth=0.8)+
   geom_sf(data = France_telecommunications,color='#c86bfa',linewidth=0.8)+
   geom_sf(data = Germany_telecommunications, color='#ffd60a',linewidth=0.8)+
@@ -174,6 +172,7 @@ Base_map +
   )+
   coord_sf(ylim = c(53,56.4), xlim = c(3,9),
                     label_axes = list(left = "N", bottom = 'E'))
+Telecom_cables
 ```
 
 ### Filter
@@ -184,7 +183,7 @@ To visualize a specific cable, use filter functions. For the exercise, lets focu
 unique(France_telecommunications$NAME)
 ```
 
-```{r, fig.height=3, fig.width=4, warning=FALSE, message=FALSE}
+```{r, fig.height=4, fig.width=6, warning=FALSE, message=FALSE}
 Base_map +
   geom_sf(data = France_telecommunications %>% filter(NAME %in% c('SEA ME WE3-S10.4','SEA ME WE3-S10.3',
                                                                   'SEA ME WE3-S10.2','SEA ME WE3-S10.1')),
@@ -243,7 +242,6 @@ Power_cables<-Base_map +
   <span style='color:#ffca3a'>Germany</span>.</span>"),
   size = 8,fill ="black",label.color = NA,  hjust = 0,  vjust= 0,  inherit.aes = TRUE, family = "Share Tech Mono"
   )
-Power_cables
 ```
 
 Note than in Germany, many of the power cables are connected to Offshore Wind Farms
@@ -252,8 +250,8 @@ Note than in Germany, many of the power cables are connected to Offshore Wind Fa
 German_OWF<-st_transform(GermanNorthSea::OWF_EMODnet,4326)
 ```
 
-```{r, warning=FALSE,fig.height=3, fig.width=4}
-Power_cables+
+```{r, warning=FALSE,fig.height=3, fig.width=4,eval=FALSE}
+Power_cables<-Power_cables+
   geom_sf(data = German_OWF, color='#850a0a',fill='#850a0a', alpha=0.5)+
   coord_sf(ylim = c(53,56.4), xlim = c(3,9),
                     label_axes = list(left = "N", bottom = 'E'))
@@ -263,7 +261,7 @@ Power_cables+
 
 NorNed is a high-voltage direct current (HVDC) submarine power cable connecting Norway and the Netherlands. Spanning approximately 580 kilometers under the North Sea, it is one of the longest subsea power interconnectors in the world.
 
-```{r, ,fig.height=3, fig.width=4}
+```{r, ,fig.height=6, fig.width=8}
 Base_map +
   geom_sf(data = Norway_voltage %>% filter(navn=='NorNed'), 
             color='#ff924c',linewidth=0.8)+
@@ -297,7 +295,7 @@ Cables<-Base_map +
   geom_sf(data = Germany_voltage, color='#ffca3a',linetype = "dashed", linewidth= 0.8)
 ```
 
-```{r cable types,fig.height=3, fig.width=4}
+```{r cable types,fig.height=6, fig.width=8}
 Cables_wtext<-Cables+
   
   annotate("rect", fill = "black", ymin =  -Inf, ymax = 53.6,xmin = -Inf, xmax = Inf)+
