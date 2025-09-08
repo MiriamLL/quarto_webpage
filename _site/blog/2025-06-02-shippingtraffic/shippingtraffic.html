@@ -127,7 +127,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <link rel="stylesheet" href="../../styles.css">
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="floating nav-fixed">
@@ -285,9 +284,6 @@ Data are available by month of year. Yearly averages are also available.</p>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  tidyterra<span class="sc">::</span><span class="fu">geom_spatraster</span>(<span class="at">data =</span> ShippingTraffic) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="480"></p>
-</div>
 </div>
 </section>
 <section id="data-frame" class="level2">
@@ -307,287 +303,165 @@ Data are available by month of year. Yearly averages are also available.</p>
 <p>Check if the density values are plausible.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(ShippingTraffic_df<span class="sc">$</span>vessel_density)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]     0.00 26050.14</code></pre>
-</div>
 </div>
 <p>Values distribution</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ShippingTraffic_df<span class="sc">$</span>vessel_density)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="480"></p>
-</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ShippingTraffic_df<span class="sc">$</span>vessel_density)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_class<span class="ot">&lt;-</span>ShippingTraffic_df <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">density_class =</span> <span class="fu">case_when</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&lt;=</span> <span class="dv">0</span>  <span class="sc">~</span> <span class="st">"class_A_0"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"class_A_0_1"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"class_A_1_2"</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"class_A_2_3"</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"class_A_3_4"</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"class_A_4_5"</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">"class_A_5_6"</span>,</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">6</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">"class_A_6_7"</span>,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">7</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">8</span> <span class="sc">~</span> <span class="st">"class_A_7_8"</span>,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">8</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">9</span> <span class="sc">~</span> <span class="st">"class_A_8_9"</span>,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">9</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">10</span> <span class="sc">~</span> <span class="st">"class_A_9_10"</span>,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;=</span> <span class="dv">10</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">100</span> <span class="sc">~</span> <span class="st">"class_B_10_100"</span>,</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;=</span> <span class="dv">100</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">1000</span> <span class="sc">~</span> <span class="st">"class_C_100_1000"</span>,</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;=</span> <span class="dv">1000</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">10000</span> <span class="sc">~</span> <span class="st">"class_D_1000_10000"</span>,</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;=</span> <span class="dv">10000</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">100000</span> <span class="sc">~</span> <span class="st">"class_E_10000_100000"</span>,</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span>  <span class="sc">~</span> <span class="st">"unknown"</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_class<span class="ot">&lt;-</span>ShippingTraffic_df <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">density_class =</span> <span class="fu">case_when</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&lt;=</span> <span class="dv">0</span>  <span class="sc">~</span> <span class="st">"class_A_0"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"class_A_0_1"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"class_A_1_2"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"class_A_2_3"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"class_A_3_4"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"class_A_4_5"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">"class_A_5_6"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">6</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">"class_A_6_7"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">7</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">8</span> <span class="sc">~</span> <span class="st">"class_A_7_8"</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">8</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">9</span> <span class="sc">~</span> <span class="st">"class_A_8_9"</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;</span> <span class="dv">9</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">10</span> <span class="sc">~</span> <span class="st">"class_A_9_10"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;=</span> <span class="dv">10</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">100</span> <span class="sc">~</span> <span class="st">"class_B_10_100"</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;=</span> <span class="dv">100</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">1000</span> <span class="sc">~</span> <span class="st">"class_C_100_1000"</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;=</span> <span class="dv">1000</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">10000</span> <span class="sc">~</span> <span class="st">"class_D_1000_10000"</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>      vessel_density <span class="sc">&gt;=</span> <span class="dv">10000</span> <span class="sc">&amp;</span>  vessel_density <span class="sc">&lt;</span> <span class="dv">100000</span> <span class="sc">~</span> <span class="st">"class_E_10000_100000"</span>,</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span>  <span class="sc">~</span> <span class="st">"unknown"</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The majority of values are between 0 and 1</p>
 <div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped">
-<thead>
-<tr class="header">
-<th style="text-align: left;">density_class</th>
-<th style="text-align: right;">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">class_A_0</td>
-<td style="text-align: right;">65547</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">class_A_0_1</td>
-<td style="text-align: right;">56142</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">class_A_1_2</td>
-<td style="text-align: right;">7544</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">class_A_2_3</td>
-<td style="text-align: right;">2629</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">class_A_3_4</td>
-<td style="text-align: right;">1324</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">class_A_4_5</td>
-<td style="text-align: right;">827</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">class_A_5_6</td>
-<td style="text-align: right;">701</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">class_A_6_7</td>
-<td style="text-align: right;">533</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">class_A_7_8</td>
-<td style="text-align: right;">463</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">class_A_8_9</td>
-<td style="text-align: right;">396</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">class_A_9_10</td>
-<td style="text-align: right;">343</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">class_B_10_100</td>
-<td style="text-align: right;">3097</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">class_C_100_1000</td>
-<td style="text-align: right;">245</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">class_D_1000_10000</td>
-<td style="text-align: right;">80</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">class_E_10000_100000</td>
-<td style="text-align: right;">21</td>
-</tr>
-</tbody>
-</table>
-</div>
+
 </div>
 </section>
 <section id="select-area" class="level2">
 <h2 class="anchored" data-anchor-id="select-area">Select area</h2>
 <p>Use the function <strong>geom_spatraster</strong> to plot the vessel density data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyterra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'tidyterra'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:stats':
-
-    filter</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyterra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(<span class="at">data =</span> ShippingTraffic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="480"></p>
-</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(<span class="at">data =</span> ShippingTraffic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="land" class="level2">
 <h2 class="anchored" data-anchor-id="land">Land</h2>
 <p>Add land for reference using <strong>geom_sf</strong> and the package <strong>GermanNorthSea</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/GermanNorthSea"</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GermanNorthSea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/GermanNorthSea"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GermanNorthSea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_01plot<span class="ot">&lt;-</span><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(<span class="at">data =</span> ShippingTraffic) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_EEZ, <span class="at">color=</span><span class="st">'grey'</span>,<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">alpha=</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_land, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'#e5e5e5'</span>)<span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3820000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3370000</span>,<span class="dv">3660000</span>),</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_01plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="480"></p>
-</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_01plot<span class="ot">&lt;-</span><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(<span class="at">data =</span> ShippingTraffic) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_EEZ, <span class="at">color=</span><span class="st">'grey'</span>,<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">alpha=</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_land, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'#e5e5e5'</span>)<span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3820000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3370000</span>,<span class="dv">3660000</span>),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_01plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="theme" class="level2">
 <h2 class="anchored" data-anchor-id="theme">Theme</h2>
 <p>Change background colors using the arguments on theme.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_02plot<span class="ot">&lt;-</span>ShippingTraffic_01plot<span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()<span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="fl">1.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
-ℹ Please use the `linewidth` argument instead.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_02plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="480"></p>
-</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_02plot<span class="ot">&lt;-</span>ShippingTraffic_01plot<span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()<span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="fl">1.5</span>))</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_02plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="gradient-colors" class="level2">
 <h2 class="anchored" data-anchor-id="gradient-colors">Gradient colors</h2>
 <p>Low traffic</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>LowShippingTraffic_03plot<span class="ot">&lt;-</span>ShippingTraffic_02plot<span class="sc">+</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">'Low Vessel density </span><span class="sc">\n</span><span class="st"> Dec 2023'</span>,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> palette_yellow<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"#ffff3f"</span>,<span class="st">"#eeef20"</span>,<span class="st">"#dddf00"</span>,<span class="st">"#d4d700"</span>,<span class="st">"#bfd200"</span>,<span class="st">"#aacc00"</span>,<span class="st">"#80b918"</span>,<span class="st">"#55a630"</span>,<span class="st">"#2b9348"</span>,<span class="st">"#007f5f"</span>),</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.00001</span>,<span class="dv">10</span>),</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>),</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                      )</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>LowShippingTraffic_03plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="480"></p>
-</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>LowShippingTraffic_03plot<span class="ot">&lt;-</span>ShippingTraffic_02plot<span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">'Low Vessel density </span><span class="sc">\n</span><span class="st"> Dec 2023'</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> palette_yellow<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"#ffff3f"</span>,<span class="st">"#eeef20"</span>,<span class="st">"#dddf00"</span>,<span class="st">"#d4d700"</span>,<span class="st">"#bfd200"</span>,<span class="st">"#aacc00"</span>,<span class="st">"#80b918"</span>,<span class="st">"#55a630"</span>,<span class="st">"#2b9348"</span>,<span class="st">"#007f5f"</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.00001</span>,<span class="dv">10</span>),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                      )</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>LowShippingTraffic_03plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Medium traffic</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>MediumShippingTraffic_04plot<span class="ot">&lt;-</span>ShippingTraffic_02plot<span class="sc">+</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">'Medium Vessel density </span><span class="sc">\n</span><span class="st"> Dec 2023'</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> palette_green<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"#d8f3dc"</span>,<span class="st">"#b7e4c7"</span>,<span class="st">"#95d5b2"</span>,<span class="st">"#74c69d"</span>,<span class="st">"#52b788"</span>,<span class="st">"#40916c"</span>,<span class="st">"#2d6a4f"</span>,<span class="st">"#1b4332"</span>,<span class="st">"#081c15"</span>),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">100</span>),</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">100</span>),</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                      )</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>MediumShippingTraffic_04plot  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="480"></p>
-</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>MediumShippingTraffic_04plot<span class="ot">&lt;-</span>ShippingTraffic_02plot<span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">'Medium Vessel density </span><span class="sc">\n</span><span class="st"> Dec 2023'</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> palette_green<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"#d8f3dc"</span>,<span class="st">"#b7e4c7"</span>,<span class="st">"#95d5b2"</span>,<span class="st">"#74c69d"</span>,<span class="st">"#52b788"</span>,<span class="st">"#40916c"</span>,<span class="st">"#2d6a4f"</span>,<span class="st">"#1b4332"</span>,<span class="st">"#081c15"</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">100</span>),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">100</span>),</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                      )</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>MediumShippingTraffic_04plot  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>High traffic</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>HighShippingTraffic_06plot<span class="ot">&lt;-</span>ShippingTraffic_02plot<span class="sc">+</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">'High Vessel density </span><span class="sc">\n</span><span class="st"> Dec 2023 </span><span class="sc">\n</span><span class="st"> (hrs per km2)'</span>,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> palette_red<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"#e01e37"</span>,<span class="st">"#da1e37"</span>,<span class="st">"#c71f37"</span>,<span class="st">"#bd1f36"</span>,<span class="st">"#b21e35"</span>,<span class="st">"#a71e34"</span>,<span class="st">"#a11d33"</span>,<span class="st">"#85182a"</span>,<span class="st">"#6e1423"</span>,<span class="st">"#641220"</span>),</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">30000</span>),</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>,<span class="dv">10000</span>,<span class="dv">20000</span>,<span class="dv">30000</span>),</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                      )</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>HighShippingTraffic_06plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="480"></p>
-</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>HighShippingTraffic_06plot<span class="ot">&lt;-</span>ShippingTraffic_02plot<span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">'High Vessel density </span><span class="sc">\n</span><span class="st"> Dec 2023 </span><span class="sc">\n</span><span class="st"> (hrs per km2)'</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> palette_red<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"#e01e37"</span>,<span class="st">"#da1e37"</span>,<span class="st">"#c71f37"</span>,<span class="st">"#bd1f36"</span>,<span class="st">"#b21e35"</span>,<span class="st">"#a71e34"</span>,<span class="st">"#a11d33"</span>,<span class="st">"#85182a"</span>,<span class="st">"#6e1423"</span>,<span class="st">"#641220"</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">30000</span>),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>,<span class="dv">10000</span>,<span class="dv">20000</span>,<span class="dv">30000</span>),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                      )</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>HighShippingTraffic_06plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="palette" class="level2">
 <h2 class="anchored" data-anchor-id="palette">Palette</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>your_palette<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"transparent"</span>, <span class="st">"#d8f3dc"</span>,</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">"#b7e4c7"</span>,<span class="st">"#95d5b2"</span>,<span class="st">"#74c69d"</span>,<span class="st">"#52b788"</span>,<span class="st">"#aacc00"</span>,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"#bfd200"</span>,<span class="st">"#d4d700"</span>,<span class="st">"#dddf00"</span>,<span class="st">"#eeef20"</span>,<span class="st">"#ffff3f"</span>, </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">"#e01e37"</span>,<span class="st">"#da1e37"</span>,<span class="st">"#c71f37"</span>, <span class="st">"#bd1f36"</span>,<span class="st">"#b21e35"</span>,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">"#a71e34"</span>,<span class="st">"#a11d33"</span>,<span class="st">"#85182a"</span>,<span class="st">"#6e1423"</span>,<span class="st">"#641220"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>your_palette<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"transparent"</span>, <span class="st">"#d8f3dc"</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">"#b7e4c7"</span>,<span class="st">"#95d5b2"</span>,<span class="st">"#74c69d"</span>,<span class="st">"#52b788"</span>,<span class="st">"#aacc00"</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"#bfd200"</span>,<span class="st">"#d4d700"</span>,<span class="st">"#dddf00"</span>,<span class="st">"#eeef20"</span>,<span class="st">"#ffff3f"</span>, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">"#e01e37"</span>,<span class="st">"#da1e37"</span>,<span class="st">"#c71f37"</span>, <span class="st">"#bd1f36"</span>,<span class="st">"#b21e35"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">"#a71e34"</span>,<span class="st">"#a11d33"</span>,<span class="st">"#85182a"</span>,<span class="st">"#6e1423"</span>,<span class="st">"#641220"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use <strong>scale_fill_gradientn</strong> and <strong>rescale</strong> to adjust the palette and the legend</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_07plot<span class="ot">&lt;-</span>ShippingTraffic_02plot<span class="sc">+</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">'Vessel density </span><span class="sc">\n</span><span class="st"> Dec 2023 </span><span class="sc">\n</span><span class="st"> hrs per km2'</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> your_palette,</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30000</span>),</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>),</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.01</span>,<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>)), </span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">guide =</span> <span class="st">"legend"</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                      )</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_07plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="480"></p>
-</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_07plot<span class="ot">&lt;-</span>ShippingTraffic_02plot<span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">'Vessel density </span><span class="sc">\n</span><span class="st"> Dec 2023 </span><span class="sc">\n</span><span class="st"> hrs per km2'</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> your_palette,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30000</span>),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.01</span>,<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>)), </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">guide =</span> <span class="st">"legend"</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>                      )</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_07plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use <strong>labels</strong> inside scale_fill_gradient to make the legend more legible</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_08plot<span class="ot">&lt;-</span>ShippingTraffic_02plot<span class="sc">+</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">'Vessel density </span><span class="sc">\n</span><span class="st"> Dec 2023 </span><span class="sc">\n</span><span class="st"> hrs per km2'</span>,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> your_palette,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30000</span>),</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>),</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.01</span>,<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>)), </span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">guide =</span> <span class="st">"legend"</span>,</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0 - 0.05"</span>,<span class="st">"&gt; 0.1"</span>,<span class="st">"&gt; 0.2"</span>,<span class="st">"&gt; 0.5"</span>,<span class="st">"&gt; 2"</span>,<span class="st">"&gt; 5"</span>,<span class="st">"&gt; 10"</span>,<span class="st">"&gt; 20"</span>, <span class="st">"&gt; 100"</span>,<span class="st">"&gt; 1,000"</span>) )</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_08plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="480"></p>
-</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_08plot<span class="ot">&lt;-</span>ShippingTraffic_02plot<span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">'Vessel density </span><span class="sc">\n</span><span class="st"> Dec 2023 </span><span class="sc">\n</span><span class="st"> hrs per km2'</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> your_palette,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30000</span>),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.01</span>,<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>)), </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">guide =</span> <span class="st">"legend"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0 - 0.05"</span>,<span class="st">"&gt; 0.1"</span>,<span class="st">"&gt; 0.2"</span>,<span class="st">"&gt; 0.5"</span>,<span class="st">"&gt; 2"</span>,<span class="st">"&gt; 5"</span>,<span class="st">"&gt; 10"</span>,<span class="st">"&gt; 20"</span>, <span class="st">"&gt; 100"</span>,<span class="st">"&gt; 1,000"</span>) )</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_08plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Include the legend inside the plot and change the theme, also change panel.background</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_09plot<span class="ot">&lt;-</span>ShippingTraffic_08plot<span class="sc">+</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.20</span>,<span class="fl">0.50</span>),</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">'black'</span>,<span class="at">size=</span><span class="dv">16</span>),</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">'black'</span>,<span class="at">size=</span><span class="dv">12</span>),</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">'transparent'</span>, <span class="at">fill =</span> <span class="st">'transparent'</span>),</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.key.height =</span> <span class="fu">unit</span>(<span class="dv">3</span>, <span class="st">"mm"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
-3.5.0.
-ℹ Please use the `legend.position.inside` argument of `theme()` instead.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_09plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="480"></p>
-</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_09plot<span class="ot">&lt;-</span>ShippingTraffic_08plot<span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.20</span>,<span class="fl">0.50</span>),</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">'black'</span>,<span class="at">size=</span><span class="dv">16</span>),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">'black'</span>,<span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">'transparent'</span>, <span class="at">fill =</span> <span class="st">'transparent'</span>),</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.key.height =</span> <span class="fu">unit</span>(<span class="dv">3</span>, <span class="st">"mm"</span>))</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>ShippingTraffic_09plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -595,54 +469,47 @@ Attaching package: 'tidyterra'</code></pre>
 <h1>Overall</h1>
 <p>All steps together, and additionally adding protected areas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(<span class="at">data =</span> ShippingTraffic) <span class="sc">+</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_EEZ, <span class="at">color=</span><span class="st">'black'</span>,<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">alpha=</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linewidth=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_land, <span class="at">colour =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_SCA, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">linewidth=</span><span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_natura, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">linewidth=</span><span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3820000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3370000</span>,<span class="dv">3660000</span>),</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))<span class="sc">+</span></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()<span class="sc">+</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="fl">1.5</span>))<span class="sc">+</span></span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">"Vessel density </span><span class="sc">\n</span><span class="st"> Inside Germany's EEZ </span><span class="sc">\n</span><span class="st"> Dec 2023 </span><span class="sc">\n</span><span class="st"> hrs per km2"</span>,</span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> your_palette,</span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30000</span>),</span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>),</span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.01</span>,<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>)), </span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>                      <span class="at">guide =</span> <span class="st">"legend"</span>,</span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0 - 0.05"</span>,<span class="st">"&gt; 0.1"</span>,<span class="st">"&gt; 0.2"</span>,<span class="st">"&gt; 0.5"</span>,<span class="st">"&gt; 2"</span>,<span class="st">"&gt; 5"</span>,<span class="st">"&gt; 10"</span>,<span class="st">"&gt; 20"</span>, <span class="st">"&gt; 100"</span>,<span class="st">"&gt; 1,000"</span>))<span class="sc">+</span></span>
-<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.15</span>,<span class="fl">0.50</span>),</span>
-<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">'black'</span>,<span class="at">size=</span><span class="dv">16</span>),</span>
-<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">'black'</span>,<span class="at">size=</span><span class="dv">14</span>),</span>
-<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">'transparent'</span>, <span class="at">fill =</span> <span class="st">'transparent'</span>),</span>
-<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.key.height =</span> <span class="fu">unit</span>(<span class="dv">8</span>, <span class="st">"mm"</span>))<span class="sc">+</span></span>
-<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="dv">3812000</span>, <span class="at">xend =</span> <span class="dv">3833000</span>,<span class="at">y =</span> <span class="dv">3400000</span>, <span class="at">yend =</span> <span class="dv">3400000</span>, </span>
-<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">size=</span><span class="fl">0.8</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>)<span class="sc">+</span></span>
-<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3835000</span>, <span class="at">y =</span> <span class="dv">3400000</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">label =</span> <span class="st">"Economic Exclusive Zone (EEZ)"</span>, <span class="at">size=</span><span class="dv">6</span>, <span class="at">hjust=</span><span class="dv">0</span>)<span class="sc">+</span></span>
-<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="dv">3812000</span>, <span class="at">xend =</span> <span class="dv">3833000</span>,<span class="at">y =</span> <span class="dv">3380000</span>, <span class="at">yend =</span> <span class="dv">3380000</span>, </span>
-<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">size=</span><span class="fl">0.8</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3835000</span>, <span class="at">y =</span> <span class="dv">3380000</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">label =</span> <span class="st">"Protected Areas"</span>, <span class="at">size=</span><span class="dv">6</span>, <span class="at">hjust=</span><span class="dv">0</span>)<span class="sc">+</span></span>
-<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="shippingtraffic_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="960"></p>
-</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(<span class="at">data =</span> ShippingTraffic) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_EEZ, <span class="at">color=</span><span class="st">'black'</span>,<span class="at">fill=</span><span class="st">'transparent'</span>,<span class="at">alpha=</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linewidth=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_land, <span class="at">colour =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_SCA, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">linewidth=</span><span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> GermanNorthSea<span class="sc">::</span>German_natura, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">linewidth=</span><span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3820000</span>,<span class="dv">4250000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3370000</span>,<span class="dv">3660000</span>),</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">label_axes =</span> <span class="fu">list</span>(<span class="at">top =</span> <span class="st">"E"</span>, <span class="at">left =</span> <span class="st">"N"</span>, <span class="at">bottom =</span> <span class="st">'E'</span>, <span class="at">right=</span><span class="st">'N'</span>))<span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()<span class="sc">+</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill=</span><span class="cn">NA</span>, <span class="at">size=</span><span class="fl">1.5</span>))<span class="sc">+</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name=</span><span class="st">"Vessel density </span><span class="sc">\n</span><span class="st"> Inside Germany's EEZ </span><span class="sc">\n</span><span class="st"> Dec 2023 </span><span class="sc">\n</span><span class="st"> hrs per km2"</span>,</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"transparent"</span>, </span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>                      <span class="at">colours =</span> your_palette,</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>                      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30000</span>),</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>),</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.01</span>,<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">1000</span>)), </span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>                      <span class="at">guide =</span> <span class="st">"legend"</span>,</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0 - 0.05"</span>,<span class="st">"&gt; 0.1"</span>,<span class="st">"&gt; 0.2"</span>,<span class="st">"&gt; 0.5"</span>,<span class="st">"&gt; 2"</span>,<span class="st">"&gt; 5"</span>,<span class="st">"&gt; 10"</span>,<span class="st">"&gt; 20"</span>, <span class="st">"&gt; 100"</span>,<span class="st">"&gt; 1,000"</span>))<span class="sc">+</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.15</span>,<span class="fl">0.50</span>),</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">'black'</span>,<span class="at">size=</span><span class="dv">16</span>),</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">color=</span><span class="st">'black'</span>,<span class="at">size=</span><span class="dv">14</span>),</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">'transparent'</span>, <span class="at">fill =</span> <span class="st">'transparent'</span>),</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.key.height =</span> <span class="fu">unit</span>(<span class="dv">8</span>, <span class="st">"mm"</span>))<span class="sc">+</span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="dv">3812000</span>, <span class="at">xend =</span> <span class="dv">3833000</span>,<span class="at">y =</span> <span class="dv">3400000</span>, <span class="at">yend =</span> <span class="dv">3400000</span>, </span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">size=</span><span class="fl">0.8</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>)<span class="sc">+</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3835000</span>, <span class="at">y =</span> <span class="dv">3400000</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">label =</span> <span class="st">"Economic Exclusive Zone (EEZ)"</span>, <span class="at">size=</span><span class="dv">6</span>, <span class="at">hjust=</span><span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">x =</span> <span class="dv">3812000</span>, <span class="at">xend =</span> <span class="dv">3833000</span>,<span class="at">y =</span> <span class="dv">3380000</span>, <span class="at">yend =</span> <span class="dv">3380000</span>, </span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">size=</span><span class="fl">0.8</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3835000</span>, <span class="at">y =</span> <span class="dv">3380000</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">label =</span> <span class="st">"Protected Areas"</span>, <span class="at">size=</span><span class="dv">6</span>, <span class="at">hjust=</span><span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 

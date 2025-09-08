@@ -237,7 +237,7 @@ Pipelines_crossing_germany<-Pipelines_gas %>%
 
 Add a geom_sf in the previous plot to visualize the gas pipelines.
 
-```{r, fig.height=6, fig.width=8, message=FALSE}
+```{r, fig.height=6, fig.width=8, message=FALSE, eval=FALSE}
 Oil_2plot<-Oil_1plot +
   geom_sf(data = Pipelines_gas, alpha=0.08, colour ="#bb3e03")+
   coord_sf(ylim = c(53,56), xlim = c(3,9),

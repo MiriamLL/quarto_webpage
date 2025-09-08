@@ -12,7 +12,6 @@ format:
     toc: true
     toc-depth: 2
     toc-location: left
-    css: styles.css
 categories:
   - R
   - ggplot2
@@ -39,17 +38,17 @@ To download test data in tif format [click here](https://github.com/MiriamLL/dat
 
 Use the package **terra** to use the function **rast**.
 
-```{r, message=FALSE}
+```{r, message=FALSE, eval=FALSE}
 library(terra)
 ```
 
 The function **rast** reads your file as a formal class SpatRaster. Here I am using the file directly from the repository.
 
-```{r}
+```{r, eval=FALSE}
 ShippingTraffic_tif<-'https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/ShippingTraffic/ShippingTraffic_crop.tif'
 ```
 
-```{r}
+```{r, eval=FALSE}
 ShippingTraffic<-rast(ShippingTraffic_tif)
 ```
 
@@ -57,7 +56,7 @@ ShippingTraffic<-rast(ShippingTraffic_tif)
 crs(ShippingTraffic)
 ```
 
-```{r, fig.height=5, fig.width=5}
+```{r, fig.height=5, fig.width=5, eval=FALSE}
 ggplot2::ggplot() +
   tidyterra::geom_spatraster(data = ShippingTraffic) +
   NULL
@@ -65,35 +64,35 @@ ggplot2::ggplot() +
 
 ## Data frame
 
-```{r, message=FALSE}
+```{r, message=FALSE, eval=FALSE}
 library(tidyverse)
 ```
 
-```{r}
+```{r, eval=FALSE}
 ShippingTraffic_df <- as.data.frame(ShippingTraffic, xy = TRUE)
 beepr::beep(sound=1)
 ```
 
 The function rename, allows to change the name of the column. The density information is in the third column.
 
-```{r}
+```{r, eval=FALSE}
 ShippingTraffic_df<-ShippingTraffic_df %>%
   rename(vessel_density=3)
 ```
 
 Check if the density values are plausible.
 
-```{r}
+```{r, eval=FALSE}
 range(ShippingTraffic_df$vessel_density)
 ```
 
 Values distribution
 
-```{r, fig.height=5, fig.width=5}
+```{r, fig.height=5, fig.width=5, eval=FALSE}
 hist(ShippingTraffic_df$vessel_density)
 ```
 
-```{r, echo=TRUE, eval=TRUE}
+```{r, echo=TRUE, eval=FALSE}
 ShippingTraffic_class<-ShippingTraffic_df %>%
  mutate(
     density_class = case_when(
@@ -119,7 +118,7 @@ ShippingTraffic_class<-ShippingTraffic_df %>%
 
 The majority of values are between 0 and 1
 
-```{r KnitTableSightings, echo=FALSE}
+```{r KnitTableSightings, echo=FALSE, eval=FALSE}
 knitr::kable(ShippingTraffic_class %>%
   group_by(density_class)%>%
   tally())
@@ -129,11 +128,11 @@ knitr::kable(ShippingTraffic_class %>%
 
 Use the function **geom_spatraster** to plot the vessel density data.
 
-```{r}
+```{r, eval=FALSE}
 library(tidyterra)
 ```
 
-```{r, fig.height=5, fig.width=5}
+```{r, fig.height=5, fig.width=5, eval=FALSE}
 ggplot() +
   geom_spatraster(data = ShippingTraffic)
 ```
@@ -148,7 +147,7 @@ devtools::install_github("MiriamLL/GermanNorthSea")
 library(GermanNorthSea)
 ```
 
-```{r, fig.height=5, fig.width=5}
+```{r, fig.height=5, fig.width=5, eval=FALSE}
 ShippingTraffic_01plot<-ggplot() +
   geom_spatraster(data = ShippingTraffic) +
   geom_sf(data = GermanNorthSea::German_EEZ, color='grey',fill='transparent',alpha=0.1, size = 1)+
@@ -162,7 +161,7 @@ ShippingTraffic_01plot
 
 Change background colors using the arguments on theme.
 
-```{r, fig.height=5, fig.width=5}
+```{r, fig.height=5, fig.width=5, eval=FALSE}
 ShippingTraffic_02plot<-ShippingTraffic_01plot+
   theme_void()+
     theme(panel.background = element_blank(),
@@ -176,7 +175,7 @@ ShippingTraffic_02plot
 
 Low traffic
 
-```{r, fig.height=5, fig.width=5}
+```{r, fig.height=5, fig.width=5, eval=FALSE}
 LowShippingTraffic_03plot<-ShippingTraffic_02plot+
     
   scale_fill_gradientn(name='Low Vessel density \n Dec 2023',
@@ -190,7 +189,7 @@ LowShippingTraffic_03plot
 
 Medium traffic
 
-```{r, fig.height=5, fig.width=5}
+```{r, fig.height=5, fig.width=5, eval=FALSE}
 MediumShippingTraffic_04plot<-ShippingTraffic_02plot+
   
     scale_fill_gradientn(name='Medium Vessel density \n Dec 2023',
@@ -204,7 +203,7 @@ MediumShippingTraffic_04plot
 
 High traffic
 
-```{r, fig.height=5, fig.width=5}
+```{r, fig.height=5, fig.width=5, eval=FALSE}
 HighShippingTraffic_06plot<-ShippingTraffic_02plot+
   scale_fill_gradientn(name='High Vessel density \n Dec 2023 \n (hrs per km2)',
                       na.value = "transparent", 
@@ -217,7 +216,7 @@ HighShippingTraffic_06plot
 
 ## Palette
 
-```{r}
+```{r, eval=FALSE}
 your_palette<-c("transparent", "#d8f3dc",
                 "#b7e4c7","#95d5b2","#74c69d","#52b788","#aacc00",
                 "#bfd200","#d4d700","#dddf00","#eeef20","#ffff3f", 
@@ -227,7 +226,7 @@ your_palette<-c("transparent", "#d8f3dc",
 
 Use **scale_fill_gradientn** and **rescale** to adjust the palette and the legend
 
-```{r, fig.height=5, fig.width=5}
+```{r, fig.height=5, fig.width=5, eval=FALSE}
 ShippingTraffic_07plot<-ShippingTraffic_02plot+
   
   scale_fill_gradientn(name='Vessel density \n Dec 2023 \n hrs per km2',
@@ -243,7 +242,7 @@ ShippingTraffic_07plot
 
 Use **labels** inside scale_fill_gradient to make the legend more legible
 
-```{r, fig.height=5, fig.width=5}
+```{r, fig.height=5, fig.width=5, eval=FALSE}
 ShippingTraffic_08plot<-ShippingTraffic_02plot+
   scale_fill_gradientn(name='Vessel density \n Dec 2023 \n hrs per km2',
                       na.value = "transparent", 
@@ -258,7 +257,7 @@ ShippingTraffic_08plot
 
 Include the legend inside the plot and change the theme, also change panel.background
 
-```{r, fig.height=5, fig.width=5}
+```{r, fig.height=5, fig.width=5, eval=FALSE}
 ShippingTraffic_09plot<-ShippingTraffic_08plot+
   theme(legend.position = c(0.20,0.50),
           legend.background = element_rect(colour = FALSE, fill = FALSE),
@@ -273,7 +272,7 @@ ShippingTraffic_09plot
 
 All steps together, and additionally adding protected areas.
 
-```{r, fig.height=10, fig.width=10}
+```{r, fig.height=10, fig.width=10, eval=FALSE}
 ggplot() +
   geom_spatraster(data = ShippingTraffic) +
   geom_sf(data = GermanNorthSea::German_EEZ, color='black',fill='transparent',alpha=0.1, size = 1, linewidth=1)+

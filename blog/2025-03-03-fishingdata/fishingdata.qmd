@@ -215,7 +215,7 @@ Fishing_csv %>%
   arrange(-n)
 ```
 
-```{r KnitTableSightings, echo=FALSE}
+```{r KnitTableSightings, echo=FALSE, eval=FALSE}
 knitr::kable(Fishing_csv %>%
   group_by(Geartype)%>%
   tally()%>%
