@@ -33,19 +33,19 @@ To download test data in tif format [click here](https://github.com/MiriamLL/dat
 
 Select the directory where the information is stored, or as here, use the data directly form the repository.
 
-```{r}
+```{r, eval=FALSE}
 Light_pollution_tif<-'https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/LightPollution/viirs_npp_202300.tif'
 ```
 
 Use the package **terra** to use the function **rast**.
 
-```{r, message=FALSE}
+```{r, message=FALSE, eval=FALSE}
 library(terra)
 ```
 
 The function **rast** reads your file as a formal class SpatRaster
 
-```{r}
+```{r, eval=FALSE}
 Light_pollution<-rast(Light_pollution_tif)
 ```
 
@@ -55,12 +55,12 @@ crs(Light_pollution)
 
 Use **ggplot2** and **tidyterra** to create your plot.
 
-```{r}
+```{r, eval=FALSE}
 library(ggplot2)
 library(tidyterra)
 ```
 
-```{r}
+```{r, eval=FALSE}
 ggplot() +
   geom_spatraster(data = Light_pollution) +
   scale_fill_gradient(limits = c(0,1),low = 'black', high = '#f9c74f', 
@@ -74,21 +74,21 @@ ggplot() +
 
 To manipulate convert to data frame.
 
-```{r}
+```{r, eval=FALSE}
 Light_pollution_df <- as.data.frame(Light_pollution, xy = TRUE)
 beepr::beep(sound=1)
 ```
 
 The function rename, allows to change the name of the column. The radiance information is in the third column.
 
-```{r}
+```{r, eval=FALSE}
 Light_pollution_radiance<-Light_pollution_df %>%
   rename(radiance=3)
 ```
 
 Check if the radiance values are plausible.
 
-```{r}
+```{r, eval=FALSE}
 range(Light_pollution_radiance$radiance)
 ```
 
@@ -96,7 +96,7 @@ range(Light_pollution_radiance$radiance)
 
 Use the function **geom_spatraster** to plot the radiance data.
 
-```{r, fig.height=6, fig.width=6}
+```{r, fig.height=6, fig.width=6, eval=FALSE}
 ggplot() +
   geom_spatraster(data = Light_pollution) +
   
@@ -116,7 +116,7 @@ ggplot() +
 
 Change the arguments inside **theme** to adjust the looks of your plot.
 
-```{r, fig.height=6, fig.width=6}
+```{r, fig.height=6, fig.width=6, eval=FALSE}
 ggplot() +
   geom_spatraster(data = Light_pollution) +
   coord_sf(xlim = c(3,9), ylim = c(53,56),
@@ -144,7 +144,7 @@ ggplot() +
 
 Select some colors create a color palette.
 
-```{r}
+```{r, eval=FALSE}
 color_NA <-"#000000"
 color_K <-"#ffff3f"
 color_J <-"#eeef20"
@@ -162,7 +162,7 @@ your_palette<-c(color_NA,color_A,color_B,color_C,color_D,color_E,color_F,color_G
 
 Include **scale_fill_gradientn** to use the color palette.
 
-```{r}
+```{r, eval=FALSE}
 ggplot() +
   geom_spatraster(data = Light_pollution) +
  
@@ -193,7 +193,7 @@ ggplot() +
 
 Add text using the function **annotate** for reference.
 
-```{r, fig.height=4, fig.width=4}
+```{r, fig.height=4, fig.width=4, eval=FALSE}
 ggplot() +
   geom_spatraster(data = Light_pollution) +
  

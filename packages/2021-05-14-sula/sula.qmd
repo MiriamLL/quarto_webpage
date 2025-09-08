@@ -5,6 +5,7 @@ description: |
 author:
   - name: Miriam Lerma
 date: 2021-05-15
+image: sula_front.png
 format:
   html:
     toc: true
@@ -23,10 +24,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/sula/main/ma
 Este paquete contiene:
 
 -   **Datos** de tracks de kena (*Sula dactylatra*) colectados en Rapa Nui para replicar los ejemplos 🗿
--   **Trece funciones** para limpiar y calcular parámetros de viajes a partir de datos GPS
-Detailed information and uses: [https://github.com/MiriamLL/sula](https://github.com/MiriamLL/sula)
+-   **Trece funciones** para limpiar y calcular parámetros de viajes a partir de datos GPS Detailed information and uses: <https://github.com/MiriamLL/sula>
 
-## Instalación 
+## Instalación
 
 Puedes instalar este paquete desde [GitHub](https://github.com/) usando:
 
@@ -43,7 +43,7 @@ Carga la librería
 library(sula)
 ```
 
-## Un individuo 
+## Un individuo
 
 Carga los datos de GPS de un individuo.
 
@@ -53,7 +53,7 @@ head(GPS_01)
 
 **Nota** Incluye columna con fecha y hora en formato POSIXct
 
-## Notas de campo 
+## Notas de campo
 
 Incluye el periodo cuando se colocó el dispositivo hasta cuando se retiró.
 
@@ -79,7 +79,7 @@ GPS_gmt<-ajustar_hora(GPS_data = GPS_raw,
 
 Regresa el mismo data frame con dos columnas adicionales: **dia_hora** con el día y fecha original y **hora_corregida** con la hora correspondiente al GMT.
 
-## recortar_periodo 
+## recortar_periodo
 
 Este función permite recortar periodos dentro de los datos.
 

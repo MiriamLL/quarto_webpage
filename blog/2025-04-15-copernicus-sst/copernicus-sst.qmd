@@ -42,7 +42,7 @@ Sea surface temperature (SST) refers to the temperature of the uppermost layer o
 For downloading the data: [follow this instructions.](https://help.marine.copernicus.eu/en/articles/4469993-how-to-download-copernicus-marine-products#h_ec9344c750)
 
 -   For this exercise:\
-    Download sea water potential temperaturethetao [°C]\
+    Download sea water potential temperaturethetao \[°C\]\
     Based on the coordinates 1 to 10 and 50 to 60\
     For the time frame of April and May 2018\
     From the depths 0 to 60 m
@@ -53,19 +53,19 @@ To download test data in nc format [click here](https://github.com/MiriamLL/data
 
 Select the directory where the information is stored, or as here, use the data directly form the repository.
 
-```{r}
+```{r, eval=FALSE}
 SST_nc<-"https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/SST/cmems_mod_glo_phy_my_0.083deg-climatology_P1M-m_1729785319560.nc"
 ```
 
 Load the [terra package](https://pjbartlein.github.io/REarthSysSci/netcdf_terra.html) for reading raster data.
 
-```{r}
+```{r, eval=FALSE}
 library(terra)
 ```
 
 The function **rast** helps to read raster data - replacing package raster.
 
-```{r}
+```{r, eval=FALSE}
 SST_file<-rast(SST_nc)
 ```
 
@@ -73,19 +73,19 @@ SST_file<-rast(SST_nc)
 
 Change to data frame for data wrangling.
 
-```{r}
+```{r, eval=FALSE}
 SST_dataframe <- as.data.frame(SST_file, xy = TRUE)
 ```
 
 Load the package **tidyverse**.
 
-```{r}
+```{r, eval=FALSE}
 library(tidyverse)
 ```
 
 Use **filter** to subset the data to a specific geographical area.
 
-```{r}
+```{r, eval=FALSE}
 SST_sub <-SST_dataframe  %>%
   filter(x > 2 & x < 10)%>%
   filter(y > 52 & y < 57)
@@ -95,27 +95,27 @@ SST_sub <-SST_dataframe  %>%
 
 There are many columns with data per depth, as data was collected almost every meter.
 
-```{r}
+```{r, eval=FALSE}
 ncol(SST_sub)
 ```
 
 To keep columns with the depth area use the functions **select** and **starts_with**.
 
-```{r}
+```{r, eval=FALSE}
 SST_depth<-SST_sub %>%
   select(starts_with("thetao"))
 ```
 
 Check the depths were the data was collected.
 
-```{r}
+```{r, eval=FALSE}
 Depths<-colnames(SST_depth)
 head(Depths)
 ```
 
 Using functions from tidyverse such as **rowwise**, summarise the information per depth.
 
-```{r}
+```{r, eval=FALSE}
 SST_depth_perloc<-SST_depth %>%
   rowwise()%>%
   mutate(mean_SST = mean(c_across(where(is.numeric)),na.rm=TRUE),
@@ -126,7 +126,7 @@ SST_depth_perloc<-SST_depth %>%
 
 The function **arrange** from the package tidyverse allows to see the columns of interest first.
 
-```{r}
+```{r, eval=FALSE}
 first_column<-SST_depth[1,]
 long_values<-first_column %>% 
   pivot_longer(
@@ -137,17 +137,17 @@ long_values<-first_column %>%
 arrange_values<-arrange(long_values, desc(value))
 ```
 
-```{r KnitTableSightings, echo=FALSE}
+```{r KnitTableSightings, echo=FALSE, eval=FALSE}
 knitr::kable(head(arrange_values))
 ```
 
 Now there is a value per latitude and longitude of the sea surface temperature, summarizing the first 60 m of the water column.
 
-```{r}
+```{r, eval=FALSE}
 SST_sub$SST<-SST_depth_perloc$mean_SST
 ```
 
-```{r}
+```{r, eval=FALSE}
 mean(SST_sub$SST)
 ```
 
@@ -155,13 +155,13 @@ mean(SST_sub$SST)
 
 Load the package **ggplot2**
 
-```{r}
+```{r, eval=FALSE}
 library(ggplot2)
 ```
 
 Plot your data using **geom_raster**
 
-```{r, fig.width=6}
+```{r, fig.width=6, eval=FALSE}
 ggplot() +
   geom_raster(data = SST_sub , aes(x = x, y = y, fill = SST)) +
   theme_void()+
@@ -171,13 +171,13 @@ ggplot() +
 
 To select different palettes explore [ggplot2 book](https://ggplot2-book.org/scales-colour). Here are some of the palette options.
 
-```{r, echo=FALSE, out.width = "80%"}
+```{r, echo=FALSE, out.width = "80%", eval=FALSE}
 knitr::include_graphics("https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2025/SST/color_palettes.png?raw=true")
 ```
 
 To change the color palette use **scale_fill_distiller**.
 
-```{r, fig.width=6}
+```{r, fig.width=6, eval=FALSE}
 ggplot() +
   geom_raster(data = SST_sub , aes(x = x, y = y, fill = SST)) +
   scale_fill_distiller(palette = "YlOrBr")+
@@ -191,20 +191,20 @@ ggplot() +
 
 Add land shapefiles to complete the map. To add shapefiles load the package **sf**.
 
-```{r}
+```{r, eval=FALSE}
 library(sf)
 ```
 
 Use the function **st_transform** to convert to the same CRS.\
 For the exercise, use the shapefiles from the package **GermanNorthSea**
 
-```{r}
+```{r, eval=FALSE}
 German_land<-st_transform(GermanNorthSea::German_land, 4326)
 ```
 
 Add the land to the plot using **geom_sf**.
 
-```{r, fig.width=6}
+```{r, fig.width=6, eval=FALSE}
 Plot_sst<-ggplot() +
   geom_tile(data = SST_sub , aes(x = x, y = y, fill = SST)) +
   scale_fill_distiller(name="Sea surface temperature (°C) \nFrom 0 to 60 m depth\n(April and May montly composites)",
@@ -218,7 +218,7 @@ Plot_sst
 
 Change a little bit the design using arguments in the **theme**.
 
-```{r}
+```{r, eval=FALSE}
 Plot_sst +
   theme_void()+
   xlab('Longitude')+ylab('Latitude')+

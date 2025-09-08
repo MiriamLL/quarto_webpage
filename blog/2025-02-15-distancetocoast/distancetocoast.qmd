@@ -65,19 +65,19 @@ writeRaster(this_cut,'Subset_GMT_intermediate_coast_distance_01d.tif')
 
 Alternatively, use the data directly from the repository.
 
-```{r}
+```{r, eval=FALSE}
 DistCoast_tif<-"https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/DistanceToCoast/Subset_GMT_intermediate_coast_distance_01d.tif"
 ```
 
 Use the package **terra** to use the function **rast**.\
 Then convert to data frame.
 
-```{r}
+```{r, eval=FALSE}
 library(terra)
 DistCoast_file<-rast(DistCoast_tif)
 ```
 
-```{r}
+```{r, eval=FALSE}
 DistCoast_dataframe <- as.data.frame(DistCoast_file, xy = TRUE)
 ```
 
@@ -85,7 +85,7 @@ The file is quite large, so I recommend to subset the data to the area of intere
 
 Here I select the area close to the German North Sea.
 
-```{r}
+```{r, eval=FALSE}
 library(tidyverse)
 DistCoast_dataframe_sub <-DistCoast_dataframe  %>%
   filter(x > 2 & x < 10)%>%
@@ -105,30 +105,30 @@ save(German_distancecoast, file="German_distancecoast.rda")
 
 To plot adding land.
 
-```{r}
+```{r, eval=FALSE}
 library(sf)
 ```
 
 Make sure is in the same CRS.
 
-```{r}
+```{r, eval=FALSE}
 German_land<-st_transform(GermanNorthSea::German_land, 4326)
 ```
 
 To exclude information on land.
 
-```{r}
+```{r, eval=FALSE}
 library(tidyverse)
 ```
 
-```{r}
+```{r, eval=FALSE}
 DistCoast_dataframe_sub<-DistCoast_dataframe_sub %>%
   filter(Dist > -20)
 ```
 
 Use **ggplot** to create your plot.
 
-```{r, fig.width=4, fig.height=4}
+```{r, fig.width=4, fig.height=4, eval=FALSE}
 Plot_distance<-ggplot() +
   geom_raster(data = DistCoast_dataframe_sub, aes(x = x, y = y, fill = Dist)) +
   geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+

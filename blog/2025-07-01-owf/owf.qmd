@@ -47,14 +47,14 @@ To download the original data go to [EMODnet](https://www.emodnet-humanactivitie
 
 To visualize the data we first need to load some packages.
 
-```{r}
+```{r, eval=FALSE}
 library(ggplot2)
 library(tidyverse)
 ```
 
 In the package GermanNorthSea, the information provided by EMODnet and GeoSeaPortal is included for easy access. If you don't have the package you can install it by using devtools::install_github("MiriamLL/GermanNorthSea").
 
-```{r}
+```{r, eval=FALSE}
 library(GermanNorthSea)
 ```
 
@@ -64,20 +64,20 @@ library(GermanNorthSea)
 
 Load the data from the package or from your file.
 
-```{r}
+```{r, eval=FALSE}
 OWF_EMODnet<-GermanNorthSea::OWF_EMODnet
 ```
 
 Use ggplot to visualize the OWF.
 
-```{r}
+```{r, eval=FALSE}
 ggplot(OWF_EMODnet)+  
   geom_sf(data = OWF_EMODnet,  colour = NA,fill= "black",alpha=1, size=1,linetype="dashed")
 ```
 
 Add other layers to have a reference. The additional shapes are also part of the package GermanNorthSea.
 
-```{r}
+```{r, eval=FALSE}
 ggplot(OWF_EMODnet) + # Gives CRS
   
   # Fill colors
@@ -104,38 +104,38 @@ In the context of Offshore Wind Farms (OWF), the terms “Production”, “Appr
 - Approved is when the wind farm project has received all the necessary legal and environmental permits from authorities but construction has not yet started; and\
 - Planned is when the wind farm is in the early stages of development, often proposed or under review, but not yet approved.
 
-```{r}
+```{r, eval=FALSE}
 unique(OWF_EMODnet$STATUS)
 ```
 
 To only use active OWF the best is to filter using the status and selecting Production.
 
-```{r}
+```{r, eval=FALSE}
 OWF_Production<-OWF_EMODnet%>%
   filter(STATUS == 'Production')
 ```
 
 We can also filter the information by using year. Here, we can see that data includes OWF from 2009 to 2020.
 
-```{r}
+```{r, eval=FALSE}
 unique(OWF_Production$YEAR)
 ```
 
 Here, lets separate those OWF before 2016 from the ones after.
 
-```{r}
+```{r, eval=FALSE}
 OWF_Before2016<-OWF_Production %>%
   filter(YEAR <= 2016)
 ```
 
-```{r}
+```{r, eval=FALSE}
 OWF_After2016<-OWF_Production %>%
   filter(YEAR > 2016)
 ```
 
 Plot using different colors for OWF before 2016 and after 2016.
 
-```{r, fig.height=8, fig.width=8}
+```{r, fig.height=8, fig.width=8, eval=FALSE}
 OWF_1plot<-ggplot(OWF_EMODnet) + # Gives CRS
   
   # Fill colors
@@ -165,7 +165,7 @@ There is an option using [ggrepel](https://cran.r-project.org/web/packages/ggrep
 
 First, create a data frame with the coordinates and the segment.
 
-```{r}
+```{r, eval=FALSE}
 Labels<-data.frame(text_x=c(4010000,4010000,4141000,4179000,4211000,4211000,4211000,4010000,4010000,4010000,4010000),
            text_y= c(3479000,3494000,3605000,3585000,3494000,3486000,3478000,3449000,3439000,3429000,3405000),
            text_label=c("BARD","GTI","DT","BT","AMW","NSO","MSO","TRI","AV","BR","RG"),
@@ -178,7 +178,7 @@ Labels<-data.frame(text_x=c(4010000,4010000,4141000,4179000,4211000,4211000,4211
 
 Then add it one by one to the plot. You can skip this step if you dont need the names.
 
-```{r, fig.height=6, fig.width=8}
+```{r, fig.height=6, fig.width=8, eval=FALSE}
 OWF_2plot<-OWF_1plot + 
   #BARD
   annotate("text", x = Labels$text_x[1], y = Labels$text_y[1], label = Labels$text_label[1],size=3)+
@@ -232,7 +232,7 @@ OWF_2plot
 
 To reduce noise from the grid, the background colors and the labels, give elements in the theme().
 
-```{r, fig.height=6, fig.width=8}
+```{r, fig.height=6, fig.width=8, eval=FALSE}
 OWF_3plot<-OWF_2plot + 
   scale_x_continuous(breaks = c(4,6,8),labels = function(x) paste0(x, '\u00B0')) +
   scale_y_continuous(breaks = c(53.5,54.5,55.5),labels = function(x) paste0(x, '\u00B0'))  +
@@ -264,11 +264,11 @@ OWF_3plot
 
 Using the package ggtext, we can add a text with different colors.
 
-```{r}
+```{r, eval=FALSE}
 library(ggtext)
 ```
 
-```{r, fig.height=6, fig.width=8}
+```{r, fig.height=6, fig.width=8, eval=FALSE}
 OWF_3plot +
   geom_richtext(aes(x =  3895000, y = 3669000,
   label = "Offshore Wind farms in production
@@ -314,19 +314,19 @@ Globally, human activities at sea are becoming more intense and diverse, and the
 
 Before 2016, from 2009 to 2016 there was a total area covered of:
 
-```{r}
+```{r, eval=FALSE}
 sum(OWF_Before2016$AREA_SQKM)
 ```
 
 After 2016, from 2017 to 2020, the area covered was:
 
-```{r}
+```{r, eval=FALSE}
 sum(OWF_After2016$AREA_SQKM)
 ```
 
 In just four years, more area was developed for offshore wind farms than in the whole seven years before.
 
-```{r}
+```{r, eval=FALSE}
 (sum(OWF_After2016$AREA_SQKM)*100)/
   (sum(OWF_Before2016$AREA_SQKM,OWF_After2016$AREA_SQKM))
 ```

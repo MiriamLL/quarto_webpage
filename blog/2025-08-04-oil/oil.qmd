@@ -39,22 +39,22 @@ library(here)
 This_directory<-here()
 ```
 
-```{r,echo=FALSE, message=FALSE, warning=FALSE}
+```{r,echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
 This_directory<-"C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2025/1Programming/1Quarto/data_supporting_webpage/Blog/2025/Oil/"
 list.files(This_directory)
 ```
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
 This_file<-paste0(This_directory,"/EMODnet_HA_OG_Offshore_Installations_20240216.shp")
 ```
 
 Use the function st_read from the package sf to read shapefiles in R.
 
-```{r}
+```{r, eval=FALSE}
 library(sf)
 ```
 
-```{r, message=FALSE, echo=FALSE}
+```{r, message=FALSE, echo=FALSE, eval=FALSE}
 suppressMessages(Oil_shapefile<-st_read(This_file, quiet = TRUE))
 ```
 
@@ -66,7 +66,7 @@ Oil_shapefile<-st_read(This_file)
 
 Use ggplot to visualize the information where this infrastructures occur.
 
-```{r}
+```{r, eval=FALSE}
 library(ggplot2)
 ```
 
@@ -85,13 +85,13 @@ unique(Oil_shapefile$COUNTRY)
 
 Load tidyverse to make a filter.
 
-```{r, message=FALSE, echo=TRUE}
+```{r, message=FALSE, echo=TRUE, eval=FALSE}
 library(tidyverse)
 ```
 
 Keep only Germany data.
 
-```{r, message=FALSE, echo=TRUE}
+```{r, message=FALSE, echo=TRUE, eval=FALSE}
 Oil_germany<-Oil_shapefile %>%
   filter(COUNTRY == 'Germany')
 ```
@@ -107,13 +107,13 @@ ggplot() +
 
 Create a base map using shapefiles from the package GermanNorthSea.
 
-```{r}
+```{r, eval=FALSE}
 library(GermanNorthSea)
 ```
 
 Add the attributes and the theme to your base map.
 
-```{r}
+```{r, eval=FALSE}
 Oil_germany<-st_transform(Oil_germany,4326)
 German_EEZ<-st_transform(German_EEZ,4326)
 German_land<-st_transform(German_land,4326)
@@ -121,7 +121,7 @@ German_SCA<-st_transform(German_SCA,4326)
 German_natura<-st_transform(German_natura,4326)
 ```
 
-```{r, fig.height=6, fig.width=8}
+```{r, fig.height=6, fig.width=8, eval=FALSE}
 Base_map<-ggplot() +
   geom_sf(data = Oil_germany)+ 
   # Fill colors
@@ -154,7 +154,7 @@ Base_map<-ggplot() +
 
 Using annotate, add the names of the platforms.
 
-```{r, fig.height=6, fig.width=8}
+```{r, fig.height=6, fig.width=8, eval=FALSE}
 Oil_1plot<-Base_map+
   annotate("text", 
            x = 3.98639-0.95, y = 55.82222, label = "A6-A",size=5,colour ="#bb3e03")+
@@ -199,7 +199,7 @@ Pipeline gas refer to natural gas that is transported through a network of high-
 
 To load the data:
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
 This_file<-paste0(This_directory,"/EMODnet_HA_Pipelines_20230705.shp")
 Pipelines_shapefile<-st_read(This_file, quiet = TRUE)
 ```
@@ -214,7 +214,7 @@ unique(Pipelines_shapefile$MEDIUM)
 
 For this exercise select only those containing gas.
 
-```{r}
+```{r, eval=FALSE}
 Pipelines_gas<-Pipelines_shapefile %>%
   filter(MEDIUM %in% c("Gas", "Gas, Water, Air","Gas, Water","Oil","Gas, Oil"))
 ```
@@ -227,7 +227,7 @@ unique(Pipelines_gas$COUNTRY)
 
 For this exercise, select Germany and surrounding countries.
 
-```{r}
+```{r, eval=FALSE}
 Pipelines_crossing_germany<-Pipelines_gas %>%
   filter(COUNTRY %in% c("Germany, Russia", "Germany",
                         "Netherlands","United Kingdom"))
@@ -248,13 +248,13 @@ Oil_2plot<-Oil_1plot +
 
 The package ggtext allows to add colors into labels.
 
-```{r}
+```{r, eval=FALSE}
 library(ggtext)
 ```
 
 Add the title on the map.
 
-```{r, fig.height=6, fig.width=8}
+```{r, fig.height=6, fig.width=8, eval=FALSE}
 Oil_3plot<-Oil_2plot +
   geom_richtext(aes(x =  4.5, y = 55.5,
   label = "Offshore installations for exploration, <br> 
@@ -291,7 +291,7 @@ The N05-A platform is situated in Dutch waters, approximately 1.5 kilometers fro
 
 The proposed gas field is located in close proximity to the [Borkum Reef Ground NCA](https://www.bfn.de/en/borkum-reef-ground-nca). This area is the smallest of three designated nature conservation areas within Germany’s Exclusive Economic Zone (EEZ) in the North Sea. It has been recognized as a Special Area of Conservation (SAC) under the EU Habitats Directive, and was officially designated a German NCA in 2017. Sources: [Borkum Reef Ground NCA](https://www.bfn.de/en/borkum-reef-ground-nca), [Oceana](https://europe.oceana.org/wp-content/uploads/sites/26/d_files/borkum_report_web.pdf).
 
-```{r, fig.height=6, fig.width=8}
+```{r, fig.height=6, fig.width=8, eval=FALSE}
 Oil_4plot<-Oil_3plot+
   geom_point(aes(x = 6.3620, y = 53.67800), color = 'orange',size=4,shape=17)+
     annotate("text", 

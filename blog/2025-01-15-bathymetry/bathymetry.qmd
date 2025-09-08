@@ -47,13 +47,13 @@ To download test data in tif format [click here](https://github.com/MiriamLL/dat
 
 Select the directory where the information is stored, or as here, use the data directly form the repository.
 
-```{r}
+```{r, eval=FALSE}
 Bath_tif<-'https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/Bathymetry/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif'
 ```
 
 Load the [terra package](https://datacarpentry.org/r-raster-vector-geospatial/01-raster-structure.html) for reading raster data
 
-```{r}
+```{r, eval=FALSE}
 library(terra)
 ```
 
@@ -71,24 +71,24 @@ Bath_dataframe <- as.data.frame(Bath_file, xy = TRUE)
 
 Alternatively, use the test information included in the package **GermanNorthSea**
 
-```{r}
+```{r, eval=FALSE}
 ##devtools::install_github("MiriamLL/GermanNorthSea")
 library(GermanNorthSea)
 ```
 
-```{r}
+```{r, eval=FALSE}
 Bath_dataframe<-GermanNorthSea::German_bath
 ```
 
 Load the package **tidyverse**
 
-```{r}
+```{r, eval=FALSE}
 library(tidyverse)
 ```
 
 Use **filter** to subset your data
 
-```{r}
+```{r, eval=FALSE}
 Bath_dataframe_sub <-Bath_dataframe  %>%
   filter(x > 2 & x < 10)%>%
   filter(y > 52 & y < 57)%>%
@@ -100,7 +100,7 @@ Bath_dataframe_sub <-Bath_dataframe  %>%
 
 Load the package **ggplot2**
 
-```{r}
+```{r, eval=FALSE}
 library(ggplot2)
 ```
 
@@ -120,19 +120,19 @@ ggplot() +
 
 Load the package **sf**
 
-```{r}
+```{r, eval=FALSE}
 library(sf)
 ```
 
 Use the function **st_transform** to convert to the same CRS
 
-```{r}
+```{r, eval=FALSE}
 German_land<-st_transform(GermanNorthSea::German_land, 4326)
 ```
 
 Add the land to the plot using **geom_sf**
 
-```{r, fig.width=4, fig.height=4}
+```{r, fig.width=4, fig.height=4, eval=FALSE}
 Plot_bath<-ggplot() +
   geom_raster(data = Bath_dataframe_sub , aes(x = x, y = y, fill = Bathymetry)) +
   geom_sf(data = German_land, colour = 'black', fill = '#ffffbe')+
