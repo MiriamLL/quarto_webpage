@@ -1,0 +1,44 @@
+[
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/blog/2025-09-01-cables/cables.html",
+      "/blog/2025-08-04-oil/oil.html",
+      "/blog/2025-07-01-owf/owf.html",
+      "/blog/2025-06-02-shippingtraffic/shippingtraffic.html",
+      "/blog/2025-05-05-lightpollution/lightpollution.html",
+      "/blog/2025-04-15-copernicus-sst/copernicus-sst.html",
+      "/blog/2025-03-03-fishingdata/fishingdata.html",
+      "/blog/2025-02-15-distancetocoast/distancetocoast.html",
+      "/blog/2025-01-15-bathymetry/bathymetry.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": []
+  },
+  {
+    "listing": "/packages.html",
+    "items": [
+      "/packages/2023-04-16-seamonas/seamonas.html",
+      "/packages/2025-07-03-larus/larus.html",
+      "/packages/2023-06-02-germannorthsea/germannorthsea.html",
+      "/packages/2021-05-14-spheniscus/spheniscus.html",
+      "/packages/2021-05-14-sula/sula.html"
+    ]
+  },
+  {
+    "listing": "/teaching.html",
+    "items": [
+      "/teaching/2025-04-01-journals/journals.html",
+      "/teaching/2025-02-19-ai-tools/ai-tools.html",
+      "/teaching/2024-12-06-tracking/tracking_2024.html",
+      "/teaching/2023-06-06-plotting/plotting.html",
+      "/teaching/2023-06-06-tracking/tracking.html",
+      "/teaching/2023-05-08-data-wrangling/data-wrangling.html",
+      "/teaching/2023-04-18-intro-to-r/intro-to-r.html",
+      "/teaching/2021-03-29-rmd/rmd.html",
+      "/teaching/2021-03-01-IntroaR/IntroaR.html"
+    ]
+  }
+]

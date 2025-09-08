@@ -1,12 +1,14 @@
 ---
-title: "Blog"
+title: "Teaching"
 listing:
-  contents: blog
+  contents: teaching
   sort: "date desc"
   type: default
-  categories: true
+  categories: false
   sort-ui: false
   filter-ui: false
 page-layout: full
-title-block-banner: false
+format:
+  html:
+    css: styles.css
 ---
