@@ -5,6 +5,7 @@ description: |
 author:
   - name: Miriam Lerma
 date: 2021-05-15
+image: speniscus_front.png
 format:
   html:
     toc: true
@@ -14,11 +15,6 @@ format:
 ---
 
 # Intro
-
-```{r, echo=FALSE, out.width = "40%"}
-library(distilltools)
-knitr::include_graphics("https://raw.githubusercontent.com/MiriamLL/spheniscus/master/man/figures/logo.png")
-```
 
 El objetivo de este paquete es: - Hacer disponibles datos crudos de TDR para que se familiaricen con el formato. - Ayudarte a limpiar los datos de TDR para obtener parámetros de buceo de los animales muestreados.
 

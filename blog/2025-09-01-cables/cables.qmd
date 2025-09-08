@@ -71,7 +71,7 @@ There are around 1.4 million kilometers (870,000 miles) of telecommunication cab
 
 To visualize the telecommunications data, load your data and call the package ggplot.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(here)
 library(tidyverse)
 library(sf)
@@ -115,7 +115,7 @@ German_land<-st_transform(German_land,4326)
 
 Add the attributes and the theme to your base map.
 
-```{r, fig.height=6, fig.width=8}
+```{r, fig.height=3, fig.width=4}
 Base_map<-ggplot() + 
   # Fill colors
   geom_sf(data = German_EEZ, color='#212529',fill=NA,alpha=0.1, linewidth = 1)+
@@ -146,7 +146,7 @@ Base_map
 
 Fonts from goggle can be use in ggplot. In the example, I will be using ["Share Tech Mono"](https://fonts.google.com/specimen/Share+Tech+Mono).
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(showtext)
 showtext_auto()
 font_add_google("Share Tech Mono", "Share Tech Mono")
@@ -154,11 +154,11 @@ font_add_google("Share Tech Mono", "Share Tech Mono")
 
 Add text and colors for the label.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(ggtext)
 ```
 
-```{r, fig.height=6}
+```{r, fig.height=3, fig.width=4, warning=FALSE, message=FALSE}
 Base_map +
   geom_sf(data = Netherlands_telecommunications,color='#8ac926',linewidth=0.8)+
   geom_sf(data = France_telecommunications,color='#c86bfa',linewidth=0.8)+
@@ -184,7 +184,7 @@ To visualize a specific cable, use filter functions. For the exercise, lets focu
 unique(France_telecommunications$NAME)
 ```
 
-```{r, fig.height=6}
+```{r, fig.height=3, fig.width=4, warning=FALSE, message=FALSE}
 Base_map +
   geom_sf(data = France_telecommunications %>% filter(NAME %in% c('SEA ME WE3-S10.4','SEA ME WE3-S10.3',
                                                                   'SEA ME WE3-S10.2','SEA ME WE3-S10.1')),
@@ -227,7 +227,7 @@ Germany_voltage<-Germany_voltage %>%
 
 Add them in your base map.
 
-```{r, warning=FALSE, fig.height=6}
+```{r, warning=FALSE,fig.height=3, fig.width=4}
 Power_cables<-Base_map +
   geom_sf(data = Netherlands_voltage,color='#ff595e',linetype = "dashed", linewidth= 0.8)+
   geom_sf(data = Norway_voltage,color='#ff924c',linetype = "dashed", linewidth= 0.8)+
@@ -252,7 +252,7 @@ Note than in Germany, many of the power cables are connected to Offshore Wind Fa
 German_OWF<-st_transform(GermanNorthSea::OWF_EMODnet,4326)
 ```
 
-```{r, warning=FALSE, fig.height=6}
+```{r, warning=FALSE,fig.height=3, fig.width=4}
 Power_cables+
   geom_sf(data = German_OWF, color='#850a0a',fill='#850a0a', alpha=0.5)+
   coord_sf(ylim = c(53,56.4), xlim = c(3,9),
@@ -263,7 +263,7 @@ Power_cables+
 
 NorNed is a high-voltage direct current (HVDC) submarine power cable connecting Norway and the Netherlands. Spanning approximately 580 kilometers under the North Sea, it is one of the longest subsea power interconnectors in the world.
 
-```{r, fig.height=6}
+```{r, ,fig.height=3, fig.width=4}
 Base_map +
   geom_sf(data = Norway_voltage %>% filter(navn=='NorNed'), 
             color='#ff924c',linewidth=0.8)+
@@ -286,7 +286,7 @@ Combine the spatial data of telecommunication and power cables into one comprehe
 library(ggtext)
 ```
 
-```{r, fig.height=6}
+```{r,fig.height=3, fig.width=4}
 Cables<-Base_map +
   geom_sf(data = Netherlands_telecommunications,color='#8ac926',linewidth=0.8)+
   geom_sf(data = France_telecommunications,color='#c86bfa',linewidth=0.8)+
@@ -297,7 +297,7 @@ Cables<-Base_map +
   geom_sf(data = Germany_voltage, color='#ffca3a',linetype = "dashed", linewidth= 0.8)
 ```
 
-```{r cable types, fig.height=6}
+```{r cable types,fig.height=3, fig.width=4}
 Cables_wtext<-Cables+
   
   annotate("rect", fill = "black", ymin =  -Inf, ymax = 53.6,xmin = -Inf, xmax = Inf)+

@@ -5,6 +5,7 @@ description: |
 author:
   - name: Miriam Lerma
 date: 2025-06-23
+image: seamonas_front.png
 format:
   html:
     toc: true
@@ -17,7 +18,7 @@ format:
 
 **seamonas** provides easy access to information based on guidelines for monitoring seabirds at sea. It includes detailed table content and a sample dataset to support implementation. Information based on the HELCOM Monitoring Guidelines for Seabirds at Sea [ESAS database](https://helcom.fi/wp-content/uploads/2021/11/HELCOM-Monitoring-guidelines-for-seabirds-at-sea-monitoring.pdf).
 
-Detailed information and uses: [https://github.com/MiriamLL/seamonas](https://github.com/MiriamLL/seamonas)
+Detailed information and uses: <https://github.com/MiriamLL/seamonas>
 
 # Contents
 
