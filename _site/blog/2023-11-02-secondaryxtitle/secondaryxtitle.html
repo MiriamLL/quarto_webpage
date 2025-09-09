@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Miriam Lerma">
-<meta name="dcterms.date" content="2024-05-02">
-<meta name="description" content="Add text and margins on images.">
+<meta name="dcterms.date" content="2023-11-02">
+<meta name="description" content="This post is on how to articially create a secondary x title.">
 
-<title>Using magick for image manipulation</title>
+<title>secondary x title</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -190,17 +190,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data">Data</a></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a>
   <ul class="collapse">
-  <li><a href="#add-letter-to-a-picture-and-export" id="toc-add-letter-to-a-picture-and-export" class="nav-link" data-scroll-target="#add-letter-to-a-picture-and-export">1. Add letter to a picture and export</a></li>
-  <li><a href="#add-text" id="toc-add-text" class="nav-link" data-scroll-target="#add-text">Add text</a></li>
-  <li><a href="#export" id="toc-export" class="nav-link" data-scroll-target="#export">Export</a></li>
-  </ul></li>
-  <li><a href="#merge-two-pictures-into-one-and-export" id="toc-merge-two-pictures-into-one-and-export" class="nav-link" data-scroll-target="#merge-two-pictures-into-one-and-export">2. Merge two pictures into one and export</a>
-  <ul class="collapse">
-  <li><a href="#add-border" id="toc-add-border" class="nav-link" data-scroll-target="#add-border">Add border</a></li>
-  <li><a href="#combine" id="toc-combine" class="nav-link" data-scroll-target="#combine">Combine</a></li>
-  <li><a href="#export-1" id="toc-export-1" class="nav-link" data-scroll-target="#export-1">Export</a></li>
+  <li><a href="#theme" id="toc-theme" class="nav-link" data-scroll-target="#theme">Theme</a></li>
+  <li><a href="#increase-coord" id="toc-increase-coord" class="nav-link" data-scroll-target="#increase-coord">Increase coord</a></li>
+  <li><a href="#add-segments-and-text" id="toc-add-segments-and-text" class="nav-link" data-scroll-target="#add-segments-and-text">Add segments and text</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -213,18 +208,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Using magick for image manipulation</h1>
+<h1 class="title">secondary x title</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
+    <div class="quarto-category">ggplot2</div>
     <div class="quarto-category">English</div>
-    <div class="quarto-category">Y2024</div>
-    <div class="quarto-category">tracking</div>
+    <div class="quarto-category">Y2023</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>Add text and margins on images.</p>
+    <p>This post is on how to articially create a secondary x title.</p>
   </div>
 </div>
 
@@ -241,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 2, 2024</p>
+      <p class="date">November 2, 2023</p>
     </div>
   </div>
   
@@ -251,140 +246,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="intro" class="level1">
-<h1>Intro</h1>
-<p>This post is to read and edit images in R.</p>
-<p>Using R assures that your image would not be compress as happens when you open it with some other programs.</p>
-<p>The blog consist of two parts:<br>
-1. Add letter to a picture and export<br>
-2. Merge two pictures into one and export</p>
-<section id="add-letter-to-a-picture-and-export" class="level2">
-<h2 class="anchored" data-anchor-id="add-letter-to-a-picture-and-export">1. Add letter to a picture and export</h2>
-<section id="packages" class="level3">
-<h3 class="anchored" data-anchor-id="packages">Packages</h3>
-<p>Use the package <strong>magick</strong> to process images in R.</p>
-<p>For more information: <a href="https://docs.ropensci.org/magick/articles/intro.html#read-and-write" class="uri">https://docs.ropensci.org/magick/articles/intro.html#read-and-write</a></p>
-<p>To install the package</p>
+<p>This post is to show how to create a secondary x title in a ggplot</p>
+<section id="data" class="level1">
+<h1>Data</h1>
+<p>For this example we will create data.<br>
+The data includes two species, two subsets and some values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"magick"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>my_data<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">my_species=</span><span class="fu">c</span>(<span class="st">'a'</span>,<span class="st">'a'</span>,<span class="st">'a'</span>,<span class="st">'a'</span>,<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'b'</span>,<span class="st">'b'</span>,<span class="st">'b'</span>,<span class="st">'b'</span>),</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">my_subset=</span><span class="fu">c</span>(<span class="st">'f'</span>,<span class="st">'m'</span>,<span class="st">'f'</span>,<span class="st">'m'</span>,<span class="st">'f'</span>,<span class="st">'m'</span>,<span class="st">'f'</span>,<span class="st">'m'</span>,<span class="st">'f'</span>,<span class="st">'m'</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">my_values=</span><span class="fu">c</span>(<span class="dv">24</span>,<span class="dv">15</span>,<span class="dv">22</span>,<span class="dv">24</span>,<span class="dv">31</span>,<span class="dv">24</span>,<span class="dv">29</span>,<span class="dv">26</span>,<span class="dv">79</span>,<span class="dv">21</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>To call the package</p>
+<p>Then, we will create a artificial grouping.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'magick' was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Linking to ImageMagick 6.9.12.98
-Enabled features: cairo, freetype, fftw, ghostscript, heic, lcms, pango, raw, rsvg, webp
-Disabled features: fontconfig, x11</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_data<span class="sc">$</span>my_groups<span class="ot">&lt;-</span><span class="fu">paste</span>(my_data<span class="sc">$</span>my_species,my_data<span class="sc">$</span>my_subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">Data</h3>
-<p>Select your directory. In the example, as <strong>My_directory</strong>.</p>
+<section id="plot" class="level1">
+<h1>Plot</h1>
+<p>Lets create a plot using ggplot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>My_directory<span class="ot">&lt;-</span><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Here, I use a geom_violin but the type of the plot is irrelevant for this exercise.<br>
+Focus on the x axis.</p>
 <div class="cell">
-
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_a<span class="ot">&lt;-</span><span class="fu">ggplot</span>(my_data, <span class="fu">aes</span>(<span class="at">y=</span>my_values,<span class="at">x=</span>my_groups, <span class="at">color=</span>my_groups, <span class="at">fill=</span>my_groups)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha=</span><span class="fl">0.6</span>)<span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plot_a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Check if you gave the correct path by using the function <strong>list.files</strong>.<br>
-It should show the images you want to use.</p>
-<p>Read images using the function <strong>image_read</strong>.</p>
+<section id="theme" class="level2">
+<h2 class="anchored" data-anchor-id="theme">Theme</h2>
+<p>Now lets remove the legend and the title of the x axis.<br>
+Lets also replace the text in the x axis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Fig1_original<span class="ot">&lt;-</span> <span class="fu">image_read</span>(Fig1_link)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The function <strong>image_draw</strong> will show the picture in the Viewer.<br>
-Moreover, it gives information on the width and height of the picture.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Fig1_draw<span class="ot">&lt;-</span><span class="fu">image_draw</span>(Fig1_original)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Fig1_draw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plot_b<span class="ot">&lt;-</span>plot_a<span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels=</span>  <span class="fu">c</span>(<span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plot_b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-<section id="add-text" class="level2">
-<h2 class="anchored" data-anchor-id="add-text">Add text</h2>
-<p>To add text use the function <strong>image_annotate</strong></p>
-<p>To add the text in the right bottom use the information from the dimensions above to define the xaxis and yaxis.</p>
+<section id="increase-coord" class="level2">
+<h2 class="anchored" data-anchor-id="increase-coord">Increase coord</h2>
+<p>Now, the purpose of the exercise is to add a secondary axis.</p>
+<p>To do this, we will expand the space on the y axis.</p>
+<p>By doing so we will have more space for the secondary text. Note that it might be difficult to see at first grasp, but there is some empty space.</p>
+<p>The arguments to increase the space are:<br>
+- coord_cartesian and clip <strong>off</strong><br>
+- considering the y limit<br>
+- change the plot.margin</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Fig1_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig1_draw, <span class="st">"(a)"</span>,  <span class="at">location =</span> <span class="st">"+1199+999"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>here() starts at C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2025/1Programming/1Quarto/quarto_webpage</code></pre>
-</div>
-</div>
-<div class="cell">
-
-</div>
-<div class="cell" data-layout-align="left">
-
-</div>
-<p>To add the text in the left top part you can use define the xaxis and yaxis as 100.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Fig1_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig1_draw, <span class="st">"(a)"</span>,  <span class="at">location =</span> <span class="st">"+50+50"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-
-</div>
-<div class="cell" data-layout-align="left">
-
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plot_c<span class="ot">&lt;-</span>plot_b<span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>,<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">80</span>))<span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">60</span>,<span class="dv">80</span>), </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">80</span>))<span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.margin=</span><span class="fu">unit</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="fl">0.2</span>),<span class="st">"cm"</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plot_c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="export" class="level2">
-<h2 class="anchored" data-anchor-id="export">Export</h2>
-<p>Use the function <strong>image_write</strong> to export.</p>
+<section id="add-segments-and-text" class="level2">
+<h2 class="anchored" data-anchor-id="add-segments-and-text">Add segments and text</h2>
+<p>Now in the space created under the y axis, we can add the subtitles using the <strong>annotation</strong> arguments.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write</span>(Fig1_text, <span class="at">path =</span> <span class="fu">paste0</span>(My_directory,<span class="st">"/Fig1_tl.png"</span>), <span class="at">format =</span> <span class="st">"png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_c<span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>,<span class="at">x =</span> <span class="fl">1.5</span>,<span class="at">y =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">label =</span> <span class="st">"Group 1"</span>,<span class="at">size =</span> <span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>,<span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,<span class="at">x =</span> <span class="dv">1</span>, <span class="at">xend =</span> <span class="dv">2</span>,<span class="at">colour =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>,<span class="at">x =</span> <span class="fl">3.5</span>,<span class="at">y =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">label =</span> <span class="st">"Group 2"</span>,<span class="at">size =</span> <span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>,<span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>,<span class="at">x =</span> <span class="dv">3</span>, <span class="at">xend =</span> <span class="dv">4</span>,<span class="at">colour =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-</section>
-<section id="merge-two-pictures-into-one-and-export" class="level1">
-<h1>2. Merge two pictures into one and export</h1>
-<p>Follow the same steps as above, but with a second picture.</p>
-<div class="cell">
-
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Fig2_draw<span class="ot">&lt;-</span><span class="fu">image_draw</span>(Fig2_original)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Fig2_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig2_draw, <span class="st">"(b)"</span>,  <span class="at">location =</span> <span class="st">"+50+50"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="add-border" class="level2">
-<h2 class="anchored" data-anchor-id="add-border">Add border</h2>
-<p>Use the function <strong>image_border</strong> to add some space between the pictures.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Fig1_border<span class="ot">&lt;-</span><span class="fu">image_border</span>(<span class="fu">image_background</span>(Fig1_text, <span class="st">"transparent"</span>), <span class="st">"white"</span>, <span class="st">"40x10"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Fig1_border</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Fig2_border<span class="ot">&lt;-</span><span class="fu">image_border</span>(<span class="fu">image_background</span>(Fig2_text, <span class="st">"transparent"</span>), <span class="st">"white"</span>, <span class="st">"40x10"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Fig2_border</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="combine" class="level2">
-<h2 class="anchored" data-anchor-id="combine">Combine</h2>
-<p>Use the function <strong>image_append</strong> to have both pictures side by side.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_append</span>(<span class="fu">c</span>(Fig1_border,Fig2_border))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="export-1" class="level2">
-<h2 class="anchored" data-anchor-id="export-1">Export</h2>
-<p>Use the function <strong>image_write</strong> to export the picture.</p>
-<div class="cell">
-
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write</span>(<span class="fu">image_append</span>(<span class="fu">c</span>(Fig1_border,Fig2_border)), <span class="at">path =</span> <span class="fu">paste0</span>(My_directory,<span class="st">"/Fig1_append.png"</span>), <span class="at">format =</span> <span class="st">"png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="magick_export.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
+<p>That was it, I hope it helps :)</p>
 
 
 </section>

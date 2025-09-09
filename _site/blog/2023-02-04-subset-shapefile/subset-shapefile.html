@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Miriam Lerma">
-<meta name="dcterms.date" content="2024-05-02">
-<meta name="description" content="Add text and margins on images.">
+<meta name="dcterms.date" content="2023-02-04">
+<meta name="description" content="Extract a specific polygon from a shapefile and export it as new shapefile.">
 
-<title>Using magick for image manipulation</title>
+<title>Subset shapefile</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -190,18 +190,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a>
-  <ul class="collapse">
-  <li><a href="#add-letter-to-a-picture-and-export" id="toc-add-letter-to-a-picture-and-export" class="nav-link" data-scroll-target="#add-letter-to-a-picture-and-export">1. Add letter to a picture and export</a></li>
-  <li><a href="#add-text" id="toc-add-text" class="nav-link" data-scroll-target="#add-text">Add text</a></li>
-  <li><a href="#export" id="toc-export" class="nav-link" data-scroll-target="#export">Export</a></li>
-  </ul></li>
-  <li><a href="#merge-two-pictures-into-one-and-export" id="toc-merge-two-pictures-into-one-and-export" class="nav-link" data-scroll-target="#merge-two-pictures-into-one-and-export">2. Merge two pictures into one and export</a>
-  <ul class="collapse">
-  <li><a href="#add-border" id="toc-add-border" class="nav-link" data-scroll-target="#add-border">Add border</a></li>
-  <li><a href="#combine" id="toc-combine" class="nav-link" data-scroll-target="#combine">Combine</a></li>
-  <li><a href="#export-1" id="toc-export-1" class="nav-link" data-scroll-target="#export-1">Export</a></li>
-  </ul></li>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#load-shapefile" id="toc-load-shapefile" class="nav-link" data-scroll-target="#load-shapefile">1. Load shapefile</a></li>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter">2. Filter</a></li>
+  <li><a href="#export-your-new-shapefile" id="toc-export-your-new-shapefile" class="nav-link" data-scroll-target="#export-your-new-shapefile">3. Export your new shapefile</a></li>
+  <li><a href="#read-more" id="toc-read-more" class="nav-link" data-scroll-target="#read-more">Read more</a></li>
   </ul>
 </nav>
 </nav>
@@ -213,18 +206,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Using magick for image manipulation</h1>
+<h1 class="title">Subset shapefile</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">R</div>
     <div class="quarto-category">English</div>
-    <div class="quarto-category">Y2024</div>
-    <div class="quarto-category">tracking</div>
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">Y2023</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>Add text and margins on images.</p>
+    <p>Extract a specific polygon from a shapefile and export it as new shapefile.</p>
   </div>
 </div>
 
@@ -241,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 2, 2024</p>
+      <p class="date">February 4, 2023</p>
     </div>
   </div>
   
@@ -253,141 +245,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="intro" class="level1">
 <h1>Intro</h1>
-<p>This post is to read and edit images in R.</p>
-<p>Using R assures that your image would not be compress as happens when you open it with some other programs.</p>
-<p>The blog consist of two parts:<br>
-1. Add letter to a picture and export<br>
-2. Merge two pictures into one and export</p>
-<section id="add-letter-to-a-picture-and-export" class="level2">
-<h2 class="anchored" data-anchor-id="add-letter-to-a-picture-and-export">1. Add letter to a picture and export</h2>
-<section id="packages" class="level3">
-<h3 class="anchored" data-anchor-id="packages">Packages</h3>
-<p>Use the package <strong>magick</strong> to process images in R.</p>
-<p>For more information: <a href="https://docs.ropensci.org/magick/articles/intro.html#read-and-write" class="uri">https://docs.ropensci.org/magick/articles/intro.html#read-and-write</a></p>
-<p>To install the package</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"magick"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To call the package</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'magick' was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Linking to ImageMagick 6.9.12.98
-Enabled features: cairo, freetype, fftw, ghostscript, heic, lcms, pango, raw, rsvg, webp
-Disabled features: fontconfig, x11</code></pre>
-</div>
-</div>
+<p>Three steps to subset a shapefile and export a new shapefile with the attributes you are interested in.</p>
 </section>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">Data</h3>
-<p>Select your directory. In the example, as <strong>My_directory</strong>.</p>
+<section id="load-shapefile" class="level1">
+<h1>1. Load shapefile</h1>
+<p>Load the package <strong>sf</strong> to load your shapefile into R</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>My_directory<span class="ot">&lt;-</span><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Load the package <strong>here</strong> to use your directory (in which folder is your shapefile)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 
 </div>
-<p>Check if you gave the correct path by using the function <strong>list.files</strong>.<br>
-It should show the images you want to use.</p>
-<p>Read images using the function <strong>image_read</strong>.</p>
+<p>Load your shapefile, be careful with your directory</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Fig1_original<span class="ot">&lt;-</span> <span class="fu">image_read</span>(Fig1_link)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Old_shapefile<span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="fu">paste0</span>(My_directory,<span class="st">'/original_shapefile.shp'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The function <strong>image_draw</strong> will show the picture in the Viewer.<br>
-Moreover, it gives information on the width and height of the picture.</p>
+<p>Check the class, theoretically it would show sf</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Fig1_draw<span class="ot">&lt;-</span><span class="fu">image_draw</span>(Fig1_original)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Fig1_draw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(Old_shapefile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Explore the contents</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Old_shapefile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Check the values in the column that you are interested to subset, to show unique values use the argument <strong>unique</strong> and to show them in alphabetic order use <strong>sort</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(Old_shapefile<span class="sc">$</span>comuna))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-<section id="add-text" class="level2">
-<h2 class="anchored" data-anchor-id="add-text">Add text</h2>
-<p>To add text use the function <strong>image_annotate</strong></p>
-<p>To add the text in the right bottom use the information from the dimensions above to define the xaxis and yaxis.</p>
+<section id="filter" class="level1">
+<h1>2. Filter</h1>
+<p>Load the package <strong>tidyverse</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Fig1_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig1_draw, <span class="st">"(a)"</span>,  <span class="at">location =</span> <span class="st">"+1199+999"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Using the function <strong>filter</strong> you can subset your old new shapefile and get the new one</p>
+<p>In the example we used the column <em>comuna</em> and the value we are interested is <em>La Higuera</em>, do not forget to replace those values</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>here() starts at C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2025/1Programming/1Quarto/quarto_webpage</code></pre>
-</div>
-</div>
-<div class="cell">
-
-</div>
-<div class="cell" data-layout-align="left">
-
-</div>
-<p>To add the text in the left top part you can use define the xaxis and yaxis as 100.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Fig1_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig1_draw, <span class="st">"(a)"</span>,  <span class="at">location =</span> <span class="st">"+50+50"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-
-</div>
-<div class="cell" data-layout-align="left">
-
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>New_shapefile<span class="ot">&lt;-</span>Old_shapefile <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(comuna<span class="sc">==</span><span class="st">"La Higuera"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="export" class="level2">
-<h2 class="anchored" data-anchor-id="export">Export</h2>
-<p>Use the function <strong>image_write</strong> to export.</p>
+<section id="export-your-new-shapefile" class="level1">
+<h1>3. Export your new shapefile</h1>
+<p>Check the class of your new object</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write</span>(Fig1_text, <span class="at">path =</span> <span class="fu">paste0</span>(My_directory,<span class="st">"/Fig1_tl.png"</span>), <span class="at">format =</span> <span class="st">"png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(New_shapefile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Export to your selected directory</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(New_shapefile, <span class="fu">paste0</span>(My_directory,<span class="st">'/New_shapefile.shp'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-<section id="merge-two-pictures-into-one-and-export" class="level1">
-<h1>2. Merge two pictures into one and export</h1>
-<p>Follow the same steps as above, but with a second picture.</p>
-<div class="cell">
-
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Fig2_draw<span class="ot">&lt;-</span><span class="fu">image_draw</span>(Fig2_original)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Fig2_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig2_draw, <span class="st">"(b)"</span>,  <span class="at">location =</span> <span class="st">"+50+50"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="add-border" class="level2">
-<h2 class="anchored" data-anchor-id="add-border">Add border</h2>
-<p>Use the function <strong>image_border</strong> to add some space between the pictures.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Fig1_border<span class="ot">&lt;-</span><span class="fu">image_border</span>(<span class="fu">image_background</span>(Fig1_text, <span class="st">"transparent"</span>), <span class="st">"white"</span>, <span class="st">"40x10"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Fig1_border</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Fig2_border<span class="ot">&lt;-</span><span class="fu">image_border</span>(<span class="fu">image_background</span>(Fig2_text, <span class="st">"transparent"</span>), <span class="st">"white"</span>, <span class="st">"40x10"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Fig2_border</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="combine" class="level2">
-<h2 class="anchored" data-anchor-id="combine">Combine</h2>
-<p>Use the function <strong>image_append</strong> to have both pictures side by side.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_append</span>(<span class="fu">c</span>(Fig1_border,Fig2_border))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="export-1" class="level2">
-<h2 class="anchored" data-anchor-id="export-1">Export</h2>
-<p>Use the function <strong>image_write</strong> to export the picture.</p>
-<div class="cell">
-
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write</span>(<span class="fu">image_append</span>(<span class="fu">c</span>(Fig1_border,Fig2_border)), <span class="at">path =</span> <span class="fu">paste0</span>(My_directory,<span class="st">"/Fig1_append.png"</span>), <span class="at">format =</span> <span class="st">"png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="magick_export.png" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
+<section id="read-more" class="level1">
+<h1>Read more</h1>
+<ul>
+<li><a href="https://geocompr.robinlovelace.net/attr.html">Geocomputation with R</a></li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
