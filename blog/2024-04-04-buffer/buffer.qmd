@@ -127,8 +127,9 @@ create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
   central_spatial<- sp::SpatialPoints(cbind(central_point$Longitude,central_point$Latitude)) 
   sp::proj4string(central_spatial)= sp::CRS("+init=epsg:4326") 
   central_spatial <- sp::spTransform(central_spatial, sp::CRS("+init=epsg:4326"))
-  buffer_dist<-buffer_km/100
-  central_buffer<-rgeos::gBuffer(central_spatial, width=1*buffer_dist)
+  central_spatial<-sf::st_as_sf(central_spatial)
+  buffer_dist<-buffer_km*1000
+  central_buffer<-sf::st_buffer(central_spatial, buffer_dist)
   return(central_buffer)
   }
 ```
@@ -137,12 +138,6 @@ The central point and the kilometers are the arguments needed.
 
 ```{r, warning=FALSE, eval=FALSE}
 This_buffer<-create_buffer(central_point=This_point,buffer_km=20)
-```
-
-Use the projection to convert the buffer into a SpatialPolygons.
-
-```{r, eval=FALSE}
-polygon_proj <- proj4string(This_buffer)
 ```
 
 Confirm that the buffer is not a SpatialPolygons.

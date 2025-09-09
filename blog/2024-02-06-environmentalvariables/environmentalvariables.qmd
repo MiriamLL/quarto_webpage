@@ -92,7 +92,7 @@ Clear NaNs
 library(tidyverse)
 ```
 
-```{r}
+```{r, eval=FALSE}
 SST03.2017dt_clean<-SST03.2017dt %>%
   filter(sst!='NaN')
 ```
