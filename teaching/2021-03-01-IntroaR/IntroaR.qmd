@@ -41,7 +41,7 @@ Click en la imagen para abrir html o en el botón para descargar pdf.
 ```         
 ```
 
-## Cargar tus datos.
+## Cargar tus datos
 
 En esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y cargar tus datos en R. <br>
 
@@ -58,7 +58,7 @@ En esta clase aprenderás a como cargar paquetes, seleccionar tu directorio y ca
 ```         
 ```
 
-## Gráficos.
+## Gráficos
 
 En esta clase aprenderás como funciona ggplot2 y como crear tus propios gráficos.<br>
 
@@ -75,7 +75,7 @@ En esta clase aprenderás como funciona ggplot2 y como crear tus propios gráfic
 ```         
 ```
 
-## Operaciones.
+## Operaciones
 
 En esta clase aprenderás algunas funciones básicas para realizar operaciones matemáticas en R y como moverte entre tus columnas y filas. <br>
 
@@ -92,7 +92,7 @@ En esta clase aprenderás algunas funciones básicas para realizar operaciones m
 ```         
 ```
 
-## Ordenar, unir y exportar.
+## Ordenar, unir y exportar
 
 En esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus columnas, limpiar tus datos, unir diferentes archivos y exportar tus nuevos data frames.
 
@@ -109,7 +109,7 @@ En esta clase aprenderás algunas funciones de tidyverse para poder ordenar tus 
 ```         
 ```
 
-## Proyectos.
+## Proyectos
 
 En esta clase aprenderás porque es importante trabajar por proyectos, como crear y compartir un proyecto.
 
@@ -126,7 +126,7 @@ En esta clase aprenderás porque es importante trabajar por proyectos, como crea
 ```         
 ```
 
-## Modelo lineal simple.
+## Modelo lineal simple
 
 En esta clase aprenderás como explorar tus datos, cuales son los argumentos para un modelo lineal simple en R y como agregar la linea de ajuste a tu gráfico.
 
@@ -143,7 +143,7 @@ En esta clase aprenderás como explorar tus datos, cuales son los argumentos par
 ```         
 ```
 
-## Analisis de varianzas.
+## Analisis de varianzas
 
 En esta clase aprenderás como convertir a factor, cuales son los argumentos para un análisis de varianza en R y como crear gráficos para visualizar tus resultados del análisis.
 
@@ -160,7 +160,7 @@ En esta clase aprenderás como convertir a factor, cuales son los argumentos par
 ```         
 ```
 
-## Modelos mixtos.
+## Modelos mixtos
 
 Esta clase es una introducción a los modelos mixtos y a la selección de modelos usando el AIC.
 

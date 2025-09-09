@@ -19,11 +19,11 @@ format:
 
 There are numerous tools available for analyzing tracking data. In this post, I share a curated collection of my blog entries that focus specifically on movement analysis, covering from data loading and cleaning to visualizations. Additionally, I’ve included a brief list of papers that can serve as guidance when embarking on tracking studies.
 
-**Load data**\
+## Load data
 - [From movebank](https://miriamll.github.io/teaching_R/Tracking_0606.html#4)\
 - [From csv](https://miriamll.github.io/teaching_R/Tracking_0606.html#20)
 
-**Data preparation**\
+## Data preparation
 - [Usage of time formats](https://www.miriam-lerma.com/posts/2022-06-30-time-formats/)\
 - [Converting times](https://miriamll.github.io/teaching_R/Tracking_0606.html#36)\
 - [Time overlap between individuals](https://www.miriam-lerma.com/posts/2022-02-24-timeoverlaps/)\
@@ -33,28 +33,28 @@ There are numerous tools available for analyzing tracking data. In this post, I 
 - [Calculate speed](https://www.miriam-lerma.com/posts/2022-05-23-speed/)\
 - [Behaviour classification](https://www.miriam-lerma.com/posts/2021-11-25-embc/)
 
-**Clean raw data**\
+## Clean raw data
 - [Select columns](https://miriamll.github.io/teaching_R/Tracking_0606.html#30)\
 - [Remove undesired locations](https://www.miriam-lerma.com/posts/2024-08-01-removelocs/)\
 - [Identify gaps](https://www.miriam-lerma.com/posts/2022-10-04-identify-gaps/)\
 - [Complete or incomplete](https://www.miriam-lerma.com/posts/2024-11-05-completeorincomplete/)\
 - [Export clean data frame](https://miriamll.github.io/teaching_R/Tracking_0606.html#34)
 
-**Calculate trip parameters**\
+## Calculate trip parameters
 - Number of trips: [Identify events](https://www.miriam-lerma.com/posts/2024-09-19-identifyevents/)\
 - Maximum distance: [Distance from point](https://www.miriam-lerma.com/posts/2024-06-04-pointsdistance/)\
 - Total length path: [Distance between points](https://www.miriam-lerma.com/posts/2024-10-08-distancepoints/)
 
-**Home range tools and considerations**\
+## Home range tools and considerations
 - [Kernel UD considerations](https://www.miriam-lerma.com/posts/2022-09-13-hr-considerations/)\
 - [Interpolate a path](https://www.miriam-lerma.com/posts/2024-07-05-interpolate/)\
 - [Calculate UD and export shapefiles](https://www.miriam-lerma.com/posts/2021-09-24-home-range-adehabitathr/)\
 - [Calculate shared areas](https://www.miriam-lerma.com/posts/2022-01-21-sharedareas/)
 
-**Habitat use**\
+## Habitat use
 - [In land or not](https://www.miriam-lerma.com/posts/2022-04-07-land-or-not/)
 
-**Visualizations**\
+## Visualizations
 - [Plot basics](https://miriamll.github.io/teaching_R/Tracking_0606.html#40)\
 - [Create a base map in R](https://www.miriam-lerma.com/posts/2023-03-04-mapping-in-r/)\
 - [Inside plot legend](https://www.miriam-lerma.com/posts/2023-10-02-inside-legend/)\

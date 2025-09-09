@@ -143,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html">
- <span class="menu-text">Welcome to my site!</span></a>
+ <span class="menu-text">Welcome to my site</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html">
@@ -193,17 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
   <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación">Instalación</a></li>
-  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos">Datos</a>
-  <ul class="collapse">
-  <li><a href="#tdr_raw" id="toc-tdr_raw" class="nav-link" data-scroll-target="#tdr_raw">TDR_raw</a></li>
-  <li><a href="#tdr_dives" id="toc-tdr_dives" class="nav-link" data-scroll-target="#tdr_dives">TDR_dives</a></li>
-  </ul></li>
-  <li><a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones">Funciones</a>
-  <ul class="collapse">
-  <li><a href="#extract_rawdata" id="toc-extract_rawdata" class="nav-link" data-scroll-target="#extract_rawdata">extract_rawdata</a></li>
-  <li><a href="#extract_trip" id="toc-extract_trip" class="nav-link" data-scroll-target="#extract_trip">extract_trip</a></li>
-  <li><a href="#plot_depth" id="toc-plot_depth" class="nav-link" data-scroll-target="#plot_depth">plot_depth</a></li>
-  </ul></li>
+  <li><a href="#ejemplo" id="toc-ejemplo" class="nav-link" data-scroll-target="#ejemplo">Ejemplo</a></li>
   <li><a href="#citar" id="toc-citar" class="nav-link" data-scroll-target="#citar">Citar</a></li>
   </ul>
 </nav>
@@ -250,7 +240,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="intro" class="level1">
 <h1>Intro</h1>
-<p>El objetivo de este paquete es: - Hacer disponibles datos crudos de TDR para que se familiaricen con el formato. - Ayudarte a limpiar los datos de TDR para obtener parámetros de buceo de los animales muestreados.</p>
+<p>El objetivo de este paquete es:<br>
+- Hacer disponibles datos crudos de TDR para que se familiaricen con el formato.<br>
+- Ayudarte a limpiar los datos de TDR para obtener parámetros de buceo de los animales muestreados.</p>
 <p>Instrucciones en ingles: <a href="https://github.com/MiriamLL/spheniscus" class="uri">https://github.com/MiriamLL/spheniscus</a></p>
 </section>
 <section id="instalación" class="level1">
@@ -264,58 +256,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spheniscus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="datos" class="level1">
-<h1>Datos</h1>
-<section id="tdr_raw" class="level2">
-<h2 class="anchored" data-anchor-id="tdr_raw">TDR_raw</h2>
-<p>Agrega los datos crudos como objeto.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>TDR_raw<span class="ot">&lt;-</span>TDR_raw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Las columnas no están separadas ya que primero hay que cortar partes del archivo. <br></p>
-</section>
-<section id="tdr_dives" class="level2">
-<h2 class="anchored" data-anchor-id="tdr_dives">TDR_dives</h2>
-<p>Incluye todos los buceos durante el viaje. <br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>TDR_dives<span class="ot">&lt;-</span>TDR_dives</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="funciones" class="level1">
-<h1>Funciones</h1>
-<section id="extract_rawdata" class="level2">
-<h2 class="anchored" data-anchor-id="extract_rawdata">extract_rawdata</h2>
-<p>Extrae la información de profundidad de los datos crudos de los dispositivos. <br> En los dispositivos TDR (Cefas G5+) la presión se empieza a medir después de ‘Data Block 1’ y termina de medir presión cuando empieza ‘Data Block 2’. Estos nombres fueron usados como separadores en row_start y row_end. Si tu dispositivo usa otros separadores como por ejemplo ‘Data Block 0’ hay que ajustar acorde.<br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>TDR_pressure<span class="ot">&lt;-</span><span class="fu">extract_pressure</span>(<span class="at">data=</span>TDR_raw, </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">row_start=</span><span class="st">'Data Block 1'</span>, </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">row_end =</span> <span class="st">'Data Block 2'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="extract_trip" class="level2">
-<h2 class="anchored" data-anchor-id="extract_trip">extract_trip</h2>
-<p>Corta periodos de tiempo de acuerdo a nuestro interés. <br> La información se obtuvo de dispositivos GPS, trip_start es cuando salieron de la colonia y trip_end cuando regresaron.<br>
-Los datos fueron recortados para incluir sólo información durante el viaje de alimentación.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>TDR_trip<span class="ot">&lt;-</span><span class="fu">extract_trip</span>(<span class="at">data=</span>TDR_pressure,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">timeformat=</span><span class="st">"%d-%m-%Y %H:%M:%S"</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trip_start=</span><span class="st">"30-11-2018 20:43:24"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trip_end=</span><span class="st">"01-12-2018 20:16:19"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="plot_depth" class="level2">
-<h2 class="anchored" data-anchor-id="plot_depth">plot_depth</h2>
+<section id="ejemplo" class="level1">
+<h1>Ejemplo</h1>
 <p>Crea un grafico con el perfil de buceos. Marca el cero con una linea roja. <br> El objetivo de este gráfico es que te permita decidir si debes corregir el cero.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_depth</span>(<span class="at">TDR_trip =</span> TDR_trip,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">depth_column=</span><span class="st">'Pressure'</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">time_column=</span><span class="st">'daytime'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_depth</span>(<span class="at">TDR_trip =</span> TDR_trip,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">depth_column=</span><span class="st">'Pressure'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">time_column=</span><span class="st">'daytime'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="spheniscus_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="spheniscus_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
 </section>
 <section id="citar" class="level1">
 <h1>Citar</h1>

@@ -34,6 +34,6 @@ I recently started to do freelance work. I assist on fieldwork, data analyses an
 
 You can download my cv [here](https://raw.githubusercontent.com/MiriamLL/tutorial_curriculum/master/CV/CV-Lerma.pdf).
 
-### `r fa("envelope", fill = "black")`Contact
+### `r fa("envelope", fill = "black")` Contact
 
 **Dr. rer. nat. Miriam Lerma** <br> Email: miriamjlerma\@gmail.com

@@ -14,10 +14,6 @@
     ]
   },
   {
-    "listing": "/index.html",
-    "items": []
-  },
-  {
     "listing": "/packages.html",
     "items": [
       "/packages/2023-04-16-seamonas/seamonas.html",

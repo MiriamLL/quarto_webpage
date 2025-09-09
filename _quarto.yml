@@ -23,8 +23,6 @@ website:
 
 format:
   html:
-    fontcolor: "#0F2E3D"
-    linkcolor: "#5e60ce"
     css: styles.css
 
 editor: visual

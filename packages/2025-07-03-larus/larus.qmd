@@ -1,7 +1,7 @@
 ---
 title: "larus"
 description: |
-  An R package designed for working with GSM data. It offers tools for data manipulation, trip identification, and calculation of trip parameters like duration, maximum distance, and path length. Additionally, it supports trip interpolation.
+  An R package designed for working with GSM data. 
 author:
   - name: Miriam Lerma
 date: 2025-03-07
@@ -15,6 +15,8 @@ format:
 ---
 
 # Intro
+
+This package offers tools for data manipulation, trip identification, and calculation of trip parameters like duration, maximum distance, and path length. Additionally, it supports trip interpolation.
 
 There are three key issues in determining the foraging trips in **GSMs** attached to **gulls**:
 

@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html">
- <span class="menu-text">Welcome to my site!</span></a>
+ <span class="menu-text">Welcome to my site</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html">
@@ -128,7 +128,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a>
+  <ul class="collapse">
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">Load data</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data preparation</a></li>
+  <li><a href="#clean-raw-data" id="toc-clean-raw-data" class="nav-link" data-scroll-target="#clean-raw-data">Clean raw data</a></li>
+  <li><a href="#calculate-trip-parameters" id="toc-calculate-trip-parameters" class="nav-link" data-scroll-target="#calculate-trip-parameters">Calculate trip parameters</a></li>
+  <li><a href="#home-range-tools-and-considerations" id="toc-home-range-tools-and-considerations" class="nav-link" data-scroll-target="#home-range-tools-and-considerations">Home range tools and considerations</a></li>
+  <li><a href="#habitat-use" id="toc-habitat-use" class="nav-link" data-scroll-target="#habitat-use">Habitat use</a></li>
+  <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">Visualizations</a></li>
+  </ul></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
 </nav>
@@ -176,40 +185,88 @@ ul.task-list li input[type="checkbox"] {
 <section id="intro" class="level1">
 <h1>Intro</h1>
 <p>There are numerous tools available for analyzing tracking data. In this post, I share a curated collection of my blog entries that focus specifically on movement analysis, covering from data loading and cleaning to visualizations. Additionally, I’ve included a brief list of papers that can serve as guidance when embarking on tracking studies.</p>
-<p><strong>Load data</strong><br>
-- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#4">From movebank</a><br>
-- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#20">From csv</a></p>
-<p><strong>Data preparation</strong><br>
-- <a href="https://www.miriam-lerma.com/posts/2022-06-30-time-formats/">Usage of time formats</a><br>
-- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#36">Converting times</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2022-02-24-timeoverlaps/">Time overlap between individuals</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2022-07-01-nestlocation/">Locate the animals central location</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2022-08-17-count-days/">Include Julian days</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2022-12-04-day-night/">Identify Day or night</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2022-05-23-speed/">Calculate speed</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2021-11-25-embc/">Behaviour classification</a></p>
-<p><strong>Clean raw data</strong><br>
-- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#30">Select columns</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2024-08-01-removelocs/">Remove undesired locations</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2022-10-04-identify-gaps/">Identify gaps</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2024-11-05-completeorincomplete/">Complete or incomplete</a><br>
-- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#34">Export clean data frame</a></p>
-<p><strong>Calculate trip parameters</strong><br>
-- Number of trips: <a href="https://www.miriam-lerma.com/posts/2024-09-19-identifyevents/">Identify events</a><br>
-- Maximum distance: <a href="https://www.miriam-lerma.com/posts/2024-06-04-pointsdistance/">Distance from point</a><br>
-- Total length path: <a href="https://www.miriam-lerma.com/posts/2024-10-08-distancepoints/">Distance between points</a></p>
-<p><strong>Home range tools and considerations</strong><br>
-- <a href="https://www.miriam-lerma.com/posts/2022-09-13-hr-considerations/">Kernel UD considerations</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2024-07-05-interpolate/">Interpolate a path</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2021-09-24-home-range-adehabitathr/">Calculate UD and export shapefiles</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2022-01-21-sharedareas/">Calculate shared areas</a></p>
-<p><strong>Habitat use</strong><br>
-- <a href="https://www.miriam-lerma.com/posts/2022-04-07-land-or-not/">In land or not</a></p>
-<p><strong>Visualizations</strong><br>
-- <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#40">Plot basics</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2023-03-04-mapping-in-r/">Create a base map in R</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2023-10-02-inside-legend/">Inside plot legend</a><br>
-- <a href="https://www.miriam-lerma.com/posts/2023-06-01-gganimate/">Animations</a></p>
+<section id="load-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-data">Load data</h2>
+<ul>
+<li><a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#4">From movebank</a><br>
+</li>
+<li><a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#20">From csv</a></li>
+</ul>
+</section>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
+<ul>
+<li><a href="https://www.miriam-lerma.com/posts/2022-06-30-time-formats/">Usage of time formats</a><br>
+</li>
+<li><a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#36">Converting times</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2022-02-24-timeoverlaps/">Time overlap between individuals</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2022-07-01-nestlocation/">Locate the animals central location</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2022-08-17-count-days/">Include Julian days</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2022-12-04-day-night/">Identify Day or night</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2022-05-23-speed/">Calculate speed</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2021-11-25-embc/">Behaviour classification</a></li>
+</ul>
+</section>
+<section id="clean-raw-data" class="level2">
+<h2 class="anchored" data-anchor-id="clean-raw-data">Clean raw data</h2>
+<ul>
+<li><a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#30">Select columns</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2024-08-01-removelocs/">Remove undesired locations</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2022-10-04-identify-gaps/">Identify gaps</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2024-11-05-completeorincomplete/">Complete or incomplete</a><br>
+</li>
+<li><a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#34">Export clean data frame</a></li>
+</ul>
+</section>
+<section id="calculate-trip-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="calculate-trip-parameters">Calculate trip parameters</h2>
+<ul>
+<li>Number of trips: <a href="https://www.miriam-lerma.com/posts/2024-09-19-identifyevents/">Identify events</a><br>
+</li>
+<li>Maximum distance: <a href="https://www.miriam-lerma.com/posts/2024-06-04-pointsdistance/">Distance from point</a><br>
+</li>
+<li>Total length path: <a href="https://www.miriam-lerma.com/posts/2024-10-08-distancepoints/">Distance between points</a></li>
+</ul>
+</section>
+<section id="home-range-tools-and-considerations" class="level2">
+<h2 class="anchored" data-anchor-id="home-range-tools-and-considerations">Home range tools and considerations</h2>
+<ul>
+<li><a href="https://www.miriam-lerma.com/posts/2022-09-13-hr-considerations/">Kernel UD considerations</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2024-07-05-interpolate/">Interpolate a path</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2021-09-24-home-range-adehabitathr/">Calculate UD and export shapefiles</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2022-01-21-sharedareas/">Calculate shared areas</a></li>
+</ul>
+</section>
+<section id="habitat-use" class="level2">
+<h2 class="anchored" data-anchor-id="habitat-use">Habitat use</h2>
+<ul>
+<li><a href="https://www.miriam-lerma.com/posts/2022-04-07-land-or-not/">In land or not</a></li>
+</ul>
+</section>
+<section id="visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="visualizations">Visualizations</h2>
+<ul>
+<li><a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#40">Plot basics</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2023-03-04-mapping-in-r/">Create a base map in R</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2023-10-02-inside-legend/">Inside plot legend</a><br>
+</li>
+<li><a href="https://www.miriam-lerma.com/posts/2023-06-01-gganimate/">Animations</a></li>
+</ul>
+</section>
 </section>
 <section id="further-reading" class="level1">
 <h1>Further reading</h1>

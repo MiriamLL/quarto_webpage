@@ -80,7 +80,7 @@ ggplot()+
   
   xlab('Longitude')+ylab('Latitude')+
   
-  theme(panel.border = element_rect(colour = "black", fill=NA, size=1.5))+
+  theme(panel.border = element_rect(colour = "black", fill=NA, linewidth = 1.5))+
   
   coord_sf(xlim = c(3,9), ylim = c(53,56),
                     label_axes = list(top = "E", left = "N", bottom = 'E', right='N'))

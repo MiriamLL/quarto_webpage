@@ -44,7 +44,7 @@ Load data<br> - [From movebank](https://miriamll.github.io/teaching_R/Tracking_0
 
 <html>
 
-<body><left> <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#1"><img src="https://github.com/MiriamLL/miriamlerma_/blob/main/_teaching/2023-06-06-tracking/tracking_front.png?raw=true" style="width:350px"/></a> </left></body>
+<body><left> <a href="https://miriamll.github.io/teaching_R/Tracking_0606.html#1"><img src="https://github.com/MiriamLL/quarto_webpage/blob/main/teaching/2023-06-06-tracking/tracking_front.png?raw=true" style="width:350px"/></a> </left></body>
 
 </html>
 

@@ -10,37 +10,75 @@ html {
   
 }
 
-/* MAIN */
-/* navigation bar */
-.navbar, header {
-  background-color:  #01497c;
+
+/* NAVIGATION BAR */
+.navbar {
+  background-color:  #22577a;
   font-size: 18px;  /* or try 14px, 13px, etc. */
 }
 
-/* Force bold weight on all headings */
-h1, h2, h3, h4, h5, h6,
-.quarto-title h1.title {
-  font-size: 22px;  /* or try 14px, 13px, etc. */
+/* MAIN */
+/* header */
+header {
+  background-color: #ffffff;
+  color: #023047;
+  box-shadow: transparent;
+  font-size: 25px; /* Bigger title */
+  border: transparent;
+}
+
+.quarto-title-block {
+  background-color: #ffffff;  /* Change to your preferred color */
+  color: #003459;               /* Optional: make title text white */
+  text-align: left;         /* Optional: center the title text */
+  font-size: 25px; /* Bigger title */
   font-weight: 400 !important;
+}
+
+.quarto-title-block .description {
+  font-size: 22px;
+  color: #003459;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+}
+
+/* Make title, author, and date use normal capitalization */
+* {
+  text-transform: none !important;
+}
+
+/* Force bold weight on all headings */
+h1{
+  background-color:  #ffffff;
+  font-size: 20px;  /* or try 14px, 13px, etc. */
+  font-weight: 700 !important;
+  font-family: "Raleway", sans-serif !important;
+}
+
+h2{
+  background-color:  #ffffff;
+  font-size: 18px;  /* or try 14px, 13px, etc. */
+  font-weight: 600 !important;
+  font-family: "Raleway", sans-serif !important;
+}
+
+/* Force bold weight on all headings */
+h3, h4, h5, h6 {
+  background-color:  #ffffff;
+  font-size: 17px;  /* or try 14px, 13px, etc. */
+  font-weight: 600 !important;
   font-family: "Raleway", sans-serif !important;
 }
 
 /* Force bold weight on text */
 body {
-  font-size: 17px;  /* or try 14px, 13px, etc. */
+  background-color: #ffffff;
+  font-size: 16px;  /* or try 14px, 13px, etc. */
+  color: #003459;
 }
 
-/* ABOUT */
-/* header */
-header {
-  background-color: transparent;
-  color: #023047;
-  padding: 0.5rem;
-  box-shadow: transparent;
-  border: transparent;
-}
 
-/* PACKAGES */
+/* PACKAGES SECTION */
 /* Resize listing page images */
 .listing-preview-image {
   max-width: 150px;

@@ -1,13 +1,5 @@
 ---
-title: "Welcome to my site!"
-css: my_css_style.css
-listing:
-  contents: _posts
-  sort: "date desc"
-  type: default
-  categories: false
-  sort-ui: false
-  filter-ui: false
+title: "Welcome to my site"
 page-layout: full
 format:
   html:
