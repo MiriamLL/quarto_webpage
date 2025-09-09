@@ -27,11 +27,11 @@ When analyzing tracking data in R, you may want to explore the locations. One op
 
 For the exercises, test data is from masked boobies. <br> To access the data you have to install the package **sula**: devtools::install_github("MiriamLL/sula")
 
-```{r}
+```{r,eval=FALSE}
 library(sula)
 ```
 
-```{r}
+```{r,eval=FALSE}
 Data_1original<-GPS_preparado 
 ```
 
@@ -39,36 +39,36 @@ Data_1original<-GPS_preparado
 
 The function **fortify** helps the data frame to be more easily be plotted.
 
-```{r}
+```{r,eval=FALSE}
 library(tidyverse)
 ```
 
-```{r}
+```{r,eval=FALSE}
 Data_2fortify<-fortify(Data_1original)
 ```
 
 Make sure your lat and lon are numerical
 
-```{r}
+```{r,eval=FALSE}
 Data_2fortify$lat<-as.numeric(Data_2fortify$Latitude)
 Data_2fortify$lon<-as.numeric(Data_2fortify$Longitude)
 ```
 
 Transform to spatial.
 
-```{r}
+```{r,eval=FALSE}
 library(sf)
 ```
 
 Select which CRS you will like to use.
 
-```{r}
+```{r,eval=FALSE}
 Data_3spatial <- st_as_sf(Data_2fortify, coords = c("lon", "lat"),crs = 4326, agr = "constant")
 ```
 
 Select the columns that are of interest.
 
-```{r}
+```{r,eval=FALSE}
 Data_4info<-Data_3spatial[,c("IDs","trip_number","dia_hora")]
 ```
 
@@ -78,13 +78,13 @@ Install the package **tmap**.
 
 This package allows you to create interactive maps.
 
-```{r}
+```{r,eval=FALSE}
 library(tmap)
 ```
 
 For making the map interactive, the mode **view** should be declared.
 
-```{r}
+```{r,eval=FALSE}
 tmap_mode("view") 
 ```
 
@@ -124,7 +124,7 @@ Using `r fa("layer-group", fill = 'black')` you can select which **layers** to s
 
 Put the cursor on top of the dot `r fa("mouse-pointer", fill = 'black')`, when `r fa("hand-point-up", fill = 'black')` appears click on it and you should be able to see the ID, trip number and dt and time of the point.
 
-```{r}
+```{r,eval=FALSE}
 tm_shape(subset(Data_4info,Data_4info$ID=='GPS01'))+
    tm_dots(id = "IDs",col="yellow",popup.vars=c("trip_number"="trip_number","dt"="dia_hora"))+
   tm_shape(subset(Data_4info,Data_4info$ID=='GPS03'))+

@@ -93,6 +93,18 @@ create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
   }
 ```
 
+```{r, echo=FALSE, eval=FALSE}
+create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
+  central_spatial<- sp::SpatialPoints(cbind(central_point$Longitude,central_point$Latitude)) 
+  sp::proj4string(central_spatial)= sp::CRS("+init=epsg:4326") 
+  central_spatial <- sp::spTransform(central_spatial, sp::CRS("+init=epsg:4326"))
+  buffer_dist<-buffer_km/100
+  central_buffer<-rgeos::gBuffer(central_spatial, width=1*buffer_dist)
+  return(central_buffer)
+}
+GPS_ten$In_or_out <- as.numeric(sp::over(GPS_sp,This_buffer))
+```
+
 The parameters to give are the kilometers and the central point
 
 ```{r, warning=FALSE, eval=FALSE}
@@ -203,7 +215,7 @@ ggsave(Original_plot+Buffer_plot+Filtered_plot,
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "40%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-08-01-removelocs/remove_export.jpg"))
 ```
 
@@ -212,15 +224,3 @@ knitr::include_graphics(paste0(here::here(),"/blog/2024-08-01-removelocs/remove_
 Other functions that did the job:\
 gBuffer from rgeos [deprecated](https://cran.r-project.org/web/packages/rgeos/index.html)\
 Read more about [package sf](https://github.com/r-spatial/sf/wiki/migrating)
-
-```{r, echo=FALSE, eval=FALSE}
-create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
-  central_spatial<- sp::SpatialPoints(cbind(central_point$Longitude,central_point$Latitude)) 
-  sp::proj4string(central_spatial)= sp::CRS("+init=epsg:4326") 
-  central_spatial <- sp::spTransform(central_spatial, sp::CRS("+init=epsg:4326"))
-  buffer_dist<-buffer_km/100
-  central_buffer<-rgeos::gBuffer(central_spatial, width=1*buffer_dist)
-  return(central_buffer)
-}
-GPS_ten$In_or_out <- as.numeric(sp::over(GPS_sp,This_buffer))
-```

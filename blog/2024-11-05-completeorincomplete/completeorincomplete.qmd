@@ -38,13 +38,13 @@ This post has three parts:\
 
 For the exercises, test data is from masked boobies. <br> To access the data you have to install the package **sula**: devtools::install_github("MiriamLL/sula")
 
-```{r}
+```{r,eval=FALSE}
 library(sula)
 ```
 
 Use the function select from tidyverse to keep the columns ID, latitude, longitude, date, time, and trip number.
 
-```{r}
+```{r,eval=FALSE}
 library(tidyverse)
 Data_1original<-GPS_preparado %>% select(IDs,Latitude,Longitude,DateGMT,TimeGMT,trip_number)
 ```
@@ -53,13 +53,13 @@ Data_1original<-GPS_preparado %>% select(IDs,Latitude,Longitude,DateGMT,TimeGMT,
 
 In this part we would eliminate some locations to create an artificial gap
 
-```{r}
+```{r,eval=FALSE}
 library(sf)
 ```
 
 Select a location with "low reception" and remove all the locations to create the gaps
 
-```{r}
+```{r,eval=FALSE}
 This_area<-data.frame(Longitude=-109.4,Latitude=-27.6)
 
 create_buffer<-function(central_point=central_point, buffer_km=buffer_km){
@@ -86,7 +86,7 @@ Data_4withgap <- Data_1original %>%
 
 Plot the area with low reception
 
-```{r, fig.width=4, fig.height=4}
+```{r, fig.width=4, fig.height=4,eval=FALSE}
 Plot_locations<-ggplot()+
   geom_point(data = Data_4withgap,aes(x=Longitude,y = Latitude),color="#6a994e",size=0.5)+
   scale_x_continuous(labels = function(x) paste0(-x, '\u00B0')) +
@@ -106,18 +106,18 @@ Plot_locations
 
 A column in the format POSIXct is needed for this example.
 
-```{r}
+```{r,eval=FALSE}
 Data_4withgap <- Data_4withgap %>%
   mutate(dt= as.POSIXct(strptime(paste0(DateGMT," ",TimeGMT), format="%d/%m/%Y %H:%M:%S")))
 ```
 
 Checking gaps in time on one individual trip.
 
-```{r}
+```{r,eval=FALSE}
 Data_5oneindividual<-Data_4withgap %>% filter(IDs=='GPS09') %>% filter(trip_number=='trip_2')
 ```
 
-```{r}
+```{r,eval=FALSE}
 Data_5oneindividual<-Data_5oneindividual %>%
   mutate(times_lag=lag(dt))%>%
   mutate(time_dif=as.numeric(difftime(dt, times_lag, units = "mins")))%>%
@@ -126,13 +126,13 @@ Data_5oneindividual<-Data_5oneindividual %>%
 
 This trip has a large gap.
 
-```{r}
+```{r,eval=FALSE}
 range(Data_5oneindividual$time_dif_mins,na.rm=TRUE)
 ```
 
 Create a loop to calculate gaps separated by individuals and trips.
 
-```{r}
+```{r,eval=FALSE}
 calculate_gaps<-function (this_data = this_data, 
                           column_datetime = column_datetime, 
                           column_separator = column_separator){
@@ -155,14 +155,14 @@ calculate_gaps<-function (this_data = this_data,
 
 For this, would help to have an unique ID, which helps separate the individual and their trips.
 
-```{r}
+```{r,eval=FALSE}
 Data_5uniqueIds <- Data_4withgap %>%
   mutate(unique_id=paste0(IDs,'_',trip_number))
 ```
 
 To run the function, provide the data frame, the information for separating, and the name of the column where the date and time are provided.
 
-```{r}
+```{r,eval=FALSE}
 Data_6uniqueIds<-calculate_gaps(this_data=Data_5uniqueIds,
                                 column_separator='unique_id',
                                 column_datetime='dt')
@@ -172,7 +172,7 @@ Data_6uniqueIds<-calculate_gaps(this_data=Data_5uniqueIds,
 
 By using the function summarise, we can see which trips have large gaps.
 
-```{r}
+```{r,eval=FALSE}
 Data_7gaps<-Data_6uniqueIds %>%
   group_by(unique_id)%>%
   summarise(min_gap=min(time_dif_mins,na.rm = TRUE),
@@ -182,7 +182,7 @@ Data_7gaps<-Data_6uniqueIds %>%
 Based on the gaps during the trips, the trips could be classified as complete or incomplete.\
 For example, here an incomplete trip would be any trip that had a gap of more than 30 minutes.
 
-```{r}
+```{r,eval=FALSE}
 Data_7gaps <- Data_7gaps%>%
   mutate(trip_class = case_when(max_gap <= 30 ~ 'Complete',
                                 TRUE ~ 'Incomplete'))
@@ -190,13 +190,13 @@ Data_7gaps <- Data_7gaps%>%
 
 Use this table to identify those trips that were incomplete.
 
-```{r}
+```{r,eval=FALSE}
 unique_incomplete<-unique((subset(Data_7gaps,Data_7gaps$trip_class=='Incomplete')$unique_id))
 ```
 
 Use the information above, to add the classification on the tracking locations.
 
-```{r}
+```{r,eval=FALSE}
 Data_8gaps <- Data_6uniqueIds %>%
   mutate(trip_class = case_when(unique_id %in% unique_incomplete ~ 'Incomplete',
                                 TRUE ~ 'Complete'))
@@ -204,7 +204,7 @@ Data_8gaps <- Data_6uniqueIds %>%
 
 Plot incomplete trips.
 
-```{r, fig.width=4, fig.height=4}
+```{r, fig.width=4, fig.height=4,eval=FALSE}
 Plot_trips<-ggplot()+
   geom_point(data = Data_8gaps,aes(x=Longitude,y = Latitude,color=trip_class),size=0.5)+
   scale_x_continuous(labels = function(x) paste0(-x, '\u00B0')) +
@@ -238,7 +238,7 @@ ggsave(Plot_locations+Plot_trips,
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "40%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-11-05-completeorincomplete/complete_export.jpg"))
 ```
 

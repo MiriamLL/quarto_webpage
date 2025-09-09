@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2023-01-15
-image: calendar-front.jpg
+image: calendar_front.jpg
 format:
   html:
     toc: true
@@ -111,7 +111,7 @@ ggplot(may,aes(x=calen_xs,y=calen_ys,color=events))+
   scale_color_manual(name = "May no. events",values = my_palette)
 ```
 
-```{r, echo=FALSE, out.width = "40%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-01-15-calendar/calendar_front.jpg"))
 ```
 

@@ -226,7 +226,7 @@ ggsave(letters_plot,
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "40%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-06-04-pointsdistance/points_export.jpg"))
 ```
 

@@ -158,9 +158,12 @@ Adjust to your corresponding area on the **coord_sf**.
 ggplot() +
  geom_raster(data=SST_dfclean,aes(x=longitude, y=latitude, fill = sst))+ scale_fill_viridis_c(option = "H")+
  geom_polygon(data = world_df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
- coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))+
- geom_polygon(data=This_buffer,aes(x = long, y = lat, group = group),colour='black', fill='transparent', linetype='dashed')+
- geom_point(data=This_point, aes(x=Longitude, y=Latitude), colour = "black", size = 4)
+ geom_sf(data = This_buffer, 
+          color = "black", 
+          fill = NA,  # equivalent to 'transparent'
+          linetype = "dashed")+
+ geom_point(data=This_point, aes(x=Longitude, y=Latitude), colour = "black", size = 4)+
+ coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))
 ```
 
 # 3. Extract information
@@ -171,12 +174,13 @@ Convert the SST data into a SpatialPointsDataFrame.
 SST_sp <- SST_dfclean
 sp::coordinates(SST_sp) <- ~longitude + latitude
 sp::proj4string(SST_sp) = sp::CRS("+init=epsg:4326")
+SST_sp<-sf::st_as_sf(SST_sp)
 ```
 
 Use the function **over** from the package **sp** to extract the SST data using the buffer.
 
 ```{r, eval=FALSE}
-SST_buffer<- over(SST_sp,This_buffer)
+SST_buffer<-sapply(sf::st_intersects(SST_sp,This_buffer), function(z) if (length(z)==0) NA_integer_ else z[1])
 ```
 
 The SST values that fall inside the buffer are now added as a column named **sst_inside** in the data frame.
@@ -202,11 +206,23 @@ To plot the SST data, select the information from the new data frame **SST_insid
 ggplot() +
   geom_raster(data=SST_inside,aes(x=longitude, y=latitude, fill = sst))+ scale_fill_viridis_c(option = "H")+
   geom_polygon(data = world_df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
-  coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))+
-  geom_polygon(data=This_buffer,aes(x = long, y = lat, group = group),colour='black', fill='transparent', linetype='dashed')+
+  
+  geom_sf(data = This_buffer, 
+          color = "black", 
+          fill = NA,  # equivalent to 'transparent'
+          linetype = "dashed")+
   geom_point(data=This_point, aes(x=Longitude, y=Latitude), colour = "black", size = 4)+
   theme(panel.background = element_blank(),
-        panel.border = element_rect(colour = "black", fill='transparent'))
+        panel.border = element_rect(colour = "black", fill='transparent'))+
+  coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))+ 
+  NULL
+```
+
+Use the values inside the buffer to calculate the average SST
+
+```{r, eval=FALSE}
+mean(SST_inside$sst)
+sd(SST_inside$sst)
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
@@ -220,21 +236,14 @@ ggsave(ggplot() +
   geom_point(data=This_point, aes(x=Longitude, y=Latitude), colour = "black", size = 4)+
   theme(panel.background = element_blank(),
         panel.border = element_rect(colour = "black", fill='transparent')), 
-       filename = paste0(here(),"/_posts/2024-04-11-buffer/blog32.jpg"),
+       filename = paste0(here(),"/blog/2024-04-04-buffer/buffer_export.jpg"),
        width = 6, 
        height = 4, 
        units = "in",
        dpi = 300)
 ```
 
-Use the values inside the buffer to calculate the average SST
-
-```{r, eval=FALSE}
-mean(SST_inside$sst)
-sd(SST_inside$sst)
-```
-
-```{r, echo=FALSE, out.width = "40%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-04-04-buffer/buffer_export.jpg"))
 ```
 

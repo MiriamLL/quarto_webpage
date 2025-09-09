@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2024-02-06
-preview: environmental_front.jpg
+image: environmental_front.jpg
 format:
   html:
     toc: true

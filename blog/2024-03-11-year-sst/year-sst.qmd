@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2024-03-11
-image: year-front.jpg
+image: year_front.jpg
 format:
   html:
     toc: true
@@ -463,7 +463,7 @@ g <- gtable_add_grob(g, ax, pp$t, length(g$widths) - 1, pp$b)
 (grid.draw(g))
 ```
 
-```{r, echo=FALSE, out.width = "40%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-03-11-year-sst/year_export.jpg"))
 ```
 

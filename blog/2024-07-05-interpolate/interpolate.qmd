@@ -202,7 +202,7 @@ ggsave(Original_track+Interpolated_1m+Interpolated_15m,
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "40%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-07-05-interpolate/interpolate_export.jpg"))
 ```
 
