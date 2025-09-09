@@ -12,6 +12,7 @@ categories:
   - ggplot2
   - English
   - Y2023
+  - tracking
 format:
   html:
     toc: true
@@ -24,7 +25,7 @@ format:
 
 How to create a map an animation using gganimate
 
-## 1. Getting ready
+## Getting ready
 
 Load and/or install the following packages:
 
@@ -33,7 +34,7 @@ library(here)
 library(tidyverse)
 ```
 
-## 2. Load data
+## Load data
 
 ```{r, eval=FALSE}
 library(sula)
@@ -44,7 +45,7 @@ Example<-GPS_01
 ```
 
 
-## 3. Mark beggining
+## Mark beggining
 
 Mark a day zero to begging the animation, and the sequence to use
 
@@ -67,7 +68,7 @@ Example<-Example %>%
   mutate(Secuencia = row_number())
 ```
 
-## 4. Create map for reference
+## Create map for reference
 
 For creating maps, the package **sf** is to be called.
 
@@ -88,8 +89,7 @@ MyShapefileName<-"/CHL_adm1.shp"
 Country<-st_read(paste0(Directory,MyShapefileName))
 ```
 
-
-## 5. Plot
+## Plot
 
 Plot the area of interest
 
@@ -102,7 +102,7 @@ My_map<-ggplot(data=Example)  +
 My_map
 ```
 
-## 6. Modify map to taste
+## Modify map to taste
 
 ```{r, fig.height=5, fig.width=5, eval=FALSE}
 My_map<-My_map+
@@ -127,9 +127,7 @@ My_map<-My_map+
 My_map
 ```
 
-
-
-## 7. Animate
+## Animate
 
 To animate this plot, we will use the package **gganimate**
 
@@ -144,7 +142,6 @@ library(beepr)
 ```
 
 **transition_reveal** leaves the track on the back ground so you can keep record where it was  
-
 
 ```{r animating, fig.height=8, fig.width=8, eval=FALSE}
 My_animation<-ggplot(data=Example)  + 
@@ -188,7 +185,7 @@ Other arguments are:
 **labs** shows the title with time so you can use as a reference  
 **shadow_wake** is the wake behind the points [read more here](https://goodekat.github.io/presentations/2019-isugg-gganimate-spooky/slides.html#48)
 
-## 8. Export
+## Export
 
 The package **animation** allows to save the animation as a file
 
@@ -199,8 +196,8 @@ library(animation)
 To export, you can save the animation as gif
 
 ```{r include= TRUE, eval=FALSE}
-# anim_save("animation.gif",My_animation)
-# beep(sound=1,expr=NULL)
+anim_save("animation.gif",My_animation)
+beep(sound=1,expr=NULL)
 ```
 
 Or transform from gif to mp4 using the package **av**
@@ -210,13 +207,11 @@ library(av)
 ```
 
 ```{r include= TRUE, eval=FALSE}
-# av::av_encode_video("animation.gif", 
-#                     framerate = 5 ,
-#                     output = 'animation.mp4')
-# beep(sound=1,expr=NULL)
+av::av_encode_video("animation.gif", 
+                     framerate = 5 ,
+                     output = 'animation.mp4')
+beep(sound=1,expr=NULL)
 ```
-
-
 
 # Further reading
 
