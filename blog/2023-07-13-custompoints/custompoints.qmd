@@ -26,14 +26,14 @@ Customize your plot using different sizes, shapes and colors in the points of yo
 
 # Data
 
-Load or install the package **seamonas** 
+Load or install the package **SeaDens** 
 
 ```{r, eval=FALSE}
-devtools::install_github("MiriamLL/seamonas")
+devtools::install_github("MiriamLL/SeaDens")
 ```
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
-library(seamonas)
+library(SeaDens)
 ```
 
 
@@ -221,6 +221,9 @@ density_wmap<-base_plot+
 density_wmap
 ```
 
+```{r, echo=FALSE, fig.align='left',  out.width="50%"}
+knitr::include_graphics("https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/custompoints_export.jpg?raw=true")
+```
 
 Now you have a base map with density information on different shape and size.
 

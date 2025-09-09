@@ -81,7 +81,7 @@
     "href": "blog/2023-07-13-custompoints/custompoints.html#add-dots",
     "title": "Custom points in a map",
     "section": "Add dots",
-    "text": "Add dots\nNow add the density data on top of the base map.\n\ndensity_wmap<-base_plot+\n  geom_point(data=density_df,\n          aes(x = longitude,\n              y= latitude,\n              shape = density_class,\n              size= density_class),\n              fill= \"#d00000\")+\n  \n  scale_shape_manual(values = density_shapes,labels=density_labels)+\n  scale_size_manual(values =  density_sizes,labels=density_labels)\ndensity_wmap\n\nNow you have a base map with density information on different shape and size."
+    "text": "Add dots\nNow add the density data on top of the base map.\n\ndensity_wmap<-base_plot+\n  geom_point(data=density_df,\n          aes(x = longitude,\n              y= latitude,\n              shape = density_class,\n              size= density_class),\n              fill= \"#d00000\")+\n  \n  scale_shape_manual(values = density_shapes,labels=density_labels)+\n  scale_size_manual(values =  density_sizes,labels=density_labels)\ndensity_wmap\n\n\n\n\n\n\n\n\n\n\nNow you have a base map with density information on different shape and size."
   },
   {
     "objectID": "blog/2023-08-02-customlegend/customlegend.html",
