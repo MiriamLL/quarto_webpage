@@ -142,12 +142,10 @@ ggplot(GPS_sf)+
     panel.border = element_rect(colour = "black", fill=NA, size=1.5))
 ```
 
-# Plot
-
 The trajectory would be easier to interpreter if we include more elements on the plot.\
 To include the begging or the end of the trajectory identify the first and last location.
 
-```{r}
+```{r, eval=FALSE}
 GPS_first<-data.frame(Latitude=first(GPS_trip$Latitude),Longitude=first(GPS_trip$Longitude))
 GPS_last<-data.frame(Latitude=last(GPS_trip$Latitude),Longitude=last(GPS_trip$Longitude))
 ```
@@ -189,7 +187,7 @@ ggsave(Plot_distance,
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "40%"}
+```{r, echo=FALSE, out.width = "60%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-10-08-distancepoints/distance_export.jpg"))
 ```
 
@@ -198,6 +196,6 @@ knitr::include_graphics(paste0(here::here(),"/blog/2024-10-08-distancepoints/dis
 The function **dist_points** from the package **sula** runs this function in loop.\
 This helps when there are more than one trip and several individuals.
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 GPS_dist<-dist_puntos(GPS_data = GPS_edited,separador='trip_number')
 ```

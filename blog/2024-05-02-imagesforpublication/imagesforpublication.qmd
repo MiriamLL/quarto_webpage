@@ -71,14 +71,14 @@ Read images using the function **image_read**.
 Fig1_original<- image_read(paste0(My_directory,'/MABO.JPG'))
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, eval=FALSE}
 Fig1_original<- image_read(paste0(My_directory,'/MABO.JPG?raw=TRUE'))
 ```
 
 The function **image_draw** will show the picture in the Viewer.\
 Moreover, it gives information on the width and height of the picture.
 
-```{r}
+```{r, eval=FALSE}
 Fig1_draw<-image_draw(Fig1_original)
 Fig1_draw
 ```
@@ -89,7 +89,7 @@ To add text use the function **image_annotate**
 
 To add the text in the right bottom use the information from the dimensions above to define the xaxis and yaxis.
 
-```{r}
+```{r, eval=FALSE}
 Fig1_text<-image_annotate(Fig1_draw, "(a)",  location = "+1199+999", font = 'Arial', size = 100, color='white')
 ```
 
@@ -98,11 +98,11 @@ library(here)
 My_directory<-here()
 ```
 
-```{r, eval=TRUE, echo=FALSE}
+```{r, echo=FALSE, eval=FALSE}
 image_write(Fig1_text, path = paste0(My_directory,"/Fig1_rb.png"), format = "png")
 ```
 
-```{r, fig.height=4,echo=FALSE, fig.align='left'}
+```{r, fig.height=4,echo=FALSE, fig.align='left', eval=FALSE}
 #list.files(My_directory)
 Fig1A_rb<-paste0(My_directory,"/Fig1_rb.png")
 knitr::include_graphics(Fig1A_rb)
@@ -110,7 +110,7 @@ knitr::include_graphics(Fig1A_rb)
 
 To add the text in the left top part you can use define the xaxis and yaxis as 100.
 
-```{r}
+```{r, eval=FALSE}
 Fig1_text<-image_annotate(Fig1_draw, "(a)",  location = "+50+50", font = 'Arial', size = 100, color='white')
 ```
 
@@ -118,7 +118,7 @@ Fig1_text<-image_annotate(Fig1_draw, "(a)",  location = "+50+50", font = 'Arial'
 image_write(Fig1_text, path = paste0(My_directory,"/Fig1_lt.png"), format = "png")
 ```
 
-```{r, fig.height=4,echo=FALSE, fig.align='left'}
+```{r, fig.height=4,echo=FALSE, fig.align='left', eval=FALSE}
 #list.files(My_directory)
 Fig1A_lt<-paste0(My_directory,"/Fig1_lt.png")
 knitr::include_graphics(Fig1A_lt)
@@ -140,7 +140,7 @@ Follow the same steps as above, but with a second picture.
 Fig2_original<- image_read(paste0(My_directory,"\\RFBO.JPG"))
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, eval=FALSE}
 My_directory<-('https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2024-05-02-imagesforpublication')
 Fig2_original<- image_read(paste0(My_directory,'/RFBO.JPG?raw=TRUE'))
 ```
@@ -186,7 +186,7 @@ image_write(image_append(c(Fig1_border,Fig2_border)), path = paste0(My_directory
 ```
 
 ```{r, echo=FALSE, out.width = "40%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2024-05-02-imagesforpublication/magick_export.jpg"))
+knitr::include_graphics(paste0(here::here(),"/blog/2024-05-02-imagesforpublication/magick_export.png"))
 ```
 
 End of document

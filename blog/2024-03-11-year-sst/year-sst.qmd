@@ -464,8 +464,7 @@ g <- gtable_add_grob(g, ax, pp$t, length(g$widths) - 1, pp$b)
 ```
 
 ```{r, echo=FALSE, out.width = "40%"}
-paste0(here::here(),"/blog/2024-02-06/environmental_export.jpg")
-knitr::include_graphics(paste0(here::here(),"/blog/2024-03-10-year-sst/year_export.jpg"))
+knitr::include_graphics(paste0(here::here(),"/blog/2024-03-11-year-sst/year_export.jpg"))
 ```
 
 End of document

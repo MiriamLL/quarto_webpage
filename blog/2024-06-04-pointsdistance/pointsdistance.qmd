@@ -227,7 +227,7 @@ ggsave(letters_plot,
 ```
 
 ```{r, echo=FALSE, out.width = "40%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2024-06-06-pointsdistance/points_export.jpg"))
+knitr::include_graphics(paste0(here::here(),"/blog/2024-06-04-pointsdistance/points_export.jpg"))
 ```
 
 # Resources
