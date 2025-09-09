@@ -201,7 +201,7 @@ ggsave(Plot_original+Plot_trips,
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "40%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-09-19-identifyevents/identify_export.jpg"))
 ```
 

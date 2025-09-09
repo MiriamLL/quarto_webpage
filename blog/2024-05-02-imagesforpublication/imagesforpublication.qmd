@@ -1,5 +1,5 @@
 ---
-title: "Read images using R"
+title: "Using magick for image manipulation"
 description: |
   Add text and margins on images.
 author:
@@ -58,8 +58,8 @@ library(here)
 My_directory<-here()
 ```
 
-```{r, echo=FALSE}
-My_directory<-('https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2024-05-02-imagesforpublication')
+```{r, echo=FALSE, eval=FALSE}
+Fig1_link<-('https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2024/MABO.JPG?raw=true')
 ```
 
 Check if you gave the correct path by using the function **list.files**.\
@@ -68,11 +68,7 @@ It should show the images you want to use.
 Read images using the function **image_read**.
 
 ```{r, eval=FALSE}
-Fig1_original<- image_read(paste0(My_directory,'/MABO.JPG'))
-```
-
-```{r,echo=FALSE, eval=FALSE}
-Fig1_original<- image_read(paste0(My_directory,'/MABO.JPG?raw=TRUE'))
+Fig1_original<- image_read(Fig1_link)
 ```
 
 The function **image_draw** will show the picture in the Viewer.\
@@ -136,13 +132,9 @@ image_write(Fig1_text, path = paste0(My_directory,"/Fig1_tl.png"), format = "png
 
 Follow the same steps as above, but with a second picture.
 
-```{r,eval=FALSE}
-Fig2_original<- image_read(paste0(My_directory,"\\RFBO.JPG"))
-```
-
-```{r,echo=FALSE, eval=FALSE}
-My_directory<-('https://github.com/MiriamLL/miriamlerma_/blob/main/_posts/2024-05-02-imagesforpublication')
-Fig2_original<- image_read(paste0(My_directory,'/RFBO.JPG?raw=TRUE'))
+```{r,echo=FALSE}
+Fig2_link<-('https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2024/RFBO.JPG?raw=true')
+Fig2_original<- image_read(Fig2_link)
 ```
 
 ```{r, eval=FALSE}
@@ -185,8 +177,6 @@ My_directory<-here()
 image_write(image_append(c(Fig1_border,Fig2_border)), path = paste0(My_directory,"/Fig1_append.png"), format = "png")
 ```
 
-```{r, echo=FALSE, out.width = "40%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-05-02-imagesforpublication/magick_export.png"))
 ```
-
-End of document
