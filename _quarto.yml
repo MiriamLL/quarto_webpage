@@ -4,7 +4,7 @@ project:
 website:
   navbar:
     left:
-      - index.qmd
+      - href: index.qmd
       - text: "About"
         href: about.html
       - text: "Publications"
@@ -25,5 +25,4 @@ format:
   html:
     css: styles.css
 
-editor: visual
 
