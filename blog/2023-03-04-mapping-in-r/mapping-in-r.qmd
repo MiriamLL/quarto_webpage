@@ -25,7 +25,7 @@ format:
 
 How to create a map in ggplot and add attributes.
 
-## 1. Getting ready
+## Getting ready
 
 You can download shapefiles from: https://www.naturalearthdata.com/downloads/
 
@@ -41,7 +41,7 @@ Call the package **sf** to read the shapefiles into R
 library(sf)
 ```
 
-## 2. Read your shapefile
+## Read your shapefile
 
 Use your directory name, and give the name of your shapefile
 
@@ -54,7 +54,7 @@ MyShapefileName<-"/country.shp"
 Europe<-st_read(paste0(Directory,MyShapefileName))
 ```
 
-## 3. Create a basic map
+## Create a basic map
 
 Load **ggplot2**
 
@@ -69,7 +69,7 @@ ggplot()+
   geom_sf(data = Europe)
 ```
 
-## 4. Add colors
+## Add colors
 
 I copy the hex colors from [coolors](www.coolors.co)
 
@@ -81,7 +81,7 @@ ggplot()+
           size=0.5)
 ```
 
-## 5. Change background color
+## Change background color
 
 You can eliminate the grids and the change the background color in ggplot
 
@@ -99,7 +99,7 @@ ggplot()+
 ```
 
 
-## 6. Add limits 
+## Add limits 
 
 Reduce to focus in your area of interest
 
@@ -119,7 +119,7 @@ ggplot()+
 ```
 
 
-## 7. Add scale
+## Add scale
 
 Load the package **ggspatial** to add a scale and an north arrow
 
@@ -150,7 +150,7 @@ ggplot()+
   annotation_scale(location = "br",bar_cols = c("#ef233c", "#d90429"),text_col = '#ef233c')
 ```
 
-## 8. Add arrow
+## Add arrow
 
 **tl** is for top left  
 **which_north** preferably true (see why [here](https://github.com/paleolimbot/ggspatial/issues/15))  
@@ -178,5 +178,12 @@ ggplot()+
 ```
 
 Thats it for now!
+
+```{r, echo=FALSE,  out.width="50%"}
+Imagen1<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/map_export.jpg?raw=true"
+knitr::include_graphics(Imagen1)
+```
+
+
 
 

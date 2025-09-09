@@ -190,10 +190,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
-  <li><a href="#load-shapefile" id="toc-load-shapefile" class="nav-link" data-scroll-target="#load-shapefile">1. Load shapefile</a></li>
-  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter">2. Filter</a></li>
-  <li><a href="#export-your-new-shapefile" id="toc-export-your-new-shapefile" class="nav-link" data-scroll-target="#export-your-new-shapefile">3. Export your new shapefile</a></li>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a>
+  <ul class="collapse">
+  <li><a href="#load-shapefile" id="toc-load-shapefile" class="nav-link" data-scroll-target="#load-shapefile">Load shapefile</a></li>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter">Filter</a></li>
+  <li><a href="#export-your-new-shapefile" id="toc-export-your-new-shapefile" class="nav-link" data-scroll-target="#export-your-new-shapefile">Export your new shapefile</a></li>
+  </ul></li>
   <li><a href="#read-more" id="toc-read-more" class="nav-link" data-scroll-target="#read-more">Read more</a></li>
   </ul>
 </nav>
@@ -247,9 +249,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="intro" class="level1">
 <h1>Intro</h1>
 <p>Three steps to subset a shapefile and export a new shapefile with the attributes you are interested in.</p>
-</section>
-<section id="load-shapefile" class="level1">
-<h1>1. Load shapefile</h1>
+<section id="load-shapefile" class="level2">
+<h2 class="anchored" data-anchor-id="load-shapefile">Load shapefile</h2>
 <p>Load the package <strong>sf</strong> to load your shapefile into R</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -278,8 +279,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(Old_shapefile<span class="sc">$</span>comuna))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="filter" class="level1">
-<h1>2. Filter</h1>
+<section id="filter" class="level2">
+<h2 class="anchored" data-anchor-id="filter">Filter</h2>
 <p>Load the package <strong>tidyverse</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -291,8 +292,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(comuna<span class="sc">==</span><span class="st">"La Higuera"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="export-your-new-shapefile" class="level1">
-<h1>3. Export your new shapefile</h1>
+<section id="export-your-new-shapefile" class="level2">
+<h2 class="anchored" data-anchor-id="export-your-new-shapefile">Export your new shapefile</h2>
 <p>Check the class of your new object</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(New_shapefile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -301,6 +302,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(New_shapefile, <span class="fu">paste0</span>(My_directory,<span class="st">'/New_shapefile.shp'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
 </section>
 <section id="read-more" class="level1">
 <h1>Read more</h1>

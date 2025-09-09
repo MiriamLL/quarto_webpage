@@ -192,14 +192,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a>
   <ul class="collapse">
-  <li><a href="#getting-ready" id="toc-getting-ready" class="nav-link" data-scroll-target="#getting-ready">1. Getting ready</a></li>
-  <li><a href="#read-your-shapefile" id="toc-read-your-shapefile" class="nav-link" data-scroll-target="#read-your-shapefile">2. Read your shapefile</a></li>
-  <li><a href="#create-a-basic-map" id="toc-create-a-basic-map" class="nav-link" data-scroll-target="#create-a-basic-map">3. Create a basic map</a></li>
-  <li><a href="#add-colors" id="toc-add-colors" class="nav-link" data-scroll-target="#add-colors">4. Add colors</a></li>
-  <li><a href="#change-background-color" id="toc-change-background-color" class="nav-link" data-scroll-target="#change-background-color">5. Change background color</a></li>
-  <li><a href="#add-limits" id="toc-add-limits" class="nav-link" data-scroll-target="#add-limits">6. Add limits</a></li>
-  <li><a href="#add-scale" id="toc-add-scale" class="nav-link" data-scroll-target="#add-scale">7. Add scale</a></li>
-  <li><a href="#add-arrow" id="toc-add-arrow" class="nav-link" data-scroll-target="#add-arrow">8. Add arrow</a></li>
+  <li><a href="#getting-ready" id="toc-getting-ready" class="nav-link" data-scroll-target="#getting-ready">Getting ready</a></li>
+  <li><a href="#read-your-shapefile" id="toc-read-your-shapefile" class="nav-link" data-scroll-target="#read-your-shapefile">Read your shapefile</a></li>
+  <li><a href="#create-a-basic-map" id="toc-create-a-basic-map" class="nav-link" data-scroll-target="#create-a-basic-map">Create a basic map</a></li>
+  <li><a href="#add-colors" id="toc-add-colors" class="nav-link" data-scroll-target="#add-colors">Add colors</a></li>
+  <li><a href="#change-background-color" id="toc-change-background-color" class="nav-link" data-scroll-target="#change-background-color">Change background color</a></li>
+  <li><a href="#add-limits" id="toc-add-limits" class="nav-link" data-scroll-target="#add-limits">Add limits</a></li>
+  <li><a href="#add-scale" id="toc-add-scale" class="nav-link" data-scroll-target="#add-scale">Add scale</a></li>
+  <li><a href="#add-arrow" id="toc-add-arrow" class="nav-link" data-scroll-target="#add-arrow">Add arrow</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -218,6 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div class="quarto-category">ggplot2</div>
     <div class="quarto-category">English</div>
     <div class="quarto-category">Y2023</div>
+    <div class="quarto-category">GIS</div>
   </div>
   </div>
 
@@ -254,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Intro</h1>
 <p>How to create a map in ggplot and add attributes.</p>
 <section id="getting-ready" class="level2">
-<h2 class="anchored" data-anchor-id="getting-ready">1. Getting ready</h2>
+<h2 class="anchored" data-anchor-id="getting-ready">Getting ready</h2>
 <p>You can download shapefiles from: https://www.naturalearthdata.com/downloads/</p>
 <p>Call the package <strong>here</strong> to work in your directory.</p>
 <div class="cell">
@@ -266,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="read-your-shapefile" class="level2">
-<h2 class="anchored" data-anchor-id="read-your-shapefile">2. Read your shapefile</h2>
+<h2 class="anchored" data-anchor-id="read-your-shapefile">Read your shapefile</h2>
 <p>Use your directory name, and give the name of your shapefile</p>
 <div class="cell">
 
@@ -276,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="create-a-basic-map" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-basic-map">3. Create a basic map</h2>
+<h2 class="anchored" data-anchor-id="create-a-basic-map">Create a basic map</h2>
 <p>Load <strong>ggplot2</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -288,7 +289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="add-colors" class="level2">
-<h2 class="anchored" data-anchor-id="add-colors">4. Add colors</h2>
+<h2 class="anchored" data-anchor-id="add-colors">Add colors</h2>
 <p>I copy the hex colors from <a href="www.coolors.co">coolors</a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span>  </span>
@@ -299,7 +300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="change-background-color" class="level2">
-<h2 class="anchored" data-anchor-id="change-background-color">5. Change background color</h2>
+<h2 class="anchored" data-anchor-id="change-background-color">Change background color</h2>
 <p>You can eliminate the grids and the change the background color in ggplot</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span>  </span>
@@ -315,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="add-limits" class="level2">
-<h2 class="anchored" data-anchor-id="add-limits">6. Add limits</h2>
+<h2 class="anchored" data-anchor-id="add-limits">Add limits</h2>
 <p>Reduce to focus in your area of interest</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span>  </span>
@@ -333,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="add-scale" class="level2">
-<h2 class="anchored" data-anchor-id="add-scale">7. Add scale</h2>
+<h2 class="anchored" data-anchor-id="add-scale">Add scale</h2>
 <p>Load the package <strong>ggspatial</strong> to add a scale and an north arrow</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -361,7 +362,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="add-arrow" class="level2">
-<h2 class="anchored" data-anchor-id="add-arrow">8. Add arrow</h2>
+<h2 class="anchored" data-anchor-id="add-arrow">Add arrow</h2>
 <p><strong>tl</strong> is for top left<br>
 <strong>which_north</strong> preferably true (see why <a href="https://github.com/paleolimbot/ggspatial/issues/15">here</a>)<br>
 <strong>north_arrow_fancy_orienteering</strong> (see other styles <a href="https://github.com/paleolimbot/ggspatial/issues/15">here</a>)</p>
@@ -386,6 +387,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">"tl"</span>, <span class="at">style =</span> <span class="fu">north_arrow_minimal</span>(<span class="at">text_col =</span> <span class="st">'#ffd60a'</span>,<span class="at">line_col =</span> <span class="st">'#ffd60a'</span>,<span class="at">fill =</span> <span class="st">'#ffd60a'</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Thats it for now!</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/map_export.jpg?raw=true" class="img-fluid" style="width:50.0%"></p>
+</div>
+</div>
 
 
 </section>
