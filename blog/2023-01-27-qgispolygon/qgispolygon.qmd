@@ -9,7 +9,7 @@ date: 2023-01-23
 image: qgispolygon_front.jpg
 categories:
   - QGIS
-  - Biologging
+  - GIS
   - English
   - Y2023
 format:
@@ -43,30 +43,28 @@ In earlier QGIS versions, there was a plugin called **Open Layers plugin**, but 
 
 Now to add a **google satellite** map in your QGIS you could do the following:
 
-1. Go to View > Panels > Activate Browser Panel
+### Go to View > Panels > Activate Browser Panel
 
-```{r, echo=FALSE,fig.height=10,  out.width="200%"}
+```{r, echo=FALSE,fig.height=10,  out.width="80%"}
 Imagen9<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis1.png?raw=true"
 knitr::include_graphics(Imagen9)
 ```
 
-2. Now go to XYZ > a new connection
+### Now go to XYZ > a new connection
 
-```{r, echo=FALSE, fig.height=10, out.width="200%"}
+```{r, echo=FALSE, fig.height=10, out.width="50%"}
 Imagen10<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis2.png?raw=true"
 knitr::include_graphics(Imagen10)
 ```
 
+### A new window will appear 
 
-
-3. A new window will appear 
-
-```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="60%"}
 Imagen11<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis3.png?raw=true"
 knitr::include_graphics(Imagen11)
 ```
 
-4. Fill in the spaces with the map you want to use
+### Fill in the spaces with the map you want to use
 
 You need to give it a name and the **URL**
 
@@ -74,22 +72,21 @@ There are many options of maps, you can look at some here: [Google URLs](https:/
 
 We will use Open Street Map: https://tile.openstreetmap.org/{z}/{x}/{y}.png for the example.
 
-```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="80%"}
 Imagen12<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis4.png?raw=true"
 knitr::include_graphics(Imagen12)
 ```
 
 Once you have create the connection, double click on the name and the map should be loaded as a layer.
 
-
-```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="40%"}
 Imagen14<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis6.png?raw=true"
 knitr::include_graphics(Imagen14)
 ```
 
 Ready to Use!
 
-```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="50%"}
 Imagen13<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis5.png?raw=true"
 knitr::include_graphics(Imagen13)
 ```
@@ -97,41 +94,41 @@ knitr::include_graphics(Imagen13)
 
 ## Create polygon
 
-1. Select New Shapefile Layer
+### Select New Shapefile Layer
 
-```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="40%"}
 Imagen15<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis7.png?raw=true"
 knitr::include_graphics(Imagen15)
 ```
 
-2. Give a name to your new shapefile
+### Give a name to your new shapefile
 
 I recommend to click on the three dots to select also the directory
 
 In the exercise, we will create a polygon, therefore, select **Polygon** in Geometry type
 
-```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="40%"}
 Imagen16<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis8.png?raw=true"
 knitr::include_graphics(Imagen16)
 ```
 
 
-3. Select Layer > Toggle editing, or just click on the icon with the yellow pencil
+### Select Layer > Toggle editing, or just click on the icon with the yellow pencil
 
-```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="20%"}
 Imagen17<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis9.png?raw=true"
 knitr::include_graphics(Imagen17)
 ```
 
 
-4. Now add polygon feature by clicking on the green polygon icon
+### Now add polygon feature by clicking on the green polygon icon
 
-```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="20%"}
 Imagen18<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis10.png?raw=true"
 knitr::include_graphics(Imagen18)
 ```
 
-5. Use the pointer of your mouse and click one time to create points
+### Use the pointer of your mouse and click one time to create points
 
 The areas will start to look red
 
@@ -139,46 +136,44 @@ Keep clicking until you have a more or less the polygon you want
 
 When you finish you should add an id, here I used the number 1 for an example
 
-```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="70%"}
 Imagen20<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis11.png?raw=true"
 knitr::include_graphics(Imagen20)
 ```
 
 Now you should have a polygon!
 
-7. To edit the shapes you can use the vertex tool
+### To edit the shapes you can use the vertex tool
 
-```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="30%"}
 Imagen21<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis12.png?raw=true"
 knitr::include_graphics(Imagen21)
 ```
 
+### The corners can be moved/dragged when the icon has been selected
 
-8. The corners can be moved/dragged when the icon has been selected
-
-```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="80%"}
 Imagen22<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis14.png?raw=true"
 knitr::include_graphics(Imagen22)
 ```
 
+### New points can be created using the cross
 
-9. New points can be created using the cross
-
-```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="80%"}
 Imagen23<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis15.png?raw=true"
 knitr::include_graphics(Imagen23)
 ```
 
-10. When you are editing your layer you will have a red pencil icon, click on the yellow pencil for **finish editing**
+### When you are editing your layer you will have a red pencil icon, click on the yellow pencil for **finish editing**
 
-```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="30%"}
 Imagen24<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis16.png?raw=true"
 knitr::include_graphics(Imagen24)
 ```
 
-11. Do not forget to save the changes!
+### Do not forget to save the changes!
 
-```{r, fig.height=10, echo=FALSE, out.width="100%", eval=FALSE}
+```{r, fig.height=10, echo=FALSE, out.width="30%"}
 Imagen25<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis18.png?raw=true"
 knitr::include_graphics(Imagen25)
 ```
