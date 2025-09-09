@@ -177,13 +177,11 @@ ggplot()+
   annotation_north_arrow(location = "tl", style = north_arrow_minimal(text_col = '#ffd60a',line_col = '#ffd60a',fill = '#ffd60a')) 
 ```
 
-Thats it for now!
-
 ```{r, echo=FALSE,  out.width="50%"}
 Imagen1<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/map_export.jpg?raw=true"
 knitr::include_graphics(Imagen1)
 ```
 
 
-
+Thats it for now!
 

@@ -38,8 +38,7 @@ Go to your repository, select **settings**
 
 In the right side of the screen select **pages**
 
-```{r, fig.height=12,echo=FALSE, fig.align='left', eval=FALSE}
-library(here)
+```{r, echo=FALSE, fig.align='left'}
 Imagen2<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/02settings.png?raw=true"
 knitr::include_graphics(Imagen2)
 ```
@@ -48,7 +47,7 @@ knitr::include_graphics(Imagen2)
 
 Look for build and deployment and in source, move from GitHub Actions to **Deploy from branch**
 
-```{r, fig.height=10,echo=FALSE, fig.align='left', eval=FALSE}
+```{r, echo=FALSE, fig.align='left'}
 Imagen3<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/03BuildDeployment.png?raw=true"
 knitr::include_graphics(Imagen3)
 ```
@@ -57,14 +56,14 @@ knitr::include_graphics(Imagen3)
 
 The branch depends where the **html** file is, here I have it in the **master** branch
 
-```{r, fig.height=10,echo=FALSE, fig.align='left', eval=FALSE}
+```{r, echo=FALSE, fig.align='left'}
 Imagen4<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/04Master.png?raw=true"
 knitr::include_graphics(Imagen4)
 ```
 
 This would depend where you have your **html** file, but here I have it in the **master**
 
-```{r, fig.height=10,echo=FALSE, fig.align='left', eval=FALSE}
+```{r, echo=FALSE, fig.align='left'}
 Imagen4<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/04Master.png?raw=true"
 knitr::include_graphics(Imagen4)
 ```
@@ -73,7 +72,7 @@ knitr::include_graphics(Imagen4)
 
 If everything went well **Your site is alive at** will appear
 
-```{r, fig.height=10,echo=FALSE, fig.align='left', eval=FALSE}
+```{r, echo=FALSE, fig.align='left'}
 Imagen5<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/05SiteIsAlive.png?raw=true"
 knitr::include_graphics(Imagen5)
 ```

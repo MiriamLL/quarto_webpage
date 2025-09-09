@@ -264,32 +264,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Go to your repository, select <strong>settings</strong></p>
 <p>In the right side of the screen select <strong>pages</strong></p>
 <div class="cell" data-layout-align="left">
-
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2025/1Programming/1Quarto/quarto_webpage</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/02settings.png?raw=true" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="github-actions" class="level2">
 <h2 class="anchored" data-anchor-id="github-actions">Github actions</h2>
 <p>Look for build and deployment and in source, move from GitHub Actions to <strong>Deploy from branch</strong></p>
 <div class="cell" data-layout-align="left">
-
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/03BuildDeployment.png?raw=true" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="branch" class="level2">
 <h2 class="anchored" data-anchor-id="branch">Branch</h2>
 <p>The branch depends where the <strong>html</strong> file is, here I have it in the <strong>master</strong> branch</p>
 <div class="cell" data-layout-align="left">
-
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/04Master.png?raw=true" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>This would depend where you have your <strong>html</strong> file, but here I have it in the <strong>master</strong></p>
 <div class="cell" data-layout-align="left">
-
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/04Master.png?raw=true" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="reload" class="level2">
 <h2 class="anchored" data-anchor-id="reload">Reload</h2>
 <p>If everything went well <strong>Your site is alive at</strong> will appear</p>
 <div class="cell" data-layout-align="left">
-
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/05SiteIsAlive.png?raw=true" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="diferent-slides" class="level2">
@@ -297,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To access specific slides from different presentations, add the html name at the end of the site.</p>
 <p>For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>miriamll.github.io<span class="sc">/</span>R_intro<span class="sc">/</span>IntroToR_0604.html<span class="co">#1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>miriamll.github.io<span class="sc">/</span>R_intro<span class="sc">/</span>IntroToR_0604.html<span class="co">#1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="to-pdf" class="level2">
@@ -305,10 +338,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The slides can also be converted to pdf</p>
 <p>Install package using <strong>install.packages(“renderthis”)</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(renderthis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(renderthis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">to_pdf</span>(<span class="at">from=</span><span class="st">"https://miriamll.github.io/R_intro/DataWrangling_1205.html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">to_pdf</span>(<span class="at">from=</span><span class="st">"https://miriamll.github.io/R_intro/DataWrangling_1205.html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="further-reading" class="level2">

@@ -192,14 +192,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a>
   <ul class="collapse">
-  <li><a href="#getting-ready" id="toc-getting-ready" class="nav-link" data-scroll-target="#getting-ready">1. Getting ready</a></li>
-  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">2. Load data</a></li>
-  <li><a href="#mark-beggining" id="toc-mark-beggining" class="nav-link" data-scroll-target="#mark-beggining">3. Mark beggining</a></li>
-  <li><a href="#create-map-for-reference" id="toc-create-map-for-reference" class="nav-link" data-scroll-target="#create-map-for-reference">4. Create map for reference</a></li>
-  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">5. Plot</a></li>
-  <li><a href="#modify-map-to-taste" id="toc-modify-map-to-taste" class="nav-link" data-scroll-target="#modify-map-to-taste">6. Modify map to taste</a></li>
-  <li><a href="#animate" id="toc-animate" class="nav-link" data-scroll-target="#animate">7. Animate</a></li>
-  <li><a href="#export" id="toc-export" class="nav-link" data-scroll-target="#export">8. Export</a></li>
+  <li><a href="#getting-ready" id="toc-getting-ready" class="nav-link" data-scroll-target="#getting-ready">Getting ready</a></li>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">Load data</a></li>
+  <li><a href="#mark-beggining" id="toc-mark-beggining" class="nav-link" data-scroll-target="#mark-beggining">Mark beggining</a></li>
+  <li><a href="#create-map-for-reference" id="toc-create-map-for-reference" class="nav-link" data-scroll-target="#create-map-for-reference">Create map for reference</a></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a></li>
+  <li><a href="#modify-map-to-taste" id="toc-modify-map-to-taste" class="nav-link" data-scroll-target="#modify-map-to-taste">Modify map to taste</a></li>
+  <li><a href="#animate" id="toc-animate" class="nav-link" data-scroll-target="#animate">Animate</a></li>
+  <li><a href="#export" id="toc-export" class="nav-link" data-scroll-target="#export">Export</a></li>
   </ul></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
@@ -219,6 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div class="quarto-category">ggplot2</div>
     <div class="quarto-category">English</div>
     <div class="quarto-category">Y2023</div>
+    <div class="quarto-category">tracking</div>
   </div>
   </div>
 
@@ -255,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Intro</h1>
 <p>How to create a map an animation using gganimate</p>
 <section id="getting-ready" class="level2">
-<h2 class="anchored" data-anchor-id="getting-ready">1. Getting ready</h2>
+<h2 class="anchored" data-anchor-id="getting-ready">Getting ready</h2>
 <p>Load and/or install the following packages:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
@@ -263,7 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="load-data" class="level2">
-<h2 class="anchored" data-anchor-id="load-data">2. Load data</h2>
+<h2 class="anchored" data-anchor-id="load-data">Load data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sula)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -272,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="mark-beggining" class="level2">
-<h2 class="anchored" data-anchor-id="mark-beggining">3. Mark beggining</h2>
+<h2 class="anchored" data-anchor-id="mark-beggining">Mark beggining</h2>
 <p>Mark a day zero to begging the animation, and the sequence to use</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">first</span>(Example<span class="sc">$</span>DateGMT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -291,7 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="create-map-for-reference" class="level2">
-<h2 class="anchored" data-anchor-id="create-map-for-reference">4. Create map for reference</h2>
+<h2 class="anchored" data-anchor-id="create-map-for-reference">Create map for reference</h2>
 <p>For creating maps, the package <strong>sf</strong> is to be called.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -306,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="plot" class="level2">
-<h2 class="anchored" data-anchor-id="plot">5. Plot</h2>
+<h2 class="anchored" data-anchor-id="plot">Plot</h2>
 <p>Plot the area of interest</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>My_map<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>Example)  <span class="sc">+</span> </span>
@@ -318,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="modify-map-to-taste" class="level2">
-<h2 class="anchored" data-anchor-id="modify-map-to-taste">6. Modify map to taste</h2>
+<h2 class="anchored" data-anchor-id="modify-map-to-taste">Modify map to taste</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>My_map<span class="ot">&lt;-</span>My_map<span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
@@ -343,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="animate" class="level2">
-<h2 class="anchored" data-anchor-id="animate">7. Animate</h2>
+<h2 class="anchored" data-anchor-id="animate">Animate</h2>
 <p>To animate this plot, we will use the package <strong>gganimate</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -393,25 +394,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong>shadow_wake</strong> is the wake behind the points <a href="https://goodekat.github.io/presentations/2019-isugg-gganimate-spooky/slides.html#48">read more here</a></p>
 </section>
 <section id="export" class="level2">
-<h2 class="anchored" data-anchor-id="export">8. Export</h2>
+<h2 class="anchored" data-anchor-id="export">Export</h2>
 <p>The package <strong>animation</strong> allows to save the animation as a file</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(animation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To export, you can save the animation as gif</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># anim_save("animation.gif",My_animation)</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># beep(sound=1,expr=NULL)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="st">"animation.gif"</span>,My_animation)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">beep</span>(<span class="at">sound=</span><span class="dv">1</span>,<span class="at">expr=</span><span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Or transform from gif to mp4 using the package <strong>av</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(av)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># av::av_encode_video("animation.gif", </span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#                     framerate = 5 ,</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                     output = 'animation.mp4')</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># beep(sound=1,expr=NULL)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>av<span class="sc">::</span><span class="fu">av_encode_video</span>(<span class="st">"animation.gif"</span>, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">framerate =</span> <span class="dv">5</span> ,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">output =</span> <span class="st">'animation.mp4'</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">beep</span>(<span class="at">sound=</span><span class="dv">1</span>,<span class="at">expr=</span><span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>

@@ -193,13 +193,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a>
   <ul class="collapse">
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#grid" id="toc-grid" class="nav-link" data-scroll-target="#grid">Grid</a></li>
+  <li><a href="#extract-values-per-grid" id="toc-extract-values-per-grid" class="nav-link" data-scroll-target="#extract-values-per-grid">Extract values per grid</a></li>
+  <li><a href="#surveyed" id="toc-surveyed" class="nav-link" data-scroll-target="#surveyed">Surveyed</a></li>
+  <li><a href="#mean-values" id="toc-mean-values" class="nav-link" data-scroll-target="#mean-values">Mean values</a></li>
+  <li><a href="#customize" id="toc-customize" class="nav-link" data-scroll-target="#customize">Customize</a></li>
   </ul></li>
-  <li><a href="#grid" id="toc-grid" class="nav-link" data-scroll-target="#grid">1. Grid</a></li>
-  <li><a href="#extract-values-per-grid" id="toc-extract-values-per-grid" class="nav-link" data-scroll-target="#extract-values-per-grid">2. Extract values per grid</a></li>
-  <li><a href="#surveyed" id="toc-surveyed" class="nav-link" data-scroll-target="#surveyed">3. Surveyed 👩🏾‍💻</a></li>
-  <li><a href="#mean-values" id="toc-mean-values" class="nav-link" data-scroll-target="#mean-values">4. Mean values 👩🏾‍🔧</a></li>
-  <li><a href="#customize" id="toc-customize" class="nav-link" data-scroll-target="#customize">5. Customize 👩🏾‍🎨</a></li>
-  <li><a href="#further-reads" id="toc-further-reads" class="nav-link" data-scroll-target="#further-reads">Further reads 👩🏾‍🏫</a></li>
+  <li><a href="#further-read" id="toc-further-read" class="nav-link" data-scroll-target="#further-read">Further read</a></li>
   </ul>
 </nav>
 </nav>
@@ -259,9 +259,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>my_data<span class="ot">&lt;-</span>(sula<span class="sc">::</span>GPS_preparado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-<section id="grid" class="level1">
-<h1>1. Grid</h1>
+<section id="grid" class="level2">
+<h2 class="anchored" data-anchor-id="grid">Grid</h2>
 <p>Start by converting the data from data.frame to an sf object using functions from the package <strong>sf</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -314,8 +313,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="extract-values-per-grid" class="level1">
-<h1>2. Extract values per grid</h1>
+<section id="extract-values-per-grid" class="level2">
+<h2 class="anchored" data-anchor-id="extract-values-per-grid">Extract values per grid</h2>
 <p>Using the function <strong>st_intersection</strong> the values from the points can be added to the grid</p>
 <p>Using the argument <strong>lenghts</strong> the sample number per grid can be calculated</p>
 <div class="cell">
@@ -334,8 +333,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="surveyed" class="level1">
-<h1>3. Surveyed 👩🏾‍💻</h1>
+<section id="surveyed" class="level2">
+<h2 class="anchored" data-anchor-id="surveyed">Surveyed</h2>
 <p>To keep only the grid cells that were surveyed, the grid cells that have 0 recording can be removed</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>grid_w_data <span class="ot">=</span> <span class="fu">filter</span>(my_grid_sf, nlocs <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -348,8 +347,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="mean-values" class="level1">
-<h1>4. Mean values 👩🏾‍🔧</h1>
+<section id="mean-values" class="level2">
+<h2 class="anchored" data-anchor-id="mean-values">Mean values</h2>
 <p>To calculate the mean values per grid, functions from the package <strong>tidyverse</strong> can be used</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>my_dens<span class="ot">&lt;-</span>my_points</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -406,8 +405,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis</span>(<span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="customize" class="level1">
-<h1>5. Customize 👩🏾‍🎨</h1>
+<section id="customize" class="level2">
+<h2 class="anchored" data-anchor-id="customize">Customize</h2>
 <p>The function <strong>geom_sf</strong> allows to plot a raster</p>
 <p>Axis labels can be changed using <strong>scale_x_continuous</strong> and <strong>scale_y_continuous</strong></p>
 <p>To see less distracting colors on the background, <strong>theme_minimal</strong> is a prefered option</p>
@@ -462,8 +461,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="further-reads" class="level1">
-<h1>Further reads 👩🏾‍🏫</h1>
+</section>
+<section id="further-read" class="level1">
+<h1>Further read</h1>
 <ul>
 <li><a href="https://urbandatapalette.com/post/2021-08-tessellation-sf/">Create a grid by Urban data palette</a><br></li>
 <li><a href="https://map-rfun.library.duke.edu/032_thematic_mapping_geom_sf.html">Thematic mapping in Mapping in R</a><br></li>

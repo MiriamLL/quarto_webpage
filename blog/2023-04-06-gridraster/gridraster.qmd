@@ -40,7 +40,7 @@ The data is already in tidy format <br>
 my_data<-(sula::GPS_preparado)
 ```
 
-# 1. Grid 
+## Grid 
 
 Start by converting the data from data.frame to an sf object using functions from the package **sf**
 
@@ -118,7 +118,7 @@ ggplot()+
 ```
 
 
-# 2. Extract values per grid 
+## Extract values per grid 
 
 Using the function **st_intersection** the values from the points can be added to the grid
 
@@ -144,8 +144,7 @@ ggplot()+
   scale_fill_viridis(direction = -1) 
 ```
 
-
-# 3. Surveyed 👩🏾‍💻
+## Surveyed
 
 To keep only the grid cells that were surveyed, the grid cells that have 0 recording can be removed 
 
@@ -162,8 +161,7 @@ ggplot()+
   NULL
 ```
 
-
-# 4. Mean values 👩🏾‍🔧
+## Mean values
 
 To calculate the mean values per grid, functions from the package **tidyverse** can be used
 
@@ -242,7 +240,7 @@ ggplot()+
 ```
 
 
-# 5. Customize  👩🏾‍🎨
+## Customize
 
 The function **geom_sf** allows to plot a raster
 
@@ -310,7 +308,7 @@ Imagen1<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/202
 knitr::include_graphics(Imagen1)
 ```
 
-# Further reads 👩🏾‍🏫
+# Further read
 
 - [Create a grid by Urban data palette](https://urbandatapalette.com/post/2021-08-tessellation-sf/)<br>
 - [Thematic mapping in Mapping in R](https://map-rfun.library.duke.edu/032_thematic_mapping_geom_sf.html)<br>
