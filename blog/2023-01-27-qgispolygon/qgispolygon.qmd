@@ -29,13 +29,10 @@ This post is to give you an example on how to create your own polygon using goog
 
 For this exercise we used the release candidate of QGIS, but every version has the option to create new layers, so no worries in which version you are using. 
 
-```{r, fig.height=1,echo=FALSE, fig.align='center', eval=FALSE}
-library(here)
-Imagen1<-paste0(here(),"/_posts/2023-01-27-qgispolygon/image1.png")
+```{r, echo=FALSE, fig.height=1, fig.align='center'}
+Imagen1<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/image1.png?raw=true"
 knitr::include_graphics(Imagen1)
 ```
-
-
 
 If you still dont have it, here is the link for download [QGIS](https://www.qgis.org/en/site/forusers/download.html)
 
@@ -48,15 +45,15 @@ Now to add a **google satellite** map in your QGIS you could do the following:
 
 1. Go to View > Panels > Activate Browser Panel
 
-```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
-Imagen9<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis1.png")
+```{r, echo=FALSE,fig.height=10,  out.width="200%"}
+Imagen9<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis1.png?raw=true"
 knitr::include_graphics(Imagen9)
 ```
 
 2. Now go to XYZ > a new connection
 
-```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
-Imagen10<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis2.png")
+```{r, echo=FALSE, fig.height=10, out.width="200%"}
+Imagen10<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis2.png?raw=true"
 knitr::include_graphics(Imagen10)
 ```
 
@@ -65,7 +62,7 @@ knitr::include_graphics(Imagen10)
 3. A new window will appear 
 
 ```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
-Imagen11<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis3.png")
+Imagen11<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis3.png?raw=true"
 knitr::include_graphics(Imagen11)
 ```
 
@@ -78,7 +75,7 @@ There are many options of maps, you can look at some here: [Google URLs](https:/
 We will use Open Street Map: https://tile.openstreetmap.org/{z}/{x}/{y}.png for the example.
 
 ```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
-Imagen12<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis4.png")
+Imagen12<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis4.png?raw=true"
 knitr::include_graphics(Imagen12)
 ```
 
@@ -86,14 +83,14 @@ Once you have create the connection, double click on the name and the map should
 
 
 ```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
-Imagen14<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis6.png")
+Imagen14<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis6.png?raw=true"
 knitr::include_graphics(Imagen14)
 ```
 
 Ready to Use!
 
 ```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
-Imagen13<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis5.png")
+Imagen13<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis5.png?raw=true"
 knitr::include_graphics(Imagen13)
 ```
 
@@ -103,7 +100,7 @@ knitr::include_graphics(Imagen13)
 1. Select New Shapefile Layer
 
 ```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
-Imagen15<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis7.png")
+Imagen15<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis7.png?raw=true"
 knitr::include_graphics(Imagen15)
 ```
 
@@ -114,7 +111,7 @@ I recommend to click on the three dots to select also the directory
 In the exercise, we will create a polygon, therefore, select **Polygon** in Geometry type
 
 ```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
-Imagen16<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis8.png")
+Imagen16<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis8.png?raw=true"
 knitr::include_graphics(Imagen16)
 ```
 
@@ -122,7 +119,7 @@ knitr::include_graphics(Imagen16)
 3. Select Layer > Toggle editing, or just click on the icon with the yellow pencil
 
 ```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
-Imagen17<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis9.png")
+Imagen17<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis9.png?raw=true"
 knitr::include_graphics(Imagen17)
 ```
 
@@ -130,7 +127,7 @@ knitr::include_graphics(Imagen17)
 4. Now add polygon feature by clicking on the green polygon icon
 
 ```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
-Imagen18<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis10.png")
+Imagen18<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis10.png?raw=true"
 knitr::include_graphics(Imagen18)
 ```
 
@@ -143,7 +140,7 @@ Keep clicking until you have a more or less the polygon you want
 When you finish you should add an id, here I used the number 1 for an example
 
 ```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
-Imagen20<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis11.png")
+Imagen20<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis11.png?raw=true"
 knitr::include_graphics(Imagen20)
 ```
 
@@ -152,7 +149,7 @@ Now you should have a polygon!
 7. To edit the shapes you can use the vertex tool
 
 ```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
-Imagen21<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis12.png")
+Imagen21<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis12.png?raw=true"
 knitr::include_graphics(Imagen21)
 ```
 
@@ -160,7 +157,7 @@ knitr::include_graphics(Imagen21)
 8. The corners can be moved/dragged when the icon has been selected
 
 ```{r, fig.height=10, echo=FALSE, out.width="200%", eval=FALSE}
-Imagen22<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis14.png")
+Imagen22<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis14.png?raw=true"
 knitr::include_graphics(Imagen22)
 ```
 
@@ -168,21 +165,21 @@ knitr::include_graphics(Imagen22)
 9. New points can be created using the cross
 
 ```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
-Imagen23<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis15.png")
+Imagen23<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis15.png?raw=true"
 knitr::include_graphics(Imagen23)
 ```
 
 10. When you are editing your layer you will have a red pencil icon, click on the yellow pencil for **finish editing**
 
 ```{r, fig.height=10, echo=FALSE, out.width="150%", eval=FALSE}
-Imagen24<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis16.png")
+Imagen24<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis16.png?raw=true"
 knitr::include_graphics(Imagen24)
 ```
 
 11. Do not forget to save the changes!
 
 ```{r, fig.height=10, echo=FALSE, out.width="100%", eval=FALSE}
-Imagen25<-paste0(here(),"/_posts/2023-01-27-qgispolygon/qgis18.png")
+Imagen25<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/qgis18.png?raw=true"
 knitr::include_graphics(Imagen25)
 ```
 
@@ -195,11 +192,8 @@ I hope this helped you.
 
 For continuing learning, here are other uses of google maps:
 
-- [Medium](https://medium.com/@nerimbarakat/google-maps-basic-d5ecf00ef922)
-
-- [Add background map](https://www.littlemissdata.com/blog/maps)
-
-- [Google API](https://medium.com/@nerimbarakat/google-maps-basic-d5ecf00ef922)
-
-- [Google URLs](https://hatarilabs.com/ih-en/how-to-add-a-google-map-in-qgis-3-tutorial)
+- [Medium](https://medium.com/@nerimbarakat/google-maps-basic-d5ecf00ef922)  
+- [Add background map](https://www.littlemissdata.com/blog/maps)  
+- [Google API](https://medium.com/@nerimbarakat/google-maps-basic-d5ecf00ef922)  
+- [Google URLs](https://hatarilabs.com/ih-en/how-to-add-a-google-map-in-qgis-3-tutorial)  
 
