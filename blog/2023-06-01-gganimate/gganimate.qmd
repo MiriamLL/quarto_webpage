@@ -213,6 +213,10 @@ av::av_encode_video("animation.gif",
 beep(sound=1,expr=NULL)
 ```
 
+```{r, echo=FALSE, fig.align='left'}
+knitr::include_graphics("https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/animation.gif?raw=true")
+```
+
 # Further reading
 
 - [A Grammar of Animated Graphics](https://gganimate.com/)
