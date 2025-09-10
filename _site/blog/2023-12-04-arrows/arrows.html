@@ -258,11 +258,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the example, we use sample data, but if you know where you event starts and ends you can skip these steps and go directly to the final section.</p>
 <section id="data" class="level1">
 <h1>Data</h1>
-<p>Load data from package <strong>seamonas</strong></p>
+<p>Load data from package <strong>SeaDens</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(seamonas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SeaDens) <span class="co">#updated</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This data is from a simulated survey</p>
+<p>This data is from a simulated survey.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>survey_data<span class="ot">&lt;-</span>survey_4326</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -416,6 +416,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>survey_rescale_arrows,<span class="fu">aes</span>(<span class="at">x =</span> first_lon, <span class="at">y =</span> first_lat,<span class="at">xend =</span> last_lon, <span class="at">yend =</span> last_lat), </span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length=</span><span class="fu">unit</span>(<span class="fl">0.10</span>,<span class="st">"cm"</span>), <span class="at">type =</span> <span class="st">"closed"</span>),</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">color=</span><span class="st">'#c1121f'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="arrows_export.jpg" class="img-fluid" style="width:80.0%"></p>
+</div>
 </div>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
