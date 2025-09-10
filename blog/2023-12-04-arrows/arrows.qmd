@@ -27,18 +27,17 @@ In the example, we use sample data, but if you know where you event starts and e
 
 # Data
 
-Load data from package **seamonas**
+Load data from package **SeaDens**
 
 ```{r, eval=FALSE}
-library(seamonas)
+library(SeaDens) #updated
 ```
 
-This data is from a simulated survey
+This data is from a simulated survey.
 
 ```{r, eval=FALSE}
 survey_data<-survey_4326
 ```
-
 
 ## Calculate gaps
 
@@ -82,7 +81,6 @@ survey_data_gaps<-survey_data_gaps %>%
                                 time_dif >= 2 ~ 'Y',
                                 TRUE ~ 'N'))
 ```
-
 
 ## Identify events
 
@@ -134,7 +132,6 @@ ggplot(survey_time_events,
        aes(x = first_lon, y = first_lat)) +
   geom_segment(aes(xend = last_lon, yend = last_lat), arrow = arrow())
 ```
-
 
 # Re-scale
 
@@ -220,6 +217,28 @@ ggplot() +
   geom_segment(data=survey_rescale_arrows,aes(x = first_lon, y = first_lat,xend = last_lon, yend = last_lat), 
                arrow = arrow(length=unit(0.10,"cm"), type = "closed"),
                color='#c1121f')
+```
+
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+ggsave(ggplot() + 
+  geom_sf(data = German_EEZ, colour = 'black')+
+  geom_sf(data = German_land, colour = 'black', fill = 'grey')+ 
+  coord_sf(xlim = c(3, 9),ylim = c(53, 56))+
+  theme_bw()+
+  xlab('Longitude')+ylab('Latitude')+  
+  geom_segment(data=survey_rescale_arrows,aes(x = first_lon, y = first_lat,xend = last_lon, yend = last_lat), 
+               arrow = arrow(length=unit(0.10,"cm"), type = "closed"),
+               color='#c1121f'), 
+       filename = paste0(here(),"/blog/2023-12-04-arrows/arrows_export.jpg"),
+       width = 5, 
+       height = 5, 
+       units = "in",
+       dpi = 300)
+```
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2023-12-04-arrows/arrows_export.jpg"))
 ```
 
 ## Further reading

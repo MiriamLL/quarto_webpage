@@ -114,4 +114,24 @@ plot_c+
   annotate("segment",y = 0, yend = 0,x = 3, xend = 4,colour = "black")
 ```
 
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+ggsave(plot_c+
+  annotate(geom = "text",x = 1.5,y = -5, label = "Group 1",size = 4)+
+  annotate("segment",y = 0, yend = 0,x = 1, xend = 2,colour = "black")+
+  
+  annotate(geom = "text",x = 3.5,y = -5, label = "Group 2",size = 4)+
+  annotate("segment",y = 0, yend = 0,x = 3, xend = 4,colour = "black"), 
+       filename = paste0(here(),"/blog/2023-11-02-secondaryxtitle/secondaryaxis_export.jpg"),
+       width = 6, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
+```
+
+
+```{r, echo=FALSE, out.width = "70%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2023-11-02-secondaryxtitle/secondaryaxis_export.jpg"))
+```
+
 That was it, I hope it helps :)

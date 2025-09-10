@@ -41,7 +41,6 @@ color7<-'#4267ac'
 color8<-'#6a4c93'
 ```
 
-
 # Plots
 
 ```{r, eval=FALSE}
@@ -122,6 +121,26 @@ my_plot_wtext +
   annotate("rect", xmin = legx-0.01, xmax = legx+0.08, ymin = legy-0.24, ymax = legy-0.27,color = color4,linewidth=1, fill="transparent")+
   annotate("rect", xmin = legx-0.01, xmax = legx+0.08, ymin = legy-0.29, ymax = legy-0.32,color = color5,linewidth=1, fill="transparent")+
   annotate("rect", xmin = legx-0.01, xmax = legx+0.08, ymin = legy-0.34, ymax = legy-0.37,color = color6,linewidth=1, fill="transparent")
+```
+
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+ggsave(my_plot_wtext +
+  annotate("rect", xmin = legx-0.01, xmax = legx+0.08, ymin = legy-0.09, ymax = legy-0.12,color = color1,linewidth=1, fill="transparent")+
+  annotate("rect", xmin = legx-0.01, xmax = legx+0.08, ymin = legy-0.14, ymax = legy-0.17,color = color2,linewidth=1, fill="transparent")+
+  annotate("rect", xmin = legx-0.01, xmax = legx+0.08, ymin = legy-0.19, ymax = legy-0.22,color = color3,linewidth=1, fill="transparent")+
+  annotate("rect", xmin = legx-0.01, xmax = legx+0.08, ymin = legy-0.24, ymax = legy-0.27,color = color4,linewidth=1, fill="transparent")+
+  annotate("rect", xmin = legx-0.01, xmax = legx+0.08, ymin = legy-0.29, ymax = legy-0.32,color = color5,linewidth=1, fill="transparent")+
+  annotate("rect", xmin = legx-0.01, xmax = legx+0.08, ymin = legy-0.34, ymax = legy-0.37,color = color6,linewidth=1, fill="transparent"), 
+       filename = paste0(here(),"/blog/2023-10-02-inside-legend/insidelegend_export.jpg"),
+       width = 4, 
+       height = 6, 
+       units = "in",
+       dpi = 300)
+```
+
+```{r, echo=FALSE, out.width = "40%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2023-10-02-inside-legend/insidelegend_export.jpg"))
 ```
 
 You can of course use the legend, but this option is for me more easy to custom and move around the plot. Moreover, it allows you to include all kinds of annotations inside the plot.
