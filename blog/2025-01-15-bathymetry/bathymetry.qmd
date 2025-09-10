@@ -156,6 +156,10 @@ ggsave(Plot_bath,
        dpi = 300)
 ```
 
+```{r, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-01-15-nathymetry/bathymetry_export.jpg"))
+```
+
 # Further reading
 
 -   [Package GermanNorthSea](https://github.com/MiriamLL/GermanNorthSea)

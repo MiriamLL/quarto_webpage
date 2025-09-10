@@ -366,6 +366,10 @@ ggsave(ggplot() +
        dpi = 300)
 ```
 
+```{r, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-06-02-shipping/shipping_export.jpg"))
+```
+
 # Further reading
 
 Another potential way to evaluate shipping traffic is to obtain information from vessel traffic density such as in [Womersley 2022](https://www.pnas.org/doi/10.1073/pnas.2117440119). In this paper, gridded products were **purchased** from Exact Earth (<https://www.exactearth.com>) for the years of 2011 to 2014 at 0.25° × 0.25° grid cell resolution.

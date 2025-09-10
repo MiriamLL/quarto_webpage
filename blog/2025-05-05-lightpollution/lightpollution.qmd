@@ -254,6 +254,11 @@ ggsave(ggplot() +
        dpi = 300)
 ```
 
+```{r, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-05-05-lightpollution/radiance_export.jpg"))
+```
+
+
 # Further read
 
 -   Package [Tidyterra](https://dieghernan.r-universe.dev/articles/tidyterra/welcome.html)\

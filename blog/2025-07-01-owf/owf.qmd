@@ -331,6 +331,10 @@ In just four years, more area was developed for offshore wind farms than in the 
   (sum(OWF_Before2016$AREA_SQKM,OWF_After2016$AREA_SQKM))
 ```
 
+```{r, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-07-01-owf/owf_export.jpg"))
+```
+
 # Additional information
 
 **Alternative data sources** <br>

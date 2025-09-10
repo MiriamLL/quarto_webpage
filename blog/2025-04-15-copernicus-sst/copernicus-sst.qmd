@@ -249,6 +249,10 @@ ggsave(Plot_sst +
        dpi = 300)
 ```
 
+```{r, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-04-15-copernicus-sst/sst_export.jpg"))
+```
+
 # Further reading
 
 -   [Examples from Copernicus](https://marine.copernicus.eu/services/user-learning-services/using-r-work-copernicus-marine-data)

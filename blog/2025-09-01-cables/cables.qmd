@@ -399,6 +399,10 @@ ggsave(Cables_export,
        height = 6)
 ```
 
+```{r, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-09-01-cables/cables_export.jpg"))
+```
+
 # References
 
 ## Effects

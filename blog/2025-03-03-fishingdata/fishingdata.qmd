@@ -244,6 +244,10 @@ ggsave(Fishing_plot,
        dpi = 300)
 ```
 
+```{r, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-03-03-fishingdata/fishingwatch_export.jpg"))
+```
+
 # Further read
 
 Global fishing watch: [Tracking the global footprint of fisheries](https://www.science.org/doi/10.1126/science.aao5646)

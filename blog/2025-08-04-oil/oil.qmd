@@ -318,6 +318,10 @@ ggsave(Oil_4plot,filename = paste0(My_directory,"/oil_export.jpeg"),
        height = 6)
 ```
 
+```{r, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-08-04-oil/oil_export.jpg"))
+```
+
 # References
 
 -   [Assessment of impacts of the offshore oil and gas industry on the marine environment](https://oap.ospar.org/en/ospar-assessments/quality-status-reports/qsr-2023/other-assessments/impacts-offshore-oil-and-gas-industry/)
