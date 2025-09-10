@@ -16,7 +16,8 @@ categories:
   - R
   - English
   - Y2024
-  - tracking
+  - biologging
+  - GIS
 ---
 
 # Intro

@@ -12,6 +12,7 @@ categories:
   - ggplot2
   - English
   - Y2023
+  - surveys
 format:
   html:
     toc: true

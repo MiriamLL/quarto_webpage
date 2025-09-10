@@ -1,0 +1,56 @@
+---
+title: "Git & Github"
+description: |
+  A short intro.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 10-27-2021
+image: gitgithub_front.jpg
+categories:
+  - R
+  - Git
+  - English
+  - Y2021
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+---
+
+```{r libraries, echo=FALSE}
+library(distilltools)
+library(fontawesome)
+```
+
+# Intro
+
+In this presentation, we will have a short intro on:  
+- Git  
+- Github  
+- Reproducibility  
+- Git+Github  
+- Naming things  
+
+⚡⚡⚡
+
+```{r, echo=FALSE, fig.align='left',  out.width="80%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2021-10-27-gitgithub/gitgithub_front.jpg"))
+```
+
+```{r icon-links,echo=FALSE}
+icon_link(icon = "fas fa-images",
+          text = "Open presentation",
+          url = "https://miriamll.github.io/talk_github/GitGithubZenodo#1")
+```
+
+⚡⚡⚡
+
+# Keen to learn more?
+
+- Happy git:    
+[Happy Git by Jennifer Bryan](https://happygitwithr.com/)<br>
+- Tutorials   
+[RLadiesFreiburg](https://www.youtube.com/watch?v=tSse0KPgSoQ&t=1s)
+

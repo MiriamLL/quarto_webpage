@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Miriam Lerma">
+<meta name="dcterms.date" content="2022-03-22">
+<meta name="description" content="How to interpolate tracking data.">
+
+<title>Interpolation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Welcome to my site</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html">
+ <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../packages.html">
+ <span class="menu-text">Packages</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/miriam-lerma/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MiriamLL"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data 📖</a></li>
+  <li><a href="#identify-trips" id="toc-identify-trips" class="nav-link" data-scroll-target="#identify-trips">Identify trips 🛩️</a></li>
+  <li><a href="#interpolate" id="toc-interpolate" class="nav-link" data-scroll-target="#interpolate">Interpolate 🌐</a>
+  <ul class="collapse">
+  <li><a href="#interpolate_trips" id="toc-interpolate_trips" class="nav-link" data-scroll-target="#interpolate_trips">interpolate_trips</a></li>
+  <li><a href="#interpolate_all" id="toc-interpolate_all" class="nav-link" data-scroll-target="#interpolate_all">interpolate_all</a></li>
+  </ul></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot 🖌️</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary 👩🏽‍💻</a></li>
+  <li><a href="#recommended-sources" id="toc-recommended-sources" class="nav-link" data-scroll-target="#recommended-sources">Recommended sources 📑</a></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Interpolation</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">Biologging</div>
+    <div class="quarto-category">English</div>
+    <div class="quarto-category">Y2022</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>How to interpolate tracking data.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Miriam Lerma </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 22, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<p>Interpolation is a type of estimation, a method of constructing (or finding) new data ponts based on the range of a discrete set of known data points (source: <a href="https://en.wikipedia.org/wiki/Interpolation">wikipedia</a>)</p>
+<p>This post is about: <br> - How to prepare your data and use the function interpolate from the package <strong>sula</strong> for interpolating your tracking data <br></p>
+<p>Interpolating your data might help you to: <br> - Fill <strong>gaps</strong> on your tracking data, and/or <br> - To <strong>make comparable</strong> trips when individuals were tracked at different intervals <br> … read more at the end of this page.</p>
+<p>⚠️<strong>However</strong>, while interpolating you should be very cautious, because you are creating locations where the bird might have not been.</p>
+<p>This post step by step:<br>
+1. Load data<br>
+2. Identify nest location / or central location<br>
+3. Classify if the animal was inside the central location or outside<br>
+4. Count the number of trips<br>
+5. Interpolate only when the animal was on a trip</p>
+<p>You can also just go directly to : interpolate</p>
+</section>
+<section id="data" class="level1">
+<h1>Data 📖</h1>
+<p>To do this exercise, load data from the package ‘sula’. <br> For accessing the data, you need to have the package installed.</p>
+<p>To install:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/sula"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sula)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The data is from 10 tracked individuals.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>GPS_raw<span class="ot">&lt;-</span>(GPS_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Select only one individual.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ID01_track<span class="ot">&lt;-</span>GPS_raw <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(IDs<span class="sc">==</span><span class="st">'GPS01'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="identify-trips" class="level1">
+<h1>Identify trips 🛩️</h1>
+<p>Identify the trips allows to remove all the central locations (e.g.&nbsp;the nest), because usually you will be not interested in interpolating the locations where the animal was at their central location, only when it was in a trip.</p>
+<section id="nest-location" class="level3">
+<h3 class="anchored" data-anchor-id="nest-location">Nest location 🐣</h3>
+<p>Is also often the case that at fieldwork, the GPS are activated to start recording data just after releasing the animal back to their central location (-nest-)</p>
+<p>Therefore, the first location recorded will correspond to their nest.</p>
+<p>To identify the first location I use the function <strong>locate_nest</strong> from the package <strong>sula</strong>.</p>
+<p>Because you might have different column names, you can add the names of your columns here in ‘column_lon’ and ‘column_lat’.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ID01_nest<span class="ot">&lt;-</span><span class="fu">locate_nest</span>(<span class="at">GPS_data =</span> ID01_track,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">column_lat =</span> <span class="st">'Longitude'</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">column_lon =</span> <span class="st">'Latitude'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Manually</strong>: If you did not activate the GPS at their nest but you know the nest location, you can manually write it down.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ID01_nest<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">Longitude=</span><span class="sc">-</span><span class="fl">109.4531</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">Latitude=</span><span class="sc">-</span><span class="fl">27.20097</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="identify-trips-1" class="level3">
+<h3 class="anchored" data-anchor-id="identify-trips-1">Identify trips 🛩️</h3>
+<p>Now that you have the nest location, the function <strong>identify_trips</strong> from the package <strong>sula</strong> helps you to identify when the bird was out on a trip.</p>
+<p>The function adds a new column, where ‘Y’ means that the location is outside the range you select (in the example 1 km), and ‘N’ means that the location is inside the range you select.</p>
+<p>Therefore ‘Y’ is when the bird was on a trip, and ‘N’ is when it was at the nest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>identify_trips<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">GPS_data=</span>GPS_data,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">Nest_location=</span>Nest_location,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">Distance_km=</span>Distance_km){</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  required_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (df_name <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"GPS_data"</span>, <span class="st">"Nest_location"</span>)) {</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">get</span>(df_name)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    missing_cols <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(required_cols, <span class="fu">colnames</span>(df))</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(missing_cols) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">"Missing columns in"</span>, df_name, <span class="st">":"</span>, <span class="fu">paste</span>(missing_cols, <span class="at">collapse =</span> <span class="st">", "</span>)))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tracks</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  track_df<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(GPS_data)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  track_spatial<span class="ot">&lt;-</span>track_df</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  track_spatial<span class="sc">$</span>lat<span class="ot">&lt;-</span>track_spatial<span class="sc">$</span>Latitude</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  track_spatial<span class="sc">$</span>lon<span class="ot">&lt;-</span>track_spatial<span class="sc">$</span>Longitude</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  sp<span class="sc">::</span><span class="fu">coordinates</span>(track_spatial)<span class="ot">&lt;-</span><span class="er">~</span>lon<span class="sc">+</span>lat</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  sp<span class="sc">::</span><span class="fu">proj4string</span>(track_spatial)<span class="ot">=</span> sp<span class="sc">::</span><span class="fu">CRS</span>(<span class="st">"+init=epsg:4326"</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  track_spatial <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">spTransform</span>(track_spatial, sp<span class="sc">::</span><span class="fu">CRS</span>(<span class="st">"+init=epsg:4326"</span>))</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  track_spatial<span class="ot">&lt;-</span>sf<span class="sc">::</span><span class="fu">st_as_sf</span>(track_spatial)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># center buffer</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  colonia<span class="ot">&lt;-</span>Nest_location</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  colonia_spatial<span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">SpatialPoints</span>(<span class="fu">cbind</span>(colonia<span class="sc">$</span>Longitude,colonia<span class="sc">$</span>Latitude)) </span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  sp<span class="sc">::</span><span class="fu">proj4string</span>(colonia_spatial)<span class="ot">=</span> sp<span class="sc">::</span><span class="fu">CRS</span>(<span class="st">"+init=epsg:4326"</span>) </span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  colonia_spatial <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">spTransform</span>(colonia_spatial, sp<span class="sc">::</span><span class="fu">CRS</span>(<span class="st">"+init=epsg:4326"</span>))</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  colonia_spatial<span class="ot">&lt;-</span>sf<span class="sc">::</span><span class="fu">st_as_sf</span>(colonia_spatial)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># distance</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  Distance_km<span class="ot">&lt;-</span>Distance_km<span class="sc">*</span><span class="dv">1000</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  distancia_buffer<span class="ot">&lt;-</span>sf<span class="sc">::</span><span class="fu">st_buffer</span>(colonia_spatial, Distance_km)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># over</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>  track_buffer<span class="ot">&lt;-</span><span class="fu">sapply</span>(sf<span class="sc">::</span><span class="fu">st_intersects</span>(track_spatial,distancia_buffer),</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">function</span>(z) <span class="cf">if</span> (<span class="fu">length</span>(z)<span class="sc">==</span><span class="dv">0</span>) <span class="cn">NA_integer_</span> <span class="cf">else</span> z[<span class="dv">1</span>])</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">#todo lo que esta dentro del buffer es 1 y fuera es 0</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  track_df<span class="sc">$</span>trip<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(track_buffer)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>  <span class="co">#sustituye nas por ceros</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>  track_df<span class="sc">$</span>trip[<span class="fu">is.na</span>(track_df<span class="sc">$</span>trip)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>  track_df<span class="sc">$</span>trip<span class="ot">&lt;-</span><span class="fu">gsub</span>(<span class="st">"1"</span>, <span class="st">"N"</span>, track_df<span class="sc">$</span>trip)</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>  track_df<span class="sc">$</span>trip<span class="ot">&lt;-</span><span class="fu">gsub</span>(<span class="st">"0"</span>, <span class="st">"Y"</span>, track_df<span class="sc">$</span>trip)</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(track_df)</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ID01_trips<span class="ot">&lt;-</span><span class="fu">identify_trips</span>(<span class="at">GPS_data=</span>ID01_track,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">Nest_location=</span>ID01_nest,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">Distance_km=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="count-trips" class="level3">
+<h3 class="anchored" data-anchor-id="count-trips">Count trips 🧮</h3>
+<p>The function <strong>count_trips</strong> from the package <strong>sula</strong> removes the locations that are not trips (for example removes all rows where the animal was at the central location) and adds a column with the number of the trip.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ID01_onlytrips<span class="ot">&lt;-</span><span class="fu">count_trips</span>(<span class="at">GPS_data=</span>ID01_trips)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To check when the trips started and ended you can also use functions from the package <strong>tidyverse</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ID01_onlytrips <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(trip_number)<span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">start=</span><span class="fu">paste</span>(<span class="fu">first</span>(DateGMT),<span class="fu">first</span>(TimeGMT)),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">end=</span><span class="fu">paste</span>(<span class="fu">last</span>(DateGMT),<span class="fu">last</span>(TimeGMT)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you know when the trip started and ended, you can also add the trip classification <strong>manually</strong>, using also functions from the package tidyverse.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ID01_onlytrips <span class="ot">&lt;-</span> ID01_trips <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">trip_number=</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">case_when</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>             DateGMT <span class="sc">==</span> <span class="st">'02/11/2017'</span> <span class="sc">&amp;</span> TimeGMT <span class="sc">&gt;=</span> <span class="st">'19:34:31'</span> <span class="sc">&amp;</span> TimeGMT <span class="sc">&lt;=</span> <span class="st">'20:09:24'</span> <span class="sc">~</span> <span class="st">'trip_1'</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>             DateGMT <span class="sc">==</span> <span class="st">'03/11/2017'</span> <span class="sc">&amp;</span> TimeGMT <span class="sc">&gt;=</span> <span class="st">'12:44:04'</span> <span class="sc">&amp;</span> TimeGMT <span class="sc">&lt;=</span> <span class="st">'14:30:00'</span> <span class="sc">~</span> <span class="st">'trip_2'</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>             DateGMT <span class="sc">==</span> <span class="st">'04/11/2017'</span> <span class="sc">&amp;</span> TimeGMT <span class="sc">&gt;=</span> <span class="st">'07:45:17'</span> <span class="sc">&amp;</span> TimeGMT <span class="sc">&lt;=</span> <span class="st">'09:41:28'</span> <span class="sc">~</span> <span class="st">'trip_3'</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>             DateGMT <span class="sc">==</span> <span class="st">'04/11/2017'</span> <span class="sc">&amp;</span> TimeGMT <span class="sc">&gt;=</span> <span class="st">'17:05:36'</span> <span class="sc">&amp;</span> TimeGMT <span class="sc">&lt;=</span> <span class="st">'20:41:10'</span> <span class="sc">~</span> <span class="st">'trip_4'</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>             DateGMT <span class="sc">==</span> <span class="st">'05/11/2017'</span> <span class="sc">&amp;</span> TimeGMT <span class="sc">&gt;=</span> <span class="st">'09:06:13'</span> <span class="sc">&amp;</span> TimeGMT <span class="sc">&lt;=</span> <span class="st">'11:26:14'</span> <span class="sc">~</span> <span class="st">'trip_5'</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"nest"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trip_number <span class="sc">!=</span> <span class="st">'nest'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="interpolate" class="level1">
+<h1>Interpolate 🌐</h1>
+<section id="interpolate_trips" class="level2">
+<h2 class="anchored" data-anchor-id="interpolate_trips">interpolate_trips</h2>
+<p>Once the data frame contains columns with Longitude, Latitude, and trip_number, the trips can be interpolated.</p>
+<p>The function <strong>interpole_trips</strong> from the package <strong>sula</strong> helps you to interpolate the locations based on an interval. In the examples below 900 secs = 15 minutes and 60 sec = 1 minute</p>
+<p>Because you might have different column names, this function has a lot of arguments, but basically you just need to replace the name of your data frame, the interval you are interested to do the interpolation, the column names, and the format your date and time is presented.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ID01_interpolated15m<span class="ot">&lt;-</span><span class="fu">interpolate_trips</span>(<span class="at">GPS_data=</span>ID01_onlytrips,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">interval=</span><span class="st">'900 sec'</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">column_date=</span><span class="st">'DateGMT'</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">column_time=</span><span class="st">'TimeGMT'</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">column_trip=</span><span class="st">'trip_number'</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">column_lat=</span><span class="st">'Latitude'</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">column_lon=</span><span class="st">'Longitude'</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                                     datetime_format<span class="ot">&lt;-</span><span class="st">"%d/%m/%Y %H:%M:%S"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ID01_interpolated1m<span class="ot">&lt;-</span><span class="fu">interpolate_trips</span>(<span class="at">GPS_data=</span>ID01_onlytrips,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">interval=</span><span class="st">'60 sec'</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">column_date=</span><span class="st">'DateGMT'</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">column_time=</span><span class="st">'TimeGMT'</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">column_trip=</span><span class="st">'trip_number'</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">column_lat=</span><span class="st">'Latitude'</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">column_lon=</span><span class="st">'Longitude'</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                                     datetime_format<span class="ot">&lt;-</span><span class="st">"%d/%m/%Y %H:%M:%S"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="interpolate_all" class="level2">
+<h2 class="anchored" data-anchor-id="interpolate_all">interpolate_all</h2>
+<p>In case you want to interpolate a specific trip, or everything (including the central location), and you already have a datetime column in the correct format (so R can understand is date and time) there is also the function <strong>interpolate</strong> in the package <strong>sula</strong> that interpolates all the locations.</p>
+<p>For example, to interpolate a specific trip, subset the trip you are interested in interpolating.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>GPS01_trip5<span class="ot">&lt;-</span>GPS_preparado <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(IDs<span class="sc">==</span><span class="st">'GPS01'</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trip_number<span class="sc">==</span><span class="st">'trip_5'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Use the function <strong>interpolate</strong>. Here I select the dataframe, the interval ofinterest, and the name of the columns that will be included in the interpolation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>GPS01_trip1_interpolated<span class="ot">&lt;-</span><span class="fu">interpolate</span>(<span class="at">GPS_data =</span> GPS01_trip5,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">interval=</span><span class="st">'10 sec'</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">column_datetime =</span> <span class="st">'dia_hora'</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">column_lat =</span> <span class="st">'Latitude'</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">column_lon =</span> <span class="st">'Longitude'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="plot" class="level1">
+<h1>Plot 🖌️</h1>
+<p>Now lets compare the before and after, the tracking data vs the interpolated data.</p>
+<p>The package <strong>patchwork</strong> lets us see the plots side by side.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Create three plots, one using the original points, and two using the interpolation to compare.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Original_track<span class="ot">&lt;-</span><span class="fu">ggplot</span>(ID01_onlytrips, <span class="fu">aes</span>(<span class="at">x=</span>Longitude, <span class="at">y=</span>Latitude, <span class="at">color=</span>trip_number)) <span class="sc">+</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">'Original tracking data'</span>)<span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">'none'</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>Interpolated_15m<span class="ot">&lt;-</span><span class="fu">ggplot</span>(ID01_interpolated15m, <span class="fu">aes</span>(<span class="at">x=</span>Longitude, <span class="at">y=</span>Latitude, <span class="at">color=</span>trip_number)) <span class="sc">+</span> </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">'Interpolated to 15 mins'</span>)<span class="sc">+</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">'none'</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>Interpolated_1m<span class="ot">&lt;-</span><span class="fu">ggplot</span>(ID01_interpolated1m, <span class="fu">aes</span>(<span class="at">x=</span>Longitude, <span class="at">y=</span>Latitude, <span class="at">color=</span>trip_number)) <span class="sc">+</span> </span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">'Interpolated to 1 min'</span>)<span class="sc">+</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">'right'</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>Original_track<span class="sc">+</span>Interpolated_15m<span class="sc">+</span>Interpolated_1m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="interpolation_export.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now it is up to you to decide which interpolation interval fits better to your study.</p>
+</section>
+<section id="summary" class="level1">
+<h1>Summary 👩🏽‍💻</h1>
+<p>TL;DR (too long; didn’t read)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sula)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>ID01_track<span class="ot">&lt;-</span>GPS_raw <span class="sc">%&gt;%</span> <span class="fu">filter</span>(IDs<span class="sc">==</span><span class="st">'GPS01'</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>ID01_nest<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">Longitude=</span><span class="sc">-</span><span class="fl">109.4531</span>,<span class="at">Latitude=</span><span class="sc">-</span><span class="fl">27.20097</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>ID01_trips<span class="ot">&lt;-</span><span class="fu">identify_trips</span>(<span class="at">GPS_data=</span>ID01_track,<span class="at">Nest_location=</span>ID01_nest,<span class="at">Distance_km=</span><span class="dv">1</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>ID01_onlytrips<span class="ot">&lt;-</span><span class="fu">count_trips</span>(<span class="at">GPS_data=</span>ID01_trips)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>ID01_interpolated15m<span class="ot">&lt;-</span><span class="fu">interpolate_trips</span>(<span class="at">GPS_data=</span>ID01_onlytrips,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">interval=</span><span class="st">'900 sec'</span>,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">column_date=</span><span class="st">'DateGMT'</span>,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">column_time=</span><span class="st">'TimeGMT'</span>,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">column_trip=</span><span class="st">'trip_number'</span>,</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">column_lat=</span><span class="st">'Latitude'</span>,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">column_lon=</span><span class="st">'Longitude'</span>,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>                                        datetime_format<span class="ot">&lt;-</span><span class="st">"%d/%m/%Y %H:%M:%S"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="recommended-sources" class="level1">
+<h1>Recommended sources 📑</h1>
+<p>Some of the reasons to interpolate data are:</p>
+<ul>
+<li><p>To fit the GPS locations with diving data. For example: <a href="https://link.springer.com/article/10.1007/s00227-020-03700-2#Sec2">Lerma et al.&nbsp;2020</a>, <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.12926">Browning et al.&nbsp;2017</a></p></li>
+<li><p>Because the recorded data was different between individuals, and thus interpolating data provides fixed intervals. For example: <a href="https://doi.org/10.1111/jav.02156">Borrmann et al.&nbsp;2019</a></p></li>
+<li><p>To fill occasional gaps in the tracking data, particularly for animals that dive and do not receive signal when submerged. For example: <a href="https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2021.2261">Iorio-Merlo et al.&nbsp;2022</a>.</p></li>
+</ul>
+<p>If you can think on another case when interpolation is necessary please do not hesitate to write me to include it on the list.</p>
+<p>Also if you use the function from the package <strong>sula</strong> please consider including the package in your citations.</p>
+<p>For more details or suggestions you can also always write me an <a href="miriamjlerma@gmail.com">email</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

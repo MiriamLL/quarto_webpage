@@ -16,7 +16,6 @@ categories:
   - R
   - English
   - Y2024
-  - tracking
 ---
 
 # Intro
