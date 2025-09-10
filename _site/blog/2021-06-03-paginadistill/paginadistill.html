@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Miriam Lerma">
+<meta name="dcterms.date" content="2021-06-01">
+<meta name="description" content="Como crear tu propia pagina y agregar contenidos.">
+
+<title>Pagina distill</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Welcome to my site</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html">
+ <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../packages.html">
+ <span class="menu-text">Packages</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/miriam-lerma/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MiriamLL"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#crear-un-sitio" id="toc-crear-un-sitio" class="nav-link active" data-scroll-target="#crear-un-sitio">Crear un sitio</a>
+  <ul class="collapse">
+  <li><a href="#barra-de-navegación" id="toc-barra-de-navegación" class="nav-link" data-scroll-target="#barra-de-navegación">Barra de navegación ⛵</a></li>
+  <li><a href="#crear-un-post" id="toc-crear-un-post" class="nav-link" data-scroll-target="#crear-un-post">Crear un post 📬</a></li>
+  <li><a href="#escribir-en-el-post" id="toc-escribir-en-el-post" class="nav-link" data-scroll-target="#escribir-en-el-post">Escribir en el post ✏️</a></li>
+  <li><a href="#agregar-código" id="toc-agregar-código" class="nav-link" data-scroll-target="#agregar-código">Agregar código 👩🏽‍💻</a></li>
+  <li><a href="#css" id="toc-css" class="nav-link" data-scroll-target="#css">CSS 👩🏽‍🎨</a></li>
+  <li><a href="#citas" id="toc-citas" class="nav-link" data-scroll-target="#citas">Citas 🌹</a></li>
+  <li><a href="#agregar-botones" id="toc-agregar-botones" class="nav-link" data-scroll-target="#agregar-botones">Agregar botones 🛎️</a></li>
+  <li><a href="#build" id="toc-build" class="nav-link" data-scroll-target="#build">Build 🔨</a></li>
+  <li><a href="#de-rstudio-a-online" id="toc-de-rstudio-a-online" class="nav-link" data-scroll-target="#de-rstudio-a-online">De Rstudio a online 👩🏽‍🚀</a></li>
+  <li><a href="#créditos-y-recursos" id="toc-créditos-y-recursos" class="nav-link" data-scroll-target="#créditos-y-recursos">Créditos y recursos 🚀</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Pagina distill</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">Español</div>
+    <div class="quarto-category">Y2021</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>Como crear tu propia pagina y agregar contenidos.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Miriam Lerma </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 1, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="crear-un-sitio" class="level1">
+<h1>Crear un sitio</h1>
+<p>Para crear una pagina web usando distill, básicamente necesitas saber Rmd. Actualización: Apartir de 2025 uso quarto…</p>
+<p>Empecemos por instalar el paquete <strong>distill</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("distill")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(distill)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Tienes que preguntarte: ¿Que tipo de página quieres hacer? ¿Sitio web o blog?</p>
+<p>Para cualquiera de las opciones puedes ir a File&gt;New Project&gt; Distill Website o Distill Blog</p>
+<p><a href="https://rstudio.github.io/distill/images/create-website.png">Ver otros detalles</a></p>
+<p>La estructura del sitio contiene varios archivos</p>
+<ul>
+<li>La configuración del sitio: <strong>site.yml</strong></li>
+<li>La primera página que se abre cuando entras: <strong>index.Rmd</strong></li>
+<li>Otros Rmd donde puedes escribir sobre tí. Ej. <strong>about.Rmd</strong></li>
+</ul>
+<section id="barra-de-navegación" class="level2">
+<h2 class="anchored" data-anchor-id="barra-de-navegación">Barra de navegación ⛵</h2>
+<p>Para modificar la barra de navegación, abre el archivo <strong>site.yml</strong> <br> Puedes elegir donde quieres que aparezcan los contenidos. Ej. al elegir <strong>left</strong> aparecerán a la izquierda.<br>
+Para agregar pestañas agrega <strong>text</strong> y <strong>href</strong>. Pon atención a los espacios vacios. <br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>navbar<span class="sc">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  left<span class="sc">:</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span> text<span class="sc">:</span> <span class="st">"Home"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      href<span class="sc">:</span> index.html</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span> text<span class="sc">:</span> <span class="st">"Projects"</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      href<span class="sc">:</span> projects.html</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span> icon<span class="sc">:</span> fab fa<span class="sc">-</span>twitter</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      href<span class="sc">:</span> https<span class="sc">:</span><span class="er">//</span>twitter.com<span class="sc">/</span>MiriamLermaL</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span> icon<span class="sc">:</span> fab fa<span class="sc">-</span>github</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      href<span class="sc">:</span> https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>MiriamLL</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="crear-un-post" class="level2">
+<h2 class="anchored" data-anchor-id="crear-un-post">Crear un post 📬</h2>
+<p>Usa la función create_post y escribe dentro el nombre que quieras darle a tu post.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(distill)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create_post</span>(<span class="st">"Nombre de tu post"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Aparecerá algo como:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>v Created post at _posts<span class="sc">/</span><span class="dv">2021-05-14</span><span class="sc">-</span>Nombre de tu post</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Y te abrirá un nuevo Rmd.</p>
+<p><a href="http://uwesterr.de/posts/2020-01-17-create-a-blog-with-distill/">Ver Uwe’s blog para otros detalles</a></p>
+</section>
+<section id="escribir-en-el-post" class="level2">
+<h2 class="anchored" data-anchor-id="escribir-en-el-post">Escribir en el post ✏️</h2>
+<p>Puedes abrir el Rmd que creaste usando la función create_post y escribir como en cualquier Rmd.</p>
+<p>La información en el yaml aparecerá en el indice de la pestaña.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">"sula"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>description<span class="sc">:</span> <span class="er">|</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  A short description of the post.</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> name<span class="sc">:</span> Miriam Lerma</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    url<span class="sc">:</span> {}</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="dv">05-14-2021</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  distill<span class="sc">::</span>distill_article<span class="sc">:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    self_contained<span class="sc">:</span> false</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="agregar-código" class="level2">
+<h2 class="anchored" data-anchor-id="agregar-código">Agregar código 👩🏽‍💻</h2>
+<p>Para agregar código en tu post y que no salga por otro lado el titulo, texto y código hay que tener espacios entre ellos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Titulo</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Texto</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>Chunk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="css" class="level2">
+<h2 class="anchored" data-anchor-id="css">CSS 👩🏽‍🎨</h2>
+<p>En el paquete distill puedes usar la función create_theme, y poner el nombre que le quieres dar al archivo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">create_theme</span>(<span class="st">"mi_estilo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Te va a crear un archivo css que puedes modificar para cambiar el aspecto de tu página. Una vez creado y/o modificado, debes incluirlo en <strong>site.yml</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  distill<span class="sc">::</span>distill_article<span class="sc">:</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    theme<span class="sc">:</span> mi_estilo.css</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Puedes cambiar el estilo de las <a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2#17">letras</a>, y los <a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2#16">colores</a>. <a href="https://rstudio.github.io/distill/website.html#custom-style">Ver más recursos de estilos</a>.</p>
+</section>
+<section id="citas" class="level2">
+<h2 class="anchored" data-anchor-id="citas">Citas 🌹</h2>
+<p>Para que aparezcan o no las citas, hay que abrir el <strong>site.yml</strong> y escribir:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>collections<span class="sc">:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  posts<span class="sc">:</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    citations<span class="sc">:</span> false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="agregar-botones" class="level2">
+<h2 class="anchored" data-anchor-id="agregar-botones">Agregar botones 🛎️</h2>
+<p>Se pueden agregar botones en la página para los enlaces. Para la inspiración y fuente ve al sitio de <a href="https://ellakaye.github.io/distilltools/">Ella Kaye</a></p>
+<p>Para agregar botones, empieza por instalar el paquete distilltools desde github.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github("EllaKaye/distilltools")</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(distilltools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Nota</strong> Si tienes algunos problemas con rlang, puedes intentar reiniciar sesión y reinstalar el paquete rlang.</p>
+<p>Para agregar iconos usa la función icon_link</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">icon_link</span>(<span class="at">icon =</span> <span class="st">"fas fa-images"</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">text =</span> <span class="st">"slides"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">url =</span> <span class="st">"https://miriamll.github.io/Tutorial_distill_es/TutorialPaginaDistill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para elegir el icono, entrar a la pagina <a href="https://fontawesome.com/icons/download?style=solid">fontawesome</a>: (1) Elige el icono; (2) Busca la información de html; (3) Copia lo que esta dentro de &lt; y &gt;.</p>
+<p>Para cambiar como se ven los botones, hay que especificarlo en el css. Por ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>.icon<span class="sc">-</span>link {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    background<span class="sc">-</span>color<span class="sc">:</span> transparent;</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    color<span class="sc">:</span> <span class="co">#D40067;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    border<span class="sc">:</span> 1px solid;</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    border<span class="sc">-</span>color<span class="sc">:</span> <span class="co">#D40067;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    padding<span class="sc">:</span> 5px .4rem 5px .4rem;</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="sc">/</span><span class="er">*</span>margin<span class="sc">:</span> 4px;<span class="sc">*</span><span class="er">/</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    margin<span class="sc">-</span>top<span class="sc">:</span> 4px;</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    margin<span class="sc">-</span>right<span class="sc">:</span> 8px;</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    margin<span class="sc">-</span>bottom<span class="sc">:</span> 4px;</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    border<span class="sc">-</span>radius<span class="sc">:</span> 5px; <span class="sc">/</span><span class="er">*</span> Rounded edges <span class="sc">*</span><span class="er">/</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>.icon<span class="sc">-</span>link<span class="sc">:</span>hover {</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    background<span class="sc">-</span>color<span class="sc">:</span> <span class="co">#D40067;</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    border<span class="sc">-</span>color<span class="sc">:</span> <span class="co">#D40067;</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    color<span class="sc">:</span> white;</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="build" class="level2">
+<h2 class="anchored" data-anchor-id="build">Build 🔨</h2>
+<p>En la pestaña donde tienes environment, history o git, debe aparecer una nueva pestaña con el nombre de <strong>Build</strong></p>
+<p>Puedes elegir esta pestaña, y darle click al martillo que dice Build Website para ver como quedo tu página.</p>
+<p>En la pestaña Viewer… Ya puedes ver tu pagina distill 🥳.</p>
+</section>
+<section id="de-rstudio-a-online" class="level2">
+<h2 class="anchored" data-anchor-id="de-rstudio-a-online">De Rstudio a online 👩🏽‍🚀</h2>
+<p>Uno de los retos es poner tu pagina online.</p>
+<ul>
+<li><p>Se pueden subir los archivos directamente a: <a href="https://www.netlify.com/">Netlify</a></p></li>
+<li><p>Se pueden subir los archivos a github, y conectarlo con Netlify.<br>
+<strong>Recomendado</strong> porque puedes estar actualizando los materiales desde RStudio.</p></li>
+</ul>
+<p>De entrada, tu sitio sera tunombre.netlify.app. Si quieres que sea tunombre.com u otro, cuesta alrededor de 12 dolares, pero varia mucho.</p>
+<p>Publicar sitio por <a href="https://lisalendway.netlify.app/posts/2020-12-09-buildingdistill/?utm_source=dlvr.it&amp;utm_medium=facebook">Lisa Lendway</a></p>
+</section>
+<section id="créditos-y-recursos" class="level2">
+<h2 class="anchored" data-anchor-id="créditos-y-recursos">Créditos y recursos 🚀</h2>
+<ul>
+<li><p>Tutoriales<br> <a href="https://rstudio.github.io/distill/">Crear articulo en distill</a><br> <a href="https://rstudio.github.io/distill/website.html">Crear sitio</a><br> <a href="https://blog.rstudio.com/2020/12/07/distill/">(Re-)introducing Distill for R Markdown</a><br> <a href="https://pkgs.rstudio.com/distill/articles/examples.html">Ejemplos de paginas</a><br></p></li>
+<li><p>Blogs<br> <a href="https://jhelvy.github.io/distillery/tips_and_tricks.html">Galeria</a><br> <a href="https://lisalendway.netlify.app/posts/2020-12-09-buildingdistill/?utm_source=dlvr.it&amp;utm_medium=facebook">Paso a paso: crear un sitio por Lisa Lendway</a></p></li>
+<li><p>Videos<br> <a href="https://www.youtube.com/watch?v=Fm3bsYCilEU">RLadies Crear un sitio por Lisa Lendway</a><br></p></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
