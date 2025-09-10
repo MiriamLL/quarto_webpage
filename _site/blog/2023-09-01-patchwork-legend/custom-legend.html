@@ -342,9 +342,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">"16"</span> <span class="ot">=</span> <span class="st">"#3B194D"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To create the plot:<br>
-1. Subset only to grids with data<br>
-2. Convert the locations into character<br>
-3. Add palette in scale_fill_manual<br>
+- Subset only to grids with data<br>
+- Convert the locations into character<br>
+- Add palette in scale_fill_manual<br>
 4. Remove legend</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>GPS01_plot<span class="ot">&lt;-</span><span class="fu">ggplot</span>()<span class="sc">+</span></span>
@@ -437,6 +437,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">2</span>,</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">1</span>), </span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">heights=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="legend_export.jpg" class="img-fluid" style="width:40.0%"></p>
+</div>
 </div>
 <p>Although you have the option of plot_layout(guides = “collect”) in the package <strong>patchwork</strong>. Sometimes not all plots have all the categories, and therefore it makes sense to create your own customize legend that fits all .</p>
 </section>
