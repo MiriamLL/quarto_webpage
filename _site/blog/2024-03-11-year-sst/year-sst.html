@@ -251,11 +251,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="intro" class="level1">
 <h1>Intro</h1>
 <p>This post is to create a plot with environmental variables, in one axis the sea surface temperature and in the other axis the chlorophyll-a concentration.</p>
-<ol type="1">
+<ul>
 <li>Download data from the server</li>
 <li>Calculate average values</li>
 <li>Create a secondary-axis plot with the values</li>
-</ol>
+</ul>
 </section>
 <section id="load-data" class="level1">
 <h1>Load data</h1>
@@ -546,7 +546,7 @@ The xaxis would be in numeric value for the plot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot_SST<span class="ot">&lt;-</span><span class="fu">ggplot</span>(SST_months) <span class="sc">+</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> xaxis, <span class="at">y =</span> mean_sst),<span class="at">color=</span><span class="st">'red'</span>, <span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>((<span class="st">"Sea Surface Temperature (°C)"</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">8.5</span>,<span class="fl">35.5</span>),<span class="at">expand=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))<span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>((<span class="st">"Sea Surface Temperature (C)"</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">8.5</span>,<span class="fl">35.5</span>),<span class="at">expand=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))<span class="sc">+</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="st">"Months"</span>,<span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>),<span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Mar'</span>,<span class="st">'Apr'</span>,<span class="st">'May'</span>,<span class="st">'Jun'</span>,<span class="st">'Jul'</span>,<span class="st">'Ago'</span>,<span class="st">'Sep'</span>,<span class="st">'Oct'</span>,<span class="st">'Nov'</span>,<span class="st">'Dec'</span>))<span class="sc">+</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span><span class="co">#dejar lineas de las orillas</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">13</span>),</span>
@@ -609,14 +609,11 @@ The xaxis would be in numeric value for the plot.</p>
 
 </div>
 <div class="cell">
-
-</div>
-<div class="cell">
 <div class="cell-output-display">
-<p><img src="year_export.jpg" class="img-fluid" style="width:100.0%"></p>
+<p><img src="year_export.jpg" class="img-fluid" style="width:80.0%"></p>
 </div>
 </div>
-<p>End of document</p>
+<p>Quite long, but it works, which is great, or?</p>
 
 
 </section>

@@ -111,8 +111,38 @@ ggplot(may,aes(x=calen_xs,y=calen_ys,color=events))+
   scale_color_manual(name = "May no. events",values = my_palette)
 ```
 
-```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2024-01-15-calendar/calendar_front.jpg"))
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+here()
+ggsave(ggplot(may,aes(x=calen_xs,y=calen_ys,color=events))+
+  geom_point(size=25,shape=15)+
+
+  scale_x_continuous(limits=c(0.5,7.5))+
+  scale_y_continuous(limits=c(0.5,5.5))+
+  
+  # remove background colors
+  theme_void()+
+  
+  # adds texts
+  geom_text(aes(label=day),color='white') +
+  
+  # sets the legend below
+  theme(legend.position = 'top')+
+   
+  # lines the legend
+  guides(colour = guide_legend(override.aes = list(size=6),nrow = 1))+
+  
+  # uses palette
+  scale_color_manual(name = "May no. events",values = my_palette), 
+       filename = paste0(here(),"/blog/2024-01-15-calendar/calendar_export.jpg"),
+       width = 6.1, 
+       height = 4.8, 
+       units = "in",
+       dpi = 300)
 ```
 
-# Thats it!
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2024-01-15-calendar/calendar_export.jpg"))
+```
+
+I used this to see which dates there were more surveys occurring, hope it helps!

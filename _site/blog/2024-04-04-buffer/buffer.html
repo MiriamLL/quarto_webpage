@@ -191,17 +191,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul class="collapse">
   <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
-  <li><a href="#download-data" id="toc-download-data" class="nav-link" data-scroll-target="#download-data">1. Download data</a>
+  <li><a href="#download-data" id="toc-download-data" class="nav-link" data-scroll-target="#download-data">Download data</a>
   <ul class="collapse">
   <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map">Map</a></li>
   </ul></li>
-  <li><a href="#create-buffer" id="toc-create-buffer" class="nav-link" data-scroll-target="#create-buffer">2. Create buffer</a>
+  <li><a href="#create-buffer" id="toc-create-buffer" class="nav-link" data-scroll-target="#create-buffer">Create buffer</a>
   <ul class="collapse">
   <li><a href="#map-1" id="toc-map-1" class="nav-link" data-scroll-target="#map-1">Map</a></li>
   </ul></li>
-  <li><a href="#extract-information" id="toc-extract-information" class="nav-link" data-scroll-target="#extract-information">3. Extract information</a>
+  <li><a href="#extract-information" id="toc-extract-information" class="nav-link" data-scroll-target="#extract-information">Extract information</a>
   <ul class="collapse">
   <li><a href="#subset" id="toc-subset" class="nav-link" data-scroll-target="#subset">Subset</a></li>
+  <li><a href="#calculate-mean-and-sd" id="toc-calculate-mean-and-sd" class="nav-link" data-scroll-target="#calculate-mean-and-sd">Calculate mean and sd</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -258,7 +259,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this blog, a buffer subsetting environmental data would be created and the average values within the buffer calculated.</p>
 </section>
 <section id="download-data" class="level1">
-<h1>1. Download data</h1>
+<h1>Download data</h1>
 <p>Load the package <strong>rerddap</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rerddap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -321,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 </section>
 <section id="create-buffer" class="level1">
-<h1>2. Create buffer</h1>
+<h1>Create buffer</h1>
 <p>Load package <strong>sp</strong>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -371,7 +372,7 @@ Adjust to your corresponding area on the <strong>coord_sf</strong>.</p>
 </section>
 </section>
 <section id="extract-information" class="level1">
-<h1>3. Extract information</h1>
+<h1>Extract information</h1>
 <p>Convert the SST data into a SpatialPointsDataFrame.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>SST_sp <span class="ot">&lt;-</span> SST_dfclean</span>
@@ -412,7 +413,15 @@ To keep only the data inside the buffer select only those rows with values insid
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">109.7</span>,<span class="sc">-</span><span class="fl">109.1</span>),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">24.6</span>,<span class="fl">25.2</span>))<span class="sc">+</span> </span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Use the values inside the buffer to calculate the average SST</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="buffer_export.jpg" class="img-fluid" style="width:80.0%"></p>
+</div>
+</div>
+</section>
+<section id="calculate-mean-and-sd" class="level2">
+<h2 class="anchored" data-anchor-id="calculate-mean-and-sd">Calculate mean and sd</h2>
+<p>Use the values inside the buffer to calculate the average SST.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(SST_inside<span class="sc">$</span>sst)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(SST_inside<span class="sc">$</span>sst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -420,12 +429,7 @@ To keep only the data inside the buffer select only those rows with values insid
 <div class="cell">
 
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="buffer_export.jpg" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>End of document</p>
+<p>Mean 20.61 and sd 1.65, well done!</p>
 
 
 </section>

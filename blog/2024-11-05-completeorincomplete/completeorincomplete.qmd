@@ -124,7 +124,7 @@ Data_5oneindividual<-Data_5oneindividual %>%
   mutate(time_dif_mins = round(time_dif,2))
 ```
 
-This trip has a large gap.
+This trip has a large gap: 4 - 57.70.
 
 ```{r,eval=FALSE}
 range(Data_5oneindividual$time_dif_mins,na.rm=TRUE)
@@ -220,7 +220,7 @@ Plot_trips<-ggplot()+
   geom_text(data=This_area, aes(x=Longitude,y=Latitude,label="No reception"),hjust=+0.46, vjust=0, size=3)+
   theme(
     legend.background = element_rect(colour = "transparent", fill = "transparent"),
-    legend.position = c(0.22,0.15))+
+    legend.position.inside = c(0.22,0.15))+
   scale_colour_manual(name='trip',values = c("#6a994e", "#fca311"))+ 
   guides(color = guide_legend(override.aes = list(size = 2)))
 Plot_trips
@@ -231,14 +231,14 @@ library(here)
 library(patchwork)
 Plot_locations+Plot_trips
 ggsave(Plot_locations+Plot_trips,
-       filename = paste0(here(),"/_posts/2024-11-10-gaps/blog39.jpg"),
+       filename = paste0(here(),"/Blog/2024-11-05-completeorincomplete/complete_export.jpg"),
        width = 6, 
-       height = 10, 
+       height = 4, 
        units = "in",
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "100%"}
+```{r, echo=FALSE, out.width = "80%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-11-05-completeorincomplete/complete_export.jpg"))
 ```
 

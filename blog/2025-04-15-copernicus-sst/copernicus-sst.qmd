@@ -249,7 +249,7 @@ ggsave(Plot_sst +
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "100%"}
+```{r, echo=FALSE, out.width = "80%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2025-04-15-copernicus-sst/sst_export.jpg"))
 ```
 

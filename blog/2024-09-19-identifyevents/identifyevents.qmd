@@ -194,7 +194,7 @@ library(here)
 library(patchwork)
 here()
 ggsave(Plot_original+Plot_trips,
-       filename = paste0(here(),"/_posts/2024-09-19-identifyevents/blog37.jpg"),
+       filename = paste0(here(),"/blog/2024-09-19-identifyevents/blog37.jpg"),
        width = 9, 
        height = 4, 
        units = "in",

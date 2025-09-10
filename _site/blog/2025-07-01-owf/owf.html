@@ -491,16 +491,21 @@ Source: Wikipedia</p>
 <div class="cell">
 
 </div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="owf_export.jpeg" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
 </section>
 </section>
 <section id="some-calculations" class="level1">
 <h1>Some calculations</h1>
 <p>Globally, human activities at sea are becoming more intense and diverse, and the German North Sea is no exception (Emeis et al., 2015). Offshore wind farms are an emerging concern, known to have various negative impacts on marine mammals (Dähne et al., 2013; Kastelein et al., 2016; Brandt et al., 2018) as well as on birds (Drewitt and Langston, 2006; Dierschke et al., 2016; Garthe et al., 2023).</p>
-<p>Before 2016, from 2009 to 2016 there was a total area covered of:</p>
+<p>Before 2016, from 2009 to 2016 there was a total area covered of: 368.6957</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(OWF_Before2016<span class="sc">$</span>AREA_SQKM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>After 2016, from 2017 to 2020, the area covered was:</p>
+<p>After 2016, from 2017 to 2020, the area covered was: 374.8699</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(OWF_After2016<span class="sc">$</span>AREA_SQKM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -508,11 +513,6 @@ Source: Wikipedia</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">sum</span>(OWF_After2016<span class="sc">$</span>AREA_SQKM)<span class="sc">*</span><span class="dv">100</span>)<span class="sc">/</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">sum</span>(OWF_Before2016<span class="sc">$</span>AREA_SQKM,OWF_After2016<span class="sc">$</span>AREA_SQKM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="owf_export.jpeg" class="img-fluid" style="width:100.0%"></p>
-</div>
 </div>
 </section>
 <section id="additional-information" class="level1">

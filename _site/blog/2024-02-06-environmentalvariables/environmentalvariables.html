@@ -196,7 +196,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">Load data</a></li>
   <li><a href="#add-land-for-reference" id="toc-add-land-for-reference" class="nav-link" data-scroll-target="#add-land-for-reference">Add land for reference</a></li>
   </ul></li>
-  <li><a href="#there-you-go" id="toc-there-you-go" class="nav-link" data-scroll-target="#there-you-go">There you go!</a></li>
   </ul>
 </nav>
 </nav>
@@ -250,11 +249,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="intro" class="level1">
 <h1>Intro</h1>
 <p>This post is to create a map with environmental variables.</p>
-<ol type="1">
+<ul>
 <li>Identify the data you want to download</li>
 <li>Download data from the server</li>
 <li>Create a basic map with the values</li>
-</ol>
+</ul>
 </section>
 <section id="define" class="level1">
 <h1>Define</h1>
@@ -308,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Create plot</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(SST03<span class="fl">.2017</span>dt_clean) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>lon, <span class="at">y=</span>lat, <span class="at">fill =</span> sst))<span class="sc">+</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>longitude, <span class="at">y=</span>latitude, <span class="at">fill =</span> sst))<span class="sc">+</span> </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"H"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -335,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Create plot using ggplot</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(SST03<span class="fl">.2017</span>dt) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>lon, <span class="at">y=</span>lat, <span class="at">fill =</span> sst))<span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x=</span>longitude, <span class="at">y=</span>latitude, <span class="at">fill =</span> sst))<span class="sc">+</span> <span class="co">#geom_raster before</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> world.df, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">colour =</span> <span class="st">'#403d39'</span>, <span class="at">fill =</span> <span class="st">"#e5e5e5"</span>) <span class="sc">+</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
@@ -351,19 +350,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </div>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2025/1Programming/1Quarto/quarto_webpage/blog/2024-02-06/environmental_export.jpg"</code></pre>
-</div>
 <div class="cell-output-display">
-<p><img src="environmental_export.jpg" class="img-fluid" style="width:40.0%"></p>
+<p><img src="environmental_export.jpg" class="img-fluid" style="width:90.0%"></p>
 </div>
 </div>
-</section>
-</section>
-<section id="there-you-go" class="level1">
-<h1>There you go!</h1>
+<p>I hope the server did not failed you, sometimes is not working, also welcome geom_tile! I was using geom_raster before, which it works but why not joining the new way?</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

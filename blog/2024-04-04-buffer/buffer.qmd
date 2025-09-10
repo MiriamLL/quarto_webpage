@@ -24,7 +24,7 @@ categories:
 
 In this blog, a buffer subsetting environmental data would be created and the average values within the buffer calculated.
 
-# 1. Download data
+# Download data
 
 Load the package **rerddap**
 
@@ -106,7 +106,7 @@ ggplot() +
  coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))
 ```
 
-# 2. Create buffer
+# Create buffer
 
 Load package **sp**.
 
@@ -166,7 +166,7 @@ ggplot() +
  coord_sf(xlim = c(-109.7,-109.1),ylim = c(24.6,25.2))
 ```
 
-# 3. Extract information
+# Extract information
 
 Convert the SST data into a SpatialPointsDataFrame.
 
@@ -218,7 +218,13 @@ ggplot() +
   NULL
 ```
 
-Use the values inside the buffer to calculate the average SST
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2024-04-04-buffer/buffer_export.jpg"))
+```
+
+## Calculate mean and sd
+
+Use the values inside the buffer to calculate the average SST. 
 
 ```{r, eval=FALSE}
 mean(SST_inside$sst)
@@ -243,8 +249,4 @@ ggsave(ggplot() +
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2024-04-04-buffer/buffer_export.jpg"))
-```
-
-End of document
+Mean 20.61 and sd 1.65, well done!

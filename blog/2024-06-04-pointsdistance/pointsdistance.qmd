@@ -219,14 +219,14 @@ letters_plot
 library(here)
 here()
 ggsave(letters_plot,
-       filename = paste0(here(),"/_posts/2024-06-06-pointsdistance/blog34.jpg"),
+       filename = paste0(here(),"/blog/2024-06-04-pointsdistance/blog34.jpg"),
        width = 6, 
        height = 7, 
        units = "in",
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "100%"}
+```{r, echo=FALSE, out.width = "60%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-06-04-pointsdistance/points_export.jpg"))
 ```
 

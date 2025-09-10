@@ -24,9 +24,9 @@ categories:
 
 This post is to create a map with environmental variables.
 
-1.  Identify the data you want to download
-2.  Download data from the server
-3.  Create a basic map with the values
+- Identify the data you want to download
+- Download data from the server
+- Create a basic map with the values
 
 # Define
 
@@ -101,7 +101,7 @@ Create plot
 
 ```{r, eval=FALSE}
 ggplot(SST03.2017dt_clean) +
- geom_raster(aes(x=lon, y=lat, fill = sst))+ 
+ geom_raster(aes(x=longitude, y=latitude, fill = sst))+ 
   scale_fill_viridis_c(option = "H")
 ```
 
@@ -138,7 +138,7 @@ Create plot using ggplot
 
 ```{r, eval=FALSE}
 ggplot(SST03.2017dt) +
-  geom_raster(aes(x=lon, y=lat, fill = sst))+
+  geom_tile(aes(x=longitude, y=latitude, fill = sst))+ #geom_raster before
   geom_polygon(data = world.df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
   theme(
     axis.title = element_blank(),
@@ -153,9 +153,8 @@ ggplot(SST03.2017dt) +
 
 ```{r, echo=FALSE, eval=FALSE}
 library(here)
-here()
 ggsave(ggplot(SST03.2017dt) +
-  geom_raster(aes(x=lon, y=lat, fill = sst))+
+  geom_tile(aes(x=longitude, y=latitude, fill = sst))+
   geom_polygon(data = world.df, aes(x = long, y = lat, group = group), colour = '#403d39', fill = "#e5e5e5") +
   theme(
     axis.title = element_blank(),
@@ -166,16 +165,17 @@ ggsave(ggplot(SST03.2017dt) +
     coord_sf(xlim = c(xlim1+2,xlim2-2), 
              ylim = c(ylim1+2,ylim2-2))+ 
   scale_fill_viridis_c(option = "H"), 
-       filename = paste0(here(),"/_posts/2024-02-06-environmentalvariables/environmental_export.jpg"),
-       width = 8, 
-       height = 8, 
+       filename = paste0(here(),"/blog/2024-02-06-environmentalvariables/environmental_export.jpg"),
+       width = 6, 
+       height = 3, 
        units = "in",
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "40%"}
-paste0(here::here(),"/blog/2024-02-06/environmental_export.jpg")
+```{r, echo=FALSE, out.width = "90%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-02-06-environmentalvariables/environmental_export.jpg"))
 ```
 
-# There you go!
+I hope the server did not failed you, sometimes is not working, also welcome geom_tile!
+I was using geom_raster before, which it works but why not joining the new way?
+

@@ -145,7 +145,7 @@ Plot_distance+
 ```{r, echo=FALSE, eval=FALSE}
 library(here)
 here()
-this_folder<-paste0(here(),"/_posts/2024-10-15-distancetocoast")
+this_folder<-paste0(here(),"/Blog/2024-10-15-distancetocoast")
 ggsave(Plot_distance,
        filename = paste0(this_folder,"/coast_export.jpg"),
        width = 4, 
@@ -154,7 +154,7 @@ ggsave(Plot_distance,
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "100%"}
+```{r, echo=FALSE, out.width = "80%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2025-02-15-distancetocoast/coast_export.jpg"))
 ```
 

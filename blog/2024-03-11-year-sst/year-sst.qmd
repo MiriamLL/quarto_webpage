@@ -24,9 +24,9 @@ categories:
 
 This post is to create a plot with environmental variables, in one axis the sea surface temperature and in the other axis the chlorophyll-a concentration.
 
-1.  Download data from the server
-2.  Calculate average values
-3.  Create a secondary-axis plot with the values
+- Download data from the server
+- Calculate average values
+- Create a secondary-axis plot with the values
 
 # Load data
 
@@ -362,7 +362,7 @@ Create a plot using **geom_line** using functions from the package ggplot.
 ```{r, fig.height=4, fig.width=6, eval=FALSE}
 plot_SST<-ggplot(SST_months) +
   geom_line(aes(x = xaxis, y = mean_sst),color='red', size=1)+ 
-  scale_y_continuous(("Sea Surface Temperature (°C)"),limits=c(8.5,35.5),expand=c(0, 0))+
+  scale_y_continuous(("Sea Surface Temperature (C)"),limits=c(8.5,35.5),expand=c(0, 0))+
     scale_x_continuous("Months",breaks=c(1,2,3,4,5,6,7,8,9,10),labels=c('Mar','Apr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dec'))+
   theme_bw()+#dejar lineas de las orillas
   theme(axis.title.x = element_text(size=13),
@@ -443,28 +443,9 @@ ggsave(plot_SST_wlegend + plot_CHL+
        dpi = 300)
 ```
 
-```{r option2, echo=FALSE, eval=FALSE}
-library(gtable);library(grid)
-#UNIR GRAFICOS
-g1<-ggplot_gtable(ggplot_build(plot_CHL))
-g2<-ggplot_gtable(ggplot_build(plot_SST))
-
-pp<-c(subset(g1$layout,name=="panel",se=t:r))
-g<-gtable_add_grob(g1, g2$grobs[[which(g2$layout$name=="panel")]],pp$t,pp$l,pp$b,pp$l)
-
-ia<-which(g2$layout$name=="axis-l")
-ga <- g2$grobs[[ia]]
-ax <- ga$children[[2]]
-ax$widths <- rev(ax$widths)
-ax$grobs <- rev(ax$grobs)
-ax$grobs[[1]]$x <- ax$grobs[[1]]$x - unit(1, "npc") + unit(0.15, "cm")
-g <- gtable_add_cols(g, g2$widths[g2$layout[ia, ]$l], length(g$widths) - 1)
-g <- gtable_add_grob(g, ax, pp$t, length(g$widths) - 1, pp$b)
-(grid.draw(g))
-```
-
-```{r, echo=FALSE, out.width = "100%"}
+```{r, echo=FALSE, out.width = "80%"}
 knitr::include_graphics(paste0(here::here(),"/blog/2024-03-11-year-sst/year_export.jpg"))
 ```
 
-End of document
+Quite long, but it works, which is great, or?
+

@@ -176,6 +176,10 @@ Fishing_plot<-ggplot() +
 Fishing_plot
 ```
 
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-03-03-fishingdata/fishingwatch_export.jpg"))
+```
+
 ### Notes
 
 This data is part of an exercise using information from the platform, and the details provided have not been verified or checked for accuracy. The figures and patterns observed are based on the data from Global Fishing Watch, but they may not represent the final, validated insights.
@@ -244,9 +248,7 @@ ggsave(Fishing_plot,
        dpi = 300)
 ```
 
-```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2025-03-03-fishingdata/fishingwatch_export.jpg"))
-```
+
 
 # Further read
 

@@ -333,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_dif=</span><span class="fu">as.numeric</span>(<span class="fu">difftime</span>(dt, times_lag, <span class="at">units =</span> <span class="st">"mins"</span>)))<span class="sc">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_dif_mins =</span> <span class="fu">round</span>(time_dif,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This trip has a large gap.</p>
+<p>This trip has a large gap: 4 - 57.70.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(Data_5oneindividual<span class="sc">$</span>time_dif_mins,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -413,7 +413,7 @@ For example, here an incomplete trip would be any trip that had a gap of more th
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data=</span>This_area, <span class="fu">aes</span>(<span class="at">x=</span>Longitude,<span class="at">y=</span>Latitude,<span class="at">label=</span><span class="st">"No reception"</span>),<span class="at">hjust=</span><span class="sc">+</span><span class="fl">0.46</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"transparent"</span>, <span class="at">fill =</span> <span class="st">"transparent"</span>),</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.22</span>,<span class="fl">0.15</span>))<span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.22</span>,<span class="fl">0.15</span>))<span class="sc">+</span></span>
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name=</span><span class="st">'trip'</span>,<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#6a994e"</span>, <span class="st">"#fca311"</span>))<span class="sc">+</span> </span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">2</span>)))</span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>Plot_trips</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -423,7 +423,7 @@ For example, here an incomplete trip would be any trip that had a gap of more th
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="complete_export.jpg" class="img-fluid" style="width:100.0%"></p>
+<p><img src="complete_export.jpg" class="img-fluid" style="width:80.0%"></p>
 </div>
 </div>
 </section>

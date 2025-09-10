@@ -308,17 +308,21 @@ ggsave(OWF_3plot +
        height = 6)
 ```
 
+```{r, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-07-01-owf/owf_export.jpeg"))
+```
+
 # Some calculations
 
 Globally, human activities at sea are becoming more intense and diverse, and the German North Sea is no exception (Emeis et al., 2015). Offshore wind farms are an emerging concern, known to have various negative impacts on marine mammals (Dähne et al., 2013; Kastelein et al., 2016; Brandt et al., 2018) as well as on birds (Drewitt and Langston, 2006; Dierschke et al., 2016; Garthe et al., 2023).
 
-Before 2016, from 2009 to 2016 there was a total area covered of:
+Before 2016, from 2009 to 2016 there was a total area covered of: 368.6957
 
 ```{r, eval=FALSE}
 sum(OWF_Before2016$AREA_SQKM)
 ```
 
-After 2016, from 2017 to 2020, the area covered was:
+After 2016, from 2017 to 2020, the area covered was: 374.8699
 
 ```{r, eval=FALSE}
 sum(OWF_After2016$AREA_SQKM)
@@ -331,9 +335,6 @@ In just four years, more area was developed for offshore wind farms than in the 
   (sum(OWF_Before2016$AREA_SQKM,OWF_After2016$AREA_SQKM))
 ```
 
-```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2025-07-01-owf/owf_export.jpeg"))
-```
 
 # Additional information
 

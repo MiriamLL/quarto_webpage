@@ -324,18 +324,11 @@ knitr::include_graphics(paste0(here::here(),"/blog/2025-08-04-oil/oil_export.jpe
 
 # References
 
--   [Assessment of impacts of the offshore oil and gas industry on the marine environment](https://oap.ospar.org/en/ospar-assessments/quality-status-reports/qsr-2023/other-assessments/impacts-offshore-oil-and-gas-industry/)
-
--   [Tagesschau](https://www.tagesschau.de/inland/innenpolitik/bundeskabinett-gasfoerderung-borkum-100.html)
-
--   [Project GEMS: Gas Production projectin the North sea](https://www.gemsnorthsea.co.uk/)
-
--   [Borkum Reef Ground NCA](https://www.bfn.de/en/borkum-reef-ground-nca)
-
+-   [Assessment of impacts of the offshore oil and gas industry on the marine environment](https://oap.ospar.org/en/ospar-assessments/quality-status-reports/qsr-2023/other-assessments/impacts-offshore-oil-and-gas-industry/)  
+-   [Tagesschau](https://www.tagesschau.de/inland/innenpolitik/bundeskabinett-gasfoerderung-borkum-100.html)  
+-   [Project GEMS: Gas Production projectin the North sea](https://www.gemsnorthsea.co.uk/)  
+-   [Borkum Reef Ground NCA](https://www.bfn.de/en/borkum-reef-ground-nca)  
 -   [Spiegel](https://www.spiegel.de/panorama/borkum-luisa-neubauer-demonstriert-mit-tausenden-gegen-erdgasleitungen-a-c6362a4c-a5bb-4d4e-a110-15e7a0a675b3)
-
--   [Oceana](https://europe.oceana.org/wp-content/uploads/sites/26/d_files/borkum_report_web.pdf)
-
--   Todd, V. L. G., Pearse, W. D., Tregenza, N. C., Lepper, P. A., and Todd, I. B. 2009. Diel echolocation activity of harbour porpoises (*Phocoena phocoena*) around North Sea offshore gas installations. – ICES Journal of Marine Science, 66: 734–745. [Link](https://www.researchgate.net/publication/242093967_Diel_echolocation_activity_of_harbor_porpoises_Phocoena_phocoena_around_North_Sea_offshore_gas_installations)
-
+-   [Oceana](https://europe.oceana.org/wp-content/uploads/sites/26/d_files/borkum_report_web.pdf)  
+-   Todd, V. L. G., Pearse, W. D., Tregenza, N. C., Lepper, P. A., and Todd, I. B. 2009. Diel echolocation activity of harbour porpoises (*Phocoena phocoena*) around North Sea offshore gas installations. – ICES Journal of Marine Science, 66: 734–745. [Link](https://www.researchgate.net/publication/242093967_Diel_echolocation_activity_of_harbor_porpoises_Phocoena_phocoena_around_North_Sea_offshore_gas_installations)  
 -   Tasker, M L., Jones P. H., Blake, B. F., Dixon T. J., and Wallis, A. W. 1985. Seabirds associated with oil production platforms in the North Sea. – Ringing & Migration, 7: 7–14. [Link](https://www.tandfonline.com/doi/abs/10.1080/03078698.1986.9673873)

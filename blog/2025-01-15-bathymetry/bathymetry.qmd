@@ -145,6 +145,10 @@ Plot_bath<-ggplot() +
 Plot_bath
 ```
 
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-01-15-bathymetry/bathymetry_export.jpg"))
+```
+
 More details about how to add features to a map [here](https://www.miriam-lerma.com/posts/2023-03-04-mapping-in-r/)
 
 ```{r, echo=FALSE, eval=FALSE}
@@ -154,10 +158,6 @@ ggsave(Plot_bath,
        height = 4, 
        units = "in",
        dpi = 300)
-```
-
-```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2025-01-15-bathymetry/bathymetry_export.jpg"))
 ```
 
 # Further reading
