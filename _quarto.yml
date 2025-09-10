@@ -20,22 +20,10 @@ website:
         href: https://www.linkedin.com/in/miriam-lerma/
       - icon: github
         href: https://github.com/MiriamLL
-        
-    page-footer:
-    center: |
-      <br>
-      __Contact:__<br>
-      Miriam Lerma<br>
-      Kent<br>
-      UK
-      miriamjlerma@gmail.com
-
 format:
   html:
     css: 
       styles.css
-    highlight-style: 
-      this_theme.theme
       
 
 

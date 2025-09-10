@@ -116,3 +116,29 @@ body {
   color: #023047;
   border-color: #023047;
 }
+
+/* Change color of page numbers in listing pagination */
+.pagination .page-item .page-link {
+  color: #0d1b2a;         /* Change to your preferred text color */
+  background-color: transparent;
+  border: none;
+}
+
+/* Optional: Active page number (highlighted one) */
+.pagination .page-item.active .page-link {
+  color: white;           /* Text color of the active page */
+  background-color: #778da9; /* Background color of the active page */
+  border-radius: 5px;
+}
+
+/* Only change link color in main content (i.e., the page text) */
+main a {
+  color: #415a77;  /* Replace with your preferred color */
+  text-decoration: underline;  /* Optional */
+}
+
+/* Optional: hover effect for text links */
+main a:hover {
+  color: #2a9d8f;
+  text-decoration: underline;
+}
