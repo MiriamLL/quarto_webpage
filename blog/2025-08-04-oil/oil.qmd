@@ -5,7 +5,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2025-08-04
-image: oil_front.jpg
+image: oil_front.webp
 format:
   html:
     toc: true

@@ -5,7 +5,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2025-09-01
-image: cables_front.jpg
+image: cables_front.webp
 format:
   html:
     toc: true

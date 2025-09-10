@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2025-07-01
-image: owf_front.jpg
+image: owf_front.webp
 format:
   html:
     toc: true
