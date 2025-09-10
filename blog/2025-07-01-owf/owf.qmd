@@ -332,7 +332,7 @@ In just four years, more area was developed for offshore wind farms than in the 
 ```
 
 ```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2025-07-01-owf/owf_export.jpg"))
+knitr::include_graphics(paste0(here::here(),"/blog/2025-07-01-owf/owf_export.jpeg"))
 ```
 
 # Additional information

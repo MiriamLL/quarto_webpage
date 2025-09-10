@@ -367,7 +367,7 @@ ggsave(ggplot() +
 ```
 
 ```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2025-06-02-shipping/shipping_export.jpg"))
+knitr::include_graphics(paste0(here::here(),"/blog/2025-06-02-shippingtraffic/shipping_export.jpg"))
 ```
 
 # Further reading

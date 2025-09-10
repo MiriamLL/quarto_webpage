@@ -319,7 +319,7 @@ ggsave(Oil_4plot,filename = paste0(My_directory,"/oil_export.jpeg"),
 ```
 
 ```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2025-08-04-oil/oil_export.jpg"))
+knitr::include_graphics(paste0(here::here(),"/blog/2025-08-04-oil/oil_export.jpeg"))
 ```
 
 # References

@@ -157,7 +157,7 @@ ggsave(Plot_bath,
 ```
 
 ```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2025-01-15-nathymetry/bathymetry_export.jpg"))
+knitr::include_graphics(paste0(here::here(),"/blog/2025-01-15-bathymetry/bathymetry_export.jpg"))
 ```
 
 # Further reading

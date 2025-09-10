@@ -10,5 +10,6 @@ listing:
 page-layout: full
 format:
   html:
+    theme: darkly
     css: styles.css
 ---
