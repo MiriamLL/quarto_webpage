@@ -161,6 +161,22 @@ ggplot()+
   NULL
 ```
 
+```{r, echo=FALSE, eval=FALSE}
+ggsave(ggplot()+
+  geom_sf(data = my_grid)+
+  geom_sf(data = grid_w_data, colour = "#42a921", fill= '#bde0fe',alpha=0.9)+
+  NULL, 
+       filename = paste0(here::here(),"/blog/2023-04-06-gridraster/grid_1export.jpg"),
+       width = 4, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
+```
+
+```{r, echo=FALSE, fig.align='left',  out.width="80%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2023-04-06-gridraster/grid_1export.jpg"))
+```
+
 ## Mean values
 
 To calculate the mean values per grid, functions from the package **tidyverse** can be used
@@ -303,11 +319,43 @@ ggplot()+
   guides(fill = guide_colorbar(ticks.colour = "transparent"))
 ```
 
-```{r, echo=FALSE,  out.width="50%"}
-Imagen1<-"https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/grid_export.jpg?raw=true"
-knitr::include_graphics(Imagen1)
+```{r, echo=FALSE, eval=FALSE}
+ggsave(ggplot()+
+  geom_sf(data = grid_dens,aes(fill = dens_mean),color='transparent')+
+    
+  scale_fill_gradientn(name='Density',
+    colours = dens_colors,
+    breaks = dens_breaks, 
+    labels = dens_labels,
+    limits=c(0,1))+
+  
+  
+    scale_x_continuous(labels = function(x) paste0(x, '\u00B0', "W")) +
+    scale_y_continuous(labels = function(x) paste0(x, '\u00B0', "N"))+
+  
+  theme_bw()+
+  
+  theme(panel.background = element_rect(fill = '#3668b4'),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())+
+  
+  
+  theme(
+    legend.key = element_rect(color = "black",size=5),
+    legend.key.width = unit(1, "cm"),
+    legend.key.height = unit(1, "cm")) +
+  
+  guides(fill = guide_colorbar(ticks.colour = "transparent")), 
+       filename = paste0(here::here(),"/blog/2023-04-06-gridraster/grid_export.jpg"),
+       width = 4, 
+       height = 4, 
+       units = "in",
+       dpi = 300)
 ```
 
+```{r, echo=FALSE, fig.align='left',  out.width="80%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2023-04-06-gridraster/grid_export.jpg"))
+```
 # Further read
 
 - [Create a grid by Urban data palette](https://urbandatapalette.com/post/2021-08-tessellation-sf/)<br>

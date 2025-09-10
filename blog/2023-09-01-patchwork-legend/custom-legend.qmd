@@ -268,4 +268,4 @@ Although you have the option of plot_layout(guides = "collect") in the package *
 
 # Further reading
 
-[Patchwork](https://patchwork.data-imaginist.com/)
+- Package [patchwork](https://patchwork.data-imaginist.com/)

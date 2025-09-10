@@ -56,7 +56,6 @@ First call the library.
 library(ggplot2)
 ```
 
-
 Then check the data contained on the data frame. 
 
 ```{r, eval=FALSE}
@@ -220,9 +219,18 @@ density_wmap<-base_plot+
   scale_size_manual(values =  density_sizes,labels=density_labels)
 density_wmap
 ```
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+ggsave(density_wmap, 
+       filename = paste0(here::here(),"/blog/2023-07-13-custompoints/densitymap_export.jpg"),
+       width = 6, 
+       height = 5, 
+       units = "in",
+       dpi = 300)
+```
 
-```{r, echo=FALSE, fig.align='left',  out.width="50%"}
-knitr::include_graphics("https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2023/custompoints_export.jpg?raw=true")
+```{r, echo=FALSE, fig.align='left',  out.width="100%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2023-07-13-custompoints/densitymap_export.jpg"))
 ```
 
 Now you have a base map with density information on different shape and size.
