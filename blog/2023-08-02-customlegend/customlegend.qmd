@@ -26,18 +26,17 @@ Customize the legend of your plot.
 
 # Plot
 
-Load or install the package **seamonas** 
+Load or install the package **SeaDens** 
 
 ```{r, eval=FALSE}
-devtools::install_github("MiriamLL/seamonas")
+devtools::install_github("MiriamLL/SeaDens")
 ```
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
-library(seamonas)
+library(SeaDens)
 ```
 
-
-Load data
+## Load data
 
 The package contains data from a random generated density data frame that can be used for the exercise. 
 
@@ -53,7 +52,7 @@ density_wmap
 
 ## add_legend
 
-I create this function to include the legend inside the plot, the function is available on the package **seamonas**.
+I create this function to include the legend inside the plot, the function is available on the package **SeaDens**.
 
 The function removes the background of the legend making it transparent, and includes the legend inside the plot based on the coordinates provided. 
 
@@ -104,7 +103,7 @@ density_wlegend
 ## add_theme
 
 This function changes the x and y axis legends to Capitalized words and includes the symbol of degree on the plot.
-Removes the gray background and adds a white line on the panel border. It is also available in the package **seamonas**, but I am including it here in case you want to customize it.
+Removes the gray background and adds a white line on the panel border. It is also available in the package **SeaDens**, but I am including it here in case you want to customize it.
 
 ```{r, eval=FALSE}
 add_theme<-function(plot_wlegend=plot_wlegend){
@@ -133,8 +132,25 @@ density_wtheme
 
 You can theoretically use the function add_theme with any other map.
 
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+ggsave((GPS01_plot+plot_spacer()+
+   GPS02_plot+plot_tracks_legend)+
+  plot_layout(ncol = 2,
+              widths = c(5,1), 
+              heights=c(1,1)), 
+       filename = paste0(here(),"/blog/2023-09-01-patchwork-legend/legend_export.jpg"),
+       width = 5, 
+       height = 6, 
+       units = "in",
+       dpi = 300)
+```
+
+```{r, echo=FALSE, out.width = "40%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2023-09-01-patchwork-legend/legend_export.jpg"))
+```
 
 # Keep learning
 
-- [Seamonas](https://github.com/MiriamLL/seamonas)  
+- [SeaDens](https://github.com/MiriamLL/SeaDens)  
 - [Plotting](https://miriamll.github.io/R_intro/Plotting_0606.html#56)  

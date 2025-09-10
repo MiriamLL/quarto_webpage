@@ -33,8 +33,7 @@ my_data<-(sula::GPS_preparado)
 ## Grid
 
 The steps on this parts are on "how to create [grid](https://www.miriam-lerma.com/posts/2023-04-06-gridraster/)"
-  
-  
+
 Packages to use:
 
 ```{r, warning=FALSE, eval=FALSE}
@@ -73,7 +72,6 @@ unique(my_data$IDs)
 ```
 
 To count number of locations per grid and add it as a column in the original grid functions from the package **tidyverse** can be used. 
-
 
 ```{r, eval=FALSE}
 GPS01_subset<- my_data %>%
@@ -137,9 +135,9 @@ my_palette <- c("1" = "#FFCF70",
 
 
 To create the plot:   
-1. Subset only to grids with data  
-2. Convert the locations into character  
-3. Add palette in scale_fill_manual  
+- Subset only to grids with data  
+- Convert the locations into character  
+- Add palette in scale_fill_manual  
 4. Remove legend  
 
 ```{r, eval=FALSE}
@@ -247,6 +245,23 @@ The arguments to create our layout will include:
               heights=c(1,1))
 ```
 
+```{r, echo=FALSE, eval=FALSE}
+library(here)
+ggsave((GPS01_plot+plot_spacer()+
+   GPS02_plot+plot_tracks_legend)+
+  plot_layout(ncol = 2,
+              widths = c(5,1), 
+              heights=c(1,1)), 
+       filename = paste0(here(),"/blog/2023-09-01-patchwork-legend/legend_export.jpg"),
+       width = 5, 
+       height = 6, 
+       units = "in",
+       dpi = 300)
+```
+
+```{r, echo=FALSE, out.width = "40%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2023-09-01-patchwork-legend/legend_export.jpg"))
+```
 
 Although you have the option of plot_layout(guides = "collect") in the package **patchwork**. Sometimes not all plots have all the categories, and therefore it makes sense to create your own customize legend that fits all .
 
