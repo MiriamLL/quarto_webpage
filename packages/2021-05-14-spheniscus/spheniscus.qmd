@@ -47,6 +47,6 @@ plot_depth(TDR_trip = TDR_trip,
 
 # Citar
 
--   Lerma, M (2021). Package spheniscus (Version v1.0). Zenodo. <http://doi.org/10.5281/zenodo.4709837>
+Lerma, M (2021). Package spheniscus (Version v1.0). Zenodo. <http://doi.org/10.5281/zenodo.4709837>
 
-[![DOI](https://zenodo.org/badge/360213200.svg)](https://zenodo.org/badge/latestdoi/360213200)
+![](https://zenodo.org/badge/360213200.svg)
