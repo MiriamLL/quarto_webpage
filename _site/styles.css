@@ -17,6 +17,12 @@ html {
   font-size: 18px;  /* or try 14px, 13px, etc. */
 }
 
+.nav-footer-left, .nav-footer-center, .nav-footer-right {
+    font-family: "Raleway", sans-serif;
+    font-size: 1rem !important;
+    text-align: left !important;
+}
+
 /* MAIN */
 /* header */
 header {
