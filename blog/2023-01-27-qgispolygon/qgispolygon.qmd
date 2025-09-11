@@ -8,9 +8,8 @@ author:
 date: 2023-01-23
 image: qgispolygon_front.jpg
 categories:
-  - QGIS
-  - GIS
-  - English
+  - qgis
+  - gis
   - Y2023
 format:
   html:

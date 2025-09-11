@@ -7,10 +7,10 @@ author:
   - name: Miriam Lerma
 date: 2021-07-05
 categories:
-  - QGIS
-  - R
+  - qgis
+  - r
   - Y2021
-  - GIS
+  - gis
 format:
   html:
     toc: true

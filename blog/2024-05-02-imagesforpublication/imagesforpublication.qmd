@@ -13,8 +13,8 @@ format:
     toc-depth: 2
     toc-location: left
 categories:
-  - R
-  - English
+  - r
+  - magick
   - Y2024
 ---
 

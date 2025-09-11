@@ -8,8 +8,8 @@ author:
 image: grid_front.jpg
 date: 2023-04-06
 categories:
-  - R
-  - English
+  - r
+  - gis
   - Y2023
 format:
   html:

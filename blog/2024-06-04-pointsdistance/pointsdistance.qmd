@@ -13,11 +13,11 @@ format:
     toc-depth: 2
     toc-location: left
 categories:
-  - R
+  - r
   - ggplot2
-  - English
   - Y2024
-  - biologging
+  - germansea
+  - gis
 ---
 
 # Intro

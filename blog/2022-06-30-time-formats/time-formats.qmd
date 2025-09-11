@@ -8,7 +8,7 @@ author:
 date: 2022-06-30
 image: timeformat_front.jpg
 categories:
-  - R
+  - r
   - biologging
   - Y2022
 format:

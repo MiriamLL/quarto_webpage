@@ -8,7 +8,7 @@ author:
 date: 10-27-2021
 image: gitgithub_front.jpg
 categories:
-  - R
+  - r
   - github
   - Y2021
 format:

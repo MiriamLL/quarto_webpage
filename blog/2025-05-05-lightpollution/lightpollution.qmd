@@ -14,9 +14,9 @@ format:
     toc-location: left
     css: styles.css
 categories:
-  - R
+  - r
   - ggplot2
-  - English
+  - germansea
   - Y2025
 ---
 

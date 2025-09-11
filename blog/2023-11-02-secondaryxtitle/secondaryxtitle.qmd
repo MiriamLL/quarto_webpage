@@ -8,9 +8,8 @@ author:
 image: secondaryaxis_front.jpg
 date: 2023-11-02
 categories:
-  - R
+  - r
   - ggplot2
-  - English
   - Y2023
 format:
   html:

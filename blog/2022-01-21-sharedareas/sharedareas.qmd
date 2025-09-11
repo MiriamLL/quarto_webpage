@@ -8,7 +8,7 @@ author:
 date: 01-21-2022
 image: sharedareas_front.jpg
 categories:
-  - R
+  - r
   - Y2022
   - biologging
 format:

@@ -10,7 +10,7 @@ date: 2023-10-02
 categories:
   - R
   - ggplot2
-  - English
+  - sula
   - Y2023
 format:
   html:

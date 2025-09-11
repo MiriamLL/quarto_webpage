@@ -13,11 +13,11 @@ format:
     toc-depth: 2
     toc-location: left
 categories:
-  - R
-  - English
+  - r
+  - sula
   - Y2024
   - biologging
-  - GIS
+  - gis
 ---
 
 # Intro

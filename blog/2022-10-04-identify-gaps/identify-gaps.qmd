@@ -8,7 +8,7 @@ author:
 date: 10-03-2022
 image: gaps_front.jpg
 categories:
-  - R
+  - r
   - biologging
   - sula
   - Y2022

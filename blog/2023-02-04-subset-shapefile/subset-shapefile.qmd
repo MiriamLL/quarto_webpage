@@ -8,9 +8,8 @@ author:
 date: 02-04-2023
 image: subsetshapefile_front.jpg
 categories:
-  - English
-  - R
-  - GIS
+  - r
+  - gis
   - Y2023
 format:
   html:

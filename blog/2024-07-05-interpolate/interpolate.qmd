@@ -13,10 +13,11 @@ format:
     toc-depth: 2
     toc-location: left
 categories:
-  - R
+  - r
   - ggplot2
   - Y2024
   - biologging
+  - sula
 ---
 
 # Intro

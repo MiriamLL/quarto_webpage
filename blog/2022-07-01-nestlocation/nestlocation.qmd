@@ -8,7 +8,7 @@ author:
 date: 2022-07-01
 image: nest_front.jpg
 categories:
-  - R
+  - r
   - biologging
   - sula
   - Y2022

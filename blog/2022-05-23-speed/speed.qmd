@@ -8,7 +8,7 @@ author:
 date: 2022-05-23
 image: speed_front.jpg
 categories:
-  - R
+  - r
   - biologging
   - Y2022
 format:

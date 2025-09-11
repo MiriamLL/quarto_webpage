@@ -9,8 +9,7 @@ image: github_front.jpg
 date: 2023-05-05
 categories:
   - R
-  - Git
-  - English
+  - github
   - Y2023
 format:
   html:

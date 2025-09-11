@@ -8,7 +8,7 @@ author:
 date: 02-24-2022
 image: timeoverlap_front.jpg
 categories:
-  - R
+  - r
   - biologging
   - Y2022
 format:

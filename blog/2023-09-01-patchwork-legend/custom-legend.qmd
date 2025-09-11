@@ -8,9 +8,9 @@ author:
 image: customlegendmultiple_front.jpg
 date: 2023-09-01
 categories:
-  - R
+  - r
   - ggplot2
-  - English
+  - gis
   - Y2023
 format:
   html:
