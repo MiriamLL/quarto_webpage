@@ -9,8 +9,8 @@ date: 2022-08-17
 image: julianday_front.jpg
 categories:
   - R
-  - Biologging
-  - English
+  - biologging
+  - sula
   - Y2022
 format:
   html:

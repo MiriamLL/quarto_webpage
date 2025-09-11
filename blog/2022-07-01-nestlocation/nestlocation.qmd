@@ -9,8 +9,8 @@ date: 2022-07-01
 image: nest_front.jpg
 categories:
   - R
-  - Biologging
-  - English
+  - biologging
+  - sula
   - Y2022
 format:
   html:

@@ -9,7 +9,6 @@ date: 2021-07-05
 categories:
   - QGIS
   - R
-  - Español
   - Y2021
   - GIS
 format:

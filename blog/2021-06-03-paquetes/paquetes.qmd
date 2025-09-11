@@ -8,8 +8,7 @@ author:
 date: 2021-06-03
 categories:
   - R
-  - Español
-  - Package
+  - package
   - Y2023
 format:
   html:

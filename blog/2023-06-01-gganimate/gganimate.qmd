@@ -10,9 +10,8 @@ date: 2023-06-01
 categories:
   - R
   - ggplot2
-  - English
   - Y2023
-  - tracking
+  - biologging
 format:
   html:
     toc: true

@@ -9,8 +9,8 @@ date: 2022-12-04
 image: circadian_front.jpg
 categories:
   - R
-  - Biologging
-  - English
+  - biologging
+  - sula
   - Y2022
 format:
   html:
