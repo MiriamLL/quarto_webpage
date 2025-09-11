@@ -9,8 +9,7 @@ date: 2022-03-22
 image: interpolation_front.jpg
 categories:
   - R
-  - Biologging
-  - English
+  - biologging
   - Y2022
 format:
   html:

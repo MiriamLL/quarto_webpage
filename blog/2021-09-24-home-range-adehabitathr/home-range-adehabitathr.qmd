@@ -10,7 +10,6 @@ image: homerange_front.jpg
 categories:
   - R
   - biologging
-  - English
   - Y2021
 format:
   html:

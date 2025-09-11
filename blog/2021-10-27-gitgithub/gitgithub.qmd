@@ -9,8 +9,7 @@ date: 10-27-2021
 image: gitgithub_front.jpg
 categories:
   - R
-  - Git
-  - English
+  - github
   - Y2021
 format:
   html:

@@ -15,7 +15,6 @@ format:
 categories:
   - R
   - ggplot2
-  - English
   - Y2024
   - biologging
 ---

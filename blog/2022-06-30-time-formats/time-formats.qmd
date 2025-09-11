@@ -10,7 +10,6 @@ image: timeformat_front.jpg
 categories:
   - R
   - biologging
-  - English
   - Y2022
 format:
   html:
