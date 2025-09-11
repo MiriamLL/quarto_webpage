@@ -10,9 +10,8 @@ date: 2023-12-04
 categories:
   - R
   - ggplot2
-  - English
+  - seadens
   - Y2023
-  - surveys
 format:
   html:
     toc: true
