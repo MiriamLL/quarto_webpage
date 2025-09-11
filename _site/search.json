@@ -1073,7 +1073,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Welcome to my site",
+    "title": "Miriam Lerma’s website",
     "section": "",
     "text": "About\nLearn a little bit about me, my interests and find my contact information at the about section. \n\n\n Publications\nYou can find abstracts and links to my publications. If you can’t access a publication please don’t hesitate to contact me. \n\n\n Teaching\nIn this section, you will find a variety of topics that you might find interesting, such as AI tools, tracking functions, and selecting the right journal, among others. I’ve also prepared materials for teaching R, a programming language for statistical computing and graphics. If you’re interested in accessing these resources, you can locate them here. \n\n\n Packages\nI develop R packages that are useful for my work. I’m often working on new packages so stay tuned. \n\n\n Blog\nI blog about what I consider are useful topics and can help other people. I write mostly about R and QGIS, but some of my talks are there. I blog in English and Spanish."
   },
