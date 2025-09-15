@@ -12,56 +12,55 @@ format:
 
 I develop R packages that are useful for my work. I'm often working on new packages so stay tuned. <br>
 
+---
 
-## Package larus
+## larus
 
-::: columns
-::: {.column width="60%" style="padding-left: 0; margin-left: 0;"}
+::: {.column style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;"}
 
-This package focuses on GPS-GSM data, offering tools for data manipulation, trip identification, and calculation of trip parameters like duration, maximum distance, and path length. Additionally, it supports trip interpolation.
-
-There are three key issues in determining the foraging trips in **GSMs** attached to **gulls**:
-- Battery charge and gaps (intervals) in the data.
-- Central locations might change, so foraging trips can be difficult to identify.
-- The gulls just do whatever they want.
+This package specializes in GPS-GSM tracking data, focusing on gulls (Larus spp.) with devices that transmit data remotely and usually need no post-retrieval correction. It offers tools for data manipulation, automated trip identification, and calculation of key movement parameter. Because gulls are unpredictable, moving between roosting sites this package helps researchers understand their complex and variable behaviors.
 
 :::
 
-::: {.column width="40%"}
+::: {.column style="width: 30%; justify-content: right;"}
 
-<img src="packages/2025-07-03-larus/larus_front.png" style="width: 40%;">
-
-:::
-:::
-
-
-# larus 
-
-```{r, echo=FALSE, out.width = "20%", fig.align='right'}
+```{r, echo=FALSE, out.width = "70%", fig.align='right'}
 knitr::include_graphics(paste0(here::here(), "/packages/2025-07-03-larus/larus_front.png"))
 ```
 
-This package focuses on GPS-GSM data, offering tools for data manipulation, trip identification, and calculation of trip parameters like duration, maximum distance, and path length. Additionally, it supports trip interpolation.
+:::
 
-There are three key issues in determining the foraging trips in **GSMs** attached to **gulls**:
-- Battery charge and gaps (intervals) in the data.
-- Central locations might change, so foraging trips can be difficult to identify.
-- The gulls just do whatever they want.
+The package **contains** functions to:  
+
+- **Check battery charge**. Monitor the battery levels to identify potential data loss or reduced sampling frequency caused by low power.<br>
+- **Check gaps** (intervals) in the data. Examine the time intervals between consecutive data points to detect missing data segments or irregular sampling, which can affect the accuracy of movement analysis.<br>
+- **Check shifts in central locations**. Identify changes or drifts in the central reference points (e.g., nesting or roosting sites), as these can influence trip segmentation and complicate the identification of foraging behavior.<br>
+- **Interpolate or sub-sample**. Apply interpolation methods to fill small gaps in the data for continuous movement paths, or sub-sample data to standardize time intervals, improving comparability and analysis consistency.<br>
+- **Calculate trip parameters** such as duration, maximum distance, and path length.<br>
 
 For detailed instructions go to: [https://github.com/MiriamLL/larus](https://github.com/MiriamLL/larus)
 
-Lerma et al. 2025. R package larus. https://github.com/MiriamLL/larus
+---
 
+## GermanNorthSea
 
-# GermanNorthSea
+::: {.column style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;"}
 
-```{r, echo=FALSE, out.width = "20%", fig.align='right'}
+This package provides easy access to shapefiles for the North Sea region, essential for spatial analyses and mapping in marine research. Seamlessly integrated with R, it enables users to quickly incorporate these datasets into workflows and create detailed, customizable maps with minimal effort. This accelerates data exploration while ensuring reproducibility and consistency, making it easy to generate maps repeatedly for reports, publications, or decision-making.
+
+:::
+
+::: {.column style="width: 30%; justify-content: right;"}
+
+```{r, echo=FALSE, out.width = "70%", fig.align='right'}
 knitr::include_graphics(paste0(here::here(),"/packages/2023-06-02-germannorthsea/GNS_front.png"))
 ```
 
-The goal is provide easy access to shapefiles of the North Sea.
-This package contains shapefiles from the **German North Sea**: <br>
-Detailed information and uses: <https://github.com/MiriamLL/GermanNorthSea>
+:::
+
+The package **contains**:  
+
+- Detailed **shapefiles** covering the German North Sea, such as administrative boundaries, marine protected areas, shipping lanes, and other relevant geographic features. <br>
 
 You can install the package GermanNorthSea from GitHub with:
 
@@ -69,19 +68,29 @@ You can install the package GermanNorthSea from GitHub with:
 devtools::install_github("MiriamLL/GermanNorthSea")
 ```
 
+Detailed information and uses: <https://github.com/MiriamLL/GermanNorthSea>. <br> 
+
 For referencing, please use the original resources and links provided in the githubpage for the different shapefiles.
 
-# seamonas
+---
 
-```{r, echo=FALSE, out.width = "20%", fig.align='right'}
+## seamonas
+
+::: {.column style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;"}
+
+The package seamonas provides easy and streamlined access to information based on established guidelines for monitoring seabirds at sea. It includes detailed table content along with a comprehensive sample dataset to support practical implementation and data analysis. The information is derived from the HELCOM Monitoring Guidelines for Seabirds at Sea and is linked to the [ESAS database](https://helcom.fi/wp-content/uploads/2021/11/HELCOM-Monitoring-guidelines-for-seabirds-at-sea-monitoring.pdf), ensuring users have reliable and standardized reference material.
+
+:::
+
+::: {.column style="width: 30%; justify-content: right;"}
+
+```{r, echo=FALSE, out.width = "70%", fig.align='right'}
 knitr::include_graphics(paste0(here::here(),"/packages/2023-04-16-seamonas/seamonas_front.png"))
 ```
 
-**seamonas** provides easy access to information based on guidelines for monitoring seabirds at sea. It includes detailed table content and a sample dataset to support implementation. Information based on the HELCOM Monitoring Guidelines for Seabirds at Sea [ESAS database](https://helcom.fi/wp-content/uploads/2021/11/HELCOM-Monitoring-guidelines-for-seabirds-at-sea-monitoring.pdf).
+:::
 
-Detailed information and uses: <https://github.com/MiriamLL/seamonas>
-
-**seamonas** contains:
+The package **seamonas** contains:
 
 -   A **list of 549 species** across morphological separated groups.
 -   Harmonized **column names** and guidance for completing each entry.
@@ -90,21 +99,35 @@ Detailed information and uses: <https://github.com/MiriamLL/seamonas>
 -   One **survey example** from a monitoring containing survey information.
 -   One survey example from a monitoring containing **species detected and specifications**.
 
+Detailed information and uses: <https://github.com/MiriamLL/seamonas>
+
 You can install the development version of seamonas from [GitHub](https://github.com/) with:
 
 ```{r, eval=FALSE, warning=FALSE}
 devtools::install_github("MiriamLL/seamonas")
 ```
 
-# sula
+---
 
-```{r, echo=FALSE, out.width = "20%", fig.align='right'}
+## sula
+
+::: {.column style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;"}
+
+This package specializes in GPS data from recovered tracking devices, offering tools for analyzing animal movement. It includes example datasets from masked boobies (Sula dactylatra) tracked on Rapa Nui (Easter Island), and provides functions for data cleaning, trip identification, and calculation of key movement parameters such as trip duration, total distance, and path length. 
+
+:::
+
+::: {.column style="width: 30%; justify-content: right;"}
+
+```{r, echo=FALSE, out.width = "70%", fig.align='right'}
 knitr::include_graphics(paste0(here::here(),"/packages/2021-05-14-sula/sula_front.png"))
 ```
 
-**sula** contains:
+:::
 
--   **Data** from GPS collected from masked booby (*Sula dactylatra*) at Rapa Nui, Chile.
+The package **contains**:
+
+-   **Data** from GPS collected from masked booby at Rapa Nui, Chile.
 -   **Thirteen functions** to clean and calculate trip parameters from GPS data. 
 
 Detailed information and uses: <https://github.com/MiriamLL/sula>
@@ -117,16 +140,28 @@ devtools::install_github("MiriamLL/sula")
 
 Created in 2020, updated in 2025, after replacing rgeos with sf.
 
-# spheniscus
+---
 
-```{r, echo=FALSE, out.width = "50%"}
+## spheniscus
+
+::: {.column style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;"}
+
+Designed for the analysis of TDR (Time-Depth Recorder) data from recovered loggers, this package includes example datasets from Humboldt penguins (*Spheniscus humboldti*) studied on Tilgo Island, Chile. It provides a comprehensive suite of tools for data preprocessing, dive detection, correction of zero-depth values, visualization, and the calculation of key diving metrics.
+
+:::
+
+::: {.column style="width: 30%; justify-content: right;"}
+
+```{r, echo=FALSE, out.width = "70%", fig.align='right'}
 knitr::include_graphics(paste0(here::here(),"/packages/2021-05-14-spheniscus/spheniscus_front.png"))
 ```
 
-**spheniscus** containts:
+:::
 
-- **Data** from TDR collected from Humboldt penguins (*Spheniscus humboldi*) at Tilgo Island, Chile.
-- Functions to clean data and obtain diving parameters from TDR data. 
+The package contains:
+
+- **Data** from TDR collected from Humboldt penguins at Tilgo Island, Chile.
+- **Functions** to clean data and obtain diving parameters from TDR data. 
 
 Detailed information and uses: <https://github.com/MiriamLL/spheniscus>
 
@@ -135,22 +170,5 @@ You can install the development version of spheniscus from [GitHub](https://gith
 ```{r, eval=FALSE, warning=FALSE}
 devtools::install_github("MiriamLL/speniscus")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
