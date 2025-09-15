@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Packages</title>
+<title>My list of packages</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -30,8 +93,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,42 +121,12 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -149,16 +180,30 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#larus" id="toc-larus" class="nav-link active" data-scroll-target="#larus">larus</a></li>
+  <li><a href="#germannorthsea" id="toc-germannorthsea" class="nav-link" data-scroll-target="#germannorthsea">GermanNorthSea</a></li>
+  <li><a href="#seamonas" id="toc-seamonas" class="nav-link" data-scroll-target="#seamonas">seamonas</a></li>
+  <li><a href="#sula" id="toc-sula" class="nav-link" data-scroll-target="#sula">sula</a></li>
+  <li><a href="#spheniscus" id="toc-spheniscus" class="nav-link" data-scroll-target="#spheniscus">spheniscus</a></li>
+  </ul>
+</nav>
+</nav>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Packages</h1>
+<h1 class="title">My list of packages</h1>
 </div>
 
 
@@ -173,157 +218,155 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>I develop R packages that are useful for my work. I’m often working on new packages so stay tuned. <br></p>
+<hr>
+<section id="larus" class="level2">
+<h2 class="anchored" data-anchor-id="larus">larus</h2>
+<div class="column" style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;">
+<p>This package specializes in GPS-GSM tracking data, focusing on gulls (Larus spp.) with devices that transmit data remotely and usually need no post-retrieval correction. It offers tools for data manipulation, automated trip identification, and calculation of key movement parameter. Because gulls are unpredictable, moving between roosting sites this package helps researchers understand their complex and variable behaviors.</p>
+</div>
+<div class="column" style="width: 30%; justify-content: right;">
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure class="figure">
+<p><img src="packages/2025-07-03-larus/larus_front.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The package <strong>contains</strong> functions to:</p>
+<ul>
+<li><strong>Check battery charge</strong>. Monitor the battery levels to identify potential data loss or reduced sampling frequency caused by low power.<br></li>
+<li><strong>Check gaps</strong> (intervals) in the data. Examine the time intervals between consecutive data points to detect missing data segments or irregular sampling, which can affect the accuracy of movement analysis.<br></li>
+<li><strong>Check shifts in central locations</strong>. Identify changes or drifts in the central reference points (e.g., nesting or roosting sites), as these can influence trip segmentation and complicate the identification of foraging behavior.<br></li>
+<li><strong>Interpolate or sub-sample</strong>. Apply interpolation methods to fill small gaps in the data for continuous movement paths, or sub-sample data to standardize time intervals, improving comparability and analysis consistency.<br></li>
+<li><strong>Calculate trip parameters</strong> such as duration, maximum distance, and path length.<br></li>
+</ul>
+<p>For detailed instructions go to: <a href="https://github.com/MiriamLL/larus">https://github.com/MiriamLL/larus</a></p>
+<hr>
+</section>
+<section id="germannorthsea" class="level2">
+<h2 class="anchored" data-anchor-id="germannorthsea">GermanNorthSea</h2>
+<div class="column" style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;">
+<p>This package provides easy access to shapefiles for the North Sea region, essential for spatial analyses and mapping in marine research. Seamlessly integrated with R, it enables users to quickly incorporate these datasets into workflows and create detailed, customizable maps with minimal effort. This accelerates data exploration while ensuring reproducibility and consistency, making it easy to generate maps repeatedly for reports, publications, or decision-making.</p>
+</div>
+<div class="column" style="width: 30%; justify-content: right;">
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure class="figure">
+<p><img src="packages/2023-06-02-germannorthsea/GNS_front.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The package <strong>contains</strong>:</p>
+<ul>
+<li>Detailed <strong>shapefiles</strong> covering the German North Sea, such as administrative boundaries, marine protected areas, shipping lanes, and other relevant geographic features. <br></li>
+</ul>
+<p>You can install the package GermanNorthSea from GitHub with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/GermanNorthSea"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Detailed information and uses: <a href="https://github.com/MiriamLL/GermanNorthSea" class="uri">https://github.com/MiriamLL/GermanNorthSea</a>. <br></p>
+<p>For referencing, please use the original resources and links provided in the githubpage for the different shapefiles.</p>
+<hr>
+</section>
+<section id="seamonas" class="level2">
+<h2 class="anchored" data-anchor-id="seamonas">seamonas</h2>
+<div class="column" style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;">
+<p>The package seamonas provides easy and streamlined access to information based on established guidelines for monitoring seabirds at sea. It includes detailed table content along with a comprehensive sample dataset to support practical implementation and data analysis. The information is derived from the HELCOM Monitoring Guidelines for Seabirds at Sea and is linked to the <a href="https://helcom.fi/wp-content/uploads/2021/11/HELCOM-Monitoring-guidelines-for-seabirds-at-sea-monitoring.pdf">ESAS database</a>, ensuring users have reliable and standardized reference material.</p>
+</div>
+<div class="column" style="width: 30%; justify-content: right;">
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure class="figure">
+<p><img src="packages/2023-04-16-seamonas/seamonas_front.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The package <strong>seamonas</strong> contains:</p>
+<ul>
+<li>A <strong>list of 549 species</strong> across morphological separated groups.</li>
+<li>Harmonized <strong>column names</strong> and guidance for completing each entry.</li>
+<li>Unified <strong>descriptions</strong> for field entries, includes abiotic structures, activity codes, associations.</li>
+<li>One <strong>trip example</strong> from a monitoring containing basic trip information.</li>
+<li>One <strong>survey example</strong> from a monitoring containing survey information.</li>
+<li>One survey example from a monitoring containing <strong>species detected and specifications</strong>.</li>
+</ul>
+<p>Detailed information and uses: <a href="https://github.com/MiriamLL/seamonas" class="uri">https://github.com/MiriamLL/seamonas</a></p>
+<p>You can install the development version of seamonas from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/seamonas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="sula" class="level2">
+<h2 class="anchored" data-anchor-id="sula">sula</h2>
+<div class="column" style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;">
+<p>This package specializes in GPS data from recovered tracking devices, offering tools for analyzing animal movement. It includes example datasets from masked boobies (Sula dactylatra) tracked on Rapa Nui (Easter Island), and provides functions for data cleaning, trip identification, and calculation of key movement parameters such as trip duration, total distance, and path length.</p>
+</div>
+<div class="column" style="width: 30%; justify-content: right;">
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure class="figure">
+<p><img src="packages/2021-05-14-sula/sula_front.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The package <strong>contains</strong>:</p>
+<ul>
+<li><strong>Data</strong> from GPS collected from masked booby at Rapa Nui, Chile.</li>
+<li><strong>Thirteen functions</strong> to clean and calculate trip parameters from GPS data.</li>
+</ul>
+<p>Detailed information and uses: <a href="https://github.com/MiriamLL/sula" class="uri">https://github.com/MiriamLL/sula</a></p>
+<p>You can install the development version of sula from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/sula"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Created in 2020, updated in 2025, after replacing rgeos with sf.</p>
+<hr>
+</section>
+<section id="spheniscus" class="level2">
+<h2 class="anchored" data-anchor-id="spheniscus">spheniscus</h2>
+<div class="column" style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;">
+<p>Designed for the analysis of TDR (Time-Depth Recorder) data from recovered loggers, this package includes example datasets from Humboldt penguins (<em>Spheniscus humboldti</em>) studied on Tilgo Island, Chile. It provides a comprehensive suite of tools for data preprocessing, dive detection, correction of zero-depth values, visualization, and the calculation of key diving metrics.</p>
+</div>
+<div class="column" style="width: 30%; justify-content: right;">
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure class="figure">
+<p><img src="packages/2021-05-14-spheniscus/spheniscus_front.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The package contains:</p>
+<ul>
+<li><strong>Data</strong> from TDR collected from Humboldt penguins at Tilgo Island, Chile.</li>
+<li><strong>Functions</strong> to clean data and obtain diving parameters from TDR data.</li>
+</ul>
+<p>Detailed information and uses: <a href="https://github.com/MiriamLL/spheniscus" class="uri">https://github.com/MiriamLL/spheniscus</a></p>
+<p>You can install the development version of spheniscus from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/speniscus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1750629600000" data-listing-file-modified-sort="1757343142943" data-listing-reading-time-sort="1.74">
-<div class="thumbnail">
-<p><a href="./packages/2023-04-16-seamonas/seamonas.html"> <img src="./packages/2023-04-16-seamonas/seamonas_front.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./packages/2023-04-16-seamonas/seamonas.html">
-<h3 class="no-anchor listing-title">
-seamonas
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>A package that provides easy access to information based on guidelines for monitoring seabirds at sea.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./packages/2023-04-16-seamonas/seamonas.html">
-<div class="listing-date">
-Jun 23, 2025
-</div>
-<div class="listing-author">
-Miriam Lerma
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1741302000000" data-listing-file-modified-sort="1757413067924" data-listing-reading-time-sort="1.945">
-<div class="thumbnail">
-<p><a href="./packages/2025-07-03-larus/larus.html"> <img src="./packages/2025-07-03-larus/larus_front.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./packages/2025-07-03-larus/larus.html">
-<h3 class="no-anchor listing-title">
-larus
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>An R package designed for working with GSM data.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./packages/2025-07-03-larus/larus.html">
-<div class="listing-date">
-Mar 7, 2025
-</div>
-<div class="listing-author">
-Miriam Lerma
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1685656800000" data-listing-file-modified-sort="1757413109058" data-listing-reading-time-sort="1.295">
-<div class="thumbnail">
-<p><a href="./packages/2023-06-02-germannorthsea/germannorthsea.html"> <img src="./packages/2023-06-02-germannorthsea/GNS_front.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./packages/2023-06-02-germannorthsea/germannorthsea.html">
-<h3 class="no-anchor listing-title">
-GermanNorthSea
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>A package compiling shapefiles from the German North Sea.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./packages/2023-06-02-germannorthsea/germannorthsea.html">
-<div class="listing-date">
-Jun 2, 2023
-</div>
-<div class="listing-author">
-Miriam Lerma
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1621029600000" data-listing-file-modified-sort="1757540872571" data-listing-reading-time-sort="0.68">
-<div class="thumbnail">
-<p><a href="./packages/2021-05-14-spheniscus/spheniscus.html"> <img src="./packages/2021-05-14-spheniscus/spheniscus_front.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./packages/2021-05-14-spheniscus/spheniscus.html">
-<h3 class="no-anchor listing-title">
-spheniscus
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>A package that provides functions to clean the TDR data and to obtain diving parameters from the sampled individuals.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./packages/2021-05-14-spheniscus/spheniscus.html">
-<div class="listing-date">
-May 15, 2021
-</div>
-<div class="listing-author">
-Miriam Lerma
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1621029600000" data-listing-file-modified-sort="1757413288619" data-listing-reading-time-sort="6.63">
-<div class="thumbnail">
-<p><a href="./packages/2021-05-14-sula/sula.html"> <img src="./packages/2021-05-14-sula/sula_front.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./packages/2021-05-14-sula/sula.html">
-<h3 class="no-anchor listing-title">
-sula
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>Functions to clean your data and calculate the foraging trip parameters of the individuals.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./packages/2021-05-14-sula/sula.html">
-<div class="listing-date">
-May 15, 2021
-</div>
-<div class="listing-author">
-Miriam Lerma
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

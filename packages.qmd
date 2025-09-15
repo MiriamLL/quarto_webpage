@@ -1,11 +1,156 @@
 ---
-title: "Packages"
-listing:
-  contents: packages
-  sort: "date desc"
-  type: default
-  categories: false
-  sort-ui: false
-  filter-ui: false
-page-layout: full
+title: "My list of packages"
+format: 
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 3
+    toc-expand: true 
+    toc-title: "Contents"
+    css: styles.css
 ---
+
+I develop R packages that are useful for my work. I'm often working on new packages so stay tuned. <br>
+
+
+## Package larus
+
+::: columns
+::: {.column width="60%" style="padding-left: 0; margin-left: 0;"}
+
+This package focuses on GPS-GSM data, offering tools for data manipulation, trip identification, and calculation of trip parameters like duration, maximum distance, and path length. Additionally, it supports trip interpolation.
+
+There are three key issues in determining the foraging trips in **GSMs** attached to **gulls**:
+- Battery charge and gaps (intervals) in the data.
+- Central locations might change, so foraging trips can be difficult to identify.
+- The gulls just do whatever they want.
+
+:::
+
+::: {.column width="40%"}
+
+<img src="packages/2025-07-03-larus/larus_front.png" style="width: 40%;">
+
+:::
+:::
+
+
+# larus 
+
+```{r, echo=FALSE, out.width = "20%", fig.align='right'}
+knitr::include_graphics(paste0(here::here(), "/packages/2025-07-03-larus/larus_front.png"))
+```
+
+This package focuses on GPS-GSM data, offering tools for data manipulation, trip identification, and calculation of trip parameters like duration, maximum distance, and path length. Additionally, it supports trip interpolation.
+
+There are three key issues in determining the foraging trips in **GSMs** attached to **gulls**:
+- Battery charge and gaps (intervals) in the data.
+- Central locations might change, so foraging trips can be difficult to identify.
+- The gulls just do whatever they want.
+
+For detailed instructions go to: [https://github.com/MiriamLL/larus](https://github.com/MiriamLL/larus)
+
+Lerma et al. 2025. R package larus. https://github.com/MiriamLL/larus
+
+
+# GermanNorthSea
+
+```{r, echo=FALSE, out.width = "20%", fig.align='right'}
+knitr::include_graphics(paste0(here::here(),"/packages/2023-06-02-germannorthsea/GNS_front.png"))
+```
+
+The goal is provide easy access to shapefiles of the North Sea.
+This package contains shapefiles from the **German North Sea**: <br>
+Detailed information and uses: <https://github.com/MiriamLL/GermanNorthSea>
+
+You can install the package GermanNorthSea from GitHub with:
+
+```{r, eval=FALSE}
+devtools::install_github("MiriamLL/GermanNorthSea")
+```
+
+For referencing, please use the original resources and links provided in the githubpage for the different shapefiles.
+
+# seamonas
+
+```{r, echo=FALSE, out.width = "20%", fig.align='right'}
+knitr::include_graphics(paste0(here::here(),"/packages/2023-04-16-seamonas/seamonas_front.png"))
+```
+
+**seamonas** provides easy access to information based on guidelines for monitoring seabirds at sea. It includes detailed table content and a sample dataset to support implementation. Information based on the HELCOM Monitoring Guidelines for Seabirds at Sea [ESAS database](https://helcom.fi/wp-content/uploads/2021/11/HELCOM-Monitoring-guidelines-for-seabirds-at-sea-monitoring.pdf).
+
+Detailed information and uses: <https://github.com/MiriamLL/seamonas>
+
+**seamonas** contains:
+
+-   A **list of 549 species** across morphological separated groups.
+-   Harmonized **column names** and guidance for completing each entry.
+-   Unified **descriptions** for field entries, includes abiotic structures, activity codes, associations.
+-   One **trip example** from a monitoring containing basic trip information.
+-   One **survey example** from a monitoring containing survey information.
+-   One survey example from a monitoring containing **species detected and specifications**.
+
+You can install the development version of seamonas from [GitHub](https://github.com/) with:
+
+```{r, eval=FALSE, warning=FALSE}
+devtools::install_github("MiriamLL/seamonas")
+```
+
+# sula
+
+```{r, echo=FALSE, out.width = "20%", fig.align='right'}
+knitr::include_graphics(paste0(here::here(),"/packages/2021-05-14-sula/sula_front.png"))
+```
+
+**sula** contains:
+
+-   **Data** from GPS collected from masked booby (*Sula dactylatra*) at Rapa Nui, Chile.
+-   **Thirteen functions** to clean and calculate trip parameters from GPS data. 
+
+Detailed information and uses: <https://github.com/MiriamLL/sula>
+
+You can install the development version of sula from [GitHub](https://github.com/) with:
+
+```{r, eval=FALSE, warning=FALSE}
+devtools::install_github("MiriamLL/sula")
+```
+
+Created in 2020, updated in 2025, after replacing rgeos with sf.
+
+# spheniscus
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics(paste0(here::here(),"/packages/2021-05-14-spheniscus/spheniscus_front.png"))
+```
+
+**spheniscus** containts:
+
+- **Data** from TDR collected from Humboldt penguins (*Spheniscus humboldi*) at Tilgo Island, Chile.
+- Functions to clean data and obtain diving parameters from TDR data. 
+
+Detailed information and uses: <https://github.com/MiriamLL/spheniscus>
+
+You can install the development version of spheniscus from [GitHub](https://github.com/) with:
+
+```{r, eval=FALSE, warning=FALSE}
+devtools::install_github("MiriamLL/speniscus")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
