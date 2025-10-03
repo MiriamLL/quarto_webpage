@@ -15,22 +15,22 @@ library(distilltools)
 knitr::include_graphics("images/LermaCircular.jpg")
 ```
 
-### `r fa("chevron-circle-down", fill = "black")` **About**
+### `r fa("chevron-circle-down", fill = "black")` [**About**](https://www.miriam-lerma.com/about.html)
 
 Learn a little bit about me, my interests and find my contact information at the about section. <br>
 
-### `r fa("book", fill = "black")` **Publications**
+### `r fa("book", fill = "black")` [**Publications**](https://www.miriam-lerma.com/publications.html)  
 
 You can find abstracts and links to my publications. If you can't access a publication please don't hesitate to contact me. <br>
 
-### `r fa("school", fill = "black")` **Teaching**
+### `r fa("school", fill = "black")` [**Teaching**](https://www.miriam-lerma.com/teaching.html)  
 
 In this section, you will find a variety of topics that you might find interesting, such as AI tools, tracking functions, and selecting the right journal, among others. I've also prepared materials for teaching R, a programming language for statistical computing and graphics. If you're interested in accessing these resources, you can locate them here. <br>
 
-### `r fa("box", fill = "black")` **Packages**
+### `r fa("box", fill = "black")` [**Packages**](https://www.miriam-lerma.com/packages.html)
 
 I develop R packages that are useful for my work. I'm often working on new packages so stay tuned. <br>
 
-### `r fa("keyboard", fill = "black")` **Blog**
+### `r fa("keyboard", fill = "black")` [**Blog**](https://www.miriam-lerma.com/blog.html)
 
 I blog about what I consider are useful topics and can help other people. I write mostly about R and QGIS, but some of my talks are there. I blog in English and Spanish. <br>

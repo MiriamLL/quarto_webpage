@@ -8,7 +8,7 @@ author:
 image: arrows_front.jpg
 date: 2023-12-04
 categories:
-  - R
+  - r
   - ggplot2
   - seadens
   - Y2023

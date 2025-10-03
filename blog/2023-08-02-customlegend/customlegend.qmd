@@ -8,7 +8,7 @@ author:
 image: customlegend_front.jpg
 date: 2023-08-02
 categories:
-  - R
+  - r
   - ggplot2
   - seadens
   - Y2023
