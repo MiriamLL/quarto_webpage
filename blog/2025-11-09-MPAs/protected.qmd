@@ -141,14 +141,15 @@ Map_legend
 # Export
 library(here)
 here()
-My_directory<-paste0(here(),"/blog/2025-11-15-protected")
+My_directory<-paste0(here(),"/blog/2025-11-09-MPAs")
 ggsave(Map_legend,
        filename = paste0(My_directory,"/protected_export.jpeg"),
        width = 8, 
        height = 6)
 ```
+
 ```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics(paste0(here::here(),"/blog/2025-11-15-protected","/protected_export.jpeg"))
+knitr::include_graphics(paste0(here::here(),"/blog/2025-11-09-MPAs","/protected_export.jpeg"))
 ```
 
 # Further reading
