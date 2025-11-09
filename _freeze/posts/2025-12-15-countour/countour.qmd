@@ -1,0 +1,190 @@
+---
+title: "Contour lines"
+description: |
+  In this blog post, we'll explore how to make contour lines from a raster (in this case from Bathymetry)
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2025-12-15
+image: contour_front.jpeg
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+categories:
+  - r
+  - ggplot2
+  - germansea
+  - Y2025
+---
+
+# Intro
+
+This months blog post is about how to create contour lines from a raster file and how to add labels using the package metR.
+
+# Read
+
+```{r, eval=FALSE}
+Bath_0tif<-'https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/Bathymetry/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif'
+```
+
+Load the [terra package](https://datacarpentry.org/r-raster-vector-geospatial/01-raster-structure.html) for reading raster data
+
+```{r, eval=FALSE}
+library(terra)
+```
+
+The function **rast** helps to read raster data, replacing package raster
+
+```{r, eval=FALSE}
+Bath_1raster<-rast(Bath_0tif)
+```
+
+# Crop
+
+Keep a reduced area for making the calculations faster
+
+```{r,eval=FALSE}
+ext(Bath_1raster)
+crop_extent <- ext(3, 9, 53, 56)
+Bath_2cropped <- crop(Bath_1raster, crop_extent)
+plot(Bath_2cropped)
+```
+
+# Contour lines
+
+Calculate contour lines
+
+```{r, eval=FALSE}
+Depth_range <- global(Bath_2cropped, fun = "range", na.rm = TRUE)
+Depth_range
+```
+
+```{r, eval=FALSE}
+Contour_levels <- seq(0, -80, by = -5)
+```
+
+```{r, eval=FALSE}
+Bath_3contours <- as.contour(Bath_2cropped, levels = Contour_levels)
+```
+
+The class is "SpatVector"
+
+```{r, eval=FALSE}
+class(Bath_3contours)
+```
+
+Check
+
+```{r, eval=FALSE}
+plot(Bath_2cropped, col = terrain.colors(100), main = "Bathymetry 5m Contours")
+lines(Bath_3contours, col = "blue")
+```
+
+```{r,eval=FALSE}
+writeVector(Bath_3contours, "Bathymetry_10m_contours.shp", overwrite = TRUE)
+```
+
+# Plot 
+
+Load the package sf to transform from SpatVector to sf.
+
+```{r, eval=FALSE}
+library(sf)
+```
+
+From SpatVector to sf
+
+```{r, eval=FALSE}
+Bath_4lines <- st_as_sf(Bath_3contours)
+```
+
+# Plot
+
+Load ggplot2 to use geom_sf
+
+```{r}
+library(ggplot2)
+```
+
+## Lines
+
+```{r, eval=FALSE}
+Bath_5df <- as.data.frame(Bath_1raster, xy = TRUE)
+```
+
+```{r, eval=FALSE}
+Bath_6sub <- Bath_5df  %>%
+  filter(x > 2 & x < 10)%>%
+  filter(y > 52 & y < 57)%>%
+  rename(Bathymetry=3) %>%
+  filter(Bathymetry < 10)
+```
+
+```{r, eval=FALSE}
+Bath_7centroids <- Bath_4lines %>%
+  group_by(level) %>%
+  summarise(geometry = st_centroid(st_union(geometry)))
+```
+
+```{r, eval=FALSE}
+Bath_8plot<-ggplot() +
+  geom_raster(data = Bath_6sub , aes(x = x, y = y, fill = Bathymetry)) +
+  scale_fill_viridis_c(option = "mako")+
+  geom_sf(data = Bath_4lines, color = "grey", size = 0.3) +
+  geom_sf(data = GermanNorthSea::German_land , color='#ffffbe', fill='#ffffbe')+
+  geom_sf_text(data = Bath_7centroids, aes(label = -level), 
+               inherit.aes = FALSE, size = 4, color = "white") +
+  theme_void() +
+  coord_sf(xlim = c(3.3,8.8),
+           ylim = c(53.2,55.8),
+           label_axes = list(left = "N", bottom = 'E'))+
+  theme(legend.position = 'none')
+Bath_8plot
+```
+
+# Shadows
+
+To be able to better see the text use the package shadowtext
+
+```{r, eval=FALSE}
+library(shadowtext)
+```
+
+```{r, eval=FALSE}
+Bath_7centroids_df <- cbind(Bath_7centroids, st_coordinates(Bath_7centroids))
+```
+
+```{r, eval=FALSE}
+Bath_9plot<-Bath_8plot+geom_shadowtext(
+    data = Bath_7centroids_df,
+    aes(x = X, y = Y, label = -level),  # label is -level
+    size = 4,
+    color = "black",
+    bg.color = "white",   # white shadow
+    bg.r = 0.15,          # radius of the shadow
+    inherit.aes = FALSE
+  )
+Bath_9plot
+```
+
+```{r, echo=FALSE, eval=FALSE}
+# Export
+library(here)
+here()
+My_directory<-paste0(here(),"/blog/2025-12-15-countour")
+ggsave(Bath_9plot,
+       filename = paste0(My_directory,"/contour_export.jpeg"),
+       width = 8, 
+       height = 6)
+```
+
+```{r, echo=FALSE, out.width = "100%"}
+knitr::include_graphics(paste0(here::here(),"/blog/2025-12-15-countour","/contour_export.jpeg"))
+```
+
+# Further reading
+
+- Package [metR](https://github.com/eliocamp/metR) from [Elio Campitelli](https://eliocamp.github.io/codigo-r/en/2021/09/contour-labels/)
+
