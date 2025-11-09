@@ -32,20 +32,18 @@ To download data from the EEZ and territorial waters from Germany: go to [GeoSea
 
 To download: go to [GeoSeaPortal](https://www.geoseaportal.de/atomfeeds/Raumordnungsplan_AWZ_en.xml#download=1.) The zip contains several shapefiles including NatureConservation
 
-Other option is [eea](https://www.eea.europa.eu/data-and-maps/data/natura-13)
+Other option is [eea](https://www.eea.europa.eu/data-and-maps/data/natura-13).
 
 ## SCAs
 
 Special Areas of Conservation (SACs), sometimes referred to as SCAs in Germany, are protected sites designated under the EU Habitats Directive to conserve important natural habitats and species (excluding birds). In marine areas, they help protect features like reefs, sandbanks, and marine mammals, forming part of the Natura 2000 network alongside Special Protection Areas (SPAs).
 
-Other option is [Europen Environment Agency](https://www.eea.europa.eu/data-and-maps/data/natura-14) This file contains a more complete data from the natura 2000 sites.
-
-For using the SCA (Special Conservation Areas) in Germany
+To download the data go to: [Europen Environment Agency](https://www.eea.europa.eu/data-and-maps/data/natura-14). This file contains a more complete data from the natura 2000 sites.
 
 
 # Base Map
 
-Load the package ggplot2 to create plots.
+To visualize the shapefiles in R, load the package ggplot2.
 
 ```{r, eval=FALSE}
 library(ggplot2)
@@ -160,7 +158,7 @@ In the German North Sea, approximately 46% of the Exclusive Economic Zone (EEZ) 
 
 However, many activities are allowed in marine protected areas, making [effective protection unclear](https://seas-at-risk.org/press-releases/new-german-legal-action-begins-over-lack-of-marine-ecosystem-protection/).
 
-
+Other sources:  
 - [Birds directive](https://environment.ec.europa.eu/topics/nature-and-biodiversity/birds-directive_en)
 - [Habitats directive](https://environment.ec.europa.eu/topics/nature-and-biodiversity/habitats-directive_en)
 - [Natura 2000](https://www.eea.europa.eu/themes/biodiversity/natura-2000/the-natura-2000-protected-areas-network)
