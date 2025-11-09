@@ -30,7 +30,7 @@ Special Protection Areas (SPAs) at sea are marine zones designated under the Eur
 
 To download data from the EEZ and territorial waters from Germany: go to [GeoSeaPortal](https://gdi.bsh.de/mapapps/?lang=en&stateId=78de7a7c-92d7-4867-9e7a-7c92d7d867f2)>In the theme gallery>move to [Seegrenzen](https://gdi.bsh.de/mapapps/resources/apps/seegrenzen/index.html?lang=de).  
 
-Alternativaly, go to [GeoSeaPortal](https://www.geoseaportal.de/atomfeeds/Raumordnungsplan_AWZ_en.xml#download=1.) The zip contains several shapefiles including NatureConservation.
+Alternativaly, go to [GeoSeaPortal](https://www.geoseaportal.de/atomfeeds/Raumordnungsplan_AWZ_en.xml#download=1). The zip contains several shapefiles including NatureConservation.
 
 Other option is [eea](https://www.eea.europa.eu/data-and-maps/data/natura-13).
 
@@ -154,9 +154,7 @@ knitr::include_graphics(paste0(here::here(),"/blog/2025-11-09-MPAs","/protected_
 
 # Further reading
 
-In the German North Sea, approximately 46% of the Exclusive Economic Zone (EEZ) is covered by Marine Protected Areas (MPAs) and other nature conservation areas. Specifically, these areas encompass 18,698 km², while the total German North Sea EEZ is 40,999 km². [Biodiversity Europe](https://biodiversity.europa.eu/countries/germany)
-
-However, many activities are allowed in marine protected areas, making [effective protection unclear](https://seas-at-risk.org/press-releases/new-german-legal-action-begins-over-lack-of-marine-ecosystem-protection/).
+In the German North Sea, approximately 46% of the Exclusive Economic Zone (EEZ) is covered by Marine Protected Areas (MPAs) and other nature conservation areas. Specifically, these areas encompass 18,698 km², while the total German North Sea EEZ is 40,999 km² ([Biodiversity Europe](https://biodiversity.europa.eu/countries/germany)). However, many activities are allowed in marine protected areas, making [effective protection unclear](https://seas-at-risk.org/press-releases/new-german-legal-action-begins-over-lack-of-marine-ecosystem-protection/).
 
 Other sources:  
 - [Birds directive](https://environment.ec.europa.eu/topics/nature-and-biodiversity/birds-directive_en)
