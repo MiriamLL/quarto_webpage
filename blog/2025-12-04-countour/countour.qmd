@@ -167,7 +167,7 @@ Bath_8plot
 
 # Shadows
 
-To be able to better see the text use the package shadowtext
+To be able to better see the text use the package shadowtext.
 
 ```{r, eval=FALSE}
 library(shadowtext)
@@ -180,7 +180,7 @@ Bath_7centroids_df <- cbind(Bath_7centroids, st_coordinates(Bath_7centroids))
 ```{r, eval=FALSE}
 Bath_9plot<-Bath_8plot+geom_shadowtext(
     data = Bath_7centroids_df,
-    aes(x = X, y = Y, label = -level),  # label is -level
+    aes(x = X, y = Y, label = -level),  # label is -level to not show negative values
     size = 4,
     color = "black",
     bg.color = "white",   # white shadow
@@ -205,8 +205,29 @@ ggsave(Bath_9plot,
 knitr::include_graphics(paste0(here::here(),"/blog/2025-12-04-countour","/contour_export.jpeg"))
 ```
 
+# Other options
+
+```{r,eval=FALSE}
+library(scico)
+```
+
+```{r, eval=FALSE}
+ggplot() +
+  geom_sf(data = Bath_4lines, aes(color = level), size = 0.3) +
+  scale_color_scico(palette = "imola", direction = 1) +
+  geom_sf(data = GermanNorthSea::German_land, color = 'grey', fill = 'grey') +
+  theme_bw() +
+  coord_sf(
+    xlim = c(3.3, 8.8),
+    ylim = c(53.2, 55.8),
+    label_axes = list(left = "N", bottom = 'E')) +
+  theme(legend.position = 'right') +
+  labs(color = "Depth (m)")
+```
+
 # Further reading
 
 - [GEBCO](https://www.gebco.net/data_and_products/gridded_bathymetry_data/#area)  
 - [Bathymetry post](https://www.miriam-lerma.com/blog/2025-01-15-bathymetry/bathymetry)  
 - Package [metR](https://github.com/eliocamp/metR) from [Elio Campitelli](https://eliocamp.github.io/codigo-r/en/2021/09/contour-labels/) 
+- [Analysing bathymetric data in R with marmap](https://cran.r-project.org/web/packages/marmap/vignettes/marmap-DataAnalysis.pdf)
