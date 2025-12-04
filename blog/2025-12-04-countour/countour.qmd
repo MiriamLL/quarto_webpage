@@ -1,7 +1,7 @@
 ---
 title: "Contour lines"
 description: |
-  In this blog post, we'll explore how to make contour lines from a raster (in this case from Bathymetry)
+  In this blog post, we'll explore how to plot contour lines from a raster
 author:
   - name: Miriam Lerma
     url: {}
@@ -21,21 +21,28 @@ categories:
 
 # Intro
 
-This months blog post is about how to create contour lines from a raster file and how to add labels using the package shadowtext.
+This months blog post is about how to create contour lines from a raster file, and how to add labels using the package shadowtext.
 
 # Read
+
+For the example, we will be using Bathymetry data. Bathymetry gives us information on the water depth around an area.
+
+The data comes from: GEBCO: General Bathymetry Chart of the Oceans provides information from bathymetry in the ocean.
+
+To download [visit webpage](https://www.gebco.net/data_and_products/gridded_bathymetry_data/#area).
+For more details and instructions on how to load bathymatry data in R go to [my bathymetry post](https://www.miriam-lerma.com/blog/2025-01-15-bathymetry/bathymetry)
 
 ```{r, eval=FALSE}
 Bath_0tif<-'https://github.com/MiriamLL/data_supporting_webpage/raw/refs/heads/main/Blog/2025/Bathymetry/gebco_2024_n60.0_s50.0_w1.0_e9.0.tif'
 ```
 
-Load the [terra package](https://datacarpentry.org/r-raster-vector-geospatial/01-raster-structure.html) for reading raster data
+Load the [terra package](https://datacarpentry.org/r-raster-vector-geospatial/01-raster-structure.html) for reading raster data.
 
 ```{r, eval=FALSE}
 library(terra)
 ```
 
-The function **rast** helps to read raster data, replacing package raster
+The function **rast** helps to read raster data, replacing package raster.
 
 ```{r, eval=FALSE}
 Bath_1raster<-rast(Bath_0tif)
@@ -43,7 +50,7 @@ Bath_1raster<-rast(Bath_0tif)
 
 # Crop
 
-Keep a reduced area for making the calculations faster
+Keep a reduced area for making the calculations faster.
 
 ```{r,eval=FALSE}
 ext(Bath_1raster)
@@ -52,7 +59,7 @@ Bath_2cropped <- crop(Bath_1raster, crop_extent)
 plot(Bath_2cropped)
 ```
 
-# Contour lines
+# Contour lines.
 
 Calculate contour lines
 
@@ -69,24 +76,26 @@ Contour_levels <- seq(0, -80, by = -5)
 Bath_3contours <- as.contour(Bath_2cropped, levels = Contour_levels)
 ```
 
-The class is "SpatVector"
+The resulting object class is "SpatVector".
 
 ```{r, eval=FALSE}
 class(Bath_3contours)
 ```
 
-Check
+Check by plotting the data.
 
 ```{r, eval=FALSE}
 plot(Bath_2cropped, col = terrain.colors(100), main = "Bathymetry 5m Contours")
 lines(Bath_3contours, col = "blue")
 ```
 
+Export the shapefile using the function **writeVector**. 
+
 ```{r,eval=FALSE}
 writeVector(Bath_3contours, "Bathymetry_10m_contours.shp", overwrite = TRUE)
 ```
 
-The contour lines are also available at: https://github.com/MiriamLL/data_supporting_webpage/tree/main/Blog/2025/Bathymetry
+The contour lines are also available to download [here](https://github.com/MiriamLL/data_supporting_webpage/tree/main/Blog/2025/Bathymetry)
 
 # Plot 
 
@@ -96,7 +105,7 @@ Load the package sf to transform from SpatVector to sf.
 library(sf)
 ```
 
-From SpatVector to sf
+From SpatVector to sf.
 
 ```{r, eval=FALSE}
 Bath_4lines <- st_as_sf(Bath_3contours)
@@ -104,9 +113,9 @@ Bath_4lines <- st_as_sf(Bath_3contours)
 
 # Plot
 
-Load ggplot2 to use geom_sf
+Load ggplot2 to use geom_sf.
 
-```{r}
+```{r, eval=FALSE}
 library(ggplot2)
 ```
 
@@ -192,6 +201,6 @@ knitr::include_graphics(paste0(here::here(),"/blog/2025-12-04-countour","/contou
 
 # Further reading
 
-Other option to add the contour labels are:  
-- Package [metR](https://github.com/eliocamp/metR) from [Elio Campitelli](https://eliocamp.github.io/codigo-r/en/2021/09/contour-labels/)
-
+- [GEBCO](https://www.gebco.net/data_and_products/gridded_bathymetry_data/#area)  
+- [Bathymetry post](https://www.miriam-lerma.com/blog/2025-01-15-bathymetry/bathymetry)  
+- Package [metR](https://github.com/eliocamp/metR) from [Elio Campitelli](https://eliocamp.github.io/codigo-r/en/2021/09/contour-labels/) 
