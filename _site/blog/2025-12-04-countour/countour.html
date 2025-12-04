@@ -253,6 +253,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="intro" class="level1">
 <h1>Intro</h1>
 <p>This months blog post is about how to create contour lines from a raster file, and how to add labels using the package shadowtext.</p>
+<p>A contour line (also isoline, isopleth, isoquant or isarithm) of a function of two variables is a curve along which the function has a constant value, so that the curve joins points of equal value <a href="https://en.wikipedia.org/wiki/Contour_line">Wikipedia</a>.</p>
+<p>In cartography, a contour line (often just called a “contour”) joins points of equal elevation (height) above a given level, such as mean sea level. A contour map is a map illustrated with contour lines, for example a topographic map, which thus shows valleys and hills, and the steepness or gentleness of slopes. The contour interval of a contour map is the difference in elevation between successive contour lines <a href="https://en.wikipedia.org/wiki/Contour_line">Wikipedia</a>.</p>
 </section>
 <section id="read" class="level1">
 <h1>Read</h1>
@@ -283,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="contour-lines." class="level1">
 <h1>Contour lines.</h1>
-<p>Calculate contour lines</p>
+<p>Calculate contour lines. Since we are using Bathymetry data, and contour lines are often given specific names beginning with “iso-” according to the nature of the variable, the lines being mapped from Bathymetric data can also be refereed as isobaths.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Depth_range <span class="ot">&lt;-</span> <span class="fu">global</span>(Bath_2cropped, <span class="at">fun =</span> <span class="st">"range"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Depth_range</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
