@@ -23,10 +23,10 @@ categories:
 
 This months blog post is about how to create contour lines from a raster file, and how to add labels using the package shadowtext.
 
-A contour line (also isoline, isopleth, isoquant or isarithm) of a function of two variables is a curve along which the function has a constant value, so that the curve joins points of equal value [Wikipedia](https://en.wikipedia.org/wiki/Contour_line).
+A contour line (also isoline, isopleth, isoquant or isarithm) of a function of two variables is a curve along which the function has a constant value, so that the curve joins points of equal value ([Wikipedia](https://en.wikipedia.org/wiki/Contour_line)).
 
 In cartography, a contour line (often just called a "contour") joins points of equal elevation (height) above a given level, such as mean sea level. 
-A contour map is a map illustrated with contour lines, for example a topographic map, which thus shows valleys and hills, and the steepness or gentleness of slopes. The contour interval of a contour map is the difference in elevation between successive contour lines [Wikipedia](https://en.wikipedia.org/wiki/Contour_line).
+A contour map is a map illustrated with contour lines, for example a topographic map, which thus shows valleys and hills, and the steepness or gentleness of slopes. The contour interval of a contour map is the difference in elevation between successive contour lines ([Wikipedia](https://en.wikipedia.org/wiki/Contour_line)).
 
 # Read
 
@@ -67,7 +67,7 @@ plot(Bath_2cropped)
 
 # Contour lines.
 
-Calculate contour lines. Since we are using Bathymetry data, and contour lines are often given specific names beginning with "iso-" according to the nature of the variable, the lines being mapped from Bathymetric data can also be refereed as isobaths. 
+Calculate contour lines. Since we are working with bathymetric data, and contour lines are often labeled with the prefix "iso-" based on the type of variable they represent, the lines derived from bathymetric data can specifically be referred to as isobaths.
 
 ```{r, eval=FALSE}
 Depth_range <- global(Bath_2cropped, fun = "range", na.rm = TRUE)
@@ -101,7 +101,7 @@ Export the shapefile using the function **writeVector**.
 writeVector(Bath_3contours, "Bathymetry_10m_contours.shp", overwrite = TRUE)
 ```
 
-The contour lines are also available to download [here](https://github.com/MiriamLL/data_supporting_webpage/tree/main/Blog/2025/Bathymetry)
+The contour lines are also available to download [here](https://github.com/MiriamLL/data_supporting_webpage/tree/main/Blog/2025/Bathymetry).
 
 # Plot 
 
@@ -116,8 +116,6 @@ From SpatVector to sf.
 ```{r, eval=FALSE}
 Bath_4lines <- st_as_sf(Bath_3contours)
 ```
-
-# Plot
 
 Load ggplot2 to use geom_sf.
 

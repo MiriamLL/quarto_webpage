@@ -194,8 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#read" id="toc-read" class="nav-link" data-scroll-target="#read">Read</a></li>
   <li><a href="#crop" id="toc-crop" class="nav-link" data-scroll-target="#crop">Crop</a></li>
   <li><a href="#contour-lines." id="toc-contour-lines." class="nav-link" data-scroll-target="#contour-lines.">Contour lines.</a></li>
-  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a></li>
-  <li><a href="#plot-1" id="toc-plot-1" class="nav-link" data-scroll-target="#plot-1">Plot</a>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a>
   <ul class="collapse">
   <li><a href="#lines" id="toc-lines" class="nav-link" data-scroll-target="#lines">Lines</a></li>
   </ul></li>
@@ -254,8 +253,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="intro" class="level1">
 <h1>Intro</h1>
 <p>This months blog post is about how to create contour lines from a raster file, and how to add labels using the package shadowtext.</p>
-<p>A contour line (also isoline, isopleth, isoquant or isarithm) of a function of two variables is a curve along which the function has a constant value, so that the curve joins points of equal value <a href="https://en.wikipedia.org/wiki/Contour_line">Wikipedia</a>.</p>
-<p>In cartography, a contour line (often just called a “contour”) joins points of equal elevation (height) above a given level, such as mean sea level. A contour map is a map illustrated with contour lines, for example a topographic map, which thus shows valleys and hills, and the steepness or gentleness of slopes. The contour interval of a contour map is the difference in elevation between successive contour lines <a href="https://en.wikipedia.org/wiki/Contour_line">Wikipedia</a>.</p>
+<p>A contour line (also isoline, isopleth, isoquant or isarithm) of a function of two variables is a curve along which the function has a constant value, so that the curve joins points of equal value (<a href="https://en.wikipedia.org/wiki/Contour_line">Wikipedia</a>).</p>
+<p>In cartography, a contour line (often just called a “contour”) joins points of equal elevation (height) above a given level, such as mean sea level. A contour map is a map illustrated with contour lines, for example a topographic map, which thus shows valleys and hills, and the steepness or gentleness of slopes. The contour interval of a contour map is the difference in elevation between successive contour lines (<a href="https://en.wikipedia.org/wiki/Contour_line">Wikipedia</a>).</p>
 </section>
 <section id="read" class="level1">
 <h1>Read</h1>
@@ -286,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="contour-lines." class="level1">
 <h1>Contour lines.</h1>
-<p>Calculate contour lines. Since we are using Bathymetry data, and contour lines are often given specific names beginning with “iso-” according to the nature of the variable, the lines being mapped from Bathymetric data can also be refereed as isobaths.</p>
+<p>Calculate contour lines. Since we are working with bathymetric data, and contour lines are often labeled with the prefix “iso-” based on the type of variable they represent, the lines derived from bathymetric data can specifically be referred to as isobaths.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Depth_range <span class="ot">&lt;-</span> <span class="fu">global</span>(Bath_2cropped, <span class="at">fun =</span> <span class="st">"range"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Depth_range</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -310,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeVector</span>(Bath_3contours, <span class="st">"Bathymetry_10m_contours.shp"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The contour lines are also available to download <a href="https://github.com/MiriamLL/data_supporting_webpage/tree/main/Blog/2025/Bathymetry">here</a></p>
+<p>The contour lines are also available to download <a href="https://github.com/MiriamLL/data_supporting_webpage/tree/main/Blog/2025/Bathymetry">here</a>.</p>
 </section>
 <section id="plot" class="level1">
 <h1>Plot</h1>
@@ -322,9 +321,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Bath_4lines <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(Bath_3contours)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="plot-1" class="level1">
-<h1>Plot</h1>
 <p>Load ggplot2 to use geom_sf.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
