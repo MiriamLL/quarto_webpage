@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2026-01-25
-image: install_front.png
+image: install_front.jpg
 format:
   html:
     toc: true
@@ -26,8 +26,7 @@ I will be working through this process while updating QGIS on my computer from v
 To begin, we will start with the installation. [Link to QGIS download](https://qgis.org/download/).
 
 ```{r, echo=FALSE}
-import_directory<-"C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2026/1Programming/1Quarto/2026-01-25-qgis-install"
-  #paste0(here::here(),"/blog/2026-02-25-qgis-install/")
+import_directory<-paste0(here::here(),"/blog/2026-01-25-qgis-install/")
 ```
 
 ```{r, echo=FALSE, out.width = "60%"}
