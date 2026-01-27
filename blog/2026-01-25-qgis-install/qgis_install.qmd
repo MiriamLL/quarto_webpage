@@ -1,0 +1,113 @@
+---
+title: "First steps in QGIS"
+description: |
+  In this blog post, we'll explore how to install and start with QGIS. 
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2026-01-25
+image: install_front.png
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+categories:
+  - qgis
+  - Y2026
+---
+
+# Intro
+
+In 2026, I plan to create content that helps users get started with QGIS, covering essential tools and workflows for everyday use.
+
+## Install
+I will be working through this process while updating QGIS on my computer from version 3.28 to 3.44, the latest release.  
+To begin, we will start with the installation. [Link to QGIS download](https://qgis.org/download/).
+
+```{r, echo=FALSE}
+import_directory<-"C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2026/1Programming/1Quarto/2026-01-25-qgis-install"
+  #paste0(here::here(),"/blog/2026-02-25-qgis-install/")
+```
+
+```{r, echo=FALSE, out.width = "60%"}
+knitr::include_graphics(paste0(import_directory,"/version.png"))
+```
+
+## Shapefile download
+
+GISCO it’s the EU’s official source for consistent, high-quality geographic data.
+
+GISCO (Geographical Information System of the COmmission) is the European Commission’s system for geographic data, providing standardized maps, administrative boundaries, and spatial datasets for all EU countries and regions, mainly to support statistics, policy-making, and geographic analysis. [Link to GISCO](https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units/countries).
+
+Navigate to Data > GISCO (Geographical Information System of the Commission) > Geodata > Administrative Units > Countries. 
+
+Here, choose SHP as the data format and select the 01M scale.
+
+```{r, echo=FALSE, out.width = "60%"}
+knitr::include_graphics(paste0(import_directory,"/download_shapefile.png"))
+```
+
+## Project
+
+Once installed, in the top menu, select Project > New Project to start a new project.
+
+To display the Layers Panel, go to View > Panels > Layers Panel.
+
+To ensure that newly added layers are visible, enable the Manage Layers Toolbar by going to View > Toolbars > Manage Layers Toolbar.
+
+To add layers, either click the Add Vector Layer icon on the toolbar or navigate to Layer > Add Layer.
+
+```{r, echo=FALSE, out.width = "60%"}
+knitr::include_graphics(paste0(import_directory,"/add_vector_layer.png"))
+```
+
+Choose the appropriate directory and select the desired file.
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/select_directory.png"))
+```
+
+At this point, the shapefile should be visible.
+Verify the EPSG code to confirm that the correct coordinate reference system is in use.
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/layer_panel.png"))
+```
+
+To export your map as a JPG, start by creating a print layout:  
+Navigate to Project > New Print Layout. A dialog box will appear. 
+Assign a name to the layout, for this example, it is Baltic Sea.
+
+```{r, echo=FALSE, out.width = "30%"}
+knitr::include_graphics(paste0(import_directory,"/new_print_layout.png"))
+```
+
+A new window will open for the print layout. This is where you will design and prepare your map for export.
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/export_layout.png"))
+```
+
+In the print layout, start by adding your map via Add Item > Add Map.  
+Next, zoom in to the area of interest, in this case, the Baltic Sea.  
+To re-position the map within the layout, use the Move Content tool, available as an icon on the toolbar or under Edit > Move Content.
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/move_content_tool.png"))
+```
+
+## Export
+
+Once the layout is adjusted, you can proceed to export the map in your desired format.
+
+```{r, echo=FALSE, out.width = "30%"}
+knitr::include_graphics(paste0(import_directory,"/export_as_image.png"))
+```
+
+## Next post
+
+In the next post, we will explore how to enhance your map by adding annotations, such as latitude and longitude markers, a scale bar, and the north arrow.
+
+
+
