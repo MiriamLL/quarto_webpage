@@ -21,8 +21,10 @@ categories:
 
 In 2026, I plan to create content that helps users get started with QGIS, covering essential tools and workflows for everyday use.
 
-## Install
 I will be working through this process while updating QGIS on my computer from version 3.28 to 3.44, the latest release.  
+
+## Install
+
 To begin, we will start with the installation. [Link to QGIS download](https://qgis.org/download/).
 
 ```{r, echo=FALSE}
