@@ -1,6 +1,6 @@
 ---
 title: "Miriam Lerma"
-image: profile_me.jpg
+image: Miriam_Lerma-6614.jpg
 about:
   template: trestles
   links:
