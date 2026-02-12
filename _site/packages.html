@@ -187,11 +187,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#larus" id="toc-larus" class="nav-link active" data-scroll-target="#larus">larus</a></li>
-  <li><a href="#germannorthsea" id="toc-germannorthsea" class="nav-link" data-scroll-target="#germannorthsea">GermanNorthSea</a></li>
-  <li><a href="#seamonas" id="toc-seamonas" class="nav-link" data-scroll-target="#seamonas">seamonas</a></li>
+  <li><a href="#tracking" id="toc-tracking" class="nav-link active" data-scroll-target="#tracking">Tracking</a>
+  <ul class="collapse">
+  <li><a href="#larus" id="toc-larus" class="nav-link" data-scroll-target="#larus">larus</a></li>
   <li><a href="#sula" id="toc-sula" class="nav-link" data-scroll-target="#sula">sula</a></li>
   <li><a href="#spheniscus" id="toc-spheniscus" class="nav-link" data-scroll-target="#spheniscus">spheniscus</a></li>
+  </ul></li>
+  <li><a href="#monitoring" id="toc-monitoring" class="nav-link" data-scroll-target="#monitoring">Monitoring</a>
+  <ul class="collapse">
+  <li><a href="#dasdescriptions" id="toc-dasdescriptions" class="nav-link" data-scroll-target="#dasdescriptions">DASDescriptions</a></li>
+  <li><a href="#dasshapefiles" id="toc-dasshapefiles" class="nav-link" data-scroll-target="#dasshapefiles">DASShapefiles</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -219,7 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>I develop R packages that are useful for my work. I’m often working on new packages so stay tuned. <br></p>
-<hr>
+<section id="tracking" class="level1">
+<h1>Tracking</h1>
 <section id="larus" class="level2">
 <h2 class="anchored" data-anchor-id="larus">larus</h2>
 <div class="column" style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;">
@@ -247,66 +254,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For detailed instructions go to: <a href="https://github.com/MiriamLL/larus">https://github.com/MiriamLL/larus</a></p>
 <hr>
 </section>
-<section id="germannorthsea" class="level2">
-<h2 class="anchored" data-anchor-id="germannorthsea">GermanNorthSea</h2>
-<div class="column" style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;">
-<p>This package provides easy access to shapefiles for the North Sea region, essential for spatial analyses and mapping in marine research. Seamlessly integrated with R, it enables users to quickly incorporate these datasets into workflows and create detailed, customizable maps with minimal effort. This accelerates data exploration while ensuring reproducibility and consistency, making it easy to generate maps repeatedly for reports, publications, or decision-making.</p>
-</div>
-<div class="column" style="width: 30%; justify-content: right;">
-<div class="cell" data-layout-align="right">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><img src="packages/2023-06-02-germannorthsea/GNS_front.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>The package <strong>contains</strong>:</p>
-<ul>
-<li>Detailed <strong>shapefiles</strong> covering the German North Sea, such as administrative boundaries, marine protected areas, shipping lanes, and other relevant geographic features. <br></li>
-</ul>
-<p>You can install the package GermanNorthSea from GitHub with:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/GermanNorthSea"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Detailed information and uses: <a href="https://github.com/MiriamLL/GermanNorthSea" class="uri">https://github.com/MiriamLL/GermanNorthSea</a>. <br></p>
-<p>For referencing, please use the original resources and links provided in the githubpage for the different shapefiles.</p>
-<hr>
-</section>
-<section id="seamonas" class="level2">
-<h2 class="anchored" data-anchor-id="seamonas">seamonas</h2>
-<div class="column" style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;">
-<p>The package seamonas provides easy and streamlined access to information based on established guidelines for monitoring seabirds at sea. It includes detailed table content along with a comprehensive sample dataset to support practical implementation and data analysis. The information is derived from the HELCOM Monitoring Guidelines for Seabirds at Sea and is linked to the <a href="https://helcom.fi/wp-content/uploads/2021/11/HELCOM-Monitoring-guidelines-for-seabirds-at-sea-monitoring.pdf">ESAS database</a>, ensuring users have reliable and standardized reference material.</p>
-</div>
-<div class="column" style="width: 30%; justify-content: right;">
-<div class="cell" data-layout-align="right">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><img src="packages/2023-04-16-seamonas/seamonas_front.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>The package <strong>seamonas</strong> contains:</p>
-<ul>
-<li>A <strong>list of 549 species</strong> across morphological separated groups.</li>
-<li>Harmonized <strong>column names</strong> and guidance for completing each entry.</li>
-<li>Unified <strong>descriptions</strong> for field entries, includes abiotic structures, activity codes, associations.</li>
-<li>One <strong>trip example</strong> from a monitoring containing basic trip information.</li>
-<li>One <strong>survey example</strong> from a monitoring containing survey information.</li>
-<li>One survey example from a monitoring containing <strong>species detected and specifications</strong>.</li>
-</ul>
-<p>Detailed information and uses: <a href="https://github.com/MiriamLL/seamonas" class="uri">https://github.com/MiriamLL/seamonas</a></p>
-<p>You can install the development version of seamonas from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/seamonas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<hr>
-</section>
 <section id="sula" class="level2">
 <h2 class="anchored" data-anchor-id="sula">sula</h2>
 <div class="column" style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;">
@@ -331,7 +278,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Detailed information and uses: <a href="https://github.com/MiriamLL/sula" class="uri">https://github.com/MiriamLL/sula</a></p>
 <p>You can install the development version of sula from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/sula"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/sula"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Created in 2020, updated in 2025, after replacing rgeos with sf.</p>
 <hr>
@@ -360,10 +307,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Detailed information and uses: <a href="https://github.com/MiriamLL/spheniscus" class="uri">https://github.com/MiriamLL/spheniscus</a></p>
 <p>You can install the development version of spheniscus from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/speniscus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/speniscus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<hr>
+</section>
+</section>
+<section id="monitoring" class="level1">
+<h1>Monitoring</h1>
+<section id="dasdescriptions" class="level2">
+<h2 class="anchored" data-anchor-id="dasdescriptions">DASDescriptions</h2>
+<div class="column" style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;">
+<p>The package DASDescriptions provides easy and streamlined access to information based on established guidelines for monitoring seabirds at sea. It includes detailed table content along with a comprehensive sample dataset to support practical implementation and data analysis. The information is derived from the HELCOM Monitoring Guidelines for Seabirds at Sea and is linked to the <a href="https://helcom.fi/wp-content/uploads/2021/11/HELCOM-Monitoring-guidelines-for-seabirds-at-sea-monitoring.pdf">ESAS database</a>, ensuring users have reliable and standardized reference material.</p>
+</div>
+<div class="column" style="width: 30%; justify-content: right;">
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure class="figure">
+<p><img src="packages/DASDescriptions.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The package contains:</p>
+<ul>
+<li>A <strong>list of 549 species</strong> across morphological separated groups.</li>
+<li>Harmonized <strong>column names</strong> and guidance for completing each entry.</li>
+<li>Unified <strong>descriptions</strong> for field entries, includes abiotic structures, activity codes, associations.</li>
+<li>One <strong>trip example</strong> from a monitoring containing basic trip information.</li>
+<li>One <strong>survey example</strong> from a monitoring containing survey information.</li>
+<li>One survey example from a monitoring containing <strong>species detected and specifications</strong>.</li>
+</ul>
+<p>Detailed information and uses: <a href="https://github.com/MiriamLL/DASDescriptions" class="uri">https://github.com/MiriamLL/DASDescriptions</a></p>
+<p>You can install the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/DASDescriptions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="dasshapefiles" class="level2">
+<h2 class="anchored" data-anchor-id="dasshapefiles">DASShapefiles</h2>
+<div class="column" style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;">
+<p>This package provides easy access to shapefiles for the North and Baltic Sea region, essential for spatial analyses and mapping in marine research. Seamlessly integrated with R, it enables users to quickly incorporate these datasets into workflows and create detailed, customizable maps with minimal effort. This accelerates data exploration while ensuring reproducibility and consistency, making it easy to generate maps repeatedly for reports, publications, or decision-making.</p>
+</div>
+<div class="column" style="width: 30%; justify-content: right;">
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure class="figure">
+<p><img src="packages/DASShapefiles.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The package <strong>contains</strong>:</p>
+<ul>
+<li>Detailed <strong>shapefiles</strong> covering the German North and Baltic Sea, such as administrative boundaries, marine protected areas, shipping lanes, and other relevant geographic features. <br></li>
+</ul>
+<p>You can install the package from GitHub with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MiriamLL/GermanNorthSea"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Detailed information and uses: <a href="https://github.com/MiriamLL/DASShapefiles" class="uri">https://github.com/MiriamLL/DASShapefiles</a>. <br></p>
+<p>For referencing, please use the original resources and links provided in the githubpage for the different shapefiles.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

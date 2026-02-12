@@ -12,7 +12,7 @@ format:
 
 I develop R packages that are useful for my work. I'm often working on new packages so stay tuned. <br>
 
----
+# Tracking
 
 ## larus
 
@@ -39,73 +39,6 @@ The package **contains** functions to:
 - **Calculate trip parameters** such as duration, maximum distance, and path length.<br>
 
 For detailed instructions go to: [https://github.com/MiriamLL/larus](https://github.com/MiriamLL/larus)
-
----
-
-## GermanNorthSea
-
-::: {.column style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;"}
-
-This package provides easy access to shapefiles for the North Sea region, essential for spatial analyses and mapping in marine research. Seamlessly integrated with R, it enables users to quickly incorporate these datasets into workflows and create detailed, customizable maps with minimal effort. This accelerates data exploration while ensuring reproducibility and consistency, making it easy to generate maps repeatedly for reports, publications, or decision-making.
-
-:::
-
-::: {.column style="width: 30%; justify-content: right;"}
-
-```{r, echo=FALSE, out.width = "70%", fig.align='right'}
-knitr::include_graphics(paste0(here::here(),"/packages/2023-06-02-germannorthsea/GNS_front.png"))
-```
-
-:::
-
-The package **contains**:  
-
-- Detailed **shapefiles** covering the German North Sea, such as administrative boundaries, marine protected areas, shipping lanes, and other relevant geographic features. <br>
-
-You can install the package GermanNorthSea from GitHub with:
-
-```{r, eval=FALSE}
-devtools::install_github("MiriamLL/GermanNorthSea")
-```
-
-Detailed information and uses: <https://github.com/MiriamLL/GermanNorthSea>. <br> 
-
-For referencing, please use the original resources and links provided in the githubpage for the different shapefiles.
-
----
-
-## seamonas
-
-::: {.column style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;"}
-
-The package seamonas provides easy and streamlined access to information based on established guidelines for monitoring seabirds at sea. It includes detailed table content along with a comprehensive sample dataset to support practical implementation and data analysis. The information is derived from the HELCOM Monitoring Guidelines for Seabirds at Sea and is linked to the [ESAS database](https://helcom.fi/wp-content/uploads/2021/11/HELCOM-Monitoring-guidelines-for-seabirds-at-sea-monitoring.pdf), ensuring users have reliable and standardized reference material.
-
-:::
-
-::: {.column style="width: 30%; justify-content: right;"}
-
-```{r, echo=FALSE, out.width = "70%", fig.align='right'}
-knitr::include_graphics(paste0(here::here(),"/packages/2023-04-16-seamonas/seamonas_front.png"))
-```
-
-:::
-
-The package **seamonas** contains:
-
--   A **list of 549 species** across morphological separated groups.
--   Harmonized **column names** and guidance for completing each entry.
--   Unified **descriptions** for field entries, includes abiotic structures, activity codes, associations.
--   One **trip example** from a monitoring containing basic trip information.
--   One **survey example** from a monitoring containing survey information.
--   One survey example from a monitoring containing **species detected and specifications**.
-
-Detailed information and uses: <https://github.com/MiriamLL/seamonas>
-
-You can install the development version of seamonas from [GitHub](https://github.com/) with:
-
-```{r, eval=FALSE, warning=FALSE}
-devtools::install_github("MiriamLL/seamonas")
-```
 
 ---
 
@@ -170,5 +103,74 @@ You can install the development version of spheniscus from [GitHub](https://gith
 ```{r, eval=FALSE, warning=FALSE}
 devtools::install_github("MiriamLL/speniscus")
 ```
+
+---
+
+# Monitoring
+
+## DASDescriptions
+
+::: {.column style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;"}
+
+The package DASDescriptions provides easy and streamlined access to information based on established guidelines for monitoring seabirds at sea. It includes detailed table content along with a comprehensive sample dataset to support practical implementation and data analysis. The information is derived from the HELCOM Monitoring Guidelines for Seabirds at Sea and is linked to the [ESAS database](https://helcom.fi/wp-content/uploads/2021/11/HELCOM-Monitoring-guidelines-for-seabirds-at-sea-monitoring.pdf), ensuring users have reliable and standardized reference material.
+
+:::
+
+::: {.column style="width: 30%; justify-content: right;"}
+
+```{r, echo=FALSE, out.width = "70%", fig.align='right'}
+knitr::include_graphics(paste0(here::here(),"/packages/DASDescriptions.png"))
+```
+
+:::
+
+The package contains:
+
+-   A **list of 549 species** across morphological separated groups.
+-   Harmonized **column names** and guidance for completing each entry.
+-   Unified **descriptions** for field entries, includes abiotic structures, activity codes, associations.
+-   One **trip example** from a monitoring containing basic trip information.
+-   One **survey example** from a monitoring containing survey information.
+-   One survey example from a monitoring containing **species detected and specifications**.
+
+Detailed information and uses: <https://github.com/MiriamLL/DASDescriptions>
+
+You can install the development version from [GitHub](https://github.com/) with:
+
+```{r, eval=FALSE, warning=FALSE}
+devtools::install_github("MiriamLL/DASDescriptions")
+```
+
+---
+
+## DASShapefiles
+
+::: {.column style="width: 60%; padding-left: 0; margin-left: 0; text-align: left;"}
+
+This package provides easy access to shapefiles for the North and Baltic Sea region, essential for spatial analyses and mapping in marine research. Seamlessly integrated with R, it enables users to quickly incorporate these datasets into workflows and create detailed, customizable maps with minimal effort. This accelerates data exploration while ensuring reproducibility and consistency, making it easy to generate maps repeatedly for reports, publications, or decision-making.
+
+:::
+
+::: {.column style="width: 30%; justify-content: right;"}
+
+```{r, echo=FALSE, out.width = "70%", fig.align='right'}
+knitr::include_graphics(paste0(here::here(),"/packages/DASShapefiles.png"))
+```
+
+:::
+
+The package **contains**:  
+
+- Detailed **shapefiles** covering the German North and Baltic Sea, such as administrative boundaries, marine protected areas, shipping lanes, and other relevant geographic features. <br>
+
+You can install the package from GitHub with:
+
+```{r, eval=FALSE}
+devtools::install_github("MiriamLL/GermanNorthSea")
+```
+
+Detailed information and uses: <https://github.com/MiriamLL/DASShapefiles>. <br> 
+
+For referencing, please use the original resources and links provided in the githubpage for the different shapefiles.
 
 
