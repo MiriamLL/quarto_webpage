@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2026-02-13
-image: export_front.jpeg
+image: export_front.jpg
 format:
   html:
     toc: true
