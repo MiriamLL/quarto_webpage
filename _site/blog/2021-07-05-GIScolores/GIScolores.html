@@ -251,7 +251,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="intro" class="level1">
 <h1>Intro</h1>
 <div class="cell">
-
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'fontawesome' was built under R version 4.4.3</code></pre>
+</div>
 </div>
 <p>Este post es acerca de como crear un mapa base de México, incluir puntos para sitios de muestreo y cambiar los colores de puntos en un mapa en ggplot y en QGIS.</p>
 </section>
@@ -259,10 +261,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Mapa</h1>
 <p>Para crear y modificar mapas siguiendo las instrucciones de este post necesitamos los siguientes paquetes:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Si no los tienes instalados usa la función install.packages()</p>
 <p>Existen shapefiles disponibles para México que se pueden descargar directamente en R. <br> - Para descargar los shapefiles, el paquete <strong>raster</strong> cuenta con la función getData. <br></p>
@@ -278,19 +280,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="mapa-base">Mapa base</h2>
 <p>Para crear un mapa centrado en estos estados se puede usar el siguiente código:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MapaBase<span class="ot">&lt;-</span><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span> Mexico, <span class="at">fill=</span><span class="st">'#264653'</span>, <span class="at">col=</span><span class="st">'black'</span>)<span class="sc">+</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span> Queretaro, <span class="at">fill=</span><span class="st">'#2a9d8f'</span>)<span class="sc">+</span> <span class="co">#para resaltar estados</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span> Guanajuato, <span class="at">fill=</span><span class="st">'#2a9d8f'</span>)<span class="sc">+</span> <span class="co">#para resaltar estados</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_north_arrow</span>(<span class="at">location=</span><span class="st">"tr"</span>,<span class="at">which_north=</span><span class="st">"true"</span>,<span class="at">style=</span><span class="fu">north_arrow_fancy_orienteering</span> ())<span class="sc">+</span> <span class="co">#Norte</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">"bl"</span>,<span class="at">bar_cols =</span> <span class="fu">c</span>(<span class="st">"grey60"</span>, <span class="st">"white"</span>))<span class="sc">+</span> <span class="co">#Escala</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">105</span>,<span class="sc">-</span><span class="dv">95</span>), <span class="co">#limites del mapa</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">18</span> ,<span class="dv">24</span>), <span class="co">#limites del mapa</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>MapaBase</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>MapaBase<span class="ot">&lt;-</span><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span> Mexico, <span class="at">fill=</span><span class="st">'#264653'</span>, <span class="at">col=</span><span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span> Queretaro, <span class="at">fill=</span><span class="st">'#2a9d8f'</span>)<span class="sc">+</span> <span class="co">#para resaltar estados</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span> Guanajuato, <span class="at">fill=</span><span class="st">'#2a9d8f'</span>)<span class="sc">+</span> <span class="co">#para resaltar estados</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_north_arrow</span>(<span class="at">location=</span><span class="st">"tr"</span>,<span class="at">which_north=</span><span class="st">"true"</span>,<span class="at">style=</span><span class="fu">north_arrow_fancy_orienteering</span> ())<span class="sc">+</span> <span class="co">#Norte</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">"bl"</span>,<span class="at">bar_cols =</span> <span class="fu">c</span>(<span class="st">"grey60"</span>, <span class="st">"white"</span>))<span class="sc">+</span> <span class="co">#Escala</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">105</span>,<span class="sc">-</span><span class="dv">95</span>), <span class="co">#limites del mapa</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">18</span> ,<span class="dv">24</span>), <span class="co">#limites del mapa</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>MapaBase</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Dentro de geom_sf el argumento <strong>fill</strong> es el color con el que se rellenaran los polígonos, lo puedes cambiar a como más te guste. En el mapa use códigos hexa-númericos que pueden ser encontrados en <a href="https://coolors.co/">coolors</a>, para más instrucciones <a href="https://miriamll.github.io/Curso_CIAD/Xaringan-Parte2#16">ve aquí</a></p>
 </section>
@@ -298,29 +300,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="agregar-un-sitio">Agregar un sitio</h2>
 <p>Ahora para agregar sitios, se deben especificar las coordenadas. En el ejemplo el argumento geom_point <strong>x</strong> y <strong>y</strong> son las coordenadas. En color elegí el color que le quiero dar a ese punto y lo escribí como código hexa-númerico (hex).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>MapaSitios<span class="ot">&lt;-</span>MapaBase<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="sc">-</span><span class="dv">100</span>, <span class="at">y=</span><span class="dv">21</span>, </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">color=</span><span class="st">'#e63946'</span>))<span class="sc">+</span> <span class="co">#elegir el color</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">'none'</span>) <span class="co">#evitar la etiqueta</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>MapaSitios</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>MapaSitios<span class="ot">&lt;-</span>MapaBase<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="sc">-</span><span class="dv">100</span>, <span class="at">y=</span><span class="dv">21</span>, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">color=</span><span class="st">'#e63946'</span>))<span class="sc">+</span> <span class="co">#elegir el color</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">'none'</span>) <span class="co">#evitar la etiqueta</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>MapaSitios</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="agregar-varios-sitios" class="level2">
 <h2 class="anchored" data-anchor-id="agregar-varios-sitios">Agregar varios sitios</h2>
 <p>Otra opción es que si tienes muchos puntos, es más práctico crear o cargar un data frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>DatosInventados<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">long=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">102</span>,<span class="sc">-</span><span class="dv">101</span>,<span class="sc">-</span><span class="dv">100</span>,<span class="sc">-</span><span class="dv">99</span>,<span class="sc">-</span><span class="dv">98</span>),</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">lat=</span><span class="fu">c</span>(<span class="fl">21.5</span>,<span class="fl">21.3</span>,<span class="fl">20.9</span>,<span class="dv">21</span>,<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>DatosInventados<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">long=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">102</span>,<span class="sc">-</span><span class="dv">101</span>,<span class="sc">-</span><span class="dv">100</span>,<span class="sc">-</span><span class="dv">99</span>,<span class="sc">-</span><span class="dv">98</span>),</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">lat=</span><span class="fu">c</span>(<span class="fl">21.5</span>,<span class="fl">21.3</span>,<span class="fl">20.9</span>,<span class="dv">21</span>,<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Puedes concatenar varios códigos hex y crear tu propia paleta.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>paleta<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"#f8ffe5"</span>,<span class="st">"#06d6a0"</span>,<span class="st">"#1b9aaa"</span>,<span class="st">"#ef476f"</span>,<span class="st">"#ffc43d"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>paleta<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"#f8ffe5"</span>,<span class="st">"#06d6a0"</span>,<span class="st">"#1b9aaa"</span>,<span class="st">"#ef476f"</span>,<span class="st">"#ffc43d"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Agregar la paleta a las especificaciones del gráfico es dentro de geom_point, en <strong>color</strong>. Para hacer los puntos más grandes también puedes agregar el argumento <strong>size</strong> en <strong>geom_point</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>MapaSitios<span class="ot">&lt;-</span>MapaBase<span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>DatosInventados,<span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y=</span>lat,<span class="at">color=</span>paleta),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">'none'</span>) <span class="co">#evitar la etiqueta</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>MapaSitios</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>MapaSitios<span class="ot">&lt;-</span>MapaBase<span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>DatosInventados,<span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y=</span>lat,<span class="at">color=</span>paleta),<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">'none'</span>) <span class="co">#evitar la etiqueta</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>MapaSitios</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 

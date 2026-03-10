@@ -44,7 +44,7 @@ install.packages("magick")
 
 To call the package
 
-```{r}
+```{r, eval=FALSE}
 library(magick)
 ```
 
@@ -88,7 +88,7 @@ To add the text in the right bottom use the information from the dimensions abov
 Fig1_text<-image_annotate(Fig1_draw, "(a)",  location = "+1199+999", font = 'Arial', size = 100, color='white')
 ```
 
-```{r, eval=TRUE, echo=FALSE}
+```{r, echo=FALSE, eval=FALSE}
 library(here)
 My_directory<-here()
 ```
@@ -131,7 +131,7 @@ image_write(Fig1_text, path = paste0(My_directory,"/Fig1_tl.png"), format = "png
 
 Follow the same steps as above, but with a second picture.
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, eval=FALSE}
 Fig2_link<-('https://github.com/MiriamLL/data_supporting_webpage/blob/main/Blog/2024/RFBO.JPG?raw=true')
 Fig2_original<- image_read(Fig2_link)
 ```

@@ -270,22 +270,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To call the package</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'magick' was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Linking to ImageMagick 6.9.12.98
-Enabled features: cairo, freetype, fftw, ghostscript, heic, lcms, pango, raw, rsvg, webp
-Disabled features: fontconfig, x11</code></pre>
-</div>
 </div>
 </section>
 <section id="data" class="level3">
 <h3 class="anchored" data-anchor-id="data">Data</h3>
 <p>Select your directory. In the example, as <strong>My_directory</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>My_directory<span class="ot">&lt;-</span><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>My_directory<span class="ot">&lt;-</span><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 
@@ -294,13 +286,13 @@ Disabled features: fontconfig, x11</code></pre>
 It should show the images you want to use.</p>
 <p>Read images using the function <strong>image_read</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Fig1_original<span class="ot">&lt;-</span> <span class="fu">image_read</span>(Fig1_link)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Fig1_original<span class="ot">&lt;-</span> <span class="fu">image_read</span>(Fig1_link)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The function <strong>image_draw</strong> will show the picture in the Viewer.<br>
 Moreover, it gives information on the width and height of the picture.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Fig1_draw<span class="ot">&lt;-</span><span class="fu">image_draw</span>(Fig1_original)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Fig1_draw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Fig1_draw<span class="ot">&lt;-</span><span class="fu">image_draw</span>(Fig1_original)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Fig1_draw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -309,12 +301,10 @@ Moreover, it gives information on the width and height of the picture.</p>
 <p>To add text use the function <strong>image_annotate</strong></p>
 <p>To add the text in the right bottom use the information from the dimensions above to define the xaxis and yaxis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Fig1_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig1_draw, <span class="st">"(a)"</span>,  <span class="at">location =</span> <span class="st">"+1199+999"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Fig1_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig1_draw, <span class="st">"(a)"</span>,  <span class="at">location =</span> <span class="st">"+1199+999"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>here() starts at C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2026/1Programming/1Quarto/quarto_webpage</code></pre>
-</div>
+
 </div>
 <div class="cell">
 
@@ -324,7 +314,7 @@ Moreover, it gives information on the width and height of the picture.</p>
 </div>
 <p>To add the text in the left top part you can use define the xaxis and yaxis as 100.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Fig1_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig1_draw, <span class="st">"(a)"</span>,  <span class="at">location =</span> <span class="st">"+50+50"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Fig1_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig1_draw, <span class="st">"(a)"</span>,  <span class="at">location =</span> <span class="st">"+50+50"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 
@@ -337,7 +327,7 @@ Moreover, it gives information on the width and height of the picture.</p>
 <h2 class="anchored" data-anchor-id="export">Export</h2>
 <p>Use the function <strong>image_write</strong> to export.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write</span>(Fig1_text, <span class="at">path =</span> <span class="fu">paste0</span>(My_directory,<span class="st">"/Fig1_tl.png"</span>), <span class="at">format =</span> <span class="st">"png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write</span>(Fig1_text, <span class="at">path =</span> <span class="fu">paste0</span>(My_directory,<span class="st">"/Fig1_tl.png"</span>), <span class="at">format =</span> <span class="st">"png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -348,36 +338,38 @@ Moreover, it gives information on the width and height of the picture.</p>
 
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Fig2_draw<span class="ot">&lt;-</span><span class="fu">image_draw</span>(Fig2_original)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Fig2_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig2_draw, <span class="st">"(b)"</span>,  <span class="at">location =</span> <span class="st">"+50+50"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Fig2_draw<span class="ot">&lt;-</span><span class="fu">image_draw</span>(Fig2_original)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Fig2_text<span class="ot">&lt;-</span><span class="fu">image_annotate</span>(Fig2_draw, <span class="st">"(b)"</span>,  <span class="at">location =</span> <span class="st">"+50+50"</span>, <span class="at">font =</span> <span class="st">'Arial'</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color=</span><span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="add-border" class="level2">
 <h2 class="anchored" data-anchor-id="add-border">Add border</h2>
 <p>Use the function <strong>image_border</strong> to add some space between the pictures.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Fig1_border<span class="ot">&lt;-</span><span class="fu">image_border</span>(<span class="fu">image_background</span>(Fig1_text, <span class="st">"transparent"</span>), <span class="st">"white"</span>, <span class="st">"40x10"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Fig1_border</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Fig1_border<span class="ot">&lt;-</span><span class="fu">image_border</span>(<span class="fu">image_background</span>(Fig1_text, <span class="st">"transparent"</span>), <span class="st">"white"</span>, <span class="st">"40x10"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Fig1_border</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Fig2_border<span class="ot">&lt;-</span><span class="fu">image_border</span>(<span class="fu">image_background</span>(Fig2_text, <span class="st">"transparent"</span>), <span class="st">"white"</span>, <span class="st">"40x10"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Fig2_border</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Fig2_border<span class="ot">&lt;-</span><span class="fu">image_border</span>(<span class="fu">image_background</span>(Fig2_text, <span class="st">"transparent"</span>), <span class="st">"white"</span>, <span class="st">"40x10"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Fig2_border</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="combine" class="level2">
 <h2 class="anchored" data-anchor-id="combine">Combine</h2>
 <p>Use the function <strong>image_append</strong> to have both pictures side by side.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_append</span>(<span class="fu">c</span>(Fig1_border,Fig2_border))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_append</span>(<span class="fu">c</span>(Fig1_border,Fig2_border))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="export-1" class="level2">
 <h2 class="anchored" data-anchor-id="export-1">Export</h2>
 <p>Use the function <strong>image_write</strong> to export the picture.</p>
 <div class="cell">
-
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2026/1Programming/1Quarto/quarto_webpage</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write</span>(<span class="fu">image_append</span>(<span class="fu">c</span>(Fig1_border,Fig2_border)), <span class="at">path =</span> <span class="fu">paste0</span>(My_directory,<span class="st">"/Fig1_append.png"</span>), <span class="at">format =</span> <span class="st">"png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image_write</span>(<span class="fu">image_append</span>(<span class="fu">c</span>(Fig1_border,Fig2_border)), <span class="at">path =</span> <span class="fu">paste0</span>(My_directory,<span class="st">"/Fig1_append.png"</span>), <span class="at">format =</span> <span class="st">"png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
