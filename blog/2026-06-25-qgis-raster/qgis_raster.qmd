@@ -15,6 +15,7 @@ format:
 categories:
   - qgis
   - Y2026
+listing: false
 ---
 
 # Intro
