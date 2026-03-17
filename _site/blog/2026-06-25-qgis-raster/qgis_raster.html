@@ -131,10 +131,10 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download">Download</a></li>
   <li><a href="#qgis" id="toc-qgis" class="nav-link" data-scroll-target="#qgis">QGIS</a></li>
+  <li><a href="#shades-of-blue" id="toc-shades-of-blue" class="nav-link" data-scroll-target="#shades-of-blue">Shades of blue</a></li>
   <li><a href="#layout" id="toc-layout" class="nav-link" data-scroll-target="#layout">Layout</a></li>
   </ul></li>
   <li><a href="#export" id="toc-export" class="nav-link" data-scroll-target="#export">Export</a></li>
-  <li><a href="#next-post" id="toc-next-post" class="nav-link" data-scroll-target="#next-post">Next post</a></li>
   </ul>
 </nav>
 </nav>
@@ -184,31 +184,41 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="intro" class="level1">
 <h1>Intro</h1>
-<p>In this blog post, we’ll explore add a raster layer with the example of bathymetry data in QGIS. In addition, how to export the map including legends in the preferred format.</p>
+<p>In this blog post, we will explore how to add a raster layer in QGIS using bathymetry data as an example.<br>
+You will learn how to visualize raster data, adjust its appearance, and integrate it into your map.</p>
 <div class="cell">
 
 </div>
 <section id="download" class="level2">
 <h2 class="anchored" data-anchor-id="download">Download</h2>
-<p>To download the data use GEBCO: General Bathymetry Chart of the Oceans provides information from bathymetry in the ocean.</p>
-<p>To download visit webpage</p>
-<p>Go to: - Download data for user-defined areas - Click on application</p>
+<p>To download the bathymetry data, we will use <a href="https://www.gebco.net/">GEBCO</a> (General Bathymetric Chart of the Oceans), which provides global bathymetry information describing the depth and shape of the ocean floor.</p>
+<p>To download the dataset, visit the <a href="https://www.gebco.net/">GEBCO</a> website and follow these steps:</p>
+<ul>
+<li>Go to Download data for user-defined areas<br>
+</li>
+<li>Click on Application to open the data selection tool<br>
+</li>
+<li>Select your area of interest and download the dataset for use in QGIS</li>
+</ul>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="gebco.png" class="img-fluid" style="width:90.0%"></p>
 </div>
 </div>
+<p>Afterwards,</p>
 <ul>
-<li>Add your coordinates -here I use 9 to 16 and 56 to 53.</li>
-<li>I also selected GeoTIFF</li>
+<li>Add the coordinates for the area you want to download. In this example, I use 9 to 16 (longitude) and 56 to 53 (latitude).<br>
+</li>
+<li>Select GeoTIFF as the output format for the dataset.</li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="grid.png" class="img-fluid" style="width:90.0%"></p>
 </div>
 </div>
+<p>Finally,</p>
 <ul>
-<li>Add to basket and download</li>
+<li>Click Add to Basket, then proceed to Download to obtain the dataset.</li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
@@ -218,21 +228,51 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="qgis" class="level2">
 <h2 class="anchored" data-anchor-id="qgis">QGIS</h2>
-<p>Add layer</p>
-<p>To add raster layer go to: Layer &gt; Add Layer &gt; Add Raster Layer</p>
+<p>To add your downloaded bathymetry data in QGIS:</p>
+<ul>
+<li>Go to the menu: Layer &gt; Add Layer &gt; Add Raster Layer<br>
+</li>
+<li>Browse to the downloaded GeoTIFF file and click Open</li>
+</ul>
+<p>The bathymetry raster will appear in your map canvas, ready for visualization and analysis.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="add_raster.png" class="img-fluid" style="width:90.0%"></p>
 </div>
 </div>
-<p>Select the file from Bathymetry. For my case the file will start with “gebco” When loading it would appear in grey colors</p>
+<ul>
+<li>Select the downloaded bathymetry file from your folder.<br>
+In this example, the file name starts with “gebco”.<br>
+</li>
+<li>When first loaded, the raster will appear in grey tones, which is the default color rendering in QGIS.</li>
+</ul>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="in_grey.png" class="img-fluid" style="width:90.0%"></p>
 </div>
 </div>
-<p>To change to blues go to:</p>
-<p>Properties&gt; Symbology Select Render type: Singleband pseudocolor Here I changed to Min -200 and Max 0 as I am interested in water depth Interpolation: Linear Color ramp: Blues (if necesary select invert color ramp after clicking o the color) Mode: Continuos Click in Classify, you can adapt the classess and the categories.</p>
+</section>
+<section id="shades-of-blue" class="level2">
+<h2 class="anchored" data-anchor-id="shades-of-blue">Shades of blue</h2>
+<p>To better visualize the bathymetry data, you can change the color scheme from grey to shades of blue:</p>
+<ul>
+<li>Right-click the raster layer and select Properties.<br>
+</li>
+<li>Go to the Symbology tab.<br>
+</li>
+<li>Set Render type to Singleband pseudocolor.<br>
+</li>
+<li>Adjust the value range to focus on water depth: Minimum: -200; Maximum: 0<br>
+</li>
+<li>Choose Interpolation: Linear<br>
+</li>
+<li>Select a Color ramp: Blues. If needed, click the color ramp and invert it to have deeper areas darker.<br>
+</li>
+<li>Set Mode to Continuous<br>
+</li>
+<li>Click Classify to apply the color scheme. You can further adapt the classes and categories as needed.</li>
+</ul>
+<p>Your raster will now display in shades of blue, clearly showing variations in water depth.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="symbology.png" class="img-fluid" style="width:90.0%"></p>
@@ -241,29 +281,52 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="layout" class="level2">
 <h2 class="anchored" data-anchor-id="layout">Layout</h2>
-<p>For this layout, I go to Project &gt; Layout section.</p>
-<p>Once the layout is open I add the legend in Add Item &gt; Add Legend De select all the other layers, and only select this layer. Remove the auto update, Use the arrows to reorganize the order of the legends, Double click to change the legend to “&gt;0” if is the case.</p>
+<p>To prepare your map for export with a legend:</p>
+<ul>
+<li>Go to Project &gt; Layout Manager and create a new layout.<br>
+</li>
+<li>Once the layout opens, add a legend: Add Item &gt; Add Legend.</li>
+</ul>
+<p>In the Legend Items panel:</p>
+<ul>
+<li>Deselect all other layers and keep only the bathymetry layer selected.<br>
+</li>
+<li>Uncheck Auto-update so the legend doesn’t change automatically.<br>
+</li>
+<li>Use the arrows to reorder the legend entries if needed.<br>
+</li>
+<li>Double-click a legend entry to edit its label. For example, change it to “&gt;0” if appropriate.</li>
+</ul>
+<p>This ensures your legend accurately represents the bathymetry layer and is neatly organized for your final map.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="change_legend.png" class="img-fluid" style="width:30.0%"></p>
 </div>
 </div>
-<p>I additionally added some text of areas that could be of interest. Names were extracted from: https://os.copernicus.org/articles/15/905/2019/</p>
+<p>To highlight specific locations on the map, add text labels for areas of interest.</p>
+<ul>
+<li>The names and locations were extracted from the study: <a href="https://os.copernicus.org/articles/15/905/2019/">Copernicus Open Access Journal</a><br>
+</li>
+<li>You can add these labels in the layout by using Add Item &gt; Add Label and positioning them appropriately on the map.</li>
+</ul>
 </section>
 </section>
 <section id="export" class="level1">
 <h1>Export</h1>
-<p>Here is the final map, with the water depth, the legend of the water depth, and the names from specific basins.</p>
-<p>I got inspiration from this publication <a href="https://www.researchgate.net/publication/305690503_Comparing_Distribution_of_Harbour_Porpoises_Phocoena_phocoena_Derived_from_Satellite_Telemetry_and_Passive_Acoustic_Monitoring/figures?lo=1">link here</a> and names from <a href="https://os.copernicus.org/articles/15/905/2019/">here</a></p>
+<p>Here is the completed map, showing:</p>
+<ul>
+<li>Water depth visualized in shades of blue<br>
+</li>
+<li>A legend indicating the depth values<br>
+</li>
+<li>Labels for specific basins of interest</li>
+</ul>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="BalticSea_06Bathy.jpeg" class="img-fluid" style="width:90.0%"></p>
 </div>
 </div>
-</section>
-<section id="next-post" class="level1">
-<h1>Next post</h1>
-<p>How to add side by side maps to describe the general larger area, including maritime areas and borders.</p>
+<p>The design and layout of this map were inspired by the following publication: <a href="https://os.copernicus.org/articles/15/905/2019/">Bathymetric properties of the Baltic Sea</a>.</p>
 
 
 </section>

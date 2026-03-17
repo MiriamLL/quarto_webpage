@@ -20,7 +20,8 @@ categories:
 
 # Intro
 
-In this blog post, we'll explore add a raster layer with the example of bathymetry data in QGIS. In addition, how to export the map including legends in the preferred format. 
+In this blog post, we will explore how to add a raster layer in QGIS using bathymetry data as an example.  
+You will learn how to visualize raster data, adjust its appearance, and integrate it into your map.  
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(here)
@@ -29,28 +30,30 @@ import_directory<-paste0(here(),"/blog/2026-06-25-qgis-raster")
 
 ## Download
 
-To download the data use 
-GEBCO: General Bathymetry Chart of the Oceans provides information from bathymetry in the ocean.
+To download the bathymetry data, we will use [GEBCO](https://www.gebco.net/) (General Bathymetric Chart of the Oceans), which provides global bathymetry information describing the depth and shape of the ocean floor.  
 
-To download visit webpage
+To download the dataset, visit the [GEBCO](https://www.gebco.net/) website and follow these steps:  
 
-
-Go to:
-- Download data for user-defined areas
-- Click on application
+- Go to Download data for user-defined areas  
+- Click on Application to open the data selection tool  
+- Select your area of interest and download the dataset for use in QGIS  
 
 ```{r, echo=FALSE, out.width = "90%"}
 knitr::include_graphics(paste0(import_directory,"/gebco.png"))
 ```
 
-- Add your coordinates -here I use 9 to 16 and 56 to 53.
-- I also selected GeoTIFF
+Afterwards,  
+
+- Add the coordinates for the area you want to download. In this example, I use 9 to 16 (longitude) and 56 to 53 (latitude).  
+- Select GeoTIFF as the output format for the dataset.
 
 ```{r, echo=FALSE, out.width = "90%"}
 knitr::include_graphics(paste0(import_directory,"/grid.png"))
 ```
 
-- Add to basket and download
+Finally,  
+
+- Click Add to Basket, then proceed to Download to obtain the dataset.
 
 ```{r, echo=FALSE, out.width = "90%"}
 knitr::include_graphics(paste0(import_directory,"/download.png"))
@@ -58,32 +61,39 @@ knitr::include_graphics(paste0(import_directory,"/download.png"))
 
 ## QGIS
 
-Add layer
+To add your downloaded bathymetry data in QGIS:  
 
-To add raster layer go to: Layer > Add Layer > Add Raster Layer
+- Go to the menu: Layer > Add Layer > Add Raster Layer  
+- Browse to the downloaded GeoTIFF file and click Open  
+
+The bathymetry raster will appear in your map canvas, ready for visualization and analysis.
 
 ```{r, echo=FALSE, out.width = "90%"}
 knitr::include_graphics(paste0(import_directory,"/add_raster.png"))
 ```
 
-Select the file from Bathymetry.
-For my case the file will start with "gebco"
-When loading it would appear in grey colors
+- Select the downloaded bathymetry file from your folder.  
+In this example, the file name starts with “gebco”.  
+- When first loaded, the raster will appear in grey tones, which is the default color rendering in QGIS.  
 
 ```{r, echo=FALSE, out.width = "90%"}
 knitr::include_graphics(paste0(import_directory,"/in_grey.png"))
 ```
 
-To change to blues go to:
+## Shades of blue
 
-Properties> Symbology
-Select
-Render type: Singleband pseudocolor
-Here I changed to Min -200 and Max 0 as I am interested in water depth
-Interpolation: Linear
-Color ramp: Blues (if necesary select invert color ramp after clicking o the color)
-Mode: Continuos 
-Click in Classify, you can adapt the classess and the categories.
+To better visualize the bathymetry data, you can change the color scheme from grey to shades of blue:  
+
+- Right-click the raster layer and select Properties.  
+- Go to the Symbology tab.  
+- Set Render type to Singleband pseudocolor.  
+- Adjust the value range to focus on water depth:  Minimum: -200; Maximum: 0  
+- Choose Interpolation: Linear   
+- Select a Color ramp: Blues. If needed, click the color ramp and invert it to have deeper areas darker.  
+- Set Mode to Continuous  
+- Click Classify to apply the color scheme. You can further adapt the classes and categories as needed.  
+
+Your raster will now display in shades of blue, clearly showing variations in water depth.  
 
 ```{r, echo=FALSE, out.width = "90%"}
 knitr::include_graphics(paste0(import_directory,"/symbology.png"))
@@ -91,32 +101,40 @@ knitr::include_graphics(paste0(import_directory,"/symbology.png"))
 
 ## Layout
 
-For this layout, I go to Project > Layout section.
+To prepare your map for export with a legend:  
 
-Once the layout is open I add the legend in Add Item > Add Legend
-De select all the other layers, and only select this layer.
-Remove the auto update, 
-Use the arrows to reorganize the order of the legends,
-Double click to change the legend to ">0" if is the case.
+- Go to Project > Layout Manager and create a new layout.  
+- Once the layout opens, add a legend: Add Item > Add Legend.  
+
+In the Legend Items panel:  
+
+- Deselect all other layers and keep only the bathymetry layer selected.  
+- Uncheck Auto-update so the legend doesn’t change automatically.  
+- Use the arrows to reorder the legend entries if needed.  
+- Double-click a legend entry to edit its label. For example, change it to ">0" if appropriate.  
+
+This ensures your legend accurately represents the bathymetry layer and is neatly organized for your final map.
 
 ```{r, echo=FALSE, out.width = "30%"}
 knitr::include_graphics(paste0(import_directory,"/change_legend.png"))
 ```
 
-I additionally added some text of areas that could be of interest.
-Names were extracted from: https://os.copernicus.org/articles/15/905/2019/
+To highlight specific locations on the map, add text labels for areas of interest.  
+
+- The names and locations were extracted from the study: [Copernicus Open Access Journal](https://os.copernicus.org/articles/15/905/2019/)  
+- You can add these labels in the layout by using Add Item > Add Label and positioning them appropriately on the map.
 
 # Export
 
-Here is the final map, with the water depth, the legend of the water depth, and the names from specific basins. 
+Here is the completed map, showing:  
 
-I got inspiration from this publication [link here](https://www.researchgate.net/publication/305690503_Comparing_Distribution_of_Harbour_Porpoises_Phocoena_phocoena_Derived_from_Satellite_Telemetry_and_Passive_Acoustic_Monitoring/figures?lo=1) and names from [here](https://os.copernicus.org/articles/15/905/2019/)
+- Water depth visualized in shades of blue  
+- A legend indicating the depth values  
+- Labels for specific basins of interest  
 
 ```{r, echo=FALSE, out.width = "90%"}
 knitr::include_graphics(paste0(import_directory,"/BalticSea_06Bathy.jpeg"))
 ```
 
-# Next post
-
-How to add side by side maps to describe the general larger area, including maritime areas and borders. 
+The design and layout of this map were inspired by the following publication: [Bathymetric properties of the Baltic Sea](https://os.copernicus.org/articles/15/905/2019/).
 
