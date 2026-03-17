@@ -135,5 +135,7 @@ Here is the completed map, showing:
 knitr::include_graphics(paste0(import_directory,"/BalticSea_06Bathy.jpeg"))
 ```
 
+For details on the land shapefile, coordinates, scale, and other annotations, please refer to the previous posts.
+
 The design and layout of this map were inspired by the following publication: [Bathymetric properties of the Baltic Sea](https://os.copernicus.org/articles/15/905/2019/).
 
