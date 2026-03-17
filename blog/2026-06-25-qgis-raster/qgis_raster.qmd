@@ -23,7 +23,8 @@ listing: false
 In this blog post, we'll explore add a raster layer with the example of bathymetry data in QGIS. In addition, how to export the map including legelds in the preferred format. 
 
 ```{r, echo=FALSE}
-import_directory<-"C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2026/1Programming/1Quarto/2026-06-25-qgis-raster"
+library(here)
+import_directory<-paste0(here(),"/blog/2026-06-25-qgis-raster")
 ```
 
 ## Download
