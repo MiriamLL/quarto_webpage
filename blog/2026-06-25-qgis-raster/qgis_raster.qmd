@@ -65,15 +65,14 @@ To add your downloaded bathymetry data in QGIS:
 
 - Go to the menu: Layer > Add Layer > Add Raster Layer  
 - Browse to the downloaded GeoTIFF file and click Open  
-
-The bathymetry raster will appear in your map canvas, ready for visualization and analysis.
+- Select the downloaded bathymetry file from your folder.  
+In this example, the file name starts with “gebco”.  
 
 ```{r, echo=FALSE, out.width = "90%"}
 knitr::include_graphics(paste0(import_directory,"/add_raster.png"))
 ```
 
-- Select the downloaded bathymetry file from your folder.  
-In this example, the file name starts with “gebco”.  
+The bathymetry raster will appear in your map canvas.
 - When first loaded, the raster will appear in grey tones, which is the default color rendering in QGIS.  
 
 ```{r, echo=FALSE, out.width = "90%"}
@@ -121,10 +120,10 @@ knitr::include_graphics(paste0(import_directory,"/change_legend.png"))
 
 To highlight specific locations on the map, add text labels for areas of interest.  
 
-- The names and locations were extracted from the study: [Copernicus Open Access Journal](https://os.copernicus.org/articles/15/905/2019/)  
+- The names and locations were extracted from the study: [Copernicus Open Access Journal](https://os.copernicus.org/articles/15/905/2019/).  
 - You can add these labels in the layout by using Add Item > Add Label and positioning them appropriately on the map.
 
-# Export
+# Final map
 
 Here is the completed map, showing:  
 

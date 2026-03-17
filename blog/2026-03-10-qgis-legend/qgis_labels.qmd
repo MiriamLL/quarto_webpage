@@ -95,9 +95,7 @@ knitr::include_graphics(paste0(import_directory,"/BalticSea_03EEZ.jpeg"))
 
 I drew inspiration for this approach from [this publication](https://oceans-and-fisheries.ec.europa.eu/news/increased-protection-granted-five-natura-2000-sites-baltic-sea-2024-11-28_en). 
 
-# Next post
 
-In the next post, we will explore how to add a second map, providing a reference that highlights the location and context of the study area within a broader geographic setting.
 
 
 
