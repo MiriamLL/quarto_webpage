@@ -6,8 +6,8 @@ description: |
 author:
   - name: Miriam Lerma
     url: {}
-date: 2026-06-25
-image: BalticSea_06Bathy.jpeg
+date: 2026-04-02
+image: raster_front.jpg
 format:
   html:
     toc: true
@@ -22,7 +22,7 @@ categories:
 
 In this blog post, we'll explore add a raster layer with the example of bathymetry data in QGIS. In addition, how to export the map including legends in the preferred format. 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(here)
 import_directory<-paste0(here(),"/blog/2026-06-25-qgis-raster")
 ```
