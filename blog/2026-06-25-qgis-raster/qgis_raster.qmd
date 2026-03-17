@@ -1,4 +1,5 @@
 ---
+listing: false
 title: "Add raster in QGIS"
 description: |
   In this blog post, we'll explore add a raster layer with the example of bathymetry data in QGIS. 
@@ -6,7 +7,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2026-06-25
-image: raster_front.png
+image: BalticSea_06Bathy.jpeg
 format:
   html:
     toc: true
@@ -15,12 +16,11 @@ format:
 categories:
   - qgis
   - Y2026
-listing: false
 ---
 
 # Intro
 
-In this blog post, we'll explore add a raster layer with the example of bathymetry data in QGIS. In addition, how to export the map including legelds in the preferred format. 
+In this blog post, we'll explore add a raster layer with the example of bathymetry data in QGIS. In addition, how to export the map including legends in the preferred format. 
 
 ```{r, echo=FALSE}
 library(here)
