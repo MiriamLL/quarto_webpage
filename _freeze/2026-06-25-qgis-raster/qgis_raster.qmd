@@ -1,0 +1,120 @@
+---
+title: "Add raster in QGIS"
+description: |
+  In this blog post, we'll explore add a raster layer with the example of bathymetry data in QGIS. 
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2026-06-25
+image: raster_front.png
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+categories:
+  - qgis
+  - Y2026
+---
+
+# Intro
+
+In this blog post, we'll explore add a raster layer with the example of bathymetry data in QGIS. In addition, how to export the map including legelds in the preferred format. 
+
+```{r, echo=FALSE}
+import_directory<-"C:/Users/lerma/OneDrive/Documents/03Academico/02Proyectos-Postdoc/2026/1Programming/1Quarto/2026-06-25-qgis-raster"
+```
+
+## Download
+
+To download the data use 
+GEBCO: General Bathymetry Chart of the Oceans provides information from bathymetry in the ocean.
+
+To download visit webpage
+
+
+Go to:
+- Download data for user-defined areas
+- Click on application
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/gebco.png"))
+```
+
+- Add your coordinates -here I use 9 to 16 and 56 to 53.
+- I also selected GeoTIFF
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/grid.png"))
+```
+
+- Add to basket and download
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/download.png"))
+```
+
+## QGIS
+
+Add layer
+
+To add raster layer go to: Layer > Add Layer > Add Raster Layer
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/add_raster.png"))
+```
+
+Select the file from Bathymetry.
+For my case the file will start with "gebco"
+When loading it would appear in grey colors
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/in_grey.png"))
+```
+
+To change to blues go to:
+
+Properties> Symbology
+Select
+Render type: Singleband pseudocolor
+Here I changed to Min -200 and Max 0 as I am interested in water depth
+Interpolation: Linear
+Color ramp: Blues (if necesary select invert color ramp after clicking o the color)
+Mode: Continuos 
+Click in Classify, you can adapt the classess and the categories.
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/symbology.png"))
+```
+
+## Layout
+
+For this layout, I go to Project > Layout section.
+
+Once the layout is open I add the legend in Add Item > Add Legend
+De select all the other layers, and only select this layer.
+Remove the auto update, 
+Use the arrows to reorganize the order of the legends,
+Double click to change the legend to ">0" if is the case.
+
+```{r, echo=FALSE, out.width = "30%"}
+knitr::include_graphics(paste0(import_directory,"/change_legend.png"))
+```
+
+I additionally added some text of areas that could be of interest.
+Names were extracted from: https://os.copernicus.org/articles/15/905/2019/
+
+# Export
+
+Here is the final map, with the water depth, the legend of the water depth, and the names from specific basins. 
+
+I got inspiration from this publication [link here](https://www.researchgate.net/publication/305690503_Comparing_Distribution_of_Harbour_Porpoises_Phocoena_phocoena_Derived_from_Satellite_Telemetry_and_Passive_Acoustic_Monitoring/figures?lo=1) and names from [here](https://os.copernicus.org/articles/15/905/2019/)
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/BalticSea_06Bathy.jpeg"))
+```
+
+# Next post
+
+How to add side by side maps to describe the general larger area, including maritime areas and borders. 
+
