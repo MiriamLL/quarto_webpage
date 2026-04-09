@@ -25,7 +25,7 @@ You will learn how to visualize raster data, adjust its appearance, and integrat
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(here)
-import_directory<-paste0(here(),"/blog/2026-06-25-qgis-raster")
+import_directory<-paste0(here(),"/blog/2026-04-02-qgis-raster")
 ```
 
 ## Download
@@ -72,7 +72,7 @@ In this example, the file name starts with “gebco”.
 knitr::include_graphics(paste0(import_directory,"/add_raster.png"))
 ```
 
-The bathymetry raster will appear in your map canvas.
+The bathymetry raster will appear in your map canvas.  
 - When first loaded, the raster will appear in grey tones, which is the default color rendering in QGIS.  
 
 ```{r, echo=FALSE, out.width = "90%"}
