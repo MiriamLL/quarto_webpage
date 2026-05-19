@@ -1,0 +1,144 @@
+---
+title: "Select polygons of interest and add label per polygon in QGIS"
+description: |
+  In this blog post, we’ll explore how to select and filter specific features from a layer and add labels to each polygon in QGIS.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2026-05-25
+image: owf_front.jpg
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+categories:
+  - qgis
+  - Y2026
+---
+
+# Intro
+
+In this post, we will include offshore wind farms (OWF) in the Baltic Sea, along with their names, for this, the post will focus on adding a vector layer, labeling using the name of each polygon, and add the respective legend on the final map.
+
+```{r, echo=FALSE, message=FALSE}
+library(here)
+import_directory<-paste0(here(),"/blog/2026-05-25-qgis-owf")
+```
+
+# Download
+
+EMODnet is a European initiative that provides free, open-access data on the marine environment of Europe.  
+It’s designed to support marine research, policy-making, and sustainable ocean development by making reliable marine data easily available.
+
+To download the original data go to [EMODnet](https://www.emodnet-humanactivities.eu/view-data.php).  
+Select human activities > Energy > Wind Farms (polygons)
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/EMODnet.png"))
+```
+
+After clicking in Download, you should end up with two files.  
+The one with the name **EMODnet_HA_Energy_WindFarms_pg_20250825.shp** contains the polygons of the OWF.  
+The other one contains points.   
+We will be using the one with polygons.  
+
+# QGIS
+## Select areas of interest
+
+For this exercise, we will select all OWFs in the Baltic area near Germany.  
+
+First, enable the **Attributes Toolbar** by going to View > Toolbars > Attributes Toolbar.  
+This will allow you to easy access the **Identify Features tool**. 
+
+```{r, echo=FALSE, out.width = "60%"}
+knitr::include_graphics(paste0(import_directory,"/attributes toolbar.png"))
+```
+
+Click on the **Identify Features** tool and click directly on the polygons you are interested in.  
+When you click on the polygon the selected polygon should change of color.  
+
+```{r, echo=FALSE, out.width = "20%"}
+knitr::include_graphics(paste0(import_directory,"/identify_features.png"))
+```
+
+In addition, when you click on the polygon a window of **Identify Results** should appear.  
+For the exercise, locate the NAME field in that window.  
+From there, select **Copy Attribute Value** to copy the name of the site you want to work with. 
+
+```{r, echo=FALSE, out.width = "40%"}
+knitr::include_graphics(paste0(import_directory,"/identify_results.png"))
+```
+
+Copy and compile the names of the polygons of interest.  
+Then, return to the shapefile layer and open its Attribute Table.
+
+```{r, echo=FALSE, out.width = "40%"}
+knitr::include_graphics(paste0(import_directory,"/open_attribute.png"))
+```
+
+In the attribute table, click on Select Features by Expression **(the ε icon)**.  
+In the expression window, enter the following query:
+
+```{r, eval=FALSE}
+NAME IN ('Rodsand II','Nysted','Gennaker','EnBW Windpark Baltic 1','Kriegers Flak','Krigers Flak Nord','Kriegers Flak II','EnBW Windpark Baltic 2','Krigers Flak Syd','Kadetbanke','ARCADIS Ost 1','EO2-West','EO2','EO1','Wikinger','Bornholm I','Baltic Eagle','Arkona-Becken Südost','Windanker','Bornholm I')
+```
+
+Afterwards, click on **Select Features**.  
+The corresponding polygons will now be highlighted on the map, confirming that they have been successfully selected.  
+In addition, you will probably see a blue section indicating how many matching ones have been selected.  
+
+```{r, echo=FALSE, out.width = "70%"}
+knitr::include_graphics(paste0(import_directory,"/select_features.png"))
+```
+
+To save your selected features, right-click on the layer. From the menu that appears, choose **Export** and then select **Save Selected Features As…**.
+
+```{r, echo=FALSE, out.width = "60%"}
+knitr::include_graphics(paste0(import_directory,"/save_selected.png"))
+```
+
+Once you save your selected features, they should appear automatically in your project as a new layer.
+
+## Single labels
+
+To add single labels to each polygon (here the NAME), go to the Layer > Properties > Label > and select single labels.
+
+For this example, I added a background to the labels to make the names stand out more clearly, and increased the font size to improve readability.
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/single_labels.png"))
+```
+
+## Categorized colors
+
+Assigning a different color to each polygon based on its category makes it easier to differentiate between them.  
+To update the colors:  
+Right click > Properties > Symbology >  Change the renderer from Single Symbol to Categorized, and use the STATUS field to define the categories.  
+For the OWF polygons, the main categories are Production, Construction, Approved, and Planned.  
+These categories are based on the downloaded EMODnet dataset; however, the data may be outdated, so this should be taken into consideration.  
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/categorized_colors.png"))
+```
+
+## Layout
+
+Go to Print Layout and update the map.  
+Add the legend for the OWF layer, and reorganize the categories if needed.  
+To improve clarity, arrange the categories in the following order: Production, Construction, Approved, and then Planned.  This provides a more intuitive overview of the OWF status.  
+I added each category as a separated legend to allow better control over the font size.
+
+# Final map
+
+For this exercise, the map shows the OWFs, with their names and status classifications represented by different colors. 
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/BalticSea_05owf.jpeg"))
+```
+
+My map was inspired by the [4c offshore map](https://map.4coffshore.com/offshorewind/).  
+For more details on the map’s features, please refer to the previous posts.  
+Please consider giving credit to EMODnet when using these shapefiles.
+
+
