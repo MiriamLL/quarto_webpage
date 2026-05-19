@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/blog/2026-05-25-qgis-owf/qgis_owf.html",
       "/blog/2026-04-02-qgis-raster/qgis_raster.html",
       "/blog/2026-03-10-qgis-legend/qgis_labels.html",
       "/blog/2026-02-13-qgis-export/qgis_export.html",
