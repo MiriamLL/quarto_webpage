@@ -249,7 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="intro" class="level1">
 <h1>Intro</h1>
-<p>In this post, we will include offshore wind farms (OWF) in the Baltic Sea, along with their names, for this, the post will focus on adding a vector layer, labeling using the name of each polygon, and add the respective legend on the final map.</p>
+<p>In this post, we will add offshore wind farms (OWFs) in the Baltic Sea, including their names. The tutorial will focus on adding a vector layer, labeling each polygon with its corresponding name, and including the appropriate legend in the final map.</p>
 <div class="cell">
 
 </div>
@@ -305,13 +305,13 @@ Then, return to the shapefile layer and open its Attribute Table.</p>
 </div>
 </div>
 <p>In the attribute table, click on Select Features by Expression <strong>(the ε icon)</strong>.<br>
-In the expression window, enter the following query:</p>
+In the expression window, you can enter the names of the selected OWFs for this exercise. Adjust the values as needed to match your specific exercise or project.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>NAME <span class="fu">IN</span> (<span class="st">'Rodsand II'</span>,<span class="st">'Nysted'</span>,<span class="st">'Gennaker'</span>,<span class="st">'EnBW Windpark Baltic 1'</span>,<span class="st">'Kriegers Flak'</span>,<span class="st">'Krigers Flak Nord'</span>,<span class="st">'Kriegers Flak II'</span>,<span class="st">'EnBW Windpark Baltic 2'</span>,<span class="st">'Krigers Flak Syd'</span>,<span class="st">'Kadetbanke'</span>,<span class="st">'ARCADIS Ost 1'</span>,<span class="st">'EO2-West'</span>,<span class="st">'EO2'</span>,<span class="st">'EO1'</span>,<span class="st">'Wikinger'</span>,<span class="st">'Bornholm I'</span>,<span class="st">'Baltic Eagle'</span>,<span class="st">'Arkona-Becken Südost'</span>,<span class="st">'Windanker'</span>,<span class="st">'Bornholm I'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Afterwards, click on <strong>Select Features</strong>.<br>
 The corresponding polygons will now be highlighted on the map, confirming that they have been successfully selected.<br>
-In addition, you will probably see a blue section indicating how many matching ones have been selected.</p>
+In addition, you will probably see a blue section on the top indicating how many matching ones have been selected.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="select_features.png" class="img-fluid" style="width:70.0%"></p>
@@ -352,8 +352,8 @@ These categories are based on the downloaded EMODnet dataset; however, the data 
 <h2 class="anchored" data-anchor-id="layout">Layout</h2>
 <p>Go to Print Layout and update the map.<br>
 Add the legend for the OWF layer, and reorganize the categories if needed.<br>
-To improve clarity, arrange the categories in the following order: Production, Construction, Approved, and then Planned. This provides a more intuitive overview of the OWF status.<br>
-I added each category as a separated legend to allow better control over the font size.</p>
+To improve clarity, you can arrange the categories.<br>
+For this exercise, I added each category as a separated legend to allow better control over the font size.</p>
 </section>
 </section>
 <section id="final-map" class="level1">

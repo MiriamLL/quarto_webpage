@@ -19,7 +19,7 @@ categories:
 
 # Intro
 
-In this post, we will include offshore wind farms (OWF) in the Baltic Sea, along with their names, for this, the post will focus on adding a vector layer, labeling using the name of each polygon, and add the respective legend on the final map.
+In this post, we will add offshore wind farms (OWFs) in the Baltic Sea, including their names. The tutorial will focus on adding a vector layer, labeling each polygon with its corresponding name, and including the appropriate legend in the final map.
 
 ```{r, echo=FALSE, message=FALSE}
 library(here)
@@ -78,7 +78,7 @@ knitr::include_graphics(paste0(import_directory,"/open_attribute.png"))
 ```
 
 In the attribute table, click on Select Features by Expression **(the ε icon)**.  
-In the expression window, enter the following query:
+In the expression window, you can enter the names of the selected OWFs for this exercise. Adjust the values as needed to match your specific exercise or project.
 
 ```{r, eval=FALSE}
 NAME IN ('Rodsand II','Nysted','Gennaker','EnBW Windpark Baltic 1','Kriegers Flak','Krigers Flak Nord','Kriegers Flak II','EnBW Windpark Baltic 2','Krigers Flak Syd','Kadetbanke','ARCADIS Ost 1','EO2-West','EO2','EO1','Wikinger','Bornholm I','Baltic Eagle','Arkona-Becken Südost','Windanker','Bornholm I')
@@ -86,7 +86,7 @@ NAME IN ('Rodsand II','Nysted','Gennaker','EnBW Windpark Baltic 1','Kriegers Fla
 
 Afterwards, click on **Select Features**.  
 The corresponding polygons will now be highlighted on the map, confirming that they have been successfully selected.  
-In addition, you will probably see a blue section indicating how many matching ones have been selected.  
+In addition, you will probably see a blue section on the top indicating how many matching ones have been selected.  
 
 ```{r, echo=FALSE, out.width = "70%"}
 knitr::include_graphics(paste0(import_directory,"/select_features.png"))
@@ -126,8 +126,8 @@ knitr::include_graphics(paste0(import_directory,"/categorized_colors.png"))
 
 Go to Print Layout and update the map.  
 Add the legend for the OWF layer, and reorganize the categories if needed.  
-To improve clarity, arrange the categories in the following order: Production, Construction, Approved, and then Planned.  This provides a more intuitive overview of the OWF status.  
-I added each category as a separated legend to allow better control over the font size.
+To improve clarity, you can arrange the categories.   
+For this exercise, I added each category as a separated legend to allow better control over the font size.
 
 # Final map
 
