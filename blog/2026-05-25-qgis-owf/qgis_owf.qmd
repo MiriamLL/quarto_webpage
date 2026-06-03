@@ -137,7 +137,7 @@ For this exercise, the map shows the OWFs, with their names and status classific
 knitr::include_graphics(paste0(import_directory,"/BalticSea_05owf.jpeg"))
 ```
 
-My map was inspired by the [4c offshore map](https://map.4coffshore.com/offshorewind/).  
+This map was inspired by the [4c offshore map](https://map.4coffshore.com/offshorewind/).  
 For more details on the map’s features, please refer to the previous posts.  
 Please consider giving credit to EMODnet when using these shapefiles.
 

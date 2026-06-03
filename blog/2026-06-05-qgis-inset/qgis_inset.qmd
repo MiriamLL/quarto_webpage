@@ -1,0 +1,151 @@
+---
+title: "Natura areas and an inset map in QGIS"
+description: |
+  In this blog post, we'll explore how select specific features from layer and how to add an inset map in QGIS. 
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2026-06-05
+image: inset_front.png
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+categories:
+  - qgis
+  - Y2026
+---
+
+# Intro
+
+This post will focus on adding a inset reference map. In this step, we will also include natural protected areas in the Baltic Sea, along with their names. 
+
+## Shapefiles
+
+To download shapefiles for nature-protected areas, start with the European Environment Agency (EEA). The [EEA](https://www.eea.europa.eu/en/datahub/datahubitem-view/6fc8ad2d-195d-40f4-bdec-576e7d1268e4) provides comprehensive coverage of Natura 2000 sites, making it a reliable and complete source for this analysis.
+
+Another possible source is [BSH](https://gdi.bsh.de/atomfeeds/Raumordnungsplan_AWZ_en.xml#download=1.) which also offers relevant spatial data. However, this dataset does not include part of the Pomeranian Bay, specifically the Odra Bank area, and is therefore less complete for this region.
+
+As noted in [this publication](https://oceans-and-fisheries.ec.europa.eu/news/increased-protection-granted-five-natura-2000-sites-baltic-sea-2024-11-28_en.), the northern and outer roadstead of the ports of Szczecin and Świnoujście are subject to differing interpretations. Germany considers this area to be part of its Exclusive Economic Zone, while explicitly stating that it does not assert any rights or obligations vis-à-vis Poland. From the Polish perspective, this area is regarded as part of the Polish territorial sea.
+
+## Select areas of interest
+
+The shapefile contains data from multiple countries. Once it is loaded into the project, you can visualize all features on the map.
+
+To focus only on the areas of interest, first enable the **Attributes Toolbar** by going to View > Toolbars > Attributes Toolbar.
+
+Then, select the **Identify Features** tool and click directly on the polygon you are interested in. This allows you to inspect its attributes and determine which features to keep for your analysis.
+
+```{r, echo=FALSE,message=FALSE}
+library(here)
+import_directory<-paste0(here(),"/blog/2026-06-05-qgis-inset")
+```
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/select_attribute.png"))
+```
+
+In the attributes window, locate the Title or SITENAME field. From there, select **Copy Attribute Value** to capture the name of the site you want to work with.
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics(paste0(import_directory,"/copy_attribute_value.png"))
+```
+
+For the German part of the Baltic Sea, the areas of interest include the following sites:  
+- Fehmarnbelt  
+- Kadetrinne  
+- Westliche Rönnebank  
+- Adlergrund  
+- SPA Pommersche Bucht  
+- Pommersche Bucht mit Oderbank  
+
+Now, return to the shapefile layer and open its Attribute Table to view and work with the full list of features and their associated information.
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics(paste0(import_directory,"/open_attribute_table.png"))
+```
+
+Next, click on Select Features by Expression **(the ε icon)**. In the expression window, enter the following query:
+
+"SITENAME" IN (
+'Fehmarnbelt',
+'Kadetrinne',
+'Westliche Rönnebank',
+'Adlergrund',
+'SPA Pommersche Bucht',
+'Pommersche Bucht mit Oderbank'
+)
+
+Then click **Select Features**. The corresponding polygons should now be highlighted on the map, indicating that these protected areas have been successfully selected.
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/select_features.png"))
+```
+
+To save your selected features, right-click on the layer. From the menu that appears, choose **Export** and then select **Save Selected Features As…**.
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/save_features.png"))
+```
+
+Once you save your selected features, there’s no need to reload them, they should appear automatically in your project.
+
+For the polygon layer, I changed the style to a filled pattern to make it more visually distinct. While working on it, I noticed some polygons were duplicated, so I removed the extras. To do this, I opened the attribute table, clicked the Edit button (the yellow pencil), and deleted the unwanted features.
+
+Next, I returned to the Print Layout. There, I added the names of each area to make the map more informative and easier to read.
+
+# Inset map
+
+With your map elements in place, select the item and go to **Item Properties**. Under **Layers**, enable **Lock Layers** to prevent any changes while you continue working.
+
+```{r, echo=FALSE, out.width = "60%"}
+knitr::include_graphics(paste0(import_directory,"/lock_item.png"))
+```
+
+Next, add a new map in the corner to provide additional context or detail.  
+To clearly distinguish this inset map from the main map, add a **frame** around it. I recommend making the frame at least **1 mm** thick so it stands out effectively.
+
+```{r, echo=FALSE, out.width = "60%"}
+knitr::include_graphics(paste0(import_directory,"/increase_frame.png"))
+```
+
+Here, I reduced the tone of the country shapefile so it appears more distant, giving the main map features greater visual prominence.
+
+## Manual delimiting area
+
+After that, I created a new shapefile from scratch to add a rectangle that helps delimiting the study area.  This step can be skipped, but I personally like to use it for reference.  
+
+```{r, echo=FALSE, out.width = "40%"}
+knitr::include_graphics(paste0(import_directory,"/new_shapefile.png"))
+```
+
+For this, right-click on the new shapefile and select **Toggle Editing** to start editing.  
+Then, go to View > Toolbars and enable the Digitizing Tools toolbar. From there, choose **Add Polygon Feature** to begin drawing your new polygons on the map.
+
+```{r, echo=FALSE, out.width = "20%"}
+knitr::include_graphics(paste0(import_directory,"/add_polygon.png"))
+```
+
+After selecting **Add Polygon Feature**, I created the polygon.   
+This ensures that when the map scale changes, the polygon maintains its shape and position. I spent some time adjusting the rectangle to fit the exact coordinates, working by keeping the layout open on one screen while making modifications on the other for precision
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/create_polygon.png"))
+```
+
+# Final
+
+Finally, the map shows the natural protected areas along with their names, and includes an inset reference map in the corner for context. 
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/BalticSea_04natura.jpeg"))
+```
+
+This map was inspired by [this example of natural protected areas](https://upload.wikimedia.org/wikipedia/commons/3/34/Karte_Naturschutzgebiete_in_der_deutschen_ausschlie%C3%9Flichen_Wirtschaftszone.svg).  
+The name of the sites were obtain from [this publication](https://oceans-and-fisheries.ec.europa.eu/news/increased-protection-granted-five-natura-2000-sites-baltic-sea-2024-11-28_en) on Natura 2000 sites in the Baltic Sea.  
+For more details on the map’s features, please refer to the previous posts.  
+Please consider giving credit to European Environment Agency ([EEA](https://www.eea.europa.eu/en/datahub/datahubitem-view/6fc8ad2d-195d-40f4-bdec-576e7d1268e4)) when using these shapefiles.
+
+
+
