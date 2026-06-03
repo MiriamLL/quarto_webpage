@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2026-06-05
-image: inset_front.png
+image: inset_front.jpg
 format:
   html:
     toc: true
