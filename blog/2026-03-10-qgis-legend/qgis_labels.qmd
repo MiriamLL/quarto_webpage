@@ -1,7 +1,7 @@
 ---
 title: "Add legend in QGIS"
 description: |
-  In this blog post, we'll explore how to add vector layers and legend in a map with QGIS. 
+  In this blog post, we'll explore how to add vector layers and legend in a map using the Economic Exclusive Zone (EEZ) and territorial waters in QGIS. 
 author:
   - name: Miriam Lerma
     url: {}
