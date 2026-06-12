@@ -19,7 +19,7 @@ categories:
 
 # Intro
 
-This post will focus on adding a inset reference map. In this step, we will also include natural protected areas in the Baltic Sea, along with their names. 
+This post will focus on adding a inset reference map. We will also include natural protected areas in the Baltic Sea, along with their names. 
 
 ## Shapefiles
 
