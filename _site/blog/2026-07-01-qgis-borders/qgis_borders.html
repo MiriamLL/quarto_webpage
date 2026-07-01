@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Miriam Lerma">
+<meta name="dcterms.date" content="2026-07-01">
+<meta name="description" content="This blog post focuses on mapping maritime borders and country boundaries in QGIS.">
+
+<title>Add borders in QGIS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Miriam Lerma’s website</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html">
+ <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../packages.html">
+ <span class="menu-text">Packages</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/miriam-lerma/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/MiriamLL"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#marine-regions" id="toc-marine-regions" class="nav-link" data-scroll-target="#marine-regions">Marine Regions</a>
+  <ul class="collapse">
+  <li><a href="#qgis" id="toc-qgis" class="nav-link" data-scroll-target="#qgis">QGIS</a></li>
+  <li><a href="#country-poligons" id="toc-country-poligons" class="nav-link" data-scroll-target="#country-poligons">Country Poligons</a></li>
+  </ul></li>
+  <li><a href="#countries" id="toc-countries" class="nav-link" data-scroll-target="#countries">Countries</a></li>
+  <li><a href="#side-by-side-maps" id="toc-side-by-side-maps" class="nav-link" data-scroll-target="#side-by-side-maps">Side-by-side Maps</a>
+  <ul class="collapse">
+  <li><a href="#general-map" id="toc-general-map" class="nav-link" data-scroll-target="#general-map">General Map</a></li>
+  <li><a href="#regional-map" id="toc-regional-map" class="nav-link" data-scroll-target="#regional-map">Regional Map</a></li>
+  </ul></li>
+  <li><a href="#final" id="toc-final" class="nav-link" data-scroll-target="#final">Final</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Add borders in QGIS</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">qgis</div>
+    <div class="quarto-category">Y2026</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>This blog post focuses on mapping maritime borders and country boundaries in QGIS.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Miriam Lerma </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 1, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<p>This post focuses on mapping maritime borders and country boundaries in the Baltic Sea using QGIS, presented through a side-by-side map layout that combines different scale contexts.</p>
+</section>
+<section id="marine-regions" class="level1">
+<h1>Marine Regions</h1>
+<div class="cell">
+
+</div>
+<p>The Baltic Sea is a marginal sea of the Atlantic Ocean, enclosed by Denmark, Estonia, Finland, Germany, Latvia, Lithuania, Poland, Russia, Sweden, and the North and Central European Plains. It is the world’s largest brackish water basin.</p>
+<p><a href="https://www.marineregions.org/downloads.php">Marine Regions</a> is a global, standardized georeferenced database and mapping system managed by the Flanders Marine Institute that integrates marine place names and maritime boundaries to improve the identification, management, and linking of marine geographic data across research, biogeographic, and policy applications.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="marineregions.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+<p>The Marine Regions dataset provides downloadable GIS shapefiles of global maritime boundaries, accessible under the Downloads &gt; Maritime Boundaries (latest version), <a href="https://www.marineregions.org/downloads.php">Link</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="maritime_boundaries.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+<section id="qgis" class="level2">
+<h2 class="anchored" data-anchor-id="qgis">QGIS</h2>
+<p>To visualize the Maritime Borders in QGIS, Layer &gt; Add Layer &gt; Add Vector Layer can be used to load the dataset. From the file World_EEZ_v12_20231025.zip, the dataset eez_v12.shp contains polygon features representing Exclusive Economic Zones, and eez_boundaries_v12.shp contains corresponding boundary line geometries.</p>
+</section>
+<section id="country-poligons" class="level2">
+<h2 class="anchored" data-anchor-id="country-poligons">Country Poligons</h2>
+<p>For the Baltic, the focus involves Germany, Denmark, Sweden, and Poland.</p>
+<p>To identify relevant features, the Identify Features tool allows a quick inspection of geometries and attributes.<br>
+In the attribute table, clicking on Select Features by Expression (the ε icon) allows to isolate relevant features. In the expression window, the names of the selected features can be entered. The values can be adjusted as needed to match specific projects.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>GEONAME <span class="fu">IN</span> ( </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">'German Exclusive Economic Zone'</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">'Danish Exclusive Economic Zone'</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">'Polish Exclusive Economic Zone'</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">'Swedish Exclusive Economic Zone'</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">'Estonian Exclusive Economic Zone'</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">'Finnish Exclusive Economic Zone'</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">'Lithuanian Exclusive Economic Zone'</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">'Latvian Exclusive Economic Zone'</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">'Russian Exclusive Economic Zone'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Afterwards, clicking on Select Features, will highlight the corresponding polygons in the map, confirming that they have been successfully selected.</p>
+<section id="symbology" class="level3">
+<h3 class="anchored" data-anchor-id="symbology">Symbology</h3>
+<p>For styling the layers, Symbology &gt; select Single Symbol, ensures a cleaner visual representation of the maritime boundaries across the map.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="dot_line.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="countries" class="level1">
+<h1>Countries</h1>
+<p>The Baltic Sea is an arm of the Atlantic Ocean, bordered by Denmark, Estonia, Finland, Germany, Latvia, Lithuania, Poland, Russia, Sweden, and the surrounding North and Central European Plain.</p>
+<p>To add country labels, the GISCO country boundary dataset can be used, specifically the layer CNTR_RG_01M_2024_3035 (For instructions and details of the GISCO dataset, see previous <a href="https://www.miriam-lerma.com/blog/2026-01-25-qgis-install/qgis_install.html">blog posts</a>).</p>
+<p>To reduce clutter and focus only on selected countries, the labels can be further refine by applying a filter under Properties &gt; Labels &gt; Rendering / or Layer filter (depending on setup).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>CNTR_ID <span class="fu">IN</span> (<span class="st">'DK'</span>,<span class="st">'EE'</span>,<span class="st">'FI'</span>,<span class="st">'DE'</span>, <span class="st">'LV'</span>, <span class="st">'LT'</span>,<span class="st">'PL'</span>, <span class="st">'RU'</span>,<span class="st">'SE'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In Properties &gt; Labels &gt; Single Labels, can be used to set the label field to NAME_ENGL for displaying country names in English. A buffer can be added around the text to ensure labels stand out against the basemap.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="label_buffer.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+</section>
+<section id="side-by-side-maps" class="level1">
+<h1>Side-by-side Maps</h1>
+<p>To create a map output in QGIS, Project &gt; New Print Layout creates a new layout canvas.</p>
+<p>Afterwards, <strong>Add Map</strong> allows drawing a map frame that displays the current map view, which can be resized and adjusted to define the final composition for export or print.</p>
+<p>A second map frame can be added in the Print Layout to provide a broader contextual view of the Baltic Sea and its connections to the Atlantic Ocean.</p>
+<p>Previous adding a second map, the initial layer should be locked to prevent accidental edits or styling changes, ensuring the spatial configuration remains consistent during further map layout and annotation work.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="lock_layer.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+<section id="general-map" class="level2">
+<h2 class="anchored" data-anchor-id="general-map">General Map</h2>
+<p>For the general Baltic Sea context, the map showing the general region was included in the right side. The names were added in the Print Layout Manually, and included the regions: (1) Bothnian Bay, (2) the Quark, (3) the Bothnian Sea, (4) the Gulf of Finland, (5) the Western and (6) Eastern Gotland Basins, (7) the Gulf of Riga, the (8) Bornholm Basin, and the (9) Gdańsk Basin. As well as specific features such as: (10) the Arkona Basin, (11) Kattegat, and (12) Skagerrak.</p>
+<p>The rationale for the general map is to show the Baltic Sea as a shelf sea with limited exchange of water with the open Atlantic Ocean. That its waters drain through the Danish Straits into the Kattegat, which serves as a transitional sea area connecting the Baltic Sea to the North Atlantic Ocean, and further into the Skagerrak.</p>
+</section>
+<section id="regional-map" class="level2">
+<h2 class="anchored" data-anchor-id="regional-map">Regional Map</h2>
+<p>For the regional map, it was added in the left side, and focused on the Arkona Basin. The names were added in the Print Layout Manually, and included: (1) Øresund, (2) Great Belt, and (3) Little Belt. As well, as the (4) Kiel Canal.</p>
+<p>The rationale for the regional map is to show the main drainage pathways of the Baltic Sea. The Baltic sea drainage pathways go through the Danish straits into the Kattegat via the (1) Øresund, (2) Great Belt, and (3) Little Belt. The Øresund forms the border between Denmark and Sweden, separating Zealand from Scania. The Great Belt and Little Belt are included as additional passageways through the Danish archipelago. These are symbolized in red, following their role as the primary Danish straits.</p>
+<p>The Kiel Canal was included to show this an artificial waterway that also connects the Baltic Sea to the North Sea’s German Bight. The Kiel Canal provides a strategic shortcut for maritime traffic. It is in purple, as it is part of Germany. The Kiel layer was manually created following the workflow described in <a href="ww.miriam-lerma.com/blog/2023-01-27-qgispolygon/qgispolygon">this post</a>, based on Google Streets basemap.</p>
+</section>
+</section>
+<section id="final" class="level1">
+<h1>Final</h1>
+<p>For the final map, we used a side-by-side layout that presents the Atlantic region as the broader geographic context at an appropriate scale, alongside a zoomed-in view of the Arkona Basin. A north arrow and scale bar were added later in the Print Layout. The overview map shows the Baltic Sea and the countries bordering it, while the regional map highlights the connections between the Baltic Sea and the North Sea, including both natural and artificial straits.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="BalticSea_07borders.jpeg" class="img-fluid" style="width:70.0%"></p>
+</div>
+</div>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>I got inspiration from the following publications:<br>
+-<a href="https://os.copernicus.org/articles/15/905/2019/os-15-905-2019-f01-web.png">General Region Names</a>, which includes the names for the regions in the general Baltic Sea, from a <a href="https://os.copernicus.org/articles/15/905/2019/#&amp;gid=1&amp;pid=1">Copernicus</a> publication.<br>
+-<a href="https://www.researchgate.net/publication/305690503_Comparing_Distribution_of_Harbour_Porpoises_Phocoena_phocoena_Derived_from_Satellite_Telemetry_and_Passive_Acoustic_Monitoring/figures?lo=1">Regional information, including Kattegat</a>.<br>
+-<a href="https://en.wikipedia.org/wiki/Baltic_Sea">Regional Baltic Information</a>, from wikipedia.<br>
+-<a href="https://sovereignlimits.com/wp-content/uploads/sites/2/2023/07/Denmark_Germany-Baltic.png">Maritime Boundaries</a>, for the names in the Arkona Region.<br>
+-<a href="https://www.researchgate.net/publication/240525469_Late_and_postglacial_history_of_the_Great_Belt_Denmark/figures?lo=1">Danish/Swedish/German straits</a>, for the names on the different straits.<br>
+-<a href="https://data.marine.copernicus.eu/product/EXT_MR_EEZ-AND-TERRITORIAL-SEAS">Exclusive Economic Zones and Territorial Seas</a>.</p>
+<p>Please consider citing the Maritimes Boundaries while using this product: Flanders Marine Institute (2023). Maritime Boundaries Geodatabase: Maritime Boundaries and Exclusive Economic Zones (200NM), version 12. Available online at https://www.marineregions.org/. https://doi.org/10.14284/632</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
