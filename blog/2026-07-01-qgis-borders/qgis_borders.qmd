@@ -1,7 +1,7 @@
 ---
 title: "Add borders in QGIS"
 description: |
-  This blog post focuses on mapping maritime borders and country boundaries in QGIS. 
+  This blog post focuses on mapping the Baltic Sea's maritime borders and country boundaries in QGIS. 
 author:
   - name: Miriam Lerma
     url: {}
