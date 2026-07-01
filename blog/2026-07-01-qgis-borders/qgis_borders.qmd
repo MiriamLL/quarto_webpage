@@ -90,7 +90,7 @@ CNTR_ID IN ('DK','EE','FI','DE', 'LV', 'LT','PL', 'RU','SE')
 ```
 In Properties > Labels > Single Labels, can be used to set the label field to NAME_ENGL for displaying country names in English. A buffer can be added around the text to ensure labels stand out against the basemap.
 
-```{r, echo=FALSE, out.width = "90%"}
+```{r, echo=FALSE, out.width = "80%"}
 knitr::include_graphics(paste0(import_directory,"/label_buffer.png"))
 ```
 
@@ -104,15 +104,15 @@ A second map frame can be added in the Print Layout to provide a broader context
 
 Previous adding a second map, the initial layer should be locked to prevent accidental edits or styling changes, ensuring the spatial configuration remains consistent during further map layout and annotation work.
 
-```{r, echo=FALSE, out.width = "90%"}
+```{r, echo=FALSE, out.width = "50%"}
 knitr::include_graphics(paste0(import_directory,"/lock_layer.png"))
 ```
 
 ## General Map
 
-For the general Baltic Sea context, the map showing the general region was included in the right side.  The names were added in the Print Layout Manually, and included the regions: (1) Bothnian Bay, (2) the Quark, (3) the Bothnian Sea, (4) the Gulf of Finland,  (5) the Western and (6) Eastern Gotland Basins, (7) the Gulf of Riga, the  (8) Bornholm Basin, and the (9) Gdańsk Basin. As well as specific features such as: (10) the Arkona Basin, (11) Kattegat, and (12) Skagerrak.
+For the general Baltic Sea context, the map showing the general region was included in the right side.  The names were added in the Print Layout Manually, and included the regions: (1) Bothnian Bay, (2) the Quark, (3) Bothnian Sea, (4) the Gulf of Finland, (5) the Western and (6) Eastern Gotland Basins, (7) Gulf of Riga, (8) Bornholm Basin, and (9) Gdańsk Basin. As well as specific features such as: (10) the Arkona Basin, (11) Kattegat, and (12) Skagerrak.
 
-The rationale for the general map is to show the Baltic Sea as a shelf sea with limited exchange of water with the open Atlantic Ocean. That its waters drain through the Danish Straits into the Kattegat, which serves as a transitional sea area connecting the Baltic Sea to the North Atlantic Ocean, and further into the Skagerrak.
+The rationale for the general map is to show the Baltic Sea as a shelf sea with limited exchange of water with the open Atlantic Ocean. Also to show the Danish Straits that run into the Kattegat, which serves as a transitional sea area connecting the Baltic Sea to the North Atlantic Ocean, and further into the Skagerrak.
 
 ## Regional Map
 
@@ -120,14 +120,15 @@ For the regional map, it was added in the left side, and focused on the Arkona B
 
 The rationale for the regional map is to show the main drainage pathways of the Baltic Sea. The Baltic sea drainage pathways go through the Danish straits into the Kattegat via the (1) Øresund, (2) Great Belt, and (3) Little Belt. The Øresund forms the border between Denmark and Sweden, separating Zealand from Scania. The Great Belt and Little Belt are included as additional passageways through the Danish archipelago. These are symbolized in red, following their role as the primary Danish straits.
 
-The Kiel Canal was included to show this an artificial waterway that also connects the Baltic Sea to the North Sea’s German Bight. The Kiel Canal provides a strategic shortcut for maritime traffic. It is in purple, as it is part of Germany. The Kiel layer was manually created following the workflow described in [this post](ww.miriam-lerma.com/blog/2023-01-27-qgispolygon/qgispolygon), based on Google Streets basemap.
+The Kiel Canal was included to show this an artificial waterway that also connects the Baltic Sea to the North Sea’s German Bight. The Kiel Canal provides a strategic shortcut for maritime traffic. It is shown in yellow, as it is part of Germany. The Kiel layer was manually created following the workflow described in [this post](ww.miriam-lerma.com/blog/2023-01-27-qgispolygon/qgispolygon), based on Google Streets basemap.
 
 # Final
 
-For the final map, we used a side-by-side layout that presents the Atlantic region as the broader geographic context at an appropriate scale, alongside a zoomed-in view of the Arkona Basin. A north arrow and scale bar were added later in the Print Layout. The overview map shows the Baltic Sea and the countries bordering it, while the regional map highlights the connections between the Baltic Sea and the North Sea, including both natural and artificial straits.
+For the final map, we used a side-by-side layout that presents the Atlantic region as the broader geographic context at an appropriate scale, alongside a zoomed-in view of the Arkona Basin. 
 
+A north arrow and scale bar were added later in the Print Layout. The overview map shows the Baltic Sea and the countries bordering it, while the regional map highlights the connections between the Baltic Sea and the North Sea, including both natural and artificial straits.
 
-```{r, echo=FALSE, out.width = "70%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics(paste0(import_directory,"/BalticSea_07borders.jpeg"))
 ```
 
