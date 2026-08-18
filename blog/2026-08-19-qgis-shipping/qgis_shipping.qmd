@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2026-08-19
-image: shipping_front.png
+image: shipping_front.jpg
 format:
   html:
     toc: true
