@@ -21,7 +21,7 @@ categories:
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(here)
-import_directory<-paste0(here(),"/blog/2026-08-25-qgis-shipping")
+import_directory<-paste0(here(),"/blog/2026-08-19-qgis-shipping")
 ```
 
 The Baltic Sea is one of the busiest seas in the world, with sea transport accounting for 15% of global sea freight ([Rutkowsky & Kubacka 2023](https://www.nature.com/articles/s41598-023-36114-3))
