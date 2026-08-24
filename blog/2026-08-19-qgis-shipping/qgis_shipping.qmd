@@ -1,7 +1,7 @@
 ---
-title: "Add shipping information"
+title: "Add shipping traffic"
 description: |
-  In this blog post, we'll explore how add a shipping information from a tif file in QGIS. 
+  In this blog post, we'll explore how add a shipping traffic information from a tif file in QGIS. 
 author:
   - name: Miriam Lerma
     url: {}
@@ -28,7 +28,7 @@ The Baltic Sea is one of the busiest seas in the world, with sea transport accou
 
 In addition, the construction and maintenance of OWFs is further associated with a strong increase in shipping activities in and around OWFs ([Exo et al., 2003](https://digitalcommons.usf.edu/cgi/viewcontent.cgi?article=3216&context=wsg_bulletin)).
 
-In this blog post, we'll explore how add a shipping information from a tif file in QGIS. 
+In this blog post, we'll explore how add a shipping traffic information from a tif file in QGIS. 
 
 ## Shapefile
 
