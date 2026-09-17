@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2026-09-25
-image: grid_front.png
+image: grid_front.jpg
 format:
   html:
     toc: true
