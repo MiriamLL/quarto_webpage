@@ -1,0 +1,119 @@
+---
+title: "How to make a grid in QGIS"
+description: |
+  In this blog post, we'll explore how to make a grid in QGIS. 
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2026-09-25
+image: grid_front.png
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+categories:
+  - qgis
+  - Y2026
+---
+
+## Intro
+
+For this blog's post, we would create a grid over a specific area of the Baltic Sea, which can be used to summarise and analyse values within defined cells, for example, 5 × 5 km.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(here)
+import_directory<-paste0(here(),"/blog/2026-09-25-qgis-grid")
+```
+
+## CRS
+
+To ensure the grid is as accurate and precise as possible, it is important to select the most appropriate CRS for the study area, as this determines how distances, areas, and grid cells are represented spatially.
+
+For the example of the Baltic Sea, in QGIS, go to Project → Properties → CRS, search for EPSG:25833, select ETRS89 / UTM zone 33N, and click Apply → OK.
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/crs.png"))
+```
+
+
+To access QGIS's tools for creating and processing spatial data, go to Processing → Toolbox to open the Processing Toolbox.
+
+```{r, echo=FALSE, out.width = "30%"}
+knitr::include_graphics(paste0(import_directory,"/toolbox.png"))
+```
+
+
+To open the tool that allows you to generate a regular grid over your selected study area, go to Vector Creation → Create Grid .
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics(paste0(import_directory,"/vector_creation.png"))
+```
+
+## Extent
+
+Set the Grid type to Polygon and define the grid size by setting both Horizontal spacing and Vertical spacing.  
+For the example, it was set to 5,000 meters (or 5 km, depending on the units shown).  
+Under Grid extent, for the example of the Baltic sea, we used 4279535.3145,4652816.7888,3387514.8389,3650496.8221 [EPSG:3035], alternatively you can select an existing vector layer or create a vector covering your area of interest.  
+Note that if the process takes too long, you may have selected an unnecessarily large area or a very small grid size.
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/grid_extent.png"))
+```
+
+
+When the process is finished, the progress bar will display “Complete”, indicating that the grid has been successfully created.
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/creating_grid.png"))
+```
+
+
+## Merge lines to polygon
+
+The grid will initially cover a larger area, but you can clip it to the maritime boundaries of a specific country; to do this, you first need a polygon representing the territorial waters.
+
+This polygon can be created by selecting the Maritime Boundary and Territorial Waters layer, opening the Attribute Table, deleting the features that are not relevant to the Baltic Sea, and click Delete Selected Features to remove them.
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/delete_features.png"))
+```
+
+Combine the two layers into a single layer by going to Processing → Toolbox → Vector General → Merge Vector Layers, selecting both layers, and running the tool.
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics(paste0(import_directory,"/merrge_layers.png"))
+```
+
+Then, use Dissolve to merge the boundaries into a single continuous layer; make sure that all lines touch perfectly, and if there are any gaps, adjust them using the Vertex Tool; finally, use Polygonize to convert the closed lines into polygons.
+
+```{r, echo=FALSE, out.width = "50%"}
+knitr::include_graphics(paste0(import_directory,"/polygonize.png"))
+```
+
+You should now have a polygon representing the maritime area of interest, which can be used to clip the grid to the desired boundaries.
+
+## Only keep grids that cross the area of interest.
+
+To keep only the grid cells that overlap the area of interest, go to Processing → Toolbox → Vector Overlay → Intersection, select the grid as the input layer and the area of interest as the overlay layer, and run the tool.
+
+```{r, echo=FALSE, out.width = "70%"}
+knitr::include_graphics(paste0(import_directory,"/intersection.png"))
+```
+
+The order of the layers is important, so make sure the grid is selected as the Input layer and the area of interest as the Overlay layer before running the Intersection tool.
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/vector_overlay.png"))
+```
+
+## Layout
+
+Finally, you should have a gridded map covering the German territorial waters; this grid can then be used to extract spatial values, calculate densities, summarise data, and perform further spatial analyses for each grid cell.
+
+```{r, echo=FALSE, out.width = "90%"}
+knitr::include_graphics(paste0(import_directory,"/BalticSea_09grid.jpeg"))
+```
+
+
+
