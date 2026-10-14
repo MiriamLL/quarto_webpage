@@ -1299,7 +1299,7 @@
     "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#country-and-places-names",
     "title": "Add salinity information in QGIS",
     "section": "Country and Places names",
-    "text": "Country and Places names\nTo create a new shapefile, go to Layer > Create Layer > New Shapefile Layer. Give the layer a descriptive name and set the geometry type to MultiPoint.\nNext, click Add to Field List to define the attributes: ID – set the type to Integer. Place – set the type to Text (String) with a length of 80 characters. Country – set the type to Text (String) with a length of 2, using standard country codes like DE, PL, DK. This setup allows you to store multiple points with identifying information and associated country codes for your salinity mapping project."
+    "text": "Country and Places names\nFor adding Country and Place names, I manually created a new shape that includes these names.\nTo create a new shapefile, go to Layer > Create Layer > New Shapefile Layer. Give the layer a descriptive name and set the geometry type to MultiPoint.\nNext, click Add to Field List to define the attributes: ID – set the type to Integer.\nPlace – set the type to Text (String) with a length of 80 characters.\nCountry – set the type to Text (String) with a length of 2, using standard country codes like DE, PL, DK.\nThis setup allows you to store multiple points with identifying information and associated country codes for your salinity mapping project."
   },
   {
     "objectID": "blog.html",
