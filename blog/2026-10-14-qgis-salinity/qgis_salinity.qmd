@@ -6,7 +6,7 @@ author:
   - name: Miriam Lerma
     url: {}
 date: 2026-10-14
-image: salinity_front.png
+image: salinity_front.jpg
 format:
   html:
     toc: true

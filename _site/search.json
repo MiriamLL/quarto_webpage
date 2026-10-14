@@ -1267,6 +1267,41 @@
     "text": "Layout\nFinally, you should have a gridded map covering the German territorial waters; this grid can then be used to extract spatial values, calculate densities, summarise data, and perform further spatial analyses for each grid cell."
   },
   {
+    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html",
+    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html",
+    "title": "Add salinity information in QGIS",
+    "section": "",
+    "text": "In this blog post, we walk step-by-step through the process of creating a salinity map using QGIS. The tutorial covers from preparing your raw data to designing a map layout."
+  },
+  {
+    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#crs",
+    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#crs",
+    "title": "Add salinity information in QGIS",
+    "section": "CRS",
+    "text": "CRS\nAssign a Coordinate Reference System (CRS) to the layer. Here, you can use the project CRS, which ensures consistency with your map, but the choice may vary depending on your study area or the CRS of other layers you are using. This step is important for accurate spatial alignment and measurements in QGIS."
+  },
+  {
+    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#single-band-pseudocolor",
+    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#single-band-pseudocolor",
+    "title": "Add salinity information in QGIS",
+    "section": "Single Band Pseudocolor",
+    "text": "Single Band Pseudocolor\nFor styling the layer, I took inspiration from this publication: link here\nI applied Singleband pseudocolor rendering and chose Band 01, which corresponds to a depth of 0.50 m (surface layer). I set the minimum value to 0 and the maximum to 30, using the Viridis color ramp, and inverted it for better visual contrast.\nThe Mode was set to Equal Interval with 10 classes, then I manually adjusted the class breaks to multiples of 3 to better reflect meaningful salinity intervals in the Baltic Sea."
+  },
+  {
+    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#layout",
+    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#layout",
+    "title": "Add salinity information in QGIS",
+    "section": "Layout",
+    "text": "Layout\nTo export the map, go to Project > Layouts > Open Layout, using one of your previously created layouts that already has the coordinates, symbols, and general map setup.\nIn the layout, include reference layers such as countries, EEZ, and territorial waters to provide geographic context. Then, add the salinity layer on top.\nMake sure to adjust the legend settings for this layer by unchecking “Use continuous legend”, so the discrete classes you defined earlier are properly displayed."
+  },
+  {
+    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#country-and-places-names",
+    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#country-and-places-names",
+    "title": "Add salinity information in QGIS",
+    "section": "Country and Places names",
+    "text": "Country and Places names\nTo create a new shapefile, go to Layer > Create Layer > New Shapefile Layer. Give the layer a descriptive name and set the geometry type to MultiPoint.\nNext, click Add to Field List to define the attributes: ID – set the type to Integer. Place – set the type to Text (String) with a length of 80 characters. Country – set the type to Text (String) with a length of 2, using standard country codes like DE, PL, DK. This setup allows you to store multiple points with identifying information and associated country codes for your salinity mapping project."
+  },
+  {
     "objectID": "blog.html",
     "href": "blog.html",
     "title": "Blog",
@@ -1783,103 +1818,5 @@
     "title": "Teaching",
     "section": "",
     "text": "Choosing a journal\n\n\n\n\n\nA file with a decision tree that might help you choose the most suitable journal for publishing your research. Links to journals are included.\n\n\n\n\n\n\nApr 1, 2025\n\n\n\n\n\n\n  \n\n\n\n\nAI Tools in Research\n\n\n\n\n\nA presentation with a compilation of AI Tools and its implications in research.\n\n\n\n\n\n\nFeb 19, 2025\n\n\n\n\n\n\n  \n\n\n\n\nAnimal tracking\n\n\n\n\n\nA curated collection of my blog posts focused on animal tracking analysis.\n\n\n\n\n\n\nDec 6, 2024\n\n\nMiriam Lerma\n\n\n\n\n\n\n  \n\n\n\n\nPlotting\n\n\n\n\n\nUsing ggplot to create plots and maps.\n\n\n\n\n\n\nJun 6, 2023\n\n\nMiriam Lerma\n\n\n\n\n\n\n  \n\n\n\n\nTracking\n\n\n\n\n\nA presentation with tips and tools to put you analyses on a workflow.\n\n\n\n\n\n\nJun 6, 2023\n\n\nMiriam Lerma\n\n\n\n\n\n\n  \n\n\n\n\nData wrangling\n\n\n\n\n\nLoad data, basic calculations, tidydata, pipe operations, join and export data frames.\n\n\n\n\n\n\nMay 8, 2023\n\n\nMiriam Lerma\n\n\n\n\n\n\n  \n\n\n\n\nIntro to R\n\n\n\n\n\nFirst steps into R. Install or update R. Workspace panes. Packages. Directories. Load data.\n\n\n\n\n\n\nApr 18, 2023\n\n\nMiriam Lerma\n\n\n\n\n\n\n  \n\n\n\n\nClase de Rmd\n\n\n\n\n\nDesde como crear documentos en Rmd hasta como compartirlos.\n\n\n\n\n\n\nMar 16, 2021\n\n\nMiriam Lerma\n\n\n\n\n\n\n  \n\n\n\n\nClase R desde cero\n\n\n\n\n\nDesde como abrir R y RStudio hasta como exportar tus gráficos, la idea es que este curso te haga sentir cómodo trabajando tus datos y análisis en R.\n\n\n\n\n\n\nJan 28, 2021\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "blog/2026-10-25-qgis-salinity/qgis_salinity.html",
-    "href": "blog/2026-10-25-qgis-salinity/qgis_salinity.html",
-    "title": "Add salinity information in QGIS",
-    "section": "",
-    "text": "In this blog post, we walk step-by-step through the process of creating a salinity map using QGIS. The tutorial covers from preparing your raw data to designing a map layout."
-  },
-  {
-    "objectID": "blog/2026-10-25-qgis-salinity/qgis_salinity.html#shapefile",
-    "href": "blog/2026-10-25-qgis-salinity/qgis_salinity.html#shapefile",
-    "title": "Add salinity information in QGIS",
-    "section": "Shapefile",
-    "text": "Shapefile\nDrag the downloaded file into QGIS’s Layers panel. A window will appear listing the available variables. Since we are focusing on surface salinity, select SLA (Sea Water Salinity). If you wanted bottom-layer salinity instead, you would choose SOB. This ensures that only the relevant salinity data is added to your map.\n\n\n\n\n\nNext, assign a Coordinate Reference System (CRS) to the layer. Here, you can use the project CRS, which ensures consistency with your map, but the choice may vary depending on your study area or the CRS of other layers you are using. This step is important for accurate spatial alignment and measurements in QGIS.\n\n\n\n\n\nFor styling the layer, I took inspiration from this publication: link here\nI applied Singleband pseudocolor rendering and chose Band 01, which corresponds to a depth of 0.50 m (surface layer). I set the minimum value to 0 and the maximum to 30, using the Viridis color ramp, and inverted it for better visual contrast.\nThe Mode was set to Equal Interval with 10 classes, then I manually adjusted the class breaks to multiples of 3 to better reflect meaningful salinity intervals in the Baltic Sea. This approach creates a visually clear and scientifically informed salinity map."
-  },
-  {
-    "objectID": "blog/2026-10-25-qgis-salinity/qgis_salinity.html#export",
-    "href": "blog/2026-10-25-qgis-salinity/qgis_salinity.html#export",
-    "title": "Add salinity information in QGIS",
-    "section": "Export",
-    "text": "Export\nTo export the map, go to Project > Layouts > Open Layout, using one of your previously created layouts that already has the coordinates, symbols, and general map setup.\nIn the layout, include reference layers such as countries, EEZ, and territorial waters to provide geographic context. Then, add the salinity layer on top.\nMake sure to adjust the legend settings for this layer by unchecking “Use continuous legend”, so the discrete classes you defined earlier are properly displayed."
-  },
-  {
-    "objectID": "blog/2026-10-25-qgis-salinity/qgis_salinity.html#create-vector-points",
-    "href": "blog/2026-10-25-qgis-salinity/qgis_salinity.html#create-vector-points",
-    "title": "Add salinity information in QGIS",
-    "section": "Create Vector: Points",
-    "text": "Create Vector: Points\nTo create a new shapefile, go to Layer > Create Layer > New Shapefile Layer. Give the layer a descriptive name and set the geometry type to MultiPoint.\nNext, click Add to Field List to define the attributes: ID – set the type to Integer. Place – set the type to Text (String) with a length of 80 characters. Country – set the type to Text (String) with a length of 2, using standard country codes like DE, PL, DK. This setup allows you to store multiple points with identifying information and associated country codes for your salinity mapping project."
-  },
-  {
-    "objectID": "blog/2026-10-25-qgis-salinity/qgis_salinity.html#further-reading",
-    "href": "blog/2026-10-25-qgis-salinity/qgis_salinity.html#further-reading",
-    "title": "Add salinity information in QGIS",
-    "section": "Further reading",
-    "text": "Further reading\nI drew inspiration from several scientific publications that visualize salinity gradients and spatial patterns in the Baltic Sea: - Ocean Acidification in the Baltic Sea: Involved Processes, Metrology of pH in Brackish Waters and Calcification under Fluctuating Conditions – which provides excellent examples of oceanographic color ramps and layout ideas. - Dwarfism of blue mussels in the low saline Baltic Sea – Growth to the lower salinity limit. – showing how salinity structures biological responses across the basin. - Reciprocal transplants support a plasticity‑first scenario during colonisation of a large hyposaline basin by a marine macroalga. – another work with informative spatial figures.\nFor the dataset we used in this project, check the Copernicus Marine data portal"
-  },
-  {
-    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html",
-    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html",
-    "title": "Add salinity information in QGIS",
-    "section": "",
-    "text": "In this blog post, we walk step-by-step through the process of creating a salinity map using QGIS. The tutorial covers from preparing your raw data to designing a map layout."
-  },
-  {
-    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#shapefile",
-    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#shapefile",
-    "title": "Add salinity information in QGIS",
-    "section": "Shapefile",
-    "text": "Shapefile\nDrag the downloaded file into QGIS’s Layers panel. A window will appear listing the available variables. Since we are focusing on surface salinity, select SLA (Sea Water Salinity). If you wanted bottom-layer salinity instead, you would choose SOB. This ensures that only the relevant salinity data is added to your map.\n\n\n\n\n\nNext, assign a Coordinate Reference System (CRS) to the layer. Here, you can use the project CRS, which ensures consistency with your map, but the choice may vary depending on your study area or the CRS of other layers you are using. This step is important for accurate spatial alignment and measurements in QGIS.\n\n\n\n\n\nFor styling the layer, I took inspiration from this publication: link here\nI applied Singleband pseudocolor rendering and chose Band 01, which corresponds to a depth of 0.50 m (surface layer). I set the minimum value to 0 and the maximum to 30, using the Viridis color ramp, and inverted it for better visual contrast.\nThe Mode was set to Equal Interval with 10 classes, then I manually adjusted the class breaks to multiples of 3 to better reflect meaningful salinity intervals in the Baltic Sea. This approach creates a visually clear and scientifically informed salinity map."
-  },
-  {
-    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#export",
-    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#export",
-    "title": "Add salinity information in QGIS",
-    "section": "Export",
-    "text": "Export\nTo export the map, go to Project > Layouts > Open Layout, using one of your previously created layouts that already has the coordinates, symbols, and general map setup.\nIn the layout, include reference layers such as countries, EEZ, and territorial waters to provide geographic context. Then, add the salinity layer on top.\nMake sure to adjust the legend settings for this layer by unchecking “Use continuous legend”, so the discrete classes you defined earlier are properly displayed."
-  },
-  {
-    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#create-vector-points",
-    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#create-vector-points",
-    "title": "Add salinity information in QGIS",
-    "section": "Create Vector: Points",
-    "text": "Create Vector: Points\nTo create a new shapefile, go to Layer > Create Layer > New Shapefile Layer. Give the layer a descriptive name and set the geometry type to MultiPoint.\nNext, click Add to Field List to define the attributes: ID – set the type to Integer. Place – set the type to Text (String) with a length of 80 characters. Country – set the type to Text (String) with a length of 2, using standard country codes like DE, PL, DK. This setup allows you to store multiple points with identifying information and associated country codes for your salinity mapping project."
-  },
-  {
-    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#further-reading",
-    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#further-reading",
-    "title": "Add salinity information in QGIS",
-    "section": "Further reading",
-    "text": "Further reading\nI drew inspiration from several scientific publications that visualize salinity gradients and spatial patterns in the Baltic Sea: - Ocean Acidification in the Baltic Sea: Involved Processes, Metrology of pH in Brackish Waters and Calcification under Fluctuating Conditions – which provides excellent examples of oceanographic color ramps and layout ideas. - Dwarfism of blue mussels in the low saline Baltic Sea – Growth to the lower salinity limit. – showing how salinity structures biological responses across the basin. - Reciprocal transplants support a plasticity‑first scenario during colonisation of a large hyposaline basin by a marine macroalga. – another work with informative spatial figures.\nFor the dataset we used in this project, check the Copernicus Marine data portal"
-  },
-  {
-    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#crs",
-    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#crs",
-    "title": "Add salinity information in QGIS",
-    "section": "CRS",
-    "text": "CRS\nAssign a Coordinate Reference System (CRS) to the layer. Here, you can use the project CRS, which ensures consistency with your map, but the choice may vary depending on your study area or the CRS of other layers you are using. This step is important for accurate spatial alignment and measurements in QGIS."
-  },
-  {
-    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#single-band-pseudocolor",
-    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#single-band-pseudocolor",
-    "title": "Add salinity information in QGIS",
-    "section": "Single Band Pseudocolor",
-    "text": "Single Band Pseudocolor\nFor styling the layer, I took inspiration from this publication: link here\nI applied Singleband pseudocolor rendering and chose Band 01, which corresponds to a depth of 0.50 m (surface layer). I set the minimum value to 0 and the maximum to 30, using the Viridis color ramp, and inverted it for better visual contrast.\nThe Mode was set to Equal Interval with 10 classes, then I manually adjusted the class breaks to multiples of 3 to better reflect meaningful salinity intervals in the Baltic Sea."
-  },
-  {
-    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#layout",
-    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#layout",
-    "title": "Add salinity information in QGIS",
-    "section": "Layout",
-    "text": "Layout\nTo export the map, go to Project > Layouts > Open Layout, using one of your previously created layouts that already has the coordinates, symbols, and general map setup.\nIn the layout, include reference layers such as countries, EEZ, and territorial waters to provide geographic context. Then, add the salinity layer on top.\nMake sure to adjust the legend settings for this layer by unchecking “Use continuous legend”, so the discrete classes you defined earlier are properly displayed."
-  },
-  {
-    "objectID": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#country-and-places-names",
-    "href": "blog/2026-10-14-qgis-salinity/qgis_salinity.html#country-and-places-names",
-    "title": "Add salinity information in QGIS",
-    "section": "Country and Places names",
-    "text": "Country and Places names\nTo create a new shapefile, go to Layer > Create Layer > New Shapefile Layer. Give the layer a descriptive name and set the geometry type to MultiPoint.\nNext, click Add to Field List to define the attributes: ID – set the type to Integer. Place – set the type to Text (String) with a length of 80 characters. Country – set the type to Text (String) with a length of 2, using standard country codes like DE, PL, DK. This setup allows you to store multiple points with identifying information and associated country codes for your salinity mapping project."
   }
 ]
