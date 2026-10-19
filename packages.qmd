@@ -166,7 +166,7 @@ The package **contains**:
 You can install the package from GitHub with:
 
 ```{r, eval=FALSE}
-devtools::install_github("MiriamLL/GermanNorthSea")
+devtools::install_github("MiriamLL/DASShapefiles")
 ```
 
 Detailed information and uses: <https://github.com/MiriamLL/DASShapefiles>. <br> 
