@@ -1,0 +1,113 @@
+---
+title: "Ice concentration in the Baltic Sea using QGIS"
+description: |
+  In this blog post, we'll create an ice map from the Baltic Sea.
+author:
+  - name: Miriam Lerma
+    url: {}
+date: 2026-11-24
+image: ice_front.png
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+categories:
+  - qgis
+  - Y2026
+---
+
+# Intro
+
+In this blog post,we walk step-by-step through the process of creating a ice coverage map using QGIS. From importing Baltic Sea's ice data into QGIS to styling it with a pseudocolor ramp.
+
+# Data
+
+To access global and regional marine datasets, go to the Copernicus Marine data portal at https://data.marine.copernicus.eu/products.
+
+On this platform, you can browse a wide range of oceanographic products, including ice concentration. 
+
+The site allows users to filter datasets by parameter, geographic region, temporal coverage, and data type (reanalysis, near real-time, or forecast), making it easier to find the specific salinity product needed for your study area.  
+
+After selecting a dataset, you can review its metadata, spatial and temporal resolution, and download options before retrieving the data in formats compatible with GIS software such as QGIS.
+
+```{r, echo=FALSE}
+import_directory<-paste0(here::here(),"/blog/2026-11-25-qgis-ice/")
+```
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/copernicus.png"))
+```
+
+
+In the Filters panel, narrow down the available datasets by selecting *Sea Ice Concentration* under the Variables category and Baltic Sea under the Area category. This will refine the results to show products specifically available for the Baltic Sea region, making it easier to identify and download the most relevant dataset for your analysis.
+
+Select **Baltic Sea ice concentration, extent, and classification time series**. 
+
+```{r, echo=FALSE, out.width = "40%"}
+knitr::include_graphics(paste0(import_directory,"/filters.png"))
+```
+
+
+Additional information of the data access and mapping services can also be found. 
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/information.png"))
+```
+
+Let’s select the year 2010. The available data currently spans 1980–2025. According to the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi/baltic-sea-ice-winters), both 2010 and 2011 were years with extensive ice cover in the Baltic Sea.  
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/years.png"))
+```
+
+The information is provided per day, so let’s select February 19, as it is typically one of the coldest times of the year.
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/daily.png"))
+```
+
+
+## Shapefile
+
+In QGIS, go to Layer > Add Layer > Add Raster Layer.  
+- Browse to and select your file.  
+- Select the Ice Concentration layer.  
+- Click Add Layers to load it into QGIS.  
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/select_items.png"))
+```
+
+The original band might appear rather shapeless. To provide colors, Go to Properties > Symbology and select Singleband pseudocolor.
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/layer.png"))
+```
+
+Set the number of classes to 5 and manually adjust the labels as follows:
+< 10: Open water  
+10–60: Open ice  
+60–70: Open ice  
+70–80: Close ice  
+90–100: Very close ice
+I took inspiration from the ice chart (Eiskarte) published by the BSH (Federal Maritime and Hydrographic Agency).
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/layer_properties.png"))
+```
+
+## Final
+
+For the final layout, I added the names of key locations and included a legend to illustrate the different ice concentration classes.
+For instructions on how to add place names, country boundaries, and a scale bar, please refer to my previous posts.
+
+```{r, echo=FALSE, out.width = "80%"}
+knitr::include_graphics(paste0(import_directory,"/BalticSea_11ice.jpeg"))
+```
+
+# Further reading
+
+I drew inspiration from the Eiskarte from the [BSH](https://www2.bsh.de/aktdat/eisdienst/Aktuelle-Eiskarte.pdf). 
+
+
