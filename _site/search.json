@@ -1313,7 +1313,7 @@
     "href": "blog/2026-11-25-qgis-ice/qgis_ice.html#shapefile",
     "title": "Ice concentration in the Baltic Sea using QGIS",
     "section": "Shapefile",
-    "text": "Shapefile\nIn QGIS, go to Layer > Add Layer > Add Raster Layer.\n- Browse to and select your file.\n- Select the Ice Concentration layer.\n- Click Add Layers to load it into QGIS.\n\n\n\n\n\nThe original band might appear rather shapeless. To provide colors, Go to Properties > Symbology and select Singleband pseudocolor.\n\n\n\n\n\nSet the number of classes to 5 and manually adjust the labels as follows: < 10: Open water\n10–60: Open ice\n60–70: Open ice\n70–80: Close ice\n90–100: Very close ice I took inspiration from the ice chart (Eiskarte) published by the BSH (Federal Maritime and Hydrographic Agency)."
+    "text": "Shapefile\nIn QGIS, go to Layer > Add Layer > Add Raster Layer.\n- Browse to and select your file.\n- Select the Ice Concentration layer.\n- Click Add Layers to load it into QGIS.\n\n\n\n\n\nThe original band might appear rather shapeless. To provide colors, Go to Properties > Symbology and select Singleband pseudocolor.\n\n\n\n\n\nSet the number of classes to 5 and manually adjust the labels as follows: < 10: Open water\n10–60: Open ice\n60–70: Open ice\n70–80: Close ice\n90–100: Very close ice\nI took inspiration from the ice chart (Eiskarte) published by the BSH (Federal Maritime and Hydrographic Agency)."
   },
   {
     "objectID": "blog/2026-11-25-qgis-ice/qgis_ice.html#final",

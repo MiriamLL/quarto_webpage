@@ -44,7 +44,7 @@ In the Filters panel, narrow down the available datasets by selecting *Sea Ice C
 
 Select **Baltic Sea ice concentration, extent, and classification time series**. 
 
-```{r, echo=FALSE, out.width = "40%"}
+```{r, echo=FALSE, out.width = "80%"}
 knitr::include_graphics(paste0(import_directory,"/filters.png"))
 ```
 
@@ -90,7 +90,8 @@ Set the number of classes to 5 and manually adjust the labels as follows:
 10–60: Open ice  
 60–70: Open ice  
 70–80: Close ice  
-90–100: Very close ice
+90–100: Very close ice  
+
 I took inspiration from the ice chart (Eiskarte) published by the BSH (Federal Maritime and Hydrographic Agency).
 
 ```{r, echo=FALSE, out.width = "80%"}
